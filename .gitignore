@@ -1,0 +1,10 @@
+# Agent session artifacts — internal orchestration, not shipped code.
+# These were committed by mistake; keep them out of version control.
+.agents/
+_to_delete/
+
+# Zero-dependency app: node_modules should never be needed here.
+node_modules/
+
+# Firecrawl web-research cache (raw search/scrape output, not shipped content).
+.firecrawl/

@@ -1,0 +1,26 @@
+{
+  "name": "sovereign-aegis",
+  "version": "1.0.0",
+  "description": "Cognitive Sovereignty & Epistemic Defense Suite",
+  "type": "module",
+  "scripts": {
+    "test": "node tests/run-all.js && node tests/test-reverse-face-search-upload.js",
+    "test:e2e": "node tests/test-e2e.js",
+    "test:browser": "node tests/test-browser.js",
+    "test:all": "npm test && npm run test:browser",
+    "check": "node --check js/state.js && node --check js/crypto.js && node --check js/app.js"
+  },
+  "keywords": [
+    "epistemic-defense",
+    "cognitive-sovereignty",
+    "webcrypto",
+    "did-key",
+    "osint",
+    "ach-matrix"
+  ],
+  "author": "Sovereign Aegis Collective",
+  "license": "MIT",
+  "devDependencies": {
+    "playwright": "^1.62.1"
+  }
+}
