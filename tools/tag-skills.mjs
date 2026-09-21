@@ -117,6 +117,16 @@ for (const c of cards) {
   c.heldOut = heldOutIds.has(c.id);
 }
 
+// An SM-2 card whose id is the carding of a held-out item makes the held-out set practiceable
+// in the Memory Vault, which is exactly the contamination the transfer measurement cannot
+// tolerate: improvement on "unpracticed" items would silently measure practice. This is the
+// file-side half of the gate; gen-sm2-cards.mjs skips held-out questions at the source.
+const heldOutLeakage = [];
+for (const c of cards) {
+  const stripped = c.id.replace(/^card-arena-/, '');
+  if (heldOutIds.has(stripped)) heldOutLeakage.push(`${c.id} (= held-out item ${stripped})`);
+}
+
 /* ------------------------------------------------------- SIFT scenarios: by lab */
 
 const LAB_TO_SKILL = {
@@ -334,6 +344,13 @@ if (missingHeldOut.length) {
   failed = true;
 }
 
+if (heldOutLeakage.length) {
+  console.error(`\n  FATAL: ${heldOutLeakage.length} SM-2 card(s) are the carding of held-out items —`);
+  console.error('  practicing them in the Memory Vault contaminates the transfer measurement:');
+  heldOutLeakage.forEach((x) => console.error(`      ${x}`));
+  console.error('  Remove these cards (run tools/gen-sm2-cards.mjs, which now skips held-out items).');
+  failed = true;
+}
 if (failed) {
   console.error('\n  Nothing written.\n');
   process.exit(1);

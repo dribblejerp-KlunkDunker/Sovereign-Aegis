@@ -88,6 +88,28 @@ export const SpacedRepetition = {
       this._deck = [];
     }
 
+    // Purge held-out contamination from the stored deck. The 40 held-out arena questions are
+    // the transfer-measurement set (Phase 4) and must never be schedulable review items.
+    // Legacy decks can carry them under three shapes: flagged `heldOut: true` (the old
+    // tag-skills marking), bare question ids ('q42'), or carded ids ('card-arena-q42') from
+    // the pre-generator deck builder. tools/gen-sm2-cards.mjs and tools/tag-skills.mjs keep
+    // them out of the file; this is the runtime half for decks already in the store.
+    const baseIds = new Set(baseCards.filter(c => c && c.id).map(c => c.id));
+    const prePurge = this._deck.length;
+    this._deck = this._deck.filter((c) => {
+      if (!c || typeof c !== 'object') return false;
+      if (c.heldOut === true) return false;
+      if (/^q\d+$/.test(c.id || '')) return false;
+      // A carded arena id absent from the source deck is a stale or leaked artifact: the
+      // generator now owns the card-arena-* namespace and re-emits practice cards itself.
+      if ((c.id || '').startsWith('card-arena-') && baseCards.length && !baseIds.has(c.id)) return false;
+      return true;
+    });
+    if (this._deck.length !== prePurge) {
+      console.warn(`[SpacedRepetition] Purged ${prePurge - this._deck.length} held-out/stale card(s) from stored deck.`);
+      this._saveDeck();
+    }
+
     // Re-attach the skill tags from the source data on every load, for both fresh and stored
     // decks. A deck serialised before the content was tagged has no `tests`, and without this
     // its reviews would go unrecorded forever — silently, since a missing attempt looks
@@ -104,6 +126,31 @@ export const SpacedRepetition = {
         return { ...c, tests: t.tests, heldOut: t.heldOut };
       });
       if (retagged) this._saveDeck();
+    }
+
+    // Phase 2 merge: base cards added by newer content releases flow into an existing stored
+    // deck, so new cards reach current operators and not only fresh installs. Progress on
+    // ids the two decks share is untouched; only genuinely new ids are seeded. Same
+    // recompute philosophy as the re-tag above — the stored deck is derived state, the
+    // source file is the truth it converges toward.
+    if (baseCards.length) {
+      const known = new Set(this._deck.map((c) => c && c.id));
+      const added = baseCards
+        .filter((c) => c && c.id && !known.has(c.id))
+        .map((c) => ({
+          repetitions: 0,
+          interval: 0,
+          easeFactor: 2.5,
+          dueDate: new Date().toISOString().split('T')[0],
+          lastReviewed: null,
+          history: [],
+          ...c
+        }));
+      if (added.length) {
+        this._deck = [...this._deck, ...added];
+        this._saveDeck();
+        console.log(`[SpacedRepetition] Merged ${added.length} new base card(s) into stored deck.`);
+      }
     }
   },
 

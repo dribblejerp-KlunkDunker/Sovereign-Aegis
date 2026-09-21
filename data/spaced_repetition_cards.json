@@ -39,19 +39,6 @@
     "heldOut": false
   },
   {
-    "id": "card-arena-q1",
-    "domain": "Logical Fallacy",
-    "prompt": "Name the move: \"\"Why should we trust Dr. Vance's climate model when he was caught having an affair five years ago?\"\"",
-    "diagnosis": "Ad Hominem",
-    "latin": "Logical Fallacy",
-    "mechanism": "Not: Straw Man, Slippery Slope, False Dilemma",
-    "countermeasure": "Attacks Dr. Vance's personal moral character rather than evaluating the empirical rigor of his mathematical climate model.",
-    "tests": [
-      "skill.fallacy.relevance"
-    ],
-    "heldOut": false
-  },
-  {
     "id": "card-arena-q10",
     "domain": "Propaganda Tactics",
     "prompt": "Name the move: \"\"A commercial PR firm deploys 5,000 bot accounts to coordinate posts praising a new luxury car model, making it appear like a genuine grassroots viral trend.\"\"",
@@ -79,6 +66,98 @@
     "heldOut": false
   },
   {
+    "id": "card-arena-q101",
+    "domain": "DISARM Framework",
+    "prompt": "Name the move: \"An adversary scrapes a year of a community's public posts to identify its most-shared grievances and the ten accounts everyone replies to.\"",
+    "diagnosis": "T0001: Target Profiling",
+    "latin": "DISARM Framework",
+    "mechanism": "Not: T0004: Establish Inauthentic Assets / Spoofing, T0048: Flood the Information Environment / Epistemic Pollution, Coordinated Inauthentic Behaviour",
+    "countermeasure": "Audience research precedes narrative development: you need to know which grievance exists before you can amplify it. Nothing has been created or published yet, which is what places this in Plan rather than Prepare.",
+    "tests": [
+      "skill.disarm.plan-prepare"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "card-arena-q102",
+    "domain": "DISARM Framework",
+    "prompt": "Name the move: \"A team drafts three variants of a narrative and quietly tests each with small ad buys to see which produces the most engagement, before any organic push.\"",
+    "diagnosis": "Narrative Development and Pretesting",
+    "latin": "DISARM Framework",
+    "mechanism": "Not: T0048: Flood the Information Environment / Epistemic Pollution, T0001: Target Profiling, Astroturfing",
+    "countermeasure": "This is message optimisation inside the Prepare phase — the same A/B discipline commercial marketing uses. It follows target profiling and precedes seeding, and its signature is small, cheap, low-visibility activity that looks like nothing much at the time.",
+    "tests": [
+      "skill.disarm.plan-prepare"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "card-arena-q103",
+    "domain": "DISARM Framework",
+    "prompt": "Name the move: \"Personas are built with two years of backdated ordinary posts — recipes, sport, holiday photographs — before ever mentioning politics.\"",
+    "diagnosis": "T0004: Establish Inauthentic Assets / Spoofing",
+    "latin": "DISARM Framework",
+    "mechanism": "Not: Coordinated Inauthentic Behaviour, T0001: Target Profiling, Astroturfing",
+    "countermeasure": "Legend-building is asset preparation; the mundane history exists to defeat exactly the account-age and content-mix checks a reviewer would run. It becomes a deployed astroturf campaign only once those assets are used to simulate a movement.",
+    "tests": [
+      "skill.disarm.plan-prepare",
+      "skill.tactic.astroturfing"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "card-arena-q104",
+    "domain": "DISARM Framework",
+    "prompt": "Name the move: \"A fabricated claim is posted first to a small niche forum, then screenshotted into a mid-size channel as \"people are saying\", then covered by a national outlet as a controversy.\"",
+    "diagnosis": "Narrative Laundering",
+    "latin": "DISARM Framework",
+    "mechanism": "Not: T0048: Flood the Information Environment / Epistemic Pollution, Astroturfing, Firehose of Falsehood",
+    "countermeasure": "Each hop strips provenance and adds apparent credibility until the origin is unrecoverable. Flooding is a different mechanism — volume rather than laundering — and the tell here is the deliberate ladder of venues.",
+    "tests": [
+      "skill.disarm.seed-amplify"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "card-arena-q105",
+    "domain": "DISARM Framework",
+    "prompt": "Name the move: \"Prepared assets post a claim simultaneously across six platforms within a four-minute window.\"",
+    "diagnosis": "Cross-Platform Amplification",
+    "latin": "DISARM Framework",
+    "mechanism": "Not: T0004: Establish Inauthentic Assets / Spoofing, Brigading, T0001: Target Profiling",
+    "countermeasure": "Simultaneity across platforms is the seeding signature — it manufactures the appearance of independent emergence, which is the single strongest trust cue an audience has. Brigading would target one venue or account rather than spreading across many.",
+    "tests": [
+      "skill.disarm.seed-amplify"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "card-arena-q106",
+    "domain": "DISARM Framework",
+    "prompt": "Name the move: \"Operators identify accounts that already believe a related claim and supply them with polished graphics, then step back entirely.\"",
+    "diagnosis": "Useful-Idiot Recruitment / Organic Amplifier Seeding",
+    "latin": "DISARM Framework",
+    "mechanism": "Not: Astroturfing, Coordinated Inauthentic Behaviour, Brigading",
+    "countermeasure": "The amplifiers are entirely authentic, which is what makes this so hard to counter — there is no inauthentic network to take down, and the sincerity of the spreaders is real. Astroturfing requires manufactured participants; this recruits genuine ones.",
+    "tests": [
+      "skill.disarm.seed-amplify"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "card-arena-q107",
+    "domain": "DISARM Framework",
+    "prompt": "Name the move: \"A campaign seeds a hashtag at 03:00 local time, when moderation staffing is thinnest, and lets it trend before review.\"",
+    "diagnosis": "Timing Exploitation in Seeding",
+    "latin": "DISARM Framework",
+    "mechanism": "Not: Brigading, T0048: Flood the Information Environment / Epistemic Pollution, Cross-Platform Amplification",
+    "countermeasure": "Trending status acquired before human review converts into organic reach that survives the later takedown. The operational insight is that platform defences have a schedule, and schedules are targetable.",
+    "tests": [
+      "skill.disarm.seed-amplify"
+    ],
+    "heldOut": false
+  },
+  {
     "id": "card-arena-q108",
     "domain": "DISARM Framework",
     "prompt": "Name the move: \"Thousands of low-quality posts on an unrelated topic bury a damaging story in every relevant feed within hours.\"",
@@ -89,20 +168,6 @@
     "tests": [
       "skill.disarm.seed-amplify",
       "skill.tactic.flooding"
-    ],
-    "heldOut": false
-  },
-  {
-    "id": "card-arena-q109",
-    "domain": "DISARM Framework",
-    "prompt": "Name the move: \"After a takedown removes 900 accounts, the same narrative reappears within a week through a different, previously dormant set.\"",
-    "diagnosis": "Asset Rotation after Attrition",
-    "latin": "DISARM Framework",
-    "mechanism": "Not: T0004: Establish Inauthentic Assets / Spoofing, Astroturfing, Cross-Platform Amplification",
-    "countermeasure": "Reserve assets prepared earlier are activated, which is why Prepare-phase stockpiling matters operationally. It shows that a takedown measured in accounts removed may be measuring the wrong thing.",
-    "tests": [
-      "skill.disarm.seed-amplify",
-      "skill.disarm.countermeasures"
     ],
     "heldOut": false
   },
@@ -120,6 +185,19 @@
     "heldOut": false
   },
   {
+    "id": "card-arena-q110",
+    "domain": "DISARM Framework",
+    "prompt": "Name the move: \"A small false claim is circulating in one niche forum. An agency issues a national press release naming and rebutting it.\"",
+    "diagnosis": "The countermeasure amplifies what it targets",
+    "latin": "DISARM Framework",
+    "mechanism": "Not: Prebunking, Strategic Silence (Deliberate Non-Amplification), Narrative Laundering",
+    "countermeasure": "The rebuttal carries the claim to an audience that had never encountered it, and repetition increases familiarity, which increases believability. Proportionality is the whole skill — the right response to a contained claim is often containment.",
+    "tests": [
+      "skill.disarm.countermeasures"
+    ],
+    "heldOut": false
+  },
+  {
     "id": "card-arena-q111",
     "domain": "DISARM Framework",
     "prompt": "Name the move: \"Before an expected influence operation, an outlet explains the TECHNIQUE likely to be used, without repeating any specific false claim.\"",
@@ -129,6 +207,19 @@
     "countermeasure": "Teaching the manipulation pattern in advance confers resistance without giving the specific falsehood any airtime. That is its advantage over debunking, which necessarily repeats the claim in order to correct it.",
     "tests": [
       "skill.disarm.countermeasures"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "card-arena-q112",
+    "domain": "AI Media Forensics",
+    "prompt": "Name the move: \"An image carries a C2PA manifest that parses cleanly. The viewer shows the capture device, edit history and signer.\"",
+    "diagnosis": "The manifest is parsed but not cryptographically verified",
+    "latin": "AI Media Forensics",
+    "mechanism": "Not: The image is proven authentic, The image is proven edited, The manifest proves the device model",
+    "countermeasure": "Parsing reads what a file claims about itself; verification requires checking the COSE signature against a trusted certificate chain and confirming the asset hashes still match. A well-formed manifest can be copied wholesale onto a different image.",
+    "tests": [
+      "skill.forensics.provenance"
     ],
     "heldOut": false
   },
@@ -159,29 +250,159 @@
     "heldOut": false
   },
   {
-    "id": "card-arena-q15",
-    "domain": "DISARM Framework",
-    "prompt": "Name the move: \"\"Adversaries set up fake regional news portals (`the-midwest-chronicle-today.org`) with stolen journalistic mastheads to publish forged documents.\"\"",
-    "diagnosis": "T0004: Establish Inauthentic Assets / Spoofing",
-    "latin": "DISARM Framework",
-    "mechanism": "Not: T0022: Micro-targeting, T0030: Coordinated Amplification, T0043: Algorithmic Hijack",
-    "countermeasure": "DISARM Tactic T0004 involves creating counterfeit personas, domains, and mastheads to establish fraudulent legitimacy.",
+    "id": "card-arena-q115",
+    "domain": "AI Media Forensics",
+    "prompt": "Name the move: \"A manifest records that the asset was generated by a text-to-image model, and the signature verifies.\"",
+    "diagnosis": "Strong evidence the image is synthetic, since a generator had no incentive to lie",
+    "latin": "AI Media Forensics",
+    "mechanism": "Not: Proof the image is synthetic, No information — manifests can be forged, Evidence the image is authentic",
+    "countermeasure": "A self-declared disclosure signed by the tool that made it is credible in the direction that costs the declarer something. Note the asymmetry: a manifest claiming CAMERA capture is far weaker evidence, because that is the claim an adversary would want to make.",
     "tests": [
-      "skill.disarm.plan-prepare",
-      "skill.tactic.astroturfing"
+      "skill.forensics.provenance"
     ],
     "heldOut": false
   },
   {
-    "id": "card-arena-q2",
+    "id": "card-arena-q116",
+    "domain": "AI Media Forensics",
+    "prompt": "Name the move: \"Two copies of an image circulate. One carries a valid manifest; the other is pixel-identical with the manifest stripped.\"",
+    "diagnosis": "Stripping a manifest is trivial and leaves the pixels untouched",
+    "latin": "AI Media Forensics",
+    "mechanism": "Not: The stripped copy has been manipulated, The manifest copy must be the original, The two files cannot be pixel-identical",
+    "countermeasure": "Provenance is carried alongside the image data, not embedded in it, so removal changes nothing visible. This is why C2PA can raise confidence when present and can never lower it when absent.",
+    "tests": [
+      "skill.forensics.provenance"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "card-arena-q118",
+    "domain": "AI Media Forensics",
+    "prompt": "Name the move: \"An Error Level Analysis view shows one region markedly brighter than the rest of the frame.\"",
+    "diagnosis": "An indicator with several innocent explanations, not a finding",
+    "latin": "AI Media Forensics",
+    "mechanism": "Not: Proof that region was pasted in, Proof the image is synthetic, Evidence the image is unedited",
+    "countermeasure": "Differing JPEG compression history produces the same signature — a crop, a resave, text overlay, or a region of genuinely different texture will all light up. ELA locates something worth asking about; it does not answer the question.",
+    "tests": [
+      "skill.forensics.read-measurements"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "card-arena-q119",
+    "domain": "Cognitive Bias",
+    "prompt": "Name the move: \"A hiring panel that liked a candidate's first answer spends the rest of the interview asking questions the candidate is likely to answer well.\"",
+    "diagnosis": "Confirmation Bias",
+    "latin": "Cognitive Bias",
+    "mechanism": "Not: Anchoring Effect, Fundamental Attribution Error / Ingroup Favoritism, Availability Heuristic",
+    "countermeasure": "The interview stops being a test once the questions are chosen to be passed. Anchoring is a defensible second answer — the first answer did set an impression — but the diagnostic feature here is that the panel is now GATHERING evidence selectively rather than merely weighting it.",
+    "tests": [
+      "skill.bias.confirmation"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "card-arena-q12",
+    "domain": "AI Media Forensics",
+    "prompt": "Name the move: \"\"A suspected leaked audio file features an official's voice with zero audible inhalation pauses across 90 seconds of uninterrupted rapid speech.\"\"",
+    "diagnosis": "Synthetic Phoneme Prosody / Respiration Absence",
+    "latin": "AI Media Forensics",
+    "mechanism": "Not: Frequency Cutoff Artifact, Phase Cancellation, Vocal Fry Modulation",
+    "countermeasure": "Text-to-speech (TTS) neural models stitch phonemes together without natural biological breathing rhythms or nasal friction.",
+    "tests": [
+      "skill.forensics.read-measurements"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "card-arena-q13",
+    "domain": "AI Media Forensics",
+    "prompt": "Name the move: \"\"Inspecting a crowd photograph reveals that distant spectators' earlobes blend seamlessly into their collars, and glasses frames fade into cheek skin without hinges.\"\"",
+    "diagnosis": "Boundary Smearing & Topology Hallucination",
+    "latin": "AI Media Forensics",
+    "mechanism": "Not: Chroma Subsampling, JPEG Block Boundary Artifact, Sensor Bayer Filter Pattern",
+    "countermeasure": "Generative diffusion models struggle with fine semantic topological continuity around complex accessory boundaries.",
+    "tests": [
+      "skill.forensics.read-measurements"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "card-arena-q14",
+    "domain": "DISARM Framework",
+    "prompt": "Name the move: \"\"An adversary state maps existing ethnic and socio-economic tension points across social media groups months before launching an influence operation.\"\"",
+    "diagnosis": "T0001: Target Profiling",
+    "latin": "DISARM Framework",
+    "mechanism": "Not: T0016: Synthetic Media Creation, T0035: Botnet Swarming, T0047: Media Infiltration",
+    "countermeasure": "DISARM Tactic T0001 (Target Profiling) operates in the planning stage to identify societal fault lines for weaponized exploitation.",
+    "tests": [
+      "skill.disarm.plan-prepare"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "card-arena-q16",
     "domain": "Logical Fallacy",
-    "prompt": "Name the move: \"\"If we allow a single municipal zoning exception for affordable duplexes, skyscrapers will destroy all single-family homes and property values will plummet to zero within months.\"\"",
-    "diagnosis": "Slippery Slope",
+    "prompt": "Name the move: \"\"Since the city started spraying organic mosquito repellent in July, local bakery sales have doubled. Clearly, mosquito repellent stimulates carbohydrate appetite.\"\"",
+    "diagnosis": "Post Hoc Ergo Propter Hoc",
     "latin": "Logical Fallacy",
-    "mechanism": "Not: Appeal to Authority, Equivocation, Genetic Fallacy",
-    "countermeasure": "Asserts an extreme chain reaction of catastrophic consequences from an initial modest step without intermediate causal evidence.",
+    "mechanism": "Not: Genetic Fallacy, Circular Reasoning (Petitio Principii), Equivocation",
+    "countermeasure": "Confuses chronological sequence with causal relationship ('after this, therefore because of this').",
     "tests": [
       "skill.fallacy.scope"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "card-arena-q17",
+    "domain": "Logical Fallacy",
+    "prompt": "Name the move: \"\"The CEO's health plan must be flawless because our company employs 100,000 highly intelligent engineers who all endorse it enthusiastically.\"\"",
+    "diagnosis": "Argumentum ad Populum (Bandwagon)",
+    "latin": "Logical Fallacy",
+    "mechanism": "Not: Appeal to Pity, Affirming the Consequent, False Analogy",
+    "countermeasure": "Asserts a claim is true or optimal solely because a large multitude of people endorse it.",
+    "tests": [
+      "skill.fallacy.appeals"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "card-arena-q20",
+    "domain": "Propaganda Tactics",
+    "prompt": "Name the move: \"\"A headline reads: 'CORRUPT BUREAUCRATS SQUANDER BILLIONS ON SECRET ELITE PALACES' without citing a single budgetary line item or audit report.\"\"",
+    "diagnosis": "Loaded / Emotive Language",
+    "latin": "Propaganda Tactics",
+    "mechanism": "Not: Glittering Generalities, Transfer Technique, Card Stacking",
+    "countermeasure": "Using intense emotional valence and pejorative buzzwords to provoke visceral anger and bypass analytical scrutiny.",
+    "tests": [
+      "skill.tactic.emotive-framing"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "card-arena-q21",
+    "domain": "Logical Fallacy",
+    "prompt": "Name the move: \"\"If it is raining, the street is wet. The street is wet. Therefore, it is raining.\"\"",
+    "diagnosis": "Affirming the Consequent (Formal Fallacy)",
+    "latin": "Logical Fallacy",
+    "mechanism": "Not: Denying the Antecedent, Modus Ponens, Undistributed Middle",
+    "countermeasure": "A formal deductive error: the street could be wet from a fire hydrant, street sweeper, or melting snow.",
+    "tests": [
+      "skill.fallacy.formal-vs-informal",
+      "skill.fallacy.structure"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "card-arena-q22",
+    "domain": "Logical Fallacy",
+    "prompt": "Name the move: \"\"The feather is light. What is light cannot be dark. Therefore, a feather cannot be dark.\"\"",
+    "diagnosis": "Equivocation (Semantic Shift)",
+    "latin": "Logical Fallacy",
+    "mechanism": "Not: Amphiboly, Division Fallacy, Reification",
+    "countermeasure": "Shifting between two distinct definitions of the word 'light' (weight vs illumination) within the same syllogism.",
+    "tests": [
+      "skill.tactic.equivocation"
     ],
     "heldOut": false
   },
@@ -199,16 +420,41 @@
     "heldOut": false
   },
   {
-    "id": "card-arena-q24",
-    "domain": "DISARM Framework",
-    "prompt": "Name the move: \"\"Adversary channels deploy automated bots to reply to every fact-checker tweet with 20 contradictory versions of the same event, exhausting reader trust.\"\"",
-    "diagnosis": "T0048: Flood the Information Environment / Epistemic Pollution",
-    "latin": "DISARM Framework",
-    "mechanism": "Not: T0002: Audience Segmentation, T0018: Compromise Infrastructure, T0025: Coordinated Leaks",
-    "countermeasure": "DISARM Tactic T0048 aims to induce epistemic fatigue by drowning verified reporting in a deluge of contradictory theories.",
+    "id": "card-arena-q25",
+    "domain": "Cognitive Bias",
+    "prompt": "Name the move: \"\"After an election outcome is declared, 80% of poll commentators claim: 'I knew it was going to happen all along', despite their written forecasts stating the exact opposite 48 hours prior.\"\"",
+    "diagnosis": "Hindsight Bias",
+    "latin": "Cognitive Bias",
+    "mechanism": "Not: Egocentric Bias, Actor-Observer Bias, Fundamental Attribution Error",
+    "countermeasure": "The inclination to see events, after they have occurred, as having been predictable despite having had no basis for knowing.",
     "tests": [
-      "skill.disarm.seed-amplify",
-      "skill.tactic.flooding"
+      "skill.bias.probability"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "card-arena-q26",
+    "domain": "Logical Fallacy",
+    "prompt": "Name the move: \"\"Every component of this supercomputer weighs less than 1 ounce. Therefore, the entire assembled supercomputer weighs less than 1 ounce.\"\"",
+    "diagnosis": "Fallacy of Composition",
+    "latin": "Logical Fallacy",
+    "mechanism": "Not: Fallacy of Division, Accident Fallacy, Ecological Fallacy",
+    "countermeasure": "Erronously inferring that something is true of the whole from the fact that it is true of each individual part.",
+    "tests": [
+      "skill.fallacy.scope"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "card-arena-q29",
+    "domain": "Logical Fallacy",
+    "prompt": "Name the move: \"\"The transport committee proposed a 15 km/h speed reduction outside primary schools. So they think cars are evil and want us all walking to work in the rain.\"\"",
+    "diagnosis": "Straw Man",
+    "latin": "Logical Fallacy",
+    "mechanism": "Not: Slippery Slope, False Dilemma, Hasty Generalisation",
+    "countermeasure": "The actual proposal — a limited speed change near schools — is replaced by an absurd one that is easier to attack. This is not a slippery slope: no chain of consequences is claimed, the position itself has been swapped out.",
+    "tests": [
+      "skill.fallacy.relevance"
     ],
     "heldOut": false
   },
@@ -239,6 +485,32 @@
     "heldOut": false
   },
   {
+    "id": "card-arena-q31",
+    "domain": "Logical Fallacy",
+    "prompt": "Name the move: \"Asked whether the audit found missing funds, the director replies: \"What I will say is that this department has served this city for ninety years and our staff work incredibly hard.\"\"",
+    "diagnosis": "Red Herring",
+    "latin": "Logical Fallacy",
+    "mechanism": "Not: Straw Man, Appeal to Emotion, Begging the Question",
+    "countermeasure": "The reply is true, warm, and about something else — the audit question is never engaged. It is not an appeal to emotion in the strict sense: no feeling is offered as EVIDENCE, the subject is simply changed.",
+    "tests": [
+      "skill.fallacy.relevance"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "card-arena-q32",
+    "domain": "Logical Fallacy",
+    "prompt": "Name the move: \"\"Both people I know who took that job quit within a year. It is clearly a terrible employer.\"\"",
+    "diagnosis": "Hasty Generalisation",
+    "latin": "Logical Fallacy",
+    "mechanism": "Not: Anecdotal Evidence, Fallacy of Composition, Post Hoc Ergo Propter Hoc",
+    "countermeasure": "A sample of two is generalised to an employer of unknown size. Anecdotal evidence is the close neighbour and would be the better answer if the anecdote were being used AGAINST statistics; here there are no statistics in play, only an over-broad leap.",
+    "tests": [
+      "skill.fallacy.scope"
+    ],
+    "heldOut": false
+  },
+  {
     "id": "card-arena-q33",
     "domain": "Logical Fallacy",
     "prompt": "Name the move: \"An analyst reviews forty indicators, reports the three that moved together before the crash, and presents them as an early-warning signature.\"",
@@ -252,6 +524,19 @@
     "heldOut": false
   },
   {
+    "id": "card-arena-q34",
+    "domain": "Logical Fallacy",
+    "prompt": "Name the move: \"\"A Nobel laureate in chemistry has said the new monetary policy will cause hyperinflation, so the case is settled.\"\"",
+    "diagnosis": "Appeal to False Authority",
+    "latin": "Logical Fallacy",
+    "mechanism": "Not: Appeal to Popularity, Ad Hominem, Appeal to Tradition (Argumentum ad Antiquitatem)",
+    "countermeasure": "The credential is real but belongs to a different field. This is the harder version of the fallacy — the easy version cites someone with no expertise at all, while genuine authority misapplied is far more persuasive and far more common.",
+    "tests": [
+      "skill.fallacy.appeals"
+    ],
+    "heldOut": false
+  },
+  {
     "id": "card-arena-q35",
     "domain": "Logical Fallacy",
     "prompt": "Name the move: \"\"This procedure has been standard practice in the guild for two hundred years. That is reason enough to keep it.\"\"",
@@ -259,6 +544,19 @@
     "latin": "Logical Fallacy",
     "mechanism": "Not: Appeal to Authority, Appeal to Popularity, Begging the Question",
     "countermeasure": "Age is offered in place of evidence of effectiveness. Note that longevity is weak evidence rather than none — a practice that survived two centuries of use may work — but \"it is old\" is not the same claim as \"it works\", and only the second is being defended.",
+    "tests": [
+      "skill.fallacy.appeals"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "card-arena-q36",
+    "domain": "Logical Fallacy",
+    "prompt": "Name the move: \"\"The compound is plant-derived and completely natural, so it cannot be harmful in the doses we sell.\"\"",
+    "diagnosis": "Appeal to Nature",
+    "latin": "Logical Fallacy",
+    "mechanism": "Not: Appeal to Ignorance, False Dilemma, Equivocation",
+    "countermeasure": "Natural origin is treated as evidence of safety. Hemlock, asbestos and botulinum toxin are all natural; the property that matters is dose-response, which the claim quietly skips.",
     "tests": [
       "skill.fallacy.appeals"
     ],
@@ -278,15 +576,43 @@
     "heldOut": false
   },
   {
-    "id": "card-arena-q4",
+    "id": "card-arena-q38",
     "domain": "Logical Fallacy",
-    "prompt": "Name the move: \"\"Every real Scotsman takes his tea with milk and sugar. If McDougal takes it black, then McDougal is not a real Scotsman!\"\"",
-    "diagnosis": "No True Scotsman",
+    "prompt": "Name the move: \"\"Four million subscribers cannot be wrong about this trading strategy.\"\"",
+    "diagnosis": "Argumentum ad Populum (Bandwagon)",
     "latin": "Logical Fallacy",
-    "mechanism": "Not: Affirming the Consequent, Gambler's Fallacy, Composition Fallacy",
-    "countermeasure": "Protects a universal generalization by arbitrarily redefining group membership when faced with a counterexample.",
+    "mechanism": "Not: Appeal to False Authority (Ad Verecundiam), Astroturfing, Availability Heuristic",
+    "countermeasure": "Headcount is offered as proof. Astroturfing is the distractor worth pausing on: that would require the crowd to be MANUFACTURED, and nothing here suggests the subscribers are inauthentic — only that their number is irrelevant to whether the strategy works.",
     "tests": [
-      "skill.tactic.equivocation"
+      "skill.fallacy.appeals"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "card-arena-q40",
+    "domain": "Logical Fallacy",
+    "prompt": "Name the move: \"\"If the server were compromised, outbound traffic would spike. Outbound traffic has spiked. So the server is compromised.\"\"",
+    "diagnosis": "Affirming the Consequent (Formal Fallacy)",
+    "latin": "Logical Fallacy",
+    "mechanism": "Not: Post Hoc Ergo Propter Hoc, Hasty Generalisation, Circular Reasoning",
+    "countermeasure": "The argument fails by its FORM: many other causes produce a traffic spike. Post hoc is the tempting alternative, but nothing here rests on the order of events — even if the spike came first, the inference would still be invalid.",
+    "tests": [
+      "skill.fallacy.formal-vs-informal",
+      "skill.fallacy.structure"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "card-arena-q41",
+    "domain": "Logical Fallacy",
+    "prompt": "Name the move: \"\"If the account were a bot, it would post at machine-regular intervals. It does not post at regular intervals. So it is not a bot.\"\"",
+    "diagnosis": "Denying the Antecedent (Formal Fallacy)",
+    "latin": "Logical Fallacy",
+    "mechanism": "Not: Affirming the Consequent (Formal Fallacy), Appeal to Ignorance, False Dilemma",
+    "countermeasure": "Ruling out one signature does not rule out the category — modern automation deliberately jitters its timing. Distinguish it from affirming the consequent by which half is negated: here the IF-part is denied, there the THEN-part is affirmed.",
+    "tests": [
+      "skill.fallacy.formal-vs-informal",
+      "skill.fallacy.structure"
     ],
     "heldOut": false
   },
@@ -298,6 +624,20 @@
     "latin": "Logical Fallacy",
     "mechanism": "Not: Affirming the Consequent (Formal Fallacy), Guilt by Association, Hasty Generalisation",
     "countermeasure": "Sharing one property does not establish membership — plenty of independent outlets amplified it too. It is a syllogistic form error, close to affirming the consequent but stated over categories rather than conditionals.",
+    "tests": [
+      "skill.fallacy.formal-vs-informal",
+      "skill.fallacy.structure"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "card-arena-q43",
+    "domain": "Logical Fallacy",
+    "prompt": "Name the move: \"\"Either the footage is authentic or the timestamp was altered. The timestamp was altered. So the footage is not authentic.\"\"",
+    "diagnosis": "Affirming a Disjunct (Formal Fallacy)",
+    "latin": "Logical Fallacy",
+    "mechanism": "Not: False Dilemma (Bifurcation), Denying the Antecedent (Formal Fallacy), Equivocation (Semantic Shift)",
+    "countermeasure": "An inclusive \"or\" permits both to be true: real footage can carry a doctored timestamp. False dilemma is the close cousin — that would be an objection to the two options being the ONLY ones, whereas the error here is in what follows once one is affirmed.",
     "tests": [
       "skill.fallacy.formal-vs-informal",
       "skill.fallacy.structure"
@@ -318,6 +658,20 @@
     "heldOut": false
   },
   {
+    "id": "card-arena-q45",
+    "domain": "Logical Fallacy",
+    "prompt": "Name the move: \"A screening test flags 1 in 20 healthy people. A colleague reasons: \"It flagged you, and it only flags 5% of healthy people, so there is a 95% chance you are ill.\"\"",
+    "diagnosis": "Base-Rate Neglect dressed as a formal inference",
+    "latin": "Logical Fallacy",
+    "mechanism": "Not: Affirming the Consequent (Formal Fallacy), Conjunction Fallacy, Appeal to False Authority",
+    "countermeasure": "The false-positive RATE has been silently swapped for the probability of illness given a positive result. It looks like a formal move but the defect is in the content: without the prevalence of the disease, the conclusion cannot be computed at all.",
+    "tests": [
+      "skill.fallacy.formal-vs-informal",
+      "skill.bias.probability"
+    ],
+    "heldOut": false
+  },
+  {
     "id": "card-arena-q46",
     "domain": "Logical Fallacy",
     "prompt": "Name the move: \"\"His argument commits a fallacy, so his conclusion is false.\"\"",
@@ -331,15 +685,67 @@
     "heldOut": false
   },
   {
-    "id": "card-arena-q5",
+    "id": "card-arena-q47",
     "domain": "Cognitive Bias",
-    "prompt": "Name the move: \"\"An analyst only clicks articles that confirm her theory that the central bank will lower rates, ignoring five major employment reports showing stubborn inflation.\"\"",
+    "prompt": "Name the move: \"An investigator convinced the fire was arson spends the afternoon interviewing neighbours who reported seeing someone near the building, and never contacts the electrician who serviced the panel that week.\"",
     "diagnosis": "Confirmation Bias",
     "latin": "Cognitive Bias",
-    "mechanism": "Not: Sunk Cost Fallacy, Dunning-Kruger Effect, Bandwagon Effect",
-    "countermeasure": "The systematic tendency to seek, interpret, and favor information that validates preexisting hypotheses.",
+    "mechanism": "Not: Availability Heuristic, Anchoring Effect, Fundamental Attribution Error",
+    "countermeasure": "The search itself is shaped by the hypothesis — disconfirming evidence is not rejected, it is never gathered. That selective-search step is what separates it from the availability heuristic, where evidence comes to mind unbidden rather than being sought out.",
     "tests": [
       "skill.bias.confirmation"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "card-arena-q48",
+    "domain": "Cognitive Bias",
+    "prompt": "Name the move: \"Two readers are shown the same ambiguous polling table. Each reports that it supports the candidate they already preferred, and each can point to a column that does.\"",
+    "diagnosis": "Biased Assimilation",
+    "latin": "Cognitive Bias",
+    "mechanism": "Not: Confirmation Bias, Anchoring Effect, False Balance (Bothsidesism)",
+    "countermeasure": "Both readers see all the data, so the bias is in INTERPRETATION rather than in what was collected — which predicts that shared evidence drives people apart rather than together. Plain confirmation bias is the broader family; this is the specific mechanism operating here.",
+    "tests": [
+      "skill.bias.confirmation"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "card-arena-q49",
+    "domain": "Cognitive Bias",
+    "prompt": "Name the move: \"A trader keeps a journal of every prediction that came true and remembers the losing calls as \"the market being irrational that week\".\"",
+    "diagnosis": "Selective Recall",
+    "latin": "Cognitive Bias",
+    "mechanism": "Not: Hindsight Bias, Sunk Cost Fallacy, Survivorship Bias",
+    "countermeasure": "The record and the memory are curated after the fact. Hindsight bias is the neighbour — that would be misremembering how confident he WAS beforehand, whereas here the question is which events he retains at all.",
+    "tests": [
+      "skill.bias.confirmation"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "card-arena-q50",
+    "domain": "Cognitive Bias",
+    "prompt": "Name the move: \"Asked to discover the rule behind the sequence 2-4-6, a participant proposes 8-10-12, then 20-22-24, then 100-102-104, and concludes the rule is \"add two\".\"",
+    "diagnosis": "Positive Test Strategy",
+    "latin": "Cognitive Bias",
+    "mechanism": "Not: Hasty Generalisation (Secundum Quid), Anchoring Effect, Conjunction Fallacy",
+    "countermeasure": "Every probe is one the hypothesis predicts will succeed, so none could have falsified it. Hasty generalisation concerns too little evidence; the defect here is that no quantity of this KIND of evidence would help — the participant never tried 1-2-3.",
+    "tests": [
+      "skill.bias.confirmation"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "card-arena-q51",
+    "domain": "Cognitive Bias",
+    "prompt": "Name the move: \"A team reviewing a failed launch reads the pre-launch risk memo and finds that it \"obviously flagged the problem\", though at the time nobody acted on it.\"",
+    "diagnosis": "Hindsight Bias",
+    "latin": "Cognitive Bias",
+    "mechanism": "Not: Confirmation Bias, Selective Recall, Fundamental Attribution Error / Ingroup Favoritism",
+    "countermeasure": "Knowing the outcome makes the warning legible in a way it was not beforehand. This is why post-incident reviews asking \"who missed this\" produce worse findings than ones asking \"what was visible at the time\".",
+    "tests": [
+      "skill.bias.probability"
     ],
     "heldOut": false
   },
@@ -370,6 +776,59 @@
     "heldOut": false
   },
   {
+    "id": "card-arena-q54",
+    "domain": "Cognitive Bias",
+    "prompt": "Name the move: \"Asked whether more English words begin with R or have R as their third letter, most people answer \"begin with R\". The opposite is true.\"",
+    "diagnosis": "Availability Heuristic",
+    "latin": "Cognitive Bias",
+    "mechanism": "Not: Anchoring Effect, Conjunction Fallacy (Linda Problem), Confirmation Bias",
+    "countermeasure": "Words are indexed in memory by first letter, so first-letter examples are retrievable and third-letter ones are not. The judgement tracks the accessibility of examples rather than their number — a clean case, since no emotion or media coverage is involved.",
+    "tests": [
+      "skill.bias.availability"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "card-arena-q55",
+    "domain": "Cognitive Bias",
+    "prompt": "Name the move: \"A security team fresh from reviewing a phishing breach puts most of next quarter into email filtering, while an unpatched external service goes unfunded.\"",
+    "diagnosis": "Availability Cascade",
+    "latin": "Cognitive Bias",
+    "mechanism": "Not: Confirmation Bias, Sunk Cost Fallacy (Escalation of Commitment), Anchoring Effect",
+    "countermeasure": "The most recent and most discussed threat crowds out the assessed one. It is not sunk cost — no prior investment is being defended; the distortion is that recency has been mistaken for risk.",
+    "tests": [
+      "skill.bias.availability"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "card-arena-q56",
+    "domain": "Cognitive Bias",
+    "prompt": "Name the move: \"A local paper runs six stories in a month about assaults in one park. Reported crime there does not change, but residents petition to close it.\"",
+    "diagnosis": "Availability Heuristic",
+    "latin": "Cognitive Bias",
+    "mechanism": "Not: Astroturfing, Hasty Generalisation, Loaded / Emotive Language",
+    "countermeasure": "The frequency of COVERAGE changed, not the frequency of events, and the two are being read as one signal. Note that this requires no bad actor at all — ordinary editorial choices produce it.",
+    "tests": [
+      "skill.bias.availability"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "card-arena-q57",
+    "domain": "Cognitive Bias",
+    "prompt": "Name the move: \"A drug described as having \"90% survival\" is accepted far more readily than the same drug described as having \"10% mortality\".\"",
+    "diagnosis": "Framing Effect",
+    "latin": "Cognitive Bias",
+    "mechanism": "Not: Availability Heuristic, Anchoring Effect, Equivocation (Semantic Shift)",
+    "countermeasure": "The numbers are identical, so nothing about the evidence changed — only which outcome the wording makes easy to picture. It sits beside availability rather than inside it: availability concerns what comes to mind, framing what the phrasing puts there.",
+    "tests": [
+      "skill.bias.availability",
+      "skill.tactic.emotive-framing"
+    ],
+    "heldOut": false
+  },
+  {
     "id": "card-arena-q58",
     "domain": "Cognitive Bias",
     "prompt": "Name the move: \"An executive says air travel has become far more dangerous, citing three crashes she can name from the past year — none of which she could have named a year ago.\"",
@@ -396,6 +855,45 @@
     "heldOut": false
   },
   {
+    "id": "card-arena-q60",
+    "domain": "Cognitive Bias",
+    "prompt": "Name the move: \"Asked \"was the population above or below 20 million?\" and then to estimate it, respondents guess far higher than a group asked \"above or below 2 million?\" first.\"",
+    "diagnosis": "Anchoring Effect",
+    "latin": "Cognitive Bias",
+    "mechanism": "Not: Availability Heuristic, Confirmation Bias, Conjunction Fallacy",
+    "countermeasure": "The comparison figure carries no information about the answer, yet it sets the range people adjust within — and adjustment is reliably insufficient. This is the cleanest demonstration precisely because the anchor is transparently arbitrary.",
+    "tests": [
+      "skill.bias.anchoring"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "card-arena-q61",
+    "domain": "Cognitive Bias",
+    "prompt": "Name the move: \"A headline reads \"Department seeks $4bn — critics say $3.2bn is enough\". Later coverage debates the gap. The prior year's budget was $900m.\"",
+    "diagnosis": "Anchoring Effect",
+    "latin": "Cognitive Bias",
+    "mechanism": "Not: False Balance (Bothsidesism), Loaded / Emotive Language, Availability Heuristic",
+    "countermeasure": "Both published figures sit far above the historical baseline, so the \"sceptical\" number still anchors the debate high. False balance is a real distractor here, but the two positions are not being presented as equally supported — the distortion is in the numeric range they jointly establish.",
+    "tests": [
+      "skill.bias.anchoring"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "card-arena-q62",
+    "domain": "Cognitive Bias",
+    "prompt": "Name the move: \"A menu lists a $180 tasting option at the top. Sales of the $95 option rise sharply, although it did not change.\"",
+    "diagnosis": "Anchoring Effect",
+    "latin": "Cognitive Bias",
+    "mechanism": "Not: Framing Effect, Argumentum ad Populum (Bandwagon), Appeal to Nature",
+    "countermeasure": "The expensive item may sell rarely and still earn its place by re-scaling every other price. Nothing about the $95 dish changed — only the reference point it is judged against.",
+    "tests": [
+      "skill.bias.anchoring"
+    ],
+    "heldOut": false
+  },
+  {
     "id": "card-arena-q63",
     "domain": "Cognitive Bias",
     "prompt": "Name the move: \"An analyst's first estimate of a breach at 40,000 records is later shown to be far too low, but every subsequent revision lands between 45,000 and 60,000. The eventual figure is 2.1 million.\"",
@@ -403,6 +901,19 @@
     "latin": "Cognitive Bias",
     "mechanism": "Not: Confirmation Bias, Availability Heuristic, Hindsight Bias (Knew-It-All-Along Effect)",
     "countermeasure": "Revisions crawl away from the initial figure instead of being re-derived from scratch. Confirmation bias is close, but the analyst is not defending a conclusion — she is updating, just far too slowly and always from the same starting point.",
+    "tests": [
+      "skill.bias.anchoring"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "card-arena-q64",
+    "domain": "Cognitive Bias",
+    "prompt": "Name the move: \"A survey asks \"how much would you pay to avoid this outcome, given others paid around $50?\" before recording the respondent's own figure.\"",
+    "diagnosis": "Anchoring Effect",
+    "latin": "Cognitive Bias",
+    "mechanism": "Not: Argumentum ad Populum (Bandwagon), Framing Effect, Astroturfing",
+    "countermeasure": "The reference is doing two jobs — social proof and numeric anchor — but the measurable distortion is the numeric one, which appears even when respondents are told the figure was randomly generated. Bandwagon would require the crowd itself to be the reason offered.",
     "tests": [
       "skill.bias.anchoring"
     ],
@@ -422,6 +933,45 @@
     "heldOut": false
   },
   {
+    "id": "card-arena-q66",
+    "domain": "Cognitive Bias",
+    "prompt": "Name the move: \"When our side's official misstates a figure it is \"a briefing error under pressure\". When theirs does, it is \"a deliberate attempt to mislead the public\".\"",
+    "diagnosis": "Ingroup Attribution Asymmetry",
+    "latin": "Cognitive Bias",
+    "mechanism": "Not: Fundamental Attribution Error / Ingroup Favoritism, Loaded / Emotive Language, Whataboutism (Tu Quoque)",
+    "countermeasure": "The same act receives a situational reading for the in-group and a dispositional one for the out-group. The general attribution error is the parent category; naming the in-group/out-group split matters because it is what makes the bias politically load-bearing.",
+    "tests": [
+      "skill.bias.attribution"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "card-arena-q67",
+    "domain": "Cognitive Bias",
+    "prompt": "Name the move: \"A manager reads a team's missed deadline as a motivation problem, without checking that the upstream dependency shipped three weeks late.\"",
+    "diagnosis": "Fundamental Attribution Error / Ingroup Favoritism",
+    "latin": "Cognitive Bias",
+    "mechanism": "Not: Confirmation Bias, Base-Rate Neglect, Hindsight Bias",
+    "countermeasure": "Dispositional explanation is reached for first, and the situational one is never tested. Confirmation bias would require a prior hypothesis being defended; here the leap to character happens before any hypothesis exists.",
+    "tests": [
+      "skill.bias.attribution"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "card-arena-q68",
+    "domain": "Cognitive Bias",
+    "prompt": "Name the move: \"A profile explains a founder's success entirely through her discipline and vision, mentioning in passing that the family funded the first two years.\"",
+    "diagnosis": "Dispositional Over-Attribution",
+    "latin": "Cognitive Bias",
+    "mechanism": "Not: Survivorship Bias, Availability Heuristic (Ease of Recall), Appeal to Authority",
+    "countermeasure": "Traits are credited with an outcome that had substantial situational support. Survivorship bias is the tempting alternative and would apply to a claim about founders in general; this is about the causal account of one case.",
+    "tests": [
+      "skill.bias.attribution"
+    ],
+    "heldOut": false
+  },
+  {
     "id": "card-arena-q69",
     "domain": "Cognitive Bias",
     "prompt": "Name the move: \"A commentator argues that because a hostile state benefits from a protest movement, the protesters must be acting on its instructions.\"",
@@ -431,6 +981,58 @@
     "countermeasure": "Benefit is treated as evidence of authorship. Astroturfing is the sharp distractor: that is a real phenomenon and would need evidence of coordination — account clustering, funding, synchronised messaging — none of which \"someone benefits\" supplies.",
     "tests": [
       "skill.bias.attribution"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "card-arena-q7",
+    "domain": "Cognitive Bias",
+    "prompt": "Name the move: \"\"Linda is 31, single, outspoken, and deeply concerned with social justice. Which is more probable: (A) Linda is a bank teller, or (B) Linda is a bank teller and active in the feminist movement?\"\"",
+    "diagnosis": "Conjunction Fallacy",
+    "latin": "Cognitive Bias",
+    "mechanism": "Not: Base Rate Neglect, Availability Cascade, Hindsight Bias",
+    "countermeasure": "The probability of two events occurring together (A and B) cannot exceed the probability of either event occurring individually (A).",
+    "tests": [
+      "skill.bias.probability"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "card-arena-q70",
+    "domain": "Cognitive Bias",
+    "prompt": "Name the move: \"A reviewer marks a colleague's error as carelessness and their own identical error, found the next day, as a symptom of an unclear spec.\"",
+    "diagnosis": "Actor-Observer Asymmetry",
+    "latin": "Cognitive Bias",
+    "mechanism": "Not: Fundamental Attribution Error / Ingroup Favoritism, Selective Recall, Hindsight Bias",
+    "countermeasure": "The precise form is the SELF versus other split, rather than in-group versus out-group. Both are attribution errors; distinguishing them matters because they have different remedies — one is fixed by perspective-taking, the other by rules applied before you know whose work it is.",
+    "tests": [
+      "skill.bias.attribution"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "card-arena-q71",
+    "domain": "Cognitive Bias",
+    "prompt": "Name the move: \"After an outage, the report concludes \"human error by the on-call engineer\" and closes. The runbook had been wrong since March.\"",
+    "diagnosis": "Dispositional Over-Attribution",
+    "latin": "Cognitive Bias",
+    "mechanism": "Not: Hindsight Bias, Confirmation Bias, Appeal to Ignorance (Argumentum ad Ignorantiam)",
+    "countermeasure": "Attributing the failure to a person ends the investigation exactly where the systemic cause begins. Hindsight bias is likely present too, but the load-bearing error is locating the cause in a character rather than in the conditions.",
+    "tests": [
+      "skill.bias.attribution"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "card-arena-q72",
+    "domain": "Cognitive Bias",
+    "prompt": "Name the move: \"\"She is quiet, reads constantly, and loves order. Is she more likely to be a librarian, or a librarian who plays in a band?\"\"",
+    "diagnosis": "Conjunction Fallacy",
+    "latin": "Cognitive Bias",
+    "mechanism": "Not: Base-Rate Neglect, Representativeness Heuristic, Availability Heuristic",
+    "countermeasure": "A conjunction can never be more probable than either of its parts, however well the extra detail fits the picture. Representativeness is the MECHANISM that produces the error; the conjunction violation is the error itself, which is what the question asks for.",
+    "tests": [
+      "skill.bias.probability"
     ],
     "heldOut": false
   },
@@ -461,6 +1063,47 @@
     "heldOut": false
   },
   {
+    "id": "card-arena-q75",
+    "domain": "Cognitive Bias",
+    "prompt": "Name the move: \"A programme is judged effective because the schools that adopted it improved. Schools that adopted it and closed before the follow-up were not counted.\"",
+    "diagnosis": "Survivorship Bias",
+    "latin": "Cognitive Bias",
+    "mechanism": "Not: Selective Recall, Base-Rate Neglect, Texas Sharpshooter",
+    "countermeasure": "The sample is defined by having survived to be measured, so the failures are structurally invisible. Cherry picking would require someone choosing which data to show; here nobody chose — the selection is done by the measurement itself, which makes it much harder to notice.",
+    "tests": [
+      "skill.bias.probability"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "card-arena-q76",
+    "domain": "Propaganda Tactics",
+    "prompt": "Name the move: \"Four hundred accounts supporting a zoning proposal were created within the same eleven-day window last year, and share a posting-time distribution unlike the platform baseline.\"",
+    "diagnosis": "Astroturfing (Coordinated Account Creation)",
+    "latin": "Propaganda Tactics",
+    "mechanism": "Not: Argumentum ad Populum (Bandwagon), Brigading, Availability Heuristic",
+    "countermeasure": "Creation-date clustering plus an anomalous activity rhythm is coordination evidence, which is what separates this from bandwagon — bandwagon is a fallacy about crowd size being offered as a reason, astroturfing is a claim that the crowd is manufactured.",
+    "tests": [
+      "skill.tactic.astroturfing",
+      "skill.disarm.seed-amplify"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "card-arena-q77",
+    "domain": "Propaganda Tactics",
+    "prompt": "Name the move: \"A \"grassroots parents' coalition\" launches with a professional website, a media kit, and a registered agent shared with an industry trade body.\"",
+    "diagnosis": "Astroturfing (Front Group)",
+    "latin": "Propaganda Tactics",
+    "mechanism": "Not: Appeal to False Authority, False Balance (Bothsidesism), Coordinated Inauthentic Behaviour",
+    "countermeasure": "The tell is infrastructure appearing before membership — real grassroots groups accumulate capability slowly and messily. The shared registered agent is the documentary link that turns a suspicion into a finding.",
+    "tests": [
+      "skill.tactic.astroturfing",
+      "skill.disarm.plan-prepare"
+    ],
+    "heldOut": false
+  },
+  {
     "id": "card-arena-q78",
     "domain": "Propaganda Tactics",
     "prompt": "Name the move: \"Two hundred reviews of a contested documentary use the phrase \"finally someone said it\" within a six-hour window, across accounts with no other overlap.\"",
@@ -483,6 +1126,72 @@
     "countermeasure": "The asymmetry between assertion cost and refutation cost is the weapon; the individual claims barely matter. A red herring diverts to ONE other topic, which is a different and much cheaper attack to answer.",
     "tests": [
       "skill.tactic.flooding"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "card-arena-q8",
+    "domain": "Propaganda Tactics",
+    "prompt": "Name the move: \"\"When confronted about human rights abuses in prison facilities, the minister replies: 'What about your country's mass surveillance programs in 2013?'\"\"",
+    "diagnosis": "Whataboutism (Tu Quoque)",
+    "latin": "Propaganda Tactics",
+    "mechanism": "Not: Astroturfing (Manufactured Grassroots), Gish Gallop, Gaslighting",
+    "countermeasure": "Deflects criticism by raising a counter-accusation of hypocrisy without addressing the underlying offense.",
+    "tests": [
+      "skill.fallacy.relevance"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "card-arena-q80",
+    "domain": "Propaganda Tactics",
+    "prompt": "Name the move: \"After a leak, a network publishes six mutually incompatible explanations within a day, none pushed harder than the others.\"",
+    "diagnosis": "Firehose of Falsehood",
+    "latin": "Propaganda Tactics",
+    "mechanism": "Not: Gish Gallop, False Balance (Bothsidesism), Appeal to Ignorance",
+    "countermeasure": "The goal is not to be believed but to make belief feel arbitrary — mutual incompatibility is a feature, since a consistent lie could be refuted. A Gish gallop tries to WIN an exchange; this tries to exhaust the possibility of one.",
+    "tests": [
+      "skill.tactic.flooding",
+      "skill.disarm.seed-amplify"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "card-arena-q81",
+    "domain": "Propaganda Tactics",
+    "prompt": "Name the move: \"A records request is answered with 40,000 unsorted, unsearchable scanned pages within the statutory deadline.\"",
+    "diagnosis": "Epistemic Flooding by Compliance",
+    "latin": "Propaganda Tactics",
+    "mechanism": "Not: Gish Gallop, Red Herring, Appeal to Ignorance (Argumentum ad Ignorantiam)",
+    "countermeasure": "The request is technically satisfied while the answer is made unreachable. It shares its mechanism with the Gish gallop — cost asymmetry — but happens in a procedural rather than rhetorical setting, which is why it is rarely recognised as the same move.",
+    "tests": [
+      "skill.tactic.flooding"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "card-arena-q82",
+    "domain": "Propaganda Tactics",
+    "prompt": "Name the move: \"A moderator's queue receives 12,000 near-duplicate reports against one account in an hour, each individually plausible.\"",
+    "diagnosis": "Brigading",
+    "latin": "Propaganda Tactics",
+    "mechanism": "Not: Astroturfing, Gish Gallop, Coordinated Inauthentic Behaviour",
+    "countermeasure": "Volume is aimed at a process rather than at an audience — the target is the moderation system's capacity. It overlaps with coordinated inauthentic behaviour, but brigading can be entirely authentic people acting together, which is what makes it hard to police.",
+    "tests": [
+      "skill.tactic.flooding"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "card-arena-q83",
+    "domain": "Propaganda Tactics",
+    "prompt": "Name the move: \"A segment on a well-replicated finding gives equal airtime to the one researcher who disputes it and to the consensus position, without saying how many hold each.\"",
+    "diagnosis": "False Balance (Bothsidesism)",
+    "latin": "Propaganda Tactics",
+    "mechanism": "Not: Appeal to False Authority, Argumentum ad Populum (Bandwagon), Manufactured Doubt",
+    "countermeasure": "Equal time misrepresents the state of the evidence as an even split. Manufactured doubt is the strategy this often serves, but that names a deliberate campaign; false balance is the editorial artefact, which frequently occurs without one.",
+    "tests": [
+      "skill.tactic.false-balance"
     ],
     "heldOut": false
   },
@@ -513,6 +1222,71 @@
     "heldOut": false
   },
   {
+    "id": "card-arena-q86",
+    "domain": "Propaganda Tactics",
+    "prompt": "Name the move: \"An article reports \"scientists are divided\" and cites two studies for and two against, from a literature containing several hundred.\"",
+    "diagnosis": "False Balance (Bothsidesism)",
+    "latin": "Propaganda Tactics",
+    "mechanism": "Not: Cherry Picking, Hasty Generalisation, Availability Heuristic (Ease of Recall)",
+    "countermeasure": "A 2-to-2 presentation of a lopsided literature manufactures a division. Cherry picking is genuinely also present, which is worth noticing: false balance is usually implemented THROUGH selective citation rather than being an alternative to it.",
+    "tests": [
+      "skill.tactic.false-balance"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "card-arena-q87",
+    "domain": "Propaganda Tactics",
+    "prompt": "Name the move: \"A broadcaster defends the pairing: \"We do not take sides. We present both positions and let the audience decide.\"\"",
+    "diagnosis": "Neutrality as an evasion of editorial judgement",
+    "latin": "Propaganda Tactics",
+    "mechanism": "Not: False Balance (Bothsidesism), Appeal to Ignorance, Argumentum ad Populum (Bandwagon)",
+    "countermeasure": "Deciding what counts as a \"position\" worth airing is already an editorial judgement; declining to weigh evidence does not avoid influence, it just hides where the influence was applied. This is the defence that keeps false balance in place, which is why it is worth being able to name separately.",
+    "tests": [
+      "skill.tactic.false-balance"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "card-arena-q88",
+    "domain": "Propaganda Tactics",
+    "prompt": "Name the move: \"A journalist notes that on a question where evidence is genuinely unsettled, she gave both hypotheses equal weight and said so explicitly.\"",
+    "diagnosis": "This is appropriate — balance matches the actual state of evidence",
+    "latin": "Propaganda Tactics",
+    "mechanism": "Not: False Balance (Bothsidesism), Manufactured Doubt, Appeal to Ignorance",
+    "countermeasure": "False balance is not \"presenting two sides\", it is presenting them as more equal than the evidence warrants. When the evidence really is split, equal treatment is accurate — and an operator who has learned to shout \"false balance\" at every two-sided piece has acquired a reflex, not a skill.",
+    "tests": [
+      "skill.tactic.false-balance"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "card-arena-q89",
+    "domain": "Propaganda Tactics",
+    "prompt": "Name the move: \"A regulator's summary lists \"arguments for\" and \"arguments against\" in parallel columns of equal length, omitting that one column's entries were each rebutted in the evidence sessions.\"",
+    "diagnosis": "False Balance (Bothsidesism)",
+    "latin": "Propaganda Tactics",
+    "mechanism": "Not: Cherry Picking, Appeal to Ignorance (Argumentum ad Ignorantiam), Straw Man",
+    "countermeasure": "Symmetrical presentation carries an implicit claim about symmetrical strength, and the rebuttals were the load-bearing information. Layout is an argument, even when no sentence in the document makes one.",
+    "tests": [
+      "skill.tactic.false-balance"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "card-arena-q9",
+    "domain": "Propaganda Tactics",
+    "prompt": "Name the move: \"\"In a 10-minute televised debate, a candidate unleashes 47 distinct, rapid-fire half-truths and fabricated statistics, making real-time refutation impossible in the remaining time.\"\"",
+    "diagnosis": "Gish Gallop",
+    "latin": "Propaganda Tactics",
+    "mechanism": "Not: Firehose of Falsehood, False Balance, Dead Cat Strategy",
+    "countermeasure": "Overwhelming an opponent with an excessive volume of specious arguments that take far longer to disprove than to utter.",
+    "tests": [
+      "skill.tactic.flooding"
+    ],
+    "heldOut": false
+  },
+  {
     "id": "card-arena-q90",
     "domain": "Propaganda Tactics",
     "prompt": "Name the move: \"One outlet reports \"the council seized the land\"; another reports \"the council acquired the land\". The legal process described is identical.\"",
@@ -520,6 +1294,19 @@
     "latin": "Propaganda Tactics",
     "mechanism": "Not: Framing Effect, Equivocation (Semantic Shift), Straw Man",
     "countermeasure": "The verb imports a verdict before any argument is made. It differs from equivocation in that no term shifts meaning WITHIN an argument — the word choice smuggles the conclusion in at the start.",
+    "tests": [
+      "skill.tactic.emotive-framing"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "card-arena-q91",
+    "domain": "Propaganda Tactics",
+    "prompt": "Name the move: \"A policy brief refers throughout to \"the flood of arrivals\" and \"communities under strain\", without citing a figure.\"",
+    "diagnosis": "Loaded / Emotive Language",
+    "latin": "Propaganda Tactics",
+    "mechanism": "Not: Appeal to Fear, Hasty Generalisation, Availability Heuristic (Ease of Recall)",
+    "countermeasure": "Metaphor does the work of evidence: \"flood\" implies volume, threat and lack of agency simultaneously. Appeal to fear is the neighbour — that names an explicit frightening consequence, whereas here the fear is carried by vocabulary alone.",
     "tests": [
       "skill.tactic.emotive-framing"
     ],
@@ -540,6 +1327,71 @@
     "heldOut": false
   },
   {
+    "id": "card-arena-q93",
+    "domain": "Propaganda Tactics",
+    "prompt": "Name the move: \"A campaign describes its own supporters as \"concerned citizens\" and its opponents' identical activity as \"agitators bussed in from outside\".\"",
+    "diagnosis": "Loaded / Emotive Language",
+    "latin": "Propaganda Tactics",
+    "mechanism": "Not: Ingroup Attribution Asymmetry, Astroturfing, Whataboutism (Tu Quoque)",
+    "countermeasure": "The same behaviour receives opposite labels. There is an attribution asymmetry underneath, which makes that a defensible second choice — but what is being asked about is the vocabulary doing the work, and the question is which lever is being pulled on the reader.",
+    "tests": [
+      "skill.tactic.emotive-framing"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "card-arena-q94",
+    "domain": "Propaganda Tactics",
+    "prompt": "Name the move: \"\"The report says the risk is not significant. So there is no meaningful risk to residents.\"\"",
+    "diagnosis": "Equivocation (Semantic Shift)",
+    "latin": "Propaganda Tactics",
+    "mechanism": "Not: Appeal to Ignorance (Argumentum ad Ignorantiam), Hasty Generalisation, Straw Man",
+    "countermeasure": "\"Significant\" moves from its statistical sense to its everyday one between the two sentences. A statistically non-significant result can describe a large and worrying effect measured imprecisely — the terms are not interchangeable, which is exactly what the argument relies on.",
+    "tests": [
+      "skill.tactic.equivocation"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "card-arena-q95",
+    "domain": "Propaganda Tactics",
+    "prompt": "Name the move: \"\"Every socialist regime has collapsed.\" Shown a counterexample: \"That one was not truly socialist.\"\"",
+    "diagnosis": "No True Scotsman",
+    "latin": "Propaganda Tactics",
+    "mechanism": "Not: Equivocation (Semantic Shift), Circular Reasoning, Begging the Question",
+    "countermeasure": "The category is redefined mid-argument so the claim cannot be tested. It is a specific form of semantic shift, and worth distinguishing: ordinary equivocation exploits an existing ambiguity, while this one MANUFACTURES the ambiguity in response to evidence.",
+    "tests": [
+      "skill.tactic.equivocation"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "card-arena-q96",
+    "domain": "Propaganda Tactics",
+    "prompt": "Name the move: \"\"The data is anonymised — no names are stored. So the dataset cannot identify anyone.\"\"",
+    "diagnosis": "Equivocation (Semantic Shift)",
+    "latin": "Propaganda Tactics",
+    "mechanism": "Not: Appeal to Ignorance, Hasty Generalisation, Affirming the Consequent (Formal Fallacy)",
+    "countermeasure": "\"Anonymised\" is used first in the narrow sense of name removal and then in the strong sense of non-identifiability, which are famously not the same — postcode, birth date and sex re-identify most people. The word is doing two different jobs in two consecutive clauses.",
+    "tests": [
+      "skill.tactic.equivocation"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "card-arena-q97",
+    "domain": "Propaganda Tactics",
+    "prompt": "Name the move: \"\"Of course the theory is only a theory — so it is hardly established fact.\"\"",
+    "diagnosis": "Equivocation (Semantic Shift)",
+    "latin": "Propaganda Tactics",
+    "mechanism": "Not: Appeal to Ignorance (Argumentum ad Ignorantiam), Straw Man, False Dilemma (Bifurcation)",
+    "countermeasure": "The technical sense of \"theory\" — an explanatory framework supported by evidence — is swapped for the colloquial \"guess\". Note that the sentence contains no false statement, which is why equivocation is so much harder to answer than a lie.",
+    "tests": [
+      "skill.tactic.equivocation"
+    ],
+    "heldOut": false
+  },
+  {
     "id": "card-arena-q98",
     "domain": "Propaganda Tactics",
     "prompt": "Name the move: \"A spokesperson: \"We have never had a data breach.\" Later: incidents were logged as \"security events\" under an internal policy that reserves \"breach\" for confirmed exfiltration.\"",
@@ -547,6 +1399,19 @@
     "latin": "Propaganda Tactics",
     "mechanism": "Not: Appeal to Ignorance (Argumentum ad Ignorantiam), No True Scotsman, Loaded / Emotive Language",
     "countermeasure": "A private definition is used to make a public claim that a listener will read under the ordinary definition. It is close to No True Scotsman, but nothing is being redefined in RESPONSE to a counterexample — the narrow definition was established in advance, which makes it more deliberate rather than less.",
+    "tests": [
+      "skill.tactic.equivocation"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "card-arena-q99",
+    "domain": "Propaganda Tactics",
+    "prompt": "Name the move: \"\"Free speech means I can say what I like. So a platform removing my post is a free speech violation.\"\"",
+    "diagnosis": "Equivocation (Semantic Shift)",
+    "latin": "Propaganda Tactics",
+    "mechanism": "Not: Straw Man, Appeal to Tradition (Argumentum ad Antiquitatem), Slippery Slope",
+    "countermeasure": "The phrase shifts from a moral principle to a specific legal constraint on government action, and the conclusion only follows under the second reading while the premise is only plausible under the first.",
     "tests": [
       "skill.tactic.equivocation"
     ],

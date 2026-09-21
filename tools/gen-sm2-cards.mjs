@@ -146,40 +146,45 @@ for (const a of rhetorical) {
   });
 }
 
-/* ─────────────────────────────── ARENA QUESTIONS (119) ─────────────────────────────── */
+/* ─────────────────────────────── ARENA QUESTIONS (full coverage) ───────────────────── */
 
 const arena = read('data/arena_questions.json');
+// Held-out items are the transfer-measurement set (skills.json heldOutItemIds). They must
+// never be carded: an SM-2 card practices its item, and practice on a held-out item is
+// exactly the contamination Phase 4's baseline/follow-up protocol cannot tolerate.
+// tools/tag-skills.mjs enforces the same rule on the written file; this is the source-side
+// half of the gate, where the question object is in hand.
+const heldOutIds = new Set(skills.flatMap((s) => s.heldOutItemIds || []));
+const heldOutSkipped = arena.filter((q) => heldOutIds.has(q.id)).map((q) => q.id);
+const arenaPool = arena.filter((q) => !heldOutIds.has(q.id));
 const arenaBySkill = new Map();
-for (const q of arena) {
+for (const q of arenaPool) {
   for (const sid of q.tests || []) {
     if (!arenaBySkill.has(sid)) arenaBySkill.set(sid, []);
     arenaBySkill.get(sid).push(q);
   }
 }
 
-const arenaDedup = new Set();
+// Full coverage: every practice question becomes a card. (Earlier versions kept only the
+// easiest and hardest representative per skill, which left most of the deck uncovered;
+// retention works on the whole practice set, and the held-out set is excluded above.)
 let arenaCardCount = 0;
-for (const [sid, questions] of arenaBySkill) {
-  const sorted = questions.sort((a, b) => a.difficulty - b.difficulty);
-  const representatives = sorted.length <= 2 ? sorted : [sorted[0], sorted[sorted.length - 1]];
-  for (const q of representatives) {
-    if (arenaDedup.has(q.id)) continue;
-    arenaDedup.add(q.id);
-    const answerText = q.options?.[q.correctIndex] || '';
-    const wrongTexts = q.options?.filter((_, i) => i !== q.correctIndex).join(', ') || '';
-    arenaCardCount++;
-    cards.push({
-      id: `card-arena-${q.id}`,
-      domain: q.domain || 'Cognitive Defense',
-      prompt: `Name the move: "${truncate(q.claim, 280)}"`,
-      diagnosis: answerText,
-      latin: q.domain || 'Cognitive Defense',
-      mechanism: `Not: ${truncate(wrongTexts, 300)}`,
-      countermeasure: truncate(q.explanation || '', 350),
-      tests: q.tests || [],
-      heldOut: false
-    });
-  }
+const arenaSorted = [...arenaPool].sort((a, b) => a.id.localeCompare(b.id, undefined, { numeric: true }));
+for (const q of arenaSorted) {
+  const answerText = q.options?.[q.correctIndex] || '';
+  const wrongTexts = q.options?.filter((_, i) => i !== q.correctIndex).join(', ') || '';
+  arenaCardCount++;
+  cards.push({
+    id: `card-arena-${q.id}`,
+    domain: q.domain || 'Cognitive Defense',
+    prompt: `Name the move: "${truncate(q.claim, 280)}"`,
+    diagnosis: answerText,
+    latin: q.domain || 'Cognitive Defense',
+    mechanism: `Not: ${truncate(wrongTexts, 300)}`,
+    countermeasure: truncate(q.explanation || '', 350),
+    tests: q.tests || [],
+    heldOut: false
+  });
 }
 
 /* ─────────────────────────────── MASTERCLASS DIAGNOSTIC (4 × 5 questions) ──────────── */
@@ -244,7 +249,7 @@ console.log(`           DISARM      ${disarm.length}`);
 console.log(`           SIFT        ${sift.length}`);
 console.log(`           inoculation ${inoculation.length}`);
 console.log(`           rhetorical  ${rhetorical.length}`);
-console.log(`           arena       ${arenaCardCount} (from ${arena.length} questions)`);
+console.log(`           arena       ${arenaCardCount} (from ${arenaPool.length} practice questions; ${heldOutSkipped.length} held-out skipped)`);
 console.log(`           masterclass ${masterclasses.reduce((n, m) => n + (m.diagnostic?.questions?.length || 0), 0)} (${masterclasses.length} courses)`);
 console.log(`  ─────────────────────────────`);
 console.log(`  cards generated: ${cards.length}`);
@@ -252,8 +257,14 @@ console.log(`  unique skills tested: ${new Set(cards.flatMap((c) => c.tests)).si
 console.log('');
 
 const existingCards = read('data/spaced_repetition_cards.json');
-const existingIds = new Set(existingCards.map((c) => c.id));
-const handCrafted = existingCards.filter((c) => !cards.some((g) => g.id === c.id));
+const generatedIds = new Set(cards.map((c) => c.id));
+// The generator owns the card-arena-* namespace: cards with that prefix in the existing deck
+// are artifacts of older partial generations — including held-out leaks this gate exists to
+// keep out — never hand-crafted content, so they are regenerated from scratch or dropped.
+const handCrafted = existingCards.filter((c) => {
+  if (c.id.startsWith('card-arena-')) return false;
+  return !generatedIds.has(c.id);
+});
 
 const merged = [...handCrafted, ...cards];
 // Hand-crafted cards with empty latin get a fallback so the dataset

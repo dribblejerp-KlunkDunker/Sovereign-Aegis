@@ -30,6 +30,7 @@ import { EpistemicCommons } from './modules/epistemicCommons.js';
 import { MediaForensics } from './modules/mediaForensics.js';
 import { SiftLabs } from './modules/siftLabs.js';
 import { OnboardingModule } from './modules/onboarding.js';
+import { InoculationAdaptive } from './modules/inoculationAdaptive.js';
 import { LensLibrary } from './modules/lensLibrary.js';
 import { DefenseProfile } from './modules/profile.js';
 import { TransferEval } from './modules/transferEval.js';
@@ -104,6 +105,7 @@ export const AegisApp = {
     this.registerModule('onboarding', OnboardingModule);
     this.registerModule('lens', LensLibrary);
     this.registerModule('defense', DefenseProfile);
+    this.registerModule('inoculationAdaptive', InoculationAdaptive);
 
     // 3. Ensure Cryptographic Identity Exists
     await this._ensureIdentity();

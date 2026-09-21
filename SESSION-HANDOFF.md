@@ -1,273 +1,163 @@
-# SOVEREIGN // AEGIS — Session Handoff & Roadmap
+# SOVEREIGN // AEGIS — Session Handoff
 
-**Prepared:** 2026-08-22, at the end of the "Memory Vault answer-before-reveal" session.
-**Purpose:** enough context for a fresh session to continue without this conversation.
-**One-line state:** the app is an honest, local-first epistemic-defense training suite with a
-fully-built competency spine, calibration and confidence capture; the remaining work is making
-retention bite (Phase 2), demonstrating transfer (Phase 4), and closing the independent-review
-hardening leftovers.
+**Prepared:** 2026-09-20, from a verified tree audit (tests run, standalone checked,
+git state probed). Replaces the 2026-08-22 handoff, whose "UNCOMMITTED" and
+"standalone STALE" warnings are both obsolete — see `STATUS.md` for the snapshot.
+
+**One-line state:** the app is an honest local-first epistemic-defense training suite
+with a built competency spine, adaptive routing, attestations, retention coverage
+(Phase 2) and the adaptive inoculation engine (PDP slice 3) both shipped, live-verified
+in the browser and standalone bundle, and a green 45-suite headless gate; the remaining
+work is running the transfer study (Phase 4), fixing the game-surface honesty findings
+below, and getting browser E2E into CI. **The standalone is FRESH** (rebuilt 2026-09-20
+during live verification; esbuild now available via npx).
 
 ---
 
 ## 1. What this is
 
-- Local-first, browser-native cognitive-defense training suite. Vanilla ES modules + WebCrypto.
-  No build step for the multi-file app (that property is a deliberate, audited asset). Zero
-  runtime dependencies. ~24 skills, ~119 arena questions, 24 fallacies, 39 DISARM techniques.
-- Lives at `sovereign-aegis/` inside the blackvault repo. The repo root also contains an
-  unrelated Electron dashboard (orbital / blackvault) and an unrelated HF "Reverse-Face-Search"
-  static Space task done earlier — do not confuse those with AEGIS work.
-- Docs of record (all in `sovereign-aegis/`):
-  - `ROADMAP.md` — the phase plan (Phases 1–7) + independent-review remediation (§8).
-  - `ROADMAP-EVIDENCE.md` — priority re-cut P0–P4 + detailed "as built" notes (very thorough).
-  - `ROADMAP-messenger.md` — the Reema messenger seam (largely built).
-  - `docs/manual-improvement.md` — research-backed recommendations R1–R12.
-  - `docs/transfer-study-preregistration.md` — ready-to-submit transfer study protocol.
-  - `DESIGN-competency-spine.md`, `DESIGN-aegis-reema-seam.md`, `DESIGN-product-decision.md` (D1 resolved).
+- Local-first, browser-native cognitive-defense training suite. Vanilla ES modules +
+  WebCrypto. No build step for the multi-file app (deliberate, audited asset). Zero
+  runtime dependencies. ~24 skills, 145 arena questions, 24 fallacies, 41 DISARM
+  techniques, 26 JSON datasets, 24 modules, 208-card SM-2 deck.
+- Architecture, feature inventory, interface contracts: `PROJECT.md` (regenerated
+  from the filesystem 2026-09-20).
+- Docs of record: `ROADMAP.md` (phases 1–7 + review remediation §8),
+  `ROADMAP-EVIDENCE.md` (P0–P4 as-built), `ROADMAP-messenger.md` (Reema seam, built),
+  `AUDIT.md` (2026-08-17 audit + remediation log), `TEST_INFRA.md`, `TEST_READY.md`
+  (⚠ its ACH-formula restatement is wrong; `PROJECT.md`/`ach.js` are right),
+  `DESIGN-*.md` (5 specs, all shipped or explicitly slice-tracked),
+  `docs/transfer-study-preregistration.md`.
 
-## 2. Working-tree state — READ FIRST
+## 2. Working-tree state
 
-- The ENTIRE tree is a heavily modified, **UNCOMMITTED** working tree. Last commit:
-  `e93d1b6` "Checkpoint seven days of work, and fix the startup profile/port collision".
-- Do **not** `git checkout`, `git stash`, `git reset`, or `git add -A`. Many modified and
-  untracked files are intentional (`.gitignore` added; `.agents/` untracked; backup files like
-  `*.pre-fatalguard` exist). Leave ownership as-is; commit only what a task explicitly touches.
-- Everything described below is on disk and uncommitted.
+**Uncommitted feature work in the tree** (as of this handoff): Phase 2 retention
+completion + PDP slice 3 (adaptive inoculation) — see §5/§6. `rustup-init.exe`
+remains an unrelated untracked tooling file. Do not treat the 2026-08-22 handoff's
+§2 ("ENTIRE tree heavily modified, UNCOMMITTED") as a description of *this* state —
+that generation is long gone; HEAD `f49988c` (2026-09-20) was clean before this work.
 
-## 3. Competency spine (roadmap Phase 1) — BUILT & VERIFIED
+## 3. Verification gate — measured 2026-09-20
 
-- `data/skills.json` — 24 skills with prerequisites and held-out item ids.
-- All content tagged (`teaches`/`tests`) — fallacies, DISARM, SIFT, arena, SM-2, inoculation,
-  rhetorical arguments. Gate: `node tools/tag-skills.mjs` fails the build on anything untagged
-  or on a lab where every item shares the same correct answer.
-- `js/competency.js` — Bayesian mastery estimates, `calibration()` (Brier, reliability bins,
-  over/under-confidence), `transfer()`, `rank()` (confidently-wrong boosted 2.5x, keyed on itemId).
-- `js/attemptlog.js` — append-only IndexedDB log, `SCHEMA_VERSION = 3` (v1→v2 added
-  `confidence`; v2→v3 added `chosen`). Additive; no migrations.
-- `js/attempts.js` — the one recorder every module calls. CONTEXTS include `arena`, `sm2`,
-  `sift`, `fallacy-drill`, `inoculation`, `sandbox`, `forensics`, `messenger`, `infowar`,
-  `sm2-diagnosis`.
-- `js/confidence.js` — sticky 3-state control (sure/unsure/guess), defaults to `unsure`,
-  never `sure`. Frozen at reveal where a prediction is scored.
-- Six+ recording surfaces wired; practice-log export/import in Identity → Keypair & DID Profile.
-- At the time of Phase 1: 18 suites / 3,405 assertions green. Today: 36 suites / 12,033 green.
+- `node tests/run-all.js` → **45 suites, 17,350/17,350 assertions, 0 failed** (~9.1 s).
+  Composition reported by the runner: 10,809 static dataset/schema checks (62%),
+  6,541 logic/crypto/fuzz/static-HTML. Browser E2E is **not** in that number.
+- `npm run test:e2e` exists as the separate browser gate (headless Chromium CDP);
+  `npm run test:browser` is the Playwright suite; the reverse-face-search Playwright
+  suite rides along with `npm test`.
+- **No CI workflows exist** (no `.github/workflows/`). The headless gate is honest;
+  the browser gate still has to actually run somewhere. This is open item #4.
 
----
+## 4. Competency spine — BUILT & VERIFIED (unchanged conclusion, updated numbers)
 
-## 4. This session's work — Memory Vault answer-before-reveal (roadmap N2)
+- `data/skills.json` — 24 skills with prerequisites and held-out item ids (40
+  held-out items across the bank).
+- All content tagged via `tools/tag-skills.mjs` (fails the build on untagged or
+  degenerate items): fallacies, DISARM, SIFT, arena, SM-2, inoculation, rhetorical
+  arguments, OSINT cases, masterclasses.
+- `js/competency.js` — mastery (exponentially-weighted accuracy, Beta prior,
+  DECAY=0.97), `calibration()` (Brier, reliability bins, over/under-confidence),
+  `transfer()`, `rank()` (confidently-wrong boosted 2.5×), `confusionMatrix()`.
+- `js/attemptlog.js` — append-only, `SCHEMA_VERSION = 3`; `js/attempts.js` is the one
+  recorder, with **15 contexts**: `arena`, `sm2`, `sift`, `fallacy-drill`,
+  `inoculation`, `inoculation-adaptive`, `sandbox`, `forensics`, `messenger`,
+  `infowar`, `sm2-diagnosis`, `masterclass`, `osint`, `osint-drill`, `diagnostic`.
+- `js/confidence.js` — sticky 3-state control (sure/unsure/guess), frozen at reveal.
+- Practice-log export/import in Identity → Keypair & DID Profile.
 
-**Status: implemented, tested, green — but NOT committed, and the standalone build is stale.**
+## 5. Personal Defense Profile — BUILT (all three slices shipped)
 
-The feature itself already existed in the uncommitted tree (a prior agent built it): a
-forced-choice diagnosis guess before the flip, four options drawn from other cards'
-`diagnosis` fields, recorded under its own context `sm2-diagnosis` with the `chosen` option,
-confidence frozen at reveal. What THIS session did:
+- `js/profile.js` (pure, no I/O), `js/profilestore.js` (append-only IDB, scope
+  vocabulary frozen), `js/modules/profile.js` (view layer with ack gate, inventory,
+  practice map, observation log, atlas, support card).
+- All three data files exist: `profile-items.json` (38 items), `profile-guides.json`
+  (7 contexts, each with `routeSkillId`), `framework-notes.json` (8 atlas cards with
+  evidence tiers). Ground-truth suites `test-profile.js` / `test-profilestore.js`.
+- **Slice 3 (adaptive inoculation scenario engine) SHIPPED (2026-09-20):** pure
+  engine `js/inoculation.js` (120-assertion ground-truth suite) selecting
+  (scenario, stage) candidates by counted priority = 2×contextSalience +
+  1.5×(1−mastery) + freshness; view `js/modules/inoculationAdaptive.js` with the
+  entry card in the Prebunking subtab; attempts under the new `inoculation-adaptive`
+  context with real latency/choice/confidence; every 3rd run is a measurement run
+  serving held-out probe stages (4 reserved in `inoculation.json` — the static player
+  skips held-out stages so probes stay untrained); debrief ties outcomes to the
+  operator's own watchpoint countermeasures. The static player's confidence-capture
+  "bug" was retracted on verification — `recordAttempt` auto-fills from the sticky
+  control when the caller omits it.
 
-1. **Fixed a semantic bug** in `js/modules/spacedRepetition.js`: `_qualityToCorrect(2)` (Hard)
-   returned `false` while the scheduler's `qMap {1:1, 2:3, 3:4, 4:5}` schedules Hard as a PASS
-   (SM-2 quality 3, repetitions advance, interval grows) and the UI previews treat Hard as a
-   pass. The attempt log and the scheduler disagreed — exactly the "two notions of knew it"
-   the roadmap forbids. Fix: one shared `SM2_QUALITY_MAP` constant used by both
-   `_calculateSM2` and `_qualityToCorrect`; Hard is now recorded as recalled.
-2. **Rewrote `tests/test-sm2-semantics.js`** (was a log-only probe with zero assertions) into a
-   **66-assertion suite**: scheduling semantics; option building (4 distinct options, answer +
-   3 distractors from other cards, deterministic per card id, fallback padding for thin decks);
-   diagnosis recording (correct / wrong / recorded-once guard / no-selection records nothing /
-   untagged warns once / multi-skill fan-out / heldOut carried); and the demonstrated-vs-felt
-   gap (`sm2-diagnosis` vs `sm2` records kept separate and allowed to disagree). Uses the house
-   in-memory IndexedDB stub + a minimal `document` stub.
-3. **Registered the suite** in `tests/run-all.js` (36th suite, `SM-2 Semantics &
-   Answer-Before-Reveal Suite`).
-4. **Fixed the now-contradicting assertion** in `tests/test-attemptlog.js` (the "Hard (2) is
-   not recalled" test encoded the old bug; updated to the corrected mapping).
-5. **Verified:** `npm test` → 36 suites, **12,033/12,033 assertions, 0 failed** + Reverse Face
-   Search Playwright suite 23/23.
+## 6. Open work, priority order
 
-### PENDING — standalone single-file build is STALE
+1. **Phase 2 retention — DONE (2026-09-20).** The deck is now **274 cards**
+   (105/105 practice arena questions carded, held-out excluded at both the generator and
+   the file gate; the 7 legacy leak cards are gone). New: held-out contamination purge +
+   base-card merge in `spacedRepetition.js _loadDeck` (new releases reach existing stored
+   decks), per-section masterclass review cards via `aegis:sift-cards` in `_mcNavigate`,
+   generator owns the `card-arena-*` namespace. `test-retention-transfer.js` extended
+   for the merge/purge/section-card behavior (280 assertions). Phase 2: DONE.
+2. **Phase 4 transfer study** — protocol written, not run. Both outcomes are worth
+   having; the app cannot claim "it trains" until this is measured.
+3. **Game-surface honesty findings** (audit of 2026-09-20, all unfixed, all small):
+   - `onboarding.js` reads `arena.stats` for the Pattern Recognition axis — dead key,
+     nothing writes it; axis permanently 0. Compute from the attempt log
+     (`context: 'arena'`) or write the key in `infiniteArena.js endRound()`.
+   - Gauntlet/Triage end screens: "Accuracy" is points÷total (shows 150%); label
+     says "Correct" over the points stat. Count correct outcomes; rename the label.
+   - `infowar.js` records `correct: true, confidence: 'sure'` on AAR diagnostic
+     *selection*, and pins `confidence: 'sure'` on the campaign-end attempt;
+     `osint.js` drill pins `'sure'` too. Drop the pinned confidence (null is
+     correctly invisible to calibration); make the diagnostic predict-before-reveal
+     or stop recording it.
+   - `cognitive.js _renderForensics()` — dead code with fabricated 72/88/95%
+     SUSPECT presets and a single-number verdict. Delete.
+4. **Browser E2E in CI.** Add a workflow; report headless vs browser numbers
+   separately (the §8 review's own wording, still open).
+5. **§8 hardening leftovers:** one-click legacy private-JWK rotation; move `index.html`'s
+   inline `style=""` (486 occurrences, file now 2,956 lines) off inline styles so
+   CSP `style-src` can drop `'unsafe-inline'`.
 
-- `sovereign-aegis-standalone.html` is a tracked artifact that predates the feature — it has
-  **zero** occurrences of `sm2-diagnosis` (verified). The multi-file app is fine; the
-  single-file `file://` build is not in sync.
-- Regenerate with `node build-standalone.mjs`. Two blockers:
-  - esbuild is not installed (dev-only dependency, documented in the script header).
-  - On Windows the script's `execFileSync('npx', ...)` fails with `ENOENT` because `npx` is a
-    `.cmd` shim — needs `shell: true` or spawning `npx.cmd`.
-- Options for next session: (a) `npm i -D esbuild` + fix the npx spawn, rebuild, verify
-  `sm2-diagnosis` appears; or (b) leave stale and regenerate later. The user was asked and
-  skipped — recommend (a) with explicit permission.
+## 7. Unapproved proposals / small items (from `docs/manual-improvement.md`)
 
-### Files touched this session
+- **N1** record chosen distractor — **DONE** (schema v3 `chosen`).
+- **N2** SM-2 answer-before-reveal — **DONE** (`sm2-diagnosis` context; the standalone
+  build contains it — 10 occurrences — so the old "STALE" flag is resolved).
+- **N3** score the mute Prebunking choices — **DONE** (all choices non-zero delta,
+  3-stage scenarios, `test-retention-transfer.js` enforces it).
+- R4–R11 cheap items remain open as listed in the old handoff §5.6 (C2PA external
+  verify link, OSINT methodology relabel — partially done via the Analyst's Desk,
+  DISARM Blue wiring — partially done via AAR, key-assumptions check, inoculation
+  design patterns, positioning).
 
-- `js/modules/spacedRepetition.js` — `SM2_QUALITY_MAP`, `_qualityToCorrect` fix, comment updates.
-- `tests/test-sm2-semantics.js` — rewritten (new, 66 assertions).
-- `tests/run-all.js` — one-line suite registration.
-- `tests/test-attemptlog.js` — one assertion block updated to the corrected mapping.
-
----
-
-## 5. Remaining roadmap (priority order)
-
-### 5.1 Next build: Phase 2 / P4 — make the retention machinery bite (~1 session)
-
-The single biggest felt change from "encyclopedia" to "training". All wiring already exists:
-
-- Auto-generate SM-2 cards from every tagged content item (~180 cards, up from 20).
-- The Arena draws by weak skill via `rank()` instead of at random (confidently-wrong items
-  first — the P0 boost).
-- Finishing a masterclass section schedules its skills for review instead of setting a
-  `completed` flag.
-
-**Deliverable:** reading something now has downstream consequences.
-
-### 5.2 Then: demonstrate transfer (roadmap Phase 4 / manual-improvement R8) — highest credibility payoff
-
-- Reserve ~20% of items as a held-out set (today: only the Arena's 8% probe cadence — the
-  documented limitation).
-- On first run, a 10-item baseline from the held-out set; after N practice sessions, a fresh
-  non-overlapping held-out set.
-- Results view: baseline vs current on unpracticed items, sample size, honest confidence
-  interval, and the caveat "within-subject on a small n, not a controlled trial".
-- The protocol is already written: `docs/transfer-study-preregistration.md` (remaining
-  checkboxes: timestamping/hashes before recruitment, T0/T1/T2 item disjointness, frozen
-  ground truth, randomization policy, enrollment targets 400/320, CI rules, privacy review).
-
-**Deliverable:** the app can show evidence it works — or discover it does not. Both are worth
-more than the current state.
-
-### 5.3 The four evidence items (ROADMAP-EVIDENCE.md) — status
-
-| Item | Status |
-|---|---|
-| P0 confidence capture (schema v2, sticky control, calibration(), rank()) | **BUILT** |
-| P1 author 60–100 items (91 arena + 9 SIFT; shuffle/length-tell fixes; quality gates) | **BUILT** |
-| P2 forensics predict-then-measure drill (`forensicsDrill.js`) | **BUILT** |
-| P3 calibration dashboard (`calibrationPanel.js`, refuses <12 rated answers) | **BUILT** |
-| P4 Phase-2 retention | **NOT BUILT** — see 5.1 |
-
-### 5.4 Unapproved proposals (N1–N3) — status after this session
-
-- **N1** record chosen distractor — **DONE** (`chosen` field, schema v3; used by `sm2-diagnosis`).
-- **N2** SM-2 answer-before-reveal — **DONE** this session.
-- **N3** score the mute Prebunking choices — **OPEN**. Content edit: give every branching
-  choice a non-zero `resilienceDelta` (neutral = delta 0 currently records nothing) and extend
-  scenarios past two stages.
-
-### 5.5 Independent-review hardening leftovers (ROADMAP.md §8) — OPEN
-
-1. Run `npm run test:e2e` in a browser CI job; report headless vs browser numbers separately.
-2. Make legacy private-JWK rotation one-click (Identity view already prompts; new identities
-   are non-extractable/vaulted).
-3. Move templates off inline `style=""` in `index.html` (2,507 lines) so CSP `style-src` can
-   drop `'unsafe-inline'` — the last hardening step and precondition for the strongest CSP.
-
-### 5.6 Cheap / quality items (docs/manual-improvement.md R4–R12)
-
-- **R4** C2PA "Verify externally" link to `contentcredentials.org/verify` — zero cost, truthful
-  (endorses roadmap Phase 6b).
-- **R5** OSINT relabel as a *methodology walkthrough* + link each mock pivot to Bellingcat's
-  Online Investigation Toolkit.
-- **R6** DISARM Blue countermeasures as data — dataset already exists
-  (`data/disarm_blue.json`, suite `test-disarm-blue.js`); wire into InfoWar AAR rendering.
-- **R7** Key-assumptions check in the ACH lab — small, optional step.
-- **R9** Inoculation-game design patterns (badges, humor, perspective-taking, short boosters).
-- **R10/R11** Positioning: "defend, don't abstain" in onboarding; "DISARM for individuals".
-
-### 5.7 Phase 5 — retire the remaining simulations (do AFTER Phase 4's data tells you whether they matter)
-
-- **Video mode** (`_drawForensicVideo` paints ellipses). Real option: per-frame ELA/FFT via
-  `requestVideoFrameCallback` over a `<video>` + temporal-consistency measurement. Cheap
-  option: relabel. DSP module is already in place.
-- **OSINT module** (4.3 KB, entirely mock pivots). Relabel as methodology walkthrough (cheap,
-  truthful) or wire real CORS-permitting endpoints. Do not leave it looking like a live tool.
-- **Narrative topology** — scripted animation; reuse `infowar.js`'s real contagion engine.
-
-### 5.8 Phase 6 — real C2PA verification (discrete, ~1 session + a size decision)
-
-- `js/c2pa.js` parses manifests but cannot validate signatures (the four missing steps are
-  named in the module header and in the UI).
-- Decision already made in the roadmap: **(b) parse-only + link to
-  `contentcredentials.org/verify` now; (a) lazy-load `c2pa-js` WASM only when someone actually
-  needs in-app verification.** The WASM bundle is multi-MB and breaks the no-build-step
-  property — do not ship it by default.
-
-### 5.9 Phase 7 — sharing / sync (ONLY if it becomes a real need)
-
-- Case packs already import/export (the collective-defense primitive, XSS-safe).
-- Multi-device: end-to-end encrypted sync keyed off the existing DID, through a relay that
-  cannot read plaintext. D1 (attempt-log sync) resolved to **never** — do not erode that
-  without revisiting the premise explicitly.
-- Publishing a signed competency attestation (DID-signed) is a natural, novel fit.
-
-### 5.10 Messenger roadmap (ROADMAP-messenger.md) — largely BUILT
-
-- Phase 0 (D1 resolved) — done. Phase 1 (verdad-service) — done. Phase 2 (binding credential)
-  — done. Phase 3 (messenger wiring: pre-send gate, inbound flags, signed rebuttal) — done.
-  Phase 4 (messenger also trains: near-share records `context: 'messenger'` locally) — done.
-  Phase 5 (relay mixing — built 2026-08-19) — done.
-- Remaining messenger work: relabel OSINT/video/narrative simulations if they appear in the
-  messenger; C2PA verification only if media messages ship. Mixing is defense-in-depth
-  metadata protection, NOT a mixnet — keep that claim honest.
-
----
-
-## 6. Commands
+## 8. Commands
 
 ```bash
-# from sovereign-aegis/
-npm test                 # run-all.js (36 suites, 12,033 assertions) + Reverse Face Search Playwright suite
-npm run test:e2e         # browser E2E (headless Chrome CDP) — separate from npm test
-npm run test:browser     # Playwright browser suite
-node tests/test-sm2-semantics.js   # the new suite alone
-node tools/tag-skills.mjs          # content-tagging gate (fails on untagged / same-answer labs)
-node build-standalone.mjs          # single-file build — NEEDS esbuild; npx spawn broken on Windows
+npm test                  # 44-suite headless gate + reverse-face-search Playwright suite
+npm run test:e2e          # browser E2E (headless Chromium CDP) — separate, no CI yet
+npm run test:browser      # Playwright browser suite
+node tools/tag-skills.mjs # content-tagging gate (fails on untagged / held-out leakage once extended)
+node build-standalone.mjs # single-file build — needs esbuild (NOT installed); on Windows spawn npx.cmd or set shell:true
 ```
 
-## 7. Key files
+## 9. Key files
 
 | File | Role |
 |---|---|
-| `js/modules/spacedRepetition.js` | Memory Vault. `SM2_QUALITY_MAP` at top; `_buildDiagnosisOptions`, `_recordDiagnosisAttempt`, `_revealDiagnosisOutcome`, `rateCard` |
-| `js/attempts.js` | `recordAttempt` funnel; `CONTEXTS` incl. `SM2_DIAGNOSIS` |
-| `js/attemptlog.js` | Append-only log; `SCHEMA_VERSION = 3` |
+| `js/attempts.js` | The one recorder; 15 contexts |
+| `js/attemptlog.js` | Append-only log, `SCHEMA_VERSION = 3` |
+| `js/competency.js` | Mastery, calibration, transfer, rank (pure) |
 | `js/confidence.js` | Sticky sure/unsure/guess control |
-| `js/competency.js` | Mastery, `calibration()`, `transfer()`, `rank()` |
-| `js/calibrationPanel.js`, `js/forensicsDrill.js` | P3 / P2 deliverables |
-| `index.html` (~1126–1131) | `sm2-diagnosis-options` / `sm2-diagnosis-choices` markup |
-| `tests/test-sm2-semantics.js` | NEW 66-assertion suite (this session) |
-| `tests/run-all.js` | Suite registry — 36 entries |
-| `tests/test-attemptlog.js` | Attempt log suite (Hard-mapping assertion updated) |
-| `sovereign-aegis-standalone.html` | **STALE** — needs rebuild to include `sm2-diagnosis` |
+| `js/profile.js` / `js/profilestore.js` | PDP scoring / storage (pure / I-O) |
+| `js/modules/spacedRepetition.js` | Memory Vault; `SM2_QUALITY_MAP`, enqueue, diagnosis |
+| `js/modules/onboarding.js` | Operator profile composite (⚠ dead `arena.stats` key) |
+| `js/inoculation.js` | PDP slice 3 selector (pure) — 120-assertion suite |
+| `js/modules/inoculationAdaptive.js` | PDP slice 3 view + Prebunking entry card |
+| `tools/tag-skills.mjs` | Tagging gate — also rejects held-out SM-2 cards |
+| `tools/gen-sm2-cards.mjs` | Deck generator (274 cards; owns `card-arena-*`) |
+| `tests/run-all.js` | Suite registry — 45 entries |
+| `sovereign-aegis-standalone.html` | FRESH (rebuilt 2026-09-20 with slice 3 + retention) |
 
-## 8. Unrelated but in this repo's history — Reverse Face Search task
+## 10. Unrelated but in this repo's history
 
-- A Hugging Face **static** Space downloaded earlier to
-  `C:\Users\dribb\.cache\huggingface\hub\spaces--ReverseFaceSearch--Reverse-Face-Search\snapshots\86581f8e...`
-  (index.html / script.js / style.css / README.md; no backend).
-- Fixed its invalid-file state (a rejected selection no longer leaves a previous image ready to
-  submit); added Playwright coverage `sovereign-aegis/tests/test-reverse-face-search-upload.js`
-  (23 checks, local mock handoff endpoint, no real uploads) — wired into `npm test`.
-- The Space is only a frontend handoff: clicking START SEARCH POSTs the image to
-  `https://www.socialsleuth.xyz/api/face-search/handoff`. The search itself is not local.
-  Audit findings (privacy/security) were delivered earlier; not part of the AEGIS roadmap.
-
----
-
-## 9. Recent Update: Tactical Arcade & Game-Feel Engine (Game Juice & Epistemic Engagement)
-- **Tactical Audio Synthesizer (`js/modules/tacticalAudio.js`)**:
-  - `playStreakHit(streak)`: 11-step harmonic C-pentatonic pitch-climbing chime with overtone shimmer (streak >= 3) and dual chord resonance (streak >= 5).
-  - `playCriticalHit()`: Crisp high-frequency impact snap + triumphant C6-E6-G6 triad chime for rapid refutations.
-  - `playStreakBust()`: Descending sawtooth sub-thud (160Hz -> 50Hz) providing weighty tactile feedback when combos break.
-  - `playTimerWarning()`: Tension-building radar tick during final 10 seconds of round timers.
-- **Infinite Arena (`js/modules/infiniteArena.js`)**:
-  - Sub-2.8s **Critical Refutations** granting +40% score bonus, +4s Blitz extension, and golden flash.
-  - Dynamic timer bar with color transitions (bronze -> amber -> fiery pulse under 25%).
-  - Escalating tactical tiers: 1.5x Tactical Momentum, 2.0x Dialectic Focus, 3.0x Cognitive Overdrive, 4.0x Hyper-Sentinel Apex.
-  - Overdrive card aura (`.arena-card-overdrive`) on streaks >= 5.
-  - Post-round AAR tracking and displaying total Critical Refutations.
-- **Fallacy Gauntlet (`js/modules/cognitive.js`)**:
-  - Sub-2.5s Critical fallacy identification (+2 pts, +3s time).
-  - Real-time animated top progress bar, dynamic combo titles, and Overdrive card glow.
-- **60-Second SIFT Triage (`js/modules/siftLabs.js`)**:
-  - Sub-1.8s Lightning Triage (+2 pts, +3s time) and rapid triage count in AAR.
-- **Kinetic Game Feel (`css/components.css`)**:
-  - Animations: `.combat-float-tag`, `.aegis-shake`, `.crit-hit-pulse`, `.combo-pop-scale`, `.timer-danger`.
+- Reverse Face Search (Hugging Face static Space frontend handoff) — fixed state
+  bug + Playwright coverage riding in `npm test`; not AEGIS roadmap work.
+- The 2026-09-20 remote merge brought non-AEGIS work into the history (nexus /
+  hardware-acceleration commits); AEGIS docs are unaffected.

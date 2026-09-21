@@ -3,6 +3,10 @@
 .agents/
 _to_delete/
 
+# Agent-tooling config and thread state (mirrors of the parent suite's copies).
+.codeartsdoer/
+.freebuff/
+
 # Zero-dependency app: node_modules should never be needed here.
 node_modules/
 

@@ -14,6 +14,7 @@
     ],
     "branchingStages": [
       {
+        "heldOut": true,
         "stageId": "stage-1-breaking-alert",
         "prompt": "An anonymous handle with 200 followers tweets: 'EMERGENCY: Level 4 leak confirmed at Fort Meade facility. 12 dead, city quarantine starting at midnight. RT TO SAVE LIVES!' Accompanied by a stock photo of a CDC truck from 2014.",
         "evidenceSnippets": [
@@ -46,6 +47,12 @@
             "feedback": "Passive observation avoids amplifying falsehoods, but fails to inoculate your immediate network during the critical T+0 to T+2h viral window.",
             "nextStageId": "stage-2-secondary-surge"
           }
+        ],
+        "contexts": [
+          "urgency"
+        ],
+        "stageSkills": [
+          "skill.sift.stop"
         ]
       },
       {
@@ -81,9 +88,16 @@
             "feedback": "Helpful administrative measure, though platform moderation response times often lag behind virality velocity.",
             "nextStageId": "stage-3-narrative-adjudication"
           }
+        ],
+        "contexts": [
+          "authority"
+        ],
+        "stageSkills": [
+          "skill.sift.investigate-source"
         ]
       },
       {
+        "heldOut": true,
         "stageId": "stage-3-narrative-adjudication",
         "prompt": "After health officials debunk the rumor, a coordinated wave shifts the narrative: 'The government covered up the leak by burning the bodies in secret; if you believe the official debunk, you are complicit.' An online petition demanding immediate military quarantine reaches 50,000 signatures.",
         "evidenceSnippets": [
@@ -116,6 +130,12 @@
             "feedback": "Avoidance preserves emotional energy, but allows synthetic outrage vectors to capture community consensus unchecked.",
             "nextStageId": null
           }
+        ],
+        "contexts": [
+          "social-approval"
+        ],
+        "stageSkills": [
+          "skill.tactic.astroturfing"
         ]
       }
     ],
@@ -181,6 +201,12 @@
             "feedback": "Passive monitoring limits immediate personal loss, but leaves other depositors vulnerable to the spreading panic.",
             "nextStageId": "stage-2-forged-regulatory-order"
           }
+        ],
+        "contexts": [
+          "urgency"
+        ],
+        "stageSkills": [
+          "skill.sift.stop"
         ]
       },
       {
@@ -216,6 +242,12 @@
             "feedback": "Direct inquiry avoids sharing unverified files, but customer support phone lines are quickly swamped during panic events.",
             "nextStageId": "stage-3-regulatory-adjudication"
           }
+        ],
+        "contexts": [
+          "authority"
+        ],
+        "stageSkills": [
+          "skill.sift.investigate-source"
         ]
       },
       {
@@ -251,6 +283,12 @@
             "feedback": "Mechanical risk management limits portfolio downside, but leaves you vulnerable to flash-crash stop-hunting manipulation.",
             "nextStageId": null
           }
+        ],
+        "contexts": [
+          "conflict"
+        ],
+        "stageSkills": [
+          "skill.fallacy.appeals"
         ]
       }
     ],
@@ -316,6 +354,14 @@
             "feedback": "Self-protective disengagement prevents personal distress, but does not stop physical disruption of polling infrastructure.",
             "nextStageId": "stage-2-election-board-response"
           }
+        ],
+        "contexts": [
+          "urgency",
+          "conflict"
+        ],
+        "stageSkills": [
+          "skill.sift.stop",
+          "skill.tactic.emotive-framing"
         ]
       },
       {
@@ -351,9 +397,16 @@
             "feedback": "A constructive hygiene action, though platform moderation automation must be backed by distributed factual amplification.",
             "nextStageId": "stage-3-spatial-temporal-forensics"
           }
+        ],
+        "contexts": [
+          "social-approval"
+        ],
+        "stageSkills": [
+          "skill.tactic.flooding"
         ]
       },
       {
+        "heldOut": true,
         "stageId": "stage-3-spatial-temporal-forensics",
         "prompt": "After election officials show the video was staged, bad actors claim: 'The officials used a body double for the whistleblower in their press conference — compare the earlobes!' A zoomed-in comparison graphic goes viral across messaging apps.",
         "evidenceSnippets": [
@@ -386,6 +439,12 @@
             "feedback": "Epistemic nihilism is the adversary's ultimate objective: when citizens believe nothing can be known, accountability dies.",
             "nextStageId": null
           }
+        ],
+        "contexts": [
+          "conflict"
+        ],
+        "stageSkills": [
+          "skill.forensics.read-measurements"
         ]
       }
     ],
@@ -451,6 +510,13 @@
             "feedback": "Localized inspection provides momentary clarity, but does not stem community-wide hoarding behaviors.",
             "nextStageId": "stage-2-spoofed-outage-map"
           }
+        ],
+        "contexts": [
+          "authority",
+          "fatigue"
+        ],
+        "stageSkills": [
+          "skill.sift.stop"
         ]
       },
       {
@@ -486,6 +552,12 @@
             "feedback": "Turning to certified emergency broadcast radio is sound personal protocol, though proactive community inoculation remains vital.",
             "nextStageId": "stage-3-scada-frequency-correlation"
           }
+        ],
+        "contexts": [
+          "authority"
+        ],
+        "stageSkills": [
+          "skill.sift.investigate-source"
         ]
       },
       {
@@ -521,6 +593,12 @@
             "feedback": "Local testing confirms your own circuit status, but does not provide signal clarity on the wider regional infrastructure.",
             "nextStageId": null
           }
+        ],
+        "contexts": [
+          "urgency"
+        ],
+        "stageSkills": [
+          "skill.forensics.read-measurements"
         ]
       }
     ],
@@ -586,6 +664,13 @@
             "feedback": "Waiting for official state diplomacy is appropriate, but early scientific debunks prevent bilateral narrative hardening.",
             "nextStageId": "stage-2-coordinated-diplomatic-walkout"
           }
+        ],
+        "contexts": [
+          "urgency"
+        ],
+        "stageSkills": [
+          "skill.sift.trace-origin",
+          "skill.forensics.read-measurements"
         ]
       },
       {
@@ -621,9 +706,16 @@
             "feedback": "Boundary setting reduces personal stress, but leaves the broader public sphere unprotected against targeted influence ops.",
             "nextStageId": "stage-3-multilateral-attestation"
           }
+        ],
+        "contexts": [
+          "social-approval"
+        ],
+        "stageSkills": [
+          "skill.sift.find-coverage"
         ]
       },
       {
+        "heldOut": true,
         "stageId": "stage-3-multilateral-attestation",
         "prompt": "The ambassador issues an authenticated video denying the conversation, but adversary troll networks immediately circulate a high-definition spectrogram claiming: 'The embassy's denial has synthetic audio cut points — see the missing frequencies!'",
         "evidenceSnippets": [
@@ -656,6 +748,12 @@
             "feedback": "Official transcripts provide eventual certainty, but lag behind the fast-moving propaganda contagion window.",
             "nextStageId": null
           }
+        ],
+        "contexts": [
+          "conflict"
+        ],
+        "stageSkills": [
+          "skill.forensics.provenance"
         ]
       }
     ],
@@ -721,6 +819,14 @@
             "feedback": "Passive ignoring stops personal engagement, but does not dismantle the monetization farm's algorithmic reach.",
             "nextStageId": "stage-2-monetization-bridge"
           }
+        ],
+        "contexts": [
+          "conflict",
+          "fatigue"
+        ],
+        "stageSkills": [
+          "skill.tactic.emotive-framing",
+          "skill.bias.attribution"
         ]
       },
       {
@@ -756,6 +862,12 @@
             "feedback": "Sound privacy hygiene, though community-level inoculation requires exposing the underlying profit model.",
             "nextStageId": "stage-3-depolarization-bridge"
           }
+        ],
+        "contexts": [
+          "scarcity"
+        ],
+        "stageSkills": [
+          "skill.bias.anchoring"
         ]
       },
       {
@@ -791,6 +903,12 @@
             "feedback": "Deprives the troll of your individual engagement, though does not stop algorithmic virality across uninoculated bystander feeds.",
             "nextStageId": null
           }
+        ],
+        "contexts": [
+          "social-approval"
+        ],
+        "stageSkills": [
+          "skill.tactic.astroturfing"
         ]
       }
     ],

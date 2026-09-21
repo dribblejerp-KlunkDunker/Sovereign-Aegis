@@ -158,7 +158,9 @@ harness.describe('Group 1: Stylesheet Link Resolution & CSS Syntax Validity', ()
     harness.assert(googleFontsLink.includes('Cormorant+Garamond') || googleFontsLink.includes('Cormorant Garamond'), 'Google Fonts link includes Cormorant Garamond');
     harness.assert(googleFontsLink.includes('EB+Garamond') || googleFontsLink.includes('EB Garamond'), 'Google Fonts link includes EB Garamond');
     harness.assert(googleFontsLink.includes('JetBrains+Mono') || googleFontsLink.includes('JetBrains Mono'), 'Google Fonts link includes JetBrains Mono');
-    harness.assert(googleFontsLink.includes('Space+Mono') || googleFontsLink.includes('Space Mono'), 'Google Fonts link includes Space Mono');
+    // Inter and Space Mono are referenced by no font-family in css/ — requesting them
+    // is dead payload.
+    harness.assert(!/Inter|Space[+ ]Mono/.test(googleFontsLink), 'Google Fonts link omits unused families (Inter, Space Mono)');
   }
 });
 

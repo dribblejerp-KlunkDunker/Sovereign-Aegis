@@ -58,6 +58,7 @@ const SUITES = [
   { name: 'Lens Library & Safe Renderer Suite', script: 'test-lens-guides.js' },
   { name: "The Analyst's Desk & OSINT Suite", script: 'test-analyst-desk.js' },
   { name: 'Retention Machinery, Inoculation 3-Stage & Transfer Suite', script: 'test-retention-transfer.js' },
+  { name: 'Adaptive Inoculation Selector Suite', script: 'test-inoculation-adaptive.js' },
   { name: 'Retired Simulations (Video Forensics & Narrative Topology) Suite', script: 'test-simulations-retired.js' },
   { name: 'Competency Attestation & Verifiable Credential Suite', script: 'test-competency-attestation.js' },
   { name: 'Adaptive Routing & Progressive Placement Suite', script: 'test-adaptive-routing.js' }

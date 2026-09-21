@@ -498,6 +498,30 @@ export const CognitiveLab = {
 
     if (dir === 1) {
       if (this._activeLesson < totalLessons - 1) {
+        // Phase 2: finishing a section schedules its course's skills for review (ROADMAP.md
+        // Phase 2: "Finishing a masterclass section schedules its skills for review rather
+        // than setting a completed flag"). One card per section, id-deduplicated, so
+        // re-reading a section never duplicates or re-seeds its card. Sections carry no
+        // per-section skill data, so the course's skills[] is the honest granularity, and
+        // cards are non-held-out by construction (course skills are teaching targets).
+        if (typeof window !== 'undefined') {
+          const masterclassSkills = Array.isArray(mc.skills) ? mc.skills : [];
+          if (masterclassSkills.length) {
+            const sectionNo = this._activeLesson + 1;
+            const reviewCards = masterclassSkills.map((skillId) => ({
+              id: `card-mc-${mc.id}-s${sectionNo}-${skillId.replace(/\./g, '-')}`,
+              domain: `Masterclass: ${mc.badge || 'Review'}`,
+              prompt: `Recall the key concepts from "${mc.theorySections[this._activeLesson]?.heading || `Section ${sectionNo}`}" of "${mc.title}"`,
+              diagnosis: `Post-Section Review — ${mc.badge || mc.title}`,
+              latin: '',
+              mechanism: `Scheduled after reading this section. The Memory Vault will bring it back at increasing intervals.`,
+              countermeasure: `Revisit the section or run the course diagnostic when this card comes due.`,
+              tests: [skillId],
+              heldOut: false
+            }));
+            window.dispatchEvent(new CustomEvent('aegis:sift-cards', { detail: { cards: reviewCards } }));
+          }
+        }
         this._activeLesson++;
         this._renderMasterclassReader();
       } else {
@@ -1317,13 +1341,25 @@ export const CognitiveLab = {
     };
 
     renderScenarioList();
+
+    // PDP slice 3: the adaptive run's entry card lives in this container. The module
+    // (re-)inserts it idempotently by id each time this renderer rebuilds the subtab,
+    // so the card survives the list's re-renders without this file knowing its internals.
+    this._app?.modules?.inoculationAdaptive?.renderEntryCard(container);
   },
 
   _runInoculationScenario(scenario, container) {
+    // Held-out stages are measurement probes reserved for the adaptive engine's measurement
+    // runs (js/inoculation.js): playing them here would train the very items the transfer
+    // measurement is supposed to hold out. They never render in the static player.
+    const stages = (scenario.branchingStages || []).filter((st) => !(st && st.heldOut === true));
+    if (!stages.length) {
+      this._app?.showToast?.({ type: 'warning', title: 'NO PRACTICE STAGES', message: 'Every stage of this scenario is reserved for held-out measurement.' });
+      return;
+    }
     let currentStageIdx = 0;
     let resilienceScore = 100;
     let stageShownAt = 0;
-    const stages = scenario.branchingStages || [];
 
     const renderStage = () => {
       const stage = stages[currentStageIdx];

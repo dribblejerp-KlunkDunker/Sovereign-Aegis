@@ -341,4 +341,72 @@ t.describe('Group 3: Transfer Evaluation Protocol & Held-Out Generalization', ()
   t.assert(thinReport.caveat.includes('Not enough held-out attempts'), 'Honest caveat explains insufficient data');
 });
 
+// ─────────────────────────────────────────────────────────────
+// 4. Phase 2: Deck Contamination Gate, Base-Card Merge & Held-Out Integrity
+// ─────────────────────────────────────────────────────────────
+await t.describe('Group 4: Phase 2 — Deck Contamination Gate, Base-Card Merge & Held-Out Integrity', async () => {
+  const skills = JSON.parse(fs.readFileSync(path.join(ROOT_DIR, 'data', 'skills.json'), 'utf8'));
+  const heldOutIds = new Set(skills.flatMap((s) => s.heldOutItemIds || []));
+  const deck = JSON.parse(fs.readFileSync(path.join(ROOT_DIR, 'data', 'spaced_repetition_cards.json'), 'utf8'));
+  const arenaQuestions = JSON.parse(fs.readFileSync(path.join(ROOT_DIR, 'data', 'arena_questions.json'), 'utf8'));
+
+  // File-level: no held-out contamination in any historical shape
+  t.assertEqual(deck.filter((c) => c.heldOut === true).length, 0, 'Deck file has no heldOut-flagged cards');
+  t.assertEqual(deck.filter((c) => /^q\d+$/.test(c.id)).length, 0, 'Deck file has no bare held-out question ids');
+  const leakedCards = deck.filter((c) => heldOutIds.has((c.id || '').replace(/^card-arena-/, '')));
+  t.assertEqual(leakedCards.length, 0, `Deck file has no card-arena-* cards of held-out items (found: ${leakedCards.map((c) => c.id).join(', ')})`);
+
+  // File-level: full practice-set coverage — every non-held-out arena question is carded
+  const deckIds = new Set(deck.map((c) => c.id));
+  const practiceUncovered = arenaQuestions.filter((q) => q.heldOut !== true && !deckIds.has(`card-arena-${q.id}`));
+  t.assertEqual(practiceUncovered.length, 0, `Every practice arena question has an SM-2 card (missing: ${practiceUncovered.slice(0, 5).map((q) => q.id).join(', ')})`);
+  const skillIds = new Set(skills.map((s) => s.id));
+  const invalidTags = deck.filter((c) => (c.tests || []).some((sid) => !skillIds.has(sid)));
+  t.assertEqual(invalidTags.length, 0, `Every card's tests[] references a real skill (bad: ${invalidTags.slice(0, 3).map((c) => c.id).join(', ')})`);
+
+  // Runtime: _loadDeck purges held-out/stale cards from a stored deck and merges new base cards
+  const baseCards = [
+    { id: 'card-arena-q7', domain: 'Test Arena', prompt: 'p', diagnosis: 'd', tests: ['skill.fallacy.ad-hominem'], heldOut: false },
+    { id: 'card-bias-01', domain: 'Test Bias', prompt: 'p', diagnosis: 'd', tests: ['skill.bias.confirmation'], heldOut: false }
+  ];
+  globalThis.fetch = async () => ({ json: async () => baseCards });
+
+  const mergeStore = { data: {} };
+  mergeStore.get = (k) => mergeStore.data[k];
+  mergeStore.set = (k, v) => { mergeStore.data[k] = v; };
+  SpacedRepetition._app = { store: mergeStore, showToast: () => {} };
+
+  // Stored deck: one stale card-arena leak, one flagged held-out card, one real card with
+  // progress that must survive, one hand-crafted card that must survive the purge.
+  mergeStore.set('sm2.deck', JSON.stringify([
+    { id: 'card-arena-q1', domain: 'Legacy', prompt: 'p', diagnosis: 'd', tests: [], heldOut: false, repetitions: 2, interval: 6, easeFactor: 2.5, dueDate: '2026-01-01', history: [] },
+    { id: 'q42', domain: 'Legacy flag', prompt: 'p', diagnosis: 'd', tests: [], heldOut: true, repetitions: 1, interval: 1, easeFactor: 2.5, dueDate: '2026-01-01', history: [] },
+    { id: 'card-bias-01', domain: 'Test Bias', prompt: 'p', diagnosis: 'd', tests: [], heldOut: false, repetitions: 3, interval: 10, easeFactor: 2.6, dueDate: '2026-02-02', history: [{ q: 4 }] },
+    { id: 'card-custom-01', domain: 'Hand-crafted', prompt: 'p', diagnosis: 'd', tests: ['skill.sift.stop'], heldOut: false, repetitions: 0, interval: 0, easeFactor: 2.5, dueDate: '2026-03-03', history: [] }
+  ]));
+  SpacedRepetition._deck = [];
+
+  await SpacedRepetition._loadDeck();
+
+  const deckIdsAfter = new Set(SpacedRepetition._deck.map((c) => c.id));
+  t.assert(!deckIdsAfter.has('card-arena-q1'), 'Stale card-arena leak is purged from stored deck');
+  t.assert(!deckIdsAfter.has('q42'), 'Held-out-flagged card is purged from stored deck');
+  t.assert(deckIdsAfter.has('card-custom-01'), 'Hand-crafted card survives the purge');
+  t.assert(deckIdsAfter.has('card-bias-01'), 'Known card survives the purge');
+
+  const survivor = SpacedRepetition._deck.find((c) => c.id === 'card-bias-01');
+  t.assertEqual(survivor.repetitions, 3, 'Surviving card keeps its SM-2 progress (repetitions)');
+  t.assertEqual(survivor.easeFactor, 2.6, 'Surviving card keeps its ease factor');
+  t.assert(Array.isArray(survivor.tests) && survivor.tests[0] === 'skill.bias.confirmation', 'Surviving card is re-tagged from source data');
+
+  t.assert(deckIdsAfter.has('card-arena-q7'), 'New base card is merged into existing stored deck');
+  const merged = SpacedRepetition._deck.find((c) => c.id === 'card-arena-q7');
+  t.assertEqual(merged.repetitions, 0, 'Merged card is seeded with fresh SM-2 parameters');
+  t.assertEqual(merged.easeFactor, 2.5, 'Merged card gets default ease factor');
+
+  const storedAfter = JSON.parse(mergeStore.data['sm2.deck']);
+  t.assertEqual(storedAfter.length, SpacedRepetition._deck.length, 'Purged + merged deck is persisted to the store');
+  t.assertEqual(storedAfter.filter((c) => c.heldOut === true).length, 0, 'Persisted deck contains no held-out cards');
+});
+
 t.summary();

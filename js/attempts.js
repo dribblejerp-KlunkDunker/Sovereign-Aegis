@@ -50,6 +50,10 @@ export const CONTEXTS = Object.freeze({
   // masterclass teaches, so the estimator learns from quiz performance — closing the loop
   // between reading a course and the retention machinery knowing about it.
   MASTERCLASS: 'masterclass',
+  // Adaptive inoculation runs (PDP slice 3): stages selected by the Personal Defense
+  // Profile's salience rule. Recorded separately from 'inoculation' so personalized and
+  // self-selected runs stay distinguishable in the data.
+  INOCULATION_ADAPTIVE: 'inoculation-adaptive',
   // The Analyst's Desk: OSINT verification, geolocation and chronolocation cases.
   OSINT: 'osint',
   // Rapid Pivot Gauntlet: timed OSINT decision triage drill.

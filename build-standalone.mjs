@@ -42,7 +42,8 @@ try {
   // and pass the entrypoint relative to cwd so its spaces never split the argument.
   execFileSync(npxCmd, [
     '--yes', 'esbuild', 'js/app.js',
-    '--bundle', '--format=iife', '--platform=browser',
+    // --minify: parse/exec time scales with bundle size; the standalone ships ~1 MB of JS.
+    '--bundle', '--format=iife', '--platform=browser', '--minify',
     '--legal-comments=none', `"--outfile=${tmpBundle}"`
   ], { stdio: ['ignore', 'pipe', 'pipe'], shell: true, cwd: ROOT });
 } catch (err) {
