@@ -1,0 +1,229 @@
+[
+  {
+    "id": "mission-firehose",
+    "title": "Operation Firehose",
+    "badge": "Flood-the-Zone Counter",
+    "description": "Detect and counter a coordinated flood-the-zone disinformation campaign. Analyze the claim, drill the tactic, and defend the network.",
+    "disarmTags": ["T0048", "T0009"],
+    "stages": [
+      {
+        "id": "analyze",
+        "label": "Analyze the Operation",
+        "description": "Use VERDAD to audit a synthetic flood-the-zone disinformation claim. The adversary is flooding channels — identify the tactic.",
+        "tab": "verdad",
+        "subtab": null,
+        "preload": {
+          "claim": "BREAKING: Multiple whistleblowers confirm the election was systematically rigged through undocumented voting machine patches, and three independent audits have been suppressed by the Department of Justice, according to documents we have obtained. The mainstream media refuses to cover this because they are complicit in the cover-up."
+        },
+        "completion": { "context": "verdad", "minRecords": 1 }
+      },
+      {
+        "id": "drill",
+        "label": "Drill the Weak Spot",
+        "description": "The Arena will test your ability to spot flood-the-zone tactics (Gish Gallop, bot amplification, manufactured volume). Answer 5 questions.",
+        "tab": "cognitive",
+        "subtab": "arena",
+        "mode": "blitz",
+        "completion": { "context": "arena", "minRecords": 5 }
+      },
+      {
+        "id": "review",
+        "label": "Review the Cards",
+        "description": "The Memory Vault has SM-2 review cards queued for flooding and amplification tactics. Review at least 3.",
+        "tab": "cognitive",
+        "subtab": "memory",
+        "completion": { "context": "sm2", "minRecords": 3 }
+      },
+      {
+        "id": "defend",
+        "label": "Defend the Network",
+        "description": "Deploy countermeasures in InfoWar against a flood-the-zone campaign. Your target: campaign-gamma-viral.",
+        "tab": "cognitive",
+        "subtab": "infowar",
+        "campaign": "campaign-gamma-viral",
+        "completion": { "context": "infowar", "minRecords": 1 }
+      }
+    ]
+  },
+  {
+    "id": "mission-steel",
+    "title": "Steel the Mind",
+    "badge": "Self-Audit Protocol",
+    "description": "Audit your own cognitive vulnerabilities. Analyze a claim you might be inclined to believe, identify your biases, and build epistemic defenses.",
+    "disarmTags": ["T0002"],
+    "stages": [
+      {
+        "id": "analyze",
+        "label": "Audit Your Biases",
+        "description": "Analyze a politically charged claim in VERDAD. Pay attention to the affect step — what emotional reaction does the claim trigger?",
+        "tab": "verdad",
+        "subtab": null,
+        "preload": {
+          "claim": "A former government cybersecurity official has revealed that a foreign adversary successfully compromised the last presidential election through coordinated social media manipulation, and the current administration has classified the evidence to avoid panic."
+        },
+        "completion": { "context": "verdad", "minRecords": 1 }
+      },
+      {
+        "id": "argument",
+        "label": "Deconstruct the Argument",
+        "description": "Identify the structural flaw in a rhetorical argument in the Rhetorical Sandbox.",
+        "tab": "cognitive",
+        "subtab": "rhetorical",
+        "completion": { "context": "rhetorical", "minRecords": 1 }
+      },
+      {
+        "id": "drill",
+        "label": "Drill Fallacies & Biases",
+        "description": "The Arena will drill your ability to spot confirmation bias, availability heuristic, and anchoring — the three biases most exploited in political disinformation.",
+        "tab": "cognitive",
+        "subtab": "arena",
+        "mode": "zen",
+        "completion": { "context": "arena", "minRecords": 8 }
+      },
+      {
+        "id": "review",
+        "label": "Review Epistemic Hygiene Cards",
+        "description": "Review SM-2 cards covering cognitive biases and emotional appeals in the Memory Vault.",
+        "tab": "cognitive",
+        "subtab": "memory",
+        "completion": { "context": "sm2", "minRecords": 4 }
+      }
+    ]
+  },
+  {
+    "id": "mission-provenance",
+    "title": "Provenance Protocol",
+    "badge": "C2PA Verification Chain",
+    "description": "Learn to verify media provenance from cryptographic first principles. Analyze synthetic media, inspect forensic measurements, and understand C2PA manifests.",
+    "disarmTags": ["T0015"],
+    "stages": [
+      {
+        "id": "analyze",
+        "label": "Analyze a Synthetic Media Claim",
+        "description": "Use VERDAD to analyze a claim about a synthetic diplomatic scandal.",
+        "tab": "verdad",
+        "subtab": null,
+        "preload": {
+          "claim": "A leaked audio recording allegedly captures the defense minister authorizing extrajudicial drone strikes against civilian targets, and the voice biometrics match with 94% confidence according to independent analysis."
+        },
+        "completion": { "context": "verdad", "minRecords": 1 }
+      },
+      {
+        "id": "forensics",
+        "label": "Inspect the Measurements",
+        "description": "Open the Media Forensics lab and inspect real vs synthetic spectral measurements.",
+        "tab": "cognitive",
+        "subtab": "forensics",
+        "completion": { "context": "forensics", "minRecords": 1 }
+      },
+      {
+        "id": "drill",
+        "label": "Drill Provenance Skills",
+        "description": "The Arena will test your ability to recognize forensic measurement interpretation and C2PA provenance concepts.",
+        "tab": "cognitive",
+        "subtab": "arena",
+        "mode": "zen",
+        "completion": { "context": "arena", "minRecords": 6 }
+      },
+      {
+        "id": "defend",
+        "label": "Defend with Provenance",
+        "description": "In InfoWar, deploy the C2PA Provenance Broadcast doctrine to harden your network against synthetic media attacks.",
+        "tab": "cognitive",
+        "subtab": "infowar",
+        "campaign": "campaign-alpha-apt",
+        "completion": { "context": "infowar", "minRecords": 1 }
+      }
+    ]
+  },
+  {
+    "id": "mission-osint",
+    "title": "OSINT Investigation",
+    "badge": "Trace-to-Source Protocol",
+    "description": "Learn to trace claims to their origin. Use SIFT's four labs — Stop, Investigate the Source, Find Coverage, Trace to Original — on fabricated news claims.",
+    "disarmTags": ["T0004"],
+    "stages": [
+      {
+        "id": "analyze",
+        "label": "Analyze the Claim",
+        "description": "Use VERDAD to analyze a viral social media claim with a sketchy source.",
+        "tab": "verdad",
+        "subtab": null,
+        "preload": {
+          "claim": "A viral TikTok video with 12M views shows what appears to be emergency room footage of dozens of patients with unexplained seizures, with the caption '5G activated in our city yesterday — now look what's happening to our children.' The video has been shared by a verified account with 800K followers."
+        },
+        "completion": { "context": "verdad", "minRecords": 1 }
+      },
+      {
+        "id": "sift-stop",
+        "label": "SIFT: Stop and Assess",
+        "description": "Complete SIFT's Stop lab — learn to pause before sharing and assess initial red flags.",
+        "tab": "cognitive",
+        "subtab": "sift-labs",
+        "siftLab": "stop",
+        "completion": { "context": "sift", "minRecords": 2 }
+      },
+      {
+        "id": "sift-investigate",
+        "label": "SIFT: Investigate Source",
+        "description": "Complete SIFT's Investigate the Source lab — learn to evaluate who is behind the information.",
+        "tab": "cognitive",
+        "subtab": "sift-labs",
+        "siftLab": "investigate",
+        "completion": { "context": "sift", "minRecords": 2 }
+      },
+      {
+        "id": "drill",
+        "label": "Drill SIFT Skills",
+        "description": "The Arena will test your ability to apply SIFT methodology to rapid-fire claims.",
+        "tab": "cognitive",
+        "subtab": "arena",
+        "mode": "blitz",
+        "completion": { "context": "arena", "minRecords": 5 }
+      }
+    ]
+  },
+  {
+    "id": "mission-shield",
+    "title": "Shield the Network",
+    "badge": "Network Defense Campaign",
+    "description": "Build network defense competency. Deploy countermeasures, learn DISARM tactics, and survive an InfoWar campaign with high resilience.",
+    "disarmTags": ["T0008", "T0026"],
+    "stages": [
+      {
+        "id": "disarm",
+        "label": "Study DISARM Tactics",
+        "description": "Review DISARM techniques in the DISARM Catalog. Familiarize yourself with countermeasures against micro-targeting and tainted leaks.",
+        "tab": "cognitive",
+        "subtab": "disarm",
+        "completion": { "context": "disarm", "minRecords": 1 }
+      },
+      {
+        "id": "drill",
+        "label": "Drill Defense Skills",
+        "description": "The Arena will test your knowledge of DISARM countermeasures and propaganda tactics in rapid-fire mode.",
+        "tab": "cognitive",
+        "subtab": "arena",
+        "mode": "suddendeath",
+        "completion": { "context": "arena", "minRecords": 7 }
+      },
+      {
+        "id": "review",
+        "label": "Review Countermeasure Cards",
+        "description": "Review SM-2 cards covering DISARM countermeasures and propaganda tactics.",
+        "tab": "cognitive",
+        "subtab": "memory",
+        "completion": { "context": "sm2", "minRecords": 3 }
+      },
+      {
+        "id": "defend",
+        "label": "Defend the Network",
+        "description": "Deploy all countermeasures in InfoWar against a coordinated adversary. Target: campaign-beta-syndicate.",
+        "tab": "cognitive",
+        "subtab": "infowar",
+        "campaign": "campaign-beta-syndicate",
+        "completion": { "context": "infowar", "minRecords": 1 }
+      }
+    ]
+  }
+]

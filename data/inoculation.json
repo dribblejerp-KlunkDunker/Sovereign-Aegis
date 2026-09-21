@@ -1,0 +1,812 @@
+[
+  {
+    "id": "inoc-biosecurity-panic",
+    "title": "Operation Chimera: The Coordinated Pathogen Panic",
+    "category": "Biosecurity",
+    "threatLevel": "Critical",
+    "context": "A sudden burst of coordinated social media posts claims that a military biolab has suffered an uncontained atmospheric breach, accompanied by blurry hazmat photos and frantic audio clips.",
+    "adversaryTechniques": [
+      "T0004",
+      "T0011",
+      "T0023",
+      "T0027",
+      "T0030"
+    ],
+    "branchingStages": [
+      {
+        "stageId": "stage-1-breaking-alert",
+        "prompt": "An anonymous handle with 200 followers tweets: 'EMERGENCY: Level 4 leak confirmed at Fort Meade facility. 12 dead, city quarantine starting at midnight. RT TO SAVE LIVES!' Accompanied by a stock photo of a CDC truck from 2014.",
+        "evidenceSnippets": [
+          "Photo reverse-search matches AP archive (2014 Ebola drill in Dallas)",
+          "Account created 72 hours ago; 98% of tweets are retweets of panic keywords",
+          "Local emergency dispatch reports zero 911 calls regarding chemical/biological incidents"
+        ],
+        "choices": [
+          {
+            "choiceId": "c1-retweet-warning",
+            "text": "Retweet immediately with a warning tag 'Just in case, stay safe everyone!'",
+            "type": "Vulnerable",
+            "resilienceDelta": -15,
+            "feedback": "You fell for the Urgency Suppression Trigger. Retweeting unverified crisis claims accelerates contagion even with cautionary caveats.",
+            "nextStageId": "stage-2-secondary-surge"
+          },
+          {
+            "choiceId": "c2-reverse-image-and-refute",
+            "text": "Run reverse image search, extract EXIF date, and post public debunk showing 2014 Dallas drill archive.",
+            "type": "Inoculate",
+            "resilienceDelta": 25,
+            "feedback": "Flawless forensic response! You identified the weaponized archival footage and severed the virality vector before secondary amplification.",
+            "nextStageId": "stage-2-secondary-surge"
+          },
+          {
+            "choiceId": "c3-wait-for-news",
+            "text": "Ignore the post and wait 4 hours to see if mainstream cable broadcasts confirm it.",
+            "type": "Reactive",
+            "resilienceDelta": 5,
+            "feedback": "Passive observation avoids amplifying falsehoods, but fails to inoculate your immediate network during the critical T+0 to T+2h viral window.",
+            "nextStageId": "stage-2-secondary-surge"
+          }
+        ]
+      },
+      {
+        "stageId": "stage-2-secondary-surge",
+        "prompt": "A cluster of 15 verified influencer accounts simultaneously quote-tweet a fabricated memo with the header 'DEPARTMENT OF DEFENSE - EYES ONLY' detailing mandatory quarantine zones.",
+        "evidenceSnippets": [
+          "Font typography in memo is Calibri (DoD directives mandate Times New Roman / Arial)",
+          "Classification markings omit standard declassification instruction block",
+          "Influencer accounts were recently compromised via credential stuffing"
+        ],
+        "choices": [
+          {
+            "choiceId": "c4-spot-typographic-forgery",
+            "text": "Flag typographic anomalies (Calibri font vs DoD standards) and alert community verification queue.",
+            "type": "Inoculate",
+            "resilienceDelta": 30,
+            "feedback": "Outstanding document forensic analysis. Document formatting standards are reliable tells for fabricated state memos.",
+            "nextStageId": "stage-3-narrative-adjudication"
+          },
+          {
+            "choiceId": "c5-panic-share",
+            "text": "Assume verified accounts guarantee memo authenticity and advise family to evacuate.",
+            "type": "Vulnerable",
+            "resilienceDelta": -20,
+            "feedback": "Verified badges indicate identity or paid subscription, not immunity from account hijacking or credential compromise.",
+            "nextStageId": "stage-3-narrative-adjudication"
+          },
+          {
+            "choiceId": "c6-report-accounts",
+            "text": "File abuse reports for account hijacking to platform moderation.",
+            "type": "Reactive",
+            "resilienceDelta": 10,
+            "feedback": "Helpful administrative measure, though platform moderation response times often lag behind virality velocity.",
+            "nextStageId": "stage-3-narrative-adjudication"
+          }
+        ]
+      },
+      {
+        "stageId": "stage-3-narrative-adjudication",
+        "prompt": "After health officials debunk the rumor, a coordinated wave shifts the narrative: 'The government covered up the leak by burning the bodies in secret; if you believe the official debunk, you are complicit.' An online petition demanding immediate military quarantine reaches 50,000 signatures.",
+        "evidenceSnippets": [
+          "Satellite radar interferometry shows zero abnormal thermal signatures at the Fort Meade compound",
+          "Petition signature velocity displays mechanical regularity: exactly 120 signatures/minute around the clock",
+          "Narrative shift matches DISARM T0042 (Shift Narrative Focus when original assertion is falsified)"
+        ],
+        "choices": [
+          {
+            "choiceId": "c7-disarm-technique-exposure",
+            "text": "Map and publish the shift against DISARM T0042, demonstrating that shifting to an unfalsifiable cover-up claim is a standard tactic when primary claims collapse.",
+            "type": "Inoculate",
+            "resilienceDelta": 30,
+            "feedback": "Masterful inoculation. Revealing the shift-narrative pattern immunizes your network against moving-goalpost disinformation loops.",
+            "nextStageId": null
+          },
+          {
+            "choiceId": "c8-sign-petition-precaution",
+            "text": "Sign the petition 'just in case' because institutional secrecy makes cover-ups plausible.",
+            "type": "Vulnerable",
+            "resilienceDelta": -25,
+            "feedback": "Precautionary fallacy trapped you. Automated bot petitions exploit institutional distrust to manufacture artificial social proof.",
+            "nextStageId": null
+          },
+          {
+            "choiceId": "c9-unfollow-keyword-alerts",
+            "text": "Turn off notification alerts for the facility name to avoid the emotional distress.",
+            "type": "Reactive",
+            "resilienceDelta": 10,
+            "feedback": "Avoidance preserves emotional energy, but allows synthetic outrage vectors to capture community consensus unchecked.",
+            "nextStageId": null
+          }
+        ]
+      }
+    ],
+    "postSimulationDebrief": {
+      "summary": "Operation Chimera targeted biological existential dread using aged archival photos, recycled panic templates, and hijacked verified accounts.",
+      "keyTells": [
+        "Recycled crisis imagery from 2014",
+        "Typographic non-conformance in official document forgeries",
+        "High tweet frequency from infant accounts (<72h old)"
+      ],
+      "recommendedProtocol": "Protocol AEGIS-BIO: Image reverse-search -> Official dispatch telemetry check -> Cryptographic attestation verification."
+    },
+    "tests": [
+      "skill.disarm.countermeasures",
+      "skill.tactic.emotive-framing"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "inoc-financial-run-rumor",
+    "title": "Operation Liquidity Shock: Algorithmic Bank Run Panic",
+    "category": "Finance",
+    "threatLevel": "Critical",
+    "context": "A coordinated short-seller syndicate deploys cloned executive audio and forged regulator letters to induce a synthetic digital deposit run on a mid-sized regional bank.",
+    "adversaryTechniques": [
+      "T0011",
+      "T0014",
+      "T0023",
+      "T0030",
+      "T0034"
+    ],
+    "branchingStages": [
+      {
+        "stageId": "stage-1-audio-drop",
+        "prompt": "An anonymous financial blog releases a 20-second audio recording allegedly capturing the CEO of Apex Bank telling the CFO: 'We are insolvent; freeze all wire transfers immediately.' Regional bank stocks begin dropping 12% in pre-market trading.",
+        "evidenceSnippets": [
+          "Spectrogram of the audio reveals abrupt frequency cutoffs at 4kHz and lack of room acoustic reverberation",
+          "The audio duration is under 20 seconds, characteristic of text-to-speech diffusion cloning models",
+          "Options market volume reveals massive put option purchases on Apex Bank placed 48 hours prior"
+        ],
+        "choices": [
+          {
+            "choiceId": "c1-withdraw-funds-panic",
+            "text": "Open your mobile banking app immediately and wire all savings to an offshore fintech app.",
+            "type": "Vulnerable",
+            "resilienceDelta": -20,
+            "feedback": "You succumbed to liquidity panic. Individual panic withdrawals create a self-fulfilling prophecy, exactly as the short-seller adversaries intended.",
+            "nextStageId": "stage-2-forged-regulatory-order"
+          },
+          {
+            "choiceId": "c2-spectral-audio-audit",
+            "text": "Inspect the audio with a spectral analysis tool to detect synthetic acoustic artifacts and check SEC EDGAR filings for actual 8-K disclosures.",
+            "type": "Inoculate",
+            "resilienceDelta": 30,
+            "feedback": "Superb forensic analysis! The spectral cutoff and absence of ambient reverberation prove the recording was AI-synthesized.",
+            "nextStageId": "stage-2-forged-regulatory-order"
+          },
+          {
+            "choiceId": "c3-monitor-market-quotes",
+            "text": "Wait for the stock market opening bell to see if trading is halted by exchange regulators.",
+            "type": "Reactive",
+            "resilienceDelta": 5,
+            "feedback": "Passive monitoring limits immediate personal loss, but leaves other depositors vulnerable to the spreading panic.",
+            "nextStageId": "stage-2-forged-regulatory-order"
+          }
+        ]
+      },
+      {
+        "stageId": "stage-2-forged-regulatory-order",
+        "prompt": "A PDF titled 'FDIC_Emergency_Conservatorship_Order_APEX.pdf' surfaces on financial social networks, featuring an official government seal and claiming assets will be locked for 90 days.",
+        "evidenceSnippets": [
+          "The PDF metadata shows the author field is 'Admin_PC_Win10' instead of the standard FDIC document publishing engine",
+          "The official FDIC press room website lists zero emergency enforcement actions for today",
+          "The QR code at the bottom of the PDF links to an unindexed domain registered yesterday"
+        ],
+        "choices": [
+          {
+            "choiceId": "c4-verify-fdic-registry",
+            "text": "Cross-reference the document hash against the official FDIC.gov public repository and publish proof of the metadata author anomaly.",
+            "type": "Inoculate",
+            "resilienceDelta": 35,
+            "feedback": "Masterclass forensic verification! Cross-referencing official statutory repositories completely neutralizes forged regulatory documents.",
+            "nextStageId": "stage-3-regulatory-adjudication"
+          },
+          {
+            "choiceId": "c5-forward-pdf-to-colleagues",
+            "text": "Forward the PDF to your professional network with the caption 'FDIC just seized Apex Bank!'",
+            "type": "Vulnerable",
+            "resilienceDelta": -25,
+            "feedback": "You amplified a forged regulatory order, aiding short-sellers in destabilizing regional financial liquidity.",
+            "nextStageId": "stage-3-regulatory-adjudication"
+          },
+          {
+            "choiceId": "c6-call-bank-support",
+            "text": "Call the local bank branch customer service line to ask if they are under conservatorship.",
+            "type": "Reactive",
+            "resilienceDelta": 10,
+            "feedback": "Direct inquiry avoids sharing unverified files, but customer support phone lines are quickly swamped during panic events.",
+            "nextStageId": "stage-3-regulatory-adjudication"
+          }
+        ]
+      },
+      {
+        "stageId": "stage-3-regulatory-adjudication",
+        "prompt": "Following the FDIC formal statement confirming Bank of Apex is fully capitalized and operational, anonymous Telegram channels release a list of 'covert insider executive resignations' claiming the leadership has fled.",
+        "evidenceSnippets": [
+          "Executive profiles on the list include names from a bankrupt 2008 Swedish mortgage lender, not Apex",
+          "EDGAR SEC filings show zero Form 8-K departure filings in the last 72 hours",
+          "Coordinated crypto-derivative short positions were opened 15 minutes before the Telegram broadcast"
+        ],
+        "choices": [
+          {
+            "choiceId": "c7-cross-reference-sec-edgar",
+            "text": "Audit the named executives against SEC EDGAR Form 8-K filings and expose the names as recycled from a 2008 Scandinavian collapse.",
+            "type": "Inoculate",
+            "resilienceDelta": 35,
+            "feedback": "Brilliant financial OSINT. Mandated regulatory filings trump anonymous leak channels every time.",
+            "nextStageId": null
+          },
+          {
+            "choiceId": "c8-liquidate-portfolio",
+            "text": "Dump regional financial sector index holdings immediately to protect against systemic contagion.",
+            "type": "Vulnerable",
+            "resilienceDelta": -25,
+            "feedback": "Panic selling based on recycled entity names directly serves the short-sellers who engineered the synthetic liquidity scare.",
+            "nextStageId": null
+          },
+          {
+            "choiceId": "c9-set-price-alerts",
+            "text": "Set automated stop-loss thresholds on banking tickers without investigating the underlying claim.",
+            "type": "Reactive",
+            "resilienceDelta": 10,
+            "feedback": "Mechanical risk management limits portfolio downside, but leaves you vulnerable to flash-crash stop-hunting manipulation.",
+            "nextStageId": null
+          }
+        ]
+      }
+    ],
+    "postSimulationDebrief": {
+      "summary": "Operation Liquidity Shock weaponized financial insecurity using short AI audio clips and forged administrative orders to trigger rapid digital capital flight.",
+      "keyTells": [
+        "Unnaturally clean, dry audio lacking ambient acoustic background",
+        "PDF metadata containing consumer desktop username tags",
+        "Coordinated options market activity preceding the rumor drop"
+      ],
+      "recommendedProtocol": "Protocol AEGIS-FIN: Check SEC EDGAR / FDIC statutory registries -> Analyze audio spectrogram -> Cross-reference capital market telemetry."
+    },
+    "tests": [
+      "skill.disarm.countermeasures",
+      "skill.tactic.emotive-framing"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "inoc-election-ballot-deepfake",
+    "title": "Operation Broken Ballot: Crisis Deepfake Election Leak",
+    "category": "Election",
+    "threatLevel": "Critical",
+    "context": "On the eve of a razor-thin general election, a 45-second high-definition video shows election workers in high-visibility vests allegedly shredding hundreds of mail-in ballots behind a municipal warehouse.",
+    "adversaryTechniques": [
+      "T0005",
+      "T0023",
+      "T0026",
+      "T0030",
+      "T0035"
+    ],
+    "branchingStages": [
+      {
+        "stageId": "stage-1-viral-video-drop",
+        "prompt": "The video gains 2 million views within 90 minutes under the trending hashtag #StolenElectionNow. Partisan commentators are calling for armed demonstrations at county election headquarters.",
+        "evidenceSnippets": [
+          "Shadows cast by the warehouse roof and the workers fall in completely opposite directions, indicating composite lighting anomalies",
+          "The barcodes on the ballots shown do not conform to the state's official 2D PDF417 ballot specification",
+          "Geolocation analysis matches the warehouse exterior to a commercial storage facility in an entirely different state"
+        ],
+        "choices": [
+          {
+            "choiceId": "c1-rage-tweet-call-to-arms",
+            "text": "Retweet the video urging citizens to surround the local polling center immediately to prevent further ballot destruction.",
+            "type": "Vulnerable",
+            "resilienceDelta": -30,
+            "feedback": "You mobilized physical crowds based on a synthetic visual forgery, escalating risks of kinetic civil conflict.",
+            "nextStageId": "stage-2-election-board-response"
+          },
+          {
+            "choiceId": "c2-forensic-lighting-geolocation",
+            "text": "Perform forensic shadow analysis, decode the barcode specifications, and geolocate the building using satellite imagery.",
+            "type": "Inoculate",
+            "resilienceDelta": 35,
+            "feedback": "Exceptional OSINT verification! Uncovering contradictory shadows and invalid barcode standards completely discredits the visual hoax.",
+            "nextStageId": "stage-2-election-board-response"
+          },
+          {
+            "choiceId": "c3-mute-hashtag",
+            "text": "Mute the hashtag and avoid engaging with political content until tomorrow's election concludes.",
+            "type": "Reactive",
+            "resilienceDelta": 5,
+            "feedback": "Self-protective disengagement prevents personal distress, but does not stop physical disruption of polling infrastructure.",
+            "nextStageId": "stage-2-election-board-response"
+          }
+        ]
+      },
+      {
+        "stageId": "stage-2-election-board-response",
+        "prompt": "The County Board of Elections issues an emergency livestream demonstrating their actual ballot chain-of-custody tracking system. Adversary botnets flood the livestream chat with claims that the livestream is a pre-recorded coverup.",
+        "evidenceSnippets": [
+          "Chat messages repeat identical 4-sentence copy-paste scripts across 800 accounts",
+          "The election board presents live cryptographic timestamp logs for every received ballot batch",
+          "State voter verification database shows 100% custody audit trails matching physical secure vaults"
+        ],
+        "choices": [
+          {
+            "choiceId": "c4-amplify-cryptographic-audit",
+            "text": "Clip the live demonstration of cryptographic timestamp logs and share it alongside the forensic debunk to community discussion boards.",
+            "type": "Inoculate",
+            "resilienceDelta": 30,
+            "feedback": "Exemplary civic defense! Pairing factual institutional auditability with visual debunking creates an impenetrable cognitive shield.",
+            "nextStageId": "stage-3-spatial-temporal-forensics"
+          },
+          {
+            "choiceId": "c5-accept-botnet-cynicism",
+            "text": "Conclude that both sides are lying and decide not to cast your ballot tomorrow.",
+            "type": "Vulnerable",
+            "resilienceDelta": -25,
+            "feedback": "You fell victim to the ultimate objective of computational propaganda: weaponized civic apathy and voter disenfranchisement.",
+            "nextStageId": "stage-3-spatial-temporal-forensics"
+          },
+          {
+            "choiceId": "c6-report-livestream-spammers",
+            "text": "Click 'report spam' on abusive accounts in the livestream chat window.",
+            "type": "Reactive",
+            "resilienceDelta": 10,
+            "feedback": "A constructive hygiene action, though platform moderation automation must be backed by distributed factual amplification.",
+            "nextStageId": "stage-3-spatial-temporal-forensics"
+          }
+        ]
+      },
+      {
+        "stageId": "stage-3-spatial-temporal-forensics",
+        "prompt": "After election officials show the video was staged, bad actors claim: 'The officials used a body double for the whistleblower in their press conference — compare the earlobes!' A zoomed-in comparison graphic goes viral across messaging apps.",
+        "evidenceSnippets": [
+          "Comparison uses heavily compressed low-bitrate video stills where JPEG macroblocking alters anatomical contours",
+          "Biometric 3D facial mesh alignment of high-resolution RAW broadcast stream confirms 99.8% geometric identity",
+          "Compression artifact exploitation matches DISARM T0036 (Manipulate Technical Artifacts to Allege Deception)"
+        ],
+        "choices": [
+          {
+            "choiceId": "c7-compression-artifact-debunk",
+            "text": "Demonstrate that low-bitrate macroblocking distorts small earlobe features and provide lossless vector alignment overlays.",
+            "type": "Inoculate",
+            "resilienceDelta": 35,
+            "feedback": "Exceptional image forensics. Understanding codec artifacts prevents falling for micro-anomaly manipulation tricks.",
+            "nextStageId": null
+          },
+          {
+            "choiceId": "c8-share-earlobe-comparison",
+            "text": "Repost the earlobe comparison asking: 'Why aren't people talking about this? Looks pretty suspicious.'",
+            "type": "Vulnerable",
+            "resilienceDelta": -30,
+            "feedback": "JAQing off ('Just Asking Questions') is the primary vector by which compression artifact illusions are normalized into mainstream suspicion.",
+            "nextStageId": null
+          },
+          {
+            "choiceId": "c9-log-off-until-results",
+            "text": "Decide all election media is hopelessly corrupted and stop monitoring official precinct reports.",
+            "type": "Reactive",
+            "resilienceDelta": 10,
+            "feedback": "Epistemic nihilism is the adversary's ultimate objective: when citizens believe nothing can be known, accountability dies.",
+            "nextStageId": null
+          }
+        ]
+      }
+    ],
+    "postSimulationDebrief": {
+      "summary": "Operation Broken Ballot attempted to derail democratic turnout through high-impact synthetic video staged in an out-of-state facility with fake ballot props.",
+      "keyTells": [
+        "Inconsistent specular shadow angles on human actors vs building fixtures",
+        "Non-standard barcode encoding differing from statutory ballot specs",
+        "Botnet chat flooding repeating identical copy-paste scripts"
+      ],
+      "recommendedProtocol": "Protocol AEGIS-VOTE: Shadow vector triangulation -> Ballot barcode decoding -> Cryptographic custody log verification."
+    },
+    "tests": [
+      "skill.disarm.countermeasures",
+      "skill.forensics.provenance"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "inoc-grid-failure-sabotage",
+    "title": "Operation Dark Winter: Regional Power Grid Sabotage Rumor",
+    "category": "Infrastructure",
+    "threatLevel": "High",
+    "context": "During an extreme winter cold snap, an unverified report circulates stating that a nationwide cyberattack has disabled the main electrical transmission switching nodes and power will not return for 60 days.",
+    "adversaryTechniques": [
+      "T0007",
+      "T0026",
+      "T0027",
+      "T0033",
+      "T0046"
+    ],
+    "branchingStages": [
+      {
+        "stageId": "stage-1-blackout-rumor",
+        "prompt": "An anonymous voice message circulating on messaging groups claims: 'My uncle works at the Federal Energy Regulatory Commission. The entire Western interconnect has suffered a permanent physical turbine burnout. Stock up on fuel and food immediately before stores are looted.'",
+        "evidenceSnippets": [
+          "Regional grid operator (ISO) public telemetry shows real-time generation capacity is operating at 94% with normal 60Hz frequency stability",
+          "Voice note contains no verifiable names, operational codes, or technical substation identifiers",
+          "Local gas stations report panic buying creating artificial fuel shortages in 3 municipalities"
+        ],
+        "choices": [
+          {
+            "choiceId": "c1-panic-fuel-buy",
+            "text": "Rush out immediately to fill five 55-gallon drums with gasoline at the local station.",
+            "type": "Vulnerable",
+            "resilienceDelta": -20,
+            "feedback": "You fell for the Phantom Shortage Trap. Unsubstantiated voice notes create artificial supply shocks that disrupt real emergency infrastructure.",
+            "nextStageId": "stage-2-spoofed-outage-map"
+          },
+          {
+            "choiceId": "c2-check-iso-telemetry",
+            "text": "Query the regional ISO/RTO public grid frequency telemetry portal and share the real-time 60Hz stability dashboard to neighborhood groups.",
+            "type": "Inoculate",
+            "resilienceDelta": 30,
+            "feedback": "Outstanding empirical verification! Real-time grid frequency and transmission telemetry are immutable physical metrics that dispel psychological rumors.",
+            "nextStageId": "stage-2-spoofed-outage-map"
+          },
+          {
+            "choiceId": "c3-check-fusebox",
+            "text": "Check your home electrical panel and wait to see if the neighborhood streetlights stay on.",
+            "type": "Reactive",
+            "resilienceDelta": 5,
+            "feedback": "Localized inspection provides momentary clarity, but does not stem community-wide hoarding behaviors.",
+            "nextStageId": "stage-2-spoofed-outage-map"
+          }
+        ]
+      },
+      {
+        "stageId": "stage-2-spoofed-outage-map",
+        "prompt": "A fake clone of the national utility outage tracker appears online, showing 85% of the country colored in dark red with the message 'GRID COLLAPSE IMMINENT.'",
+        "evidenceSnippets": [
+          "Domain is 'poweroutage-us-emergency.com' registered 48 hours ago via an anonymized registrar in Eastern Europe",
+          "The interactive map is actually an animated SVG loop that repeats identical failure patterns regardless of user interaction",
+          "Official Energy Information Administration (EIA) API feeds confirm zero abnormal transmission losses"
+        ],
+        "choices": [
+          {
+            "choiceId": "c4-expose-domain-and-loop",
+            "text": "Inspect the web page source code to prove the map is a hardcoded SVG animation loop and publish the WHOIS registration date.",
+            "type": "Inoculate",
+            "resilienceDelta": 35,
+            "feedback": "Brilliant technical deconstruction! Exposing the hardcoded animated loop and 48-hour-old domain completely neutralizes the fear vector.",
+            "nextStageId": "stage-3-scada-frequency-correlation"
+          },
+          {
+            "choiceId": "c5-screenshot-and-warn",
+            "text": "Take a screenshot of the red map and post it to social media with 'GET READY, THE WHOLE COUNTRY IS GOING DOWN.'",
+            "type": "Vulnerable",
+            "resilienceDelta": -25,
+            "feedback": "You distributed a fabricated SVG loop, reinforcing adversary objectives to provoke infrastructure panic.",
+            "nextStageId": "stage-3-scada-frequency-correlation"
+          },
+          {
+            "choiceId": "c6-close-browser",
+            "text": "Close the browser tab and turn on battery-powered radios for official emergency broadcasts.",
+            "type": "Reactive",
+            "resilienceDelta": 10,
+            "feedback": "Turning to certified emergency broadcast radio is sound personal protocol, though proactive community inoculation remains vital.",
+            "nextStageId": "stage-3-scada-frequency-correlation"
+          }
+        ]
+      },
+      {
+        "stageId": "stage-3-scada-frequency-correlation",
+        "prompt": "As regional utility lines remain fully energized, a viral video shows emergency services rushing with sirens blaring past a dark commercial warehouse, with the caption: 'The government is cutting power district by district so cell towers fail silently.'",
+        "evidenceSnippets": [
+          "Real-time grid interconnect telemetry shows steady 60.002 Hz grid frequency with zero regional generation trips",
+          "Local fire department radio logs show the emergency response was for a three-alarm kitchen fire at a restaurant",
+          "Chronolocation shadow angle in the video confirms the footage was recorded during the previous evening's twilight, not present day"
+        ],
+        "choices": [
+          {
+            "choiceId": "c7-grid-frequency-and-cad-crosscheck",
+            "text": "Correlate live regional ISO 60Hz frequency logs with public Computer-Aided Dispatch (CAD) fire logs to verify the siren origin.",
+            "type": "Inoculate",
+            "resilienceDelta": 30,
+            "feedback": "Flawless cross-domain verification. Interconnect frequency is an unforgeable physical truth that cannot be faked by local video clips.",
+            "nextStageId": null
+          },
+          {
+            "choiceId": "c8-prep-emergency-conspiracy",
+            "text": "Tell neighbors to fill their bathtubs with water because the rolling blackout grid cutoff has begun.",
+            "type": "Vulnerable",
+            "resilienceDelta": -25,
+            "feedback": "Confirmation bias amplified an unrelated localized emergency into an existential utility collapse narrative.",
+            "nextStageId": null
+          },
+          {
+            "choiceId": "c9-check-home-circuit-breaker",
+            "text": "Verify your personal breaker switches and monitor household voltmeter.",
+            "type": "Reactive",
+            "resilienceDelta": 10,
+            "feedback": "Local testing confirms your own circuit status, but does not provide signal clarity on the wider regional infrastructure.",
+            "nextStageId": null
+          }
+        ]
+      }
+    ],
+    "postSimulationDebrief": {
+      "summary": "Operation Dark Winter exploited seasonal weather vulnerabilities with anonymous voice notes and hardcoded fake outage maps to induce hoarding.",
+      "keyTells": [
+        "Unattributed 'my uncle at FERC' authority trope",
+        "Static SVG animation loop posing as live telemetry",
+        "Domain registered within 48 hours of seasonal storm event"
+      ],
+      "recommendedProtocol": "Protocol AEGIS-GRID: Real-time ISO/RTO frequency query -> Domain WHOIS audit -> Web source code DOM inspection."
+    },
+    "tests": [
+      "skill.disarm.countermeasures",
+      "skill.tactic.astroturfing"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "inoc-synthetic-diplomatic-scandal",
+    "title": "Operation Babel: The Synthetic Diplomatic Summit Recording",
+    "category": "Synthetic Media",
+    "threatLevel": "High",
+    "context": "During sensitive bilateral trade negotiations, a leaked audio snippet features an ambassador making derogatory ethnic slurs against their negotiating counterpart, threatening to spark an international crisis.",
+    "adversaryTechniques": [
+      "T0002",
+      "T0011",
+      "T0023",
+      "T0035",
+      "T0047"
+    ],
+    "branchingStages": [
+      {
+        "stageId": "stage-1-diplomatic-audio",
+        "prompt": "A fringe geopolitical blog posts an 11-second audio file claiming to be a hot-mic recording from closed-door trade talks. Media outlets in the neighboring country run sensationalist headlines demanding immediate military mobilization.",
+        "evidenceSnippets": [
+          "Phonetic analysis indicates the vocal timbre matches a publicly available speech from 2021, but with unnatural pitch flatness",
+          "Zero ambient room acoustic decay (RT60 = 0.00s), inconsistent with the large reverberant ballroom of the summit venue",
+          "The diplomat was on a live televised plenary panel at the exact timestamp recorded in the file's claimed metadata"
+        ],
+        "choices": [
+          {
+            "choiceId": "c1-denounce-diplomat-publicly",
+            "text": "Join online petitions demanding the ambassador be recalled and expelled immediately for bigotry.",
+            "type": "Vulnerable",
+            "resilienceDelta": -20,
+            "feedback": "You allowed emotional indignation to bypass basic verification of diplomatic presence and acoustic acoustics.",
+            "nextStageId": "stage-2-coordinated-diplomatic-walkout"
+          },
+          {
+            "choiceId": "c2-triangulate-timestamps-acoustics",
+            "text": "Triangulate the ambassador's verified television broadcast schedule against the claimed leak time and highlight the missing room reverberation.",
+            "type": "Inoculate",
+            "resilienceDelta": 35,
+            "feedback": "Flawless investigative tradecraft! Temporal alibi triangulation and acoustic physics analysis provide unassailable refutation.",
+            "nextStageId": "stage-2-coordinated-diplomatic-walkout"
+          },
+          {
+            "choiceId": "c3-wait-embassy-press-release",
+            "text": "Wait for the Ministry of Foreign Affairs to issue a formal diplomatic communiqué.",
+            "type": "Reactive",
+            "resilienceDelta": 5,
+            "feedback": "Waiting for official state diplomacy is appropriate, but early scientific debunks prevent bilateral narrative hardening.",
+            "nextStageId": "stage-2-coordinated-diplomatic-walkout"
+          }
+        ]
+      },
+      {
+        "stageId": "stage-2-coordinated-diplomatic-walkout",
+        "prompt": "Adversary proxy accounts circulate edited reaction videos showing the foreign delegation supposedly walking out in fury, though the footage is actually from a 2018 climate conference dispute.",
+        "evidenceSnippets": [
+          "Reverse video search matches the walkout footage to a 2018 G20 climate summit plenary session in Geneva",
+          "The delegates visible in the video retired from diplomatic service three years ago",
+          "Live diplomatic delegates confirm the working session is currently proceeding normally behind closed doors"
+        ],
+        "choices": [
+          {
+            "choiceId": "c4-present-historical-video-match",
+            "text": "Publish a side-by-side video frame comparison showing the 2018 Geneva climate conference broadcast and the fake walkout clip.",
+            "type": "Inoculate",
+            "resilienceDelta": 30,
+            "feedback": "Decisive visual debunking! Side-by-side provenance comparisons dismantle cheapfake video manipulation instantly.",
+            "nextStageId": "stage-3-multilateral-attestation"
+          },
+          {
+            "choiceId": "c5-escalate-hostility",
+            "text": "Post angry comments condemning the foreign delegation for bad faith negotiations.",
+            "type": "Vulnerable",
+            "resilienceDelta": -20,
+            "feedback": "You reinforced the adversary's objective to sabotage international treaty negotiations through recycled confrontation imagery.",
+            "nextStageId": "stage-3-multilateral-attestation"
+          },
+          {
+            "choiceId": "c6-unfollow-news-threads",
+            "text": "Unfollow international relations commentary accounts to avoid exposure to hostile rhetoric.",
+            "type": "Reactive",
+            "resilienceDelta": 10,
+            "feedback": "Boundary setting reduces personal stress, but leaves the broader public sphere unprotected against targeted influence ops.",
+            "nextStageId": "stage-3-multilateral-attestation"
+          }
+        ]
+      },
+      {
+        "stageId": "stage-3-multilateral-attestation",
+        "prompt": "The ambassador issues an authenticated video denying the conversation, but adversary troll networks immediately circulate a high-definition spectrogram claiming: 'The embassy's denial has synthetic audio cut points — see the missing frequencies!'",
+        "evidenceSnippets": [
+          "The 'missing frequencies' shown in the troll spectrogram are simply standard 80 Hz high-pass rumble filters used by all professional broadcast microphones",
+          "The embassy video release includes a valid C2PA cryptographically signed manifest linked to an accredited news agency camera key",
+          "Phoneme-level pitch contour analysis reveals natural, unbroken jitter and shimmer typical of genuine human vocal cords"
+        ],
+        "choices": [
+          {
+            "choiceId": "c7-verify-c2pa-and-highpass-tell",
+            "text": "Validate the embassy's C2PA cryptographic signature and explain that the 80 Hz low-cut filter is standard studio sound engineering, not synthetic splicing.",
+            "type": "Inoculate",
+            "resilienceDelta": 35,
+            "feedback": "Superb acoustic and cryptographic acumen. Misrepresenting standard audio engineering filters as tampering is a textbook pseudo-technical deception.",
+            "nextStageId": null
+          },
+          {
+            "choiceId": "c8-conclude-everyone-uses-deepfakes",
+            "text": "Conclude that since both sides have spectrograms, neither can be trusted and diplomacy is entirely artificial.",
+            "type": "Vulnerable",
+            "resilienceDelta": -20,
+            "feedback": "The Liar's Dividend in action: introducing fake forensic charts causes operators to doubt genuine cryptographically attested media.",
+            "nextStageId": null
+          },
+          {
+            "choiceId": "c9-read-un-transcript",
+            "text": "Wait for formal United Nations diplomatic council minutes before forming an assessment.",
+            "type": "Reactive",
+            "resilienceDelta": 10,
+            "feedback": "Official transcripts provide eventual certainty, but lag behind the fast-moving propaganda contagion window.",
+            "nextStageId": null
+          }
+        ]
+      }
+    ],
+    "postSimulationDebrief": {
+      "summary": "Operation Babel combined low-cost neural voice cloning with recycled 2018 summit footage to rupture delicate international trade diplomacy.",
+      "keyTells": [
+        "Complete absence of room acoustic reverberation in claimed ballroom recording",
+        "Temporal conflict with verified live broadcast alibi",
+        "Reused walkout archival footage featuring retired delegates"
+      ],
+      "recommendedProtocol": "Protocol AEGIS-DIPLO: Verified schedule triangulation -> Video reverse-search -> Acoustic spectrogram reverberation testing."
+    },
+    "tests": [
+      "skill.disarm.countermeasures",
+      "skill.forensics.provenance"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "inoc-algorithmic-polarization-trap",
+    "title": "Operation Outrage Loop: The Algorithmic Polarization Trap",
+    "category": "Election",
+    "threatLevel": "Medium",
+    "context": "A commercial engagement farm designs hyper-inflammatory cultural debate memes specifically optimized to provoke moral disgust and maximize recursive comment warfare.",
+    "adversaryTechniques": [
+      "T0005",
+      "T0017",
+      "T0026",
+      "T0034",
+      "T0041"
+    ],
+    "branchingStages": [
+      {
+        "stageId": "stage-1-ragebait-infographic",
+        "prompt": "An infographic titled 'THE SECRET AGENDA TO DESTROY TRADITIONAL VALUES' features wildly distorted cherry-picked quotes from an obscure local council meeting presented as mandatory national policy.",
+        "evidenceSnippets": [
+          "The quotes were taken out of context from a public citizen comment period, not policy adopted by council members",
+          "The account hosting the infographic is managed from an overseas click-farm with a portfolio of 40 monetization domains",
+          "Headline employs 7 high-arousal moral-outrage words in a single sentence"
+        ],
+        "choices": [
+          {
+            "choiceId": "c1-write-angry-rebuttal",
+            "text": "Write a 500-word furious comment explaining why the policy idea is tyrannical and tag 10 friends.",
+            "type": "Vulnerable",
+            "resilienceDelta": -15,
+            "feedback": "You fell into the Algorithmic Engagement Trap. Writing angry comments and tagging friends boosts the post's algorithmic ranking.",
+            "nextStageId": "stage-2-monetization-bridge"
+          },
+          {
+            "choiceId": "c2-apply-system2-friction",
+            "text": "Pause, engage System 2 friction, check the municipal council minutes, and note that the quote was rejected 5-0 by the actual council.",
+            "type": "Inoculate",
+            "resilienceDelta": 25,
+            "feedback": "Superb cognitive discipline! System 2 friction pacer prevents algorithmic hijacking and clarifies the underlying reality.",
+            "nextStageId": "stage-2-monetization-bridge"
+          },
+          {
+            "choiceId": "c3-scroll-past-annoyed",
+            "text": "Roll your eyes and continue scrolling your social feed.",
+            "type": "Reactive",
+            "resilienceDelta": 5,
+            "feedback": "Passive ignoring stops personal engagement, but does not dismantle the monetization farm's algorithmic reach.",
+            "nextStageId": "stage-2-monetization-bridge"
+          }
+        ]
+      },
+      {
+        "stageId": "stage-2-monetization-bridge",
+        "prompt": "The page pins a follow-up link: 'SUPPORT THE RESISTANCE — BUY OUR SURVIVAL GEAR & FREEDOM SUPPLEMENTS' with an affiliate checkout portal.",
+        "evidenceSnippets": [
+          "The checkout page routes payment processing to an overseas commercial marketing LLC with zero political affiliation",
+          "Ad tracking scripts on the page harvest consumer browser cookies for predatory financial advertising",
+          "The identical survival gear is dropshipped from generic wholesale warehouses at a 400% markup"
+        ],
+        "choices": [
+          {
+            "choiceId": "c4-expose-monetization-grift",
+            "text": "Expose the financial motive by posting the corporate registration and wholesale supplier match in consumer watchdog groups.",
+            "type": "Inoculate",
+            "resilienceDelta": 30,
+            "feedback": "Masterful epistemic countermeasure! Revealing the financial grift behind moral outrage permanently breaks the psychological spell.",
+            "nextStageId": "stage-3-depolarization-bridge"
+          },
+          {
+            "choiceId": "c5-buy-merchandise",
+            "text": "Purchase survival gear through the affiliate link to support the cause.",
+            "type": "Vulnerable",
+            "resilienceDelta": -25,
+            "feedback": "You funded a cynical commercial click-farm that profits directly from inflaming societal polarization.",
+            "nextStageId": "stage-3-depolarization-bridge"
+          },
+          {
+            "choiceId": "c6-block-ad-trackers",
+            "text": "Enable strict browser tracker blocking to prevent pixel harvesting.",
+            "type": "Reactive",
+            "resilienceDelta": 10,
+            "feedback": "Sound privacy hygiene, though community-level inoculation requires exposing the underlying profit model.",
+            "nextStageId": "stage-3-depolarization-bridge"
+          }
+        ]
+      },
+      {
+        "stageId": "stage-3-depolarization-bridge",
+        "prompt": "After the merchandise grift is exposed, the account pivots again: it screenshots angry replies from frustrated community members and packages them as proof: 'Look how the woke mob attacks us for speaking truth! We need 10,000 shares to fight back!'",
+        "evidenceSnippets": [
+          "Account specifically selected the most profane, incoherent replies while hiding dozens of calm, cited factual debunks",
+          "Engagement farming algorithm rewards high-conflict quote-tweets with 4x algorithmic impression velocity",
+          "Tactic exemplifies DISARM T0038 (Amplify In-Group / Out-Group Animosity via Extremist Quoting)"
+        ],
+        "choices": [
+          {
+            "choiceId": "c7-refuse-outrage-bait-and-cite-suppression",
+            "text": "Document that the account hid calm, sourced rebuttals while cherry-picking toxic replies to manufacture out-group hostility.",
+            "type": "Inoculate",
+            "resilienceDelta": 30,
+            "feedback": "Outstanding epistemic hygiene. Recognizing curated conflict stops you from becoming an unwitting participant in outrage farming.",
+            "nextStageId": null
+          },
+          {
+            "choiceId": "c8-join-the-quote-tweet-pileon",
+            "text": "Quote-tweet the post with aggressive mockery to show your followers how ridiculous the grifter is.",
+            "type": "Vulnerable",
+            "resilienceDelta": -20,
+            "feedback": "You fed the engagement algorithm. Anger-driven quote-tweets reward the grifter with platform distribution and radicalize their defensive in-group.",
+            "nextStageId": null
+          },
+          {
+            "choiceId": "c9-block-the-account-privately",
+            "text": "Block the account silently and encourage friends to block them without engaging.",
+            "type": "Reactive",
+            "resilienceDelta": 10,
+            "feedback": "Deprives the troll of your individual engagement, though does not stop algorithmic virality across uninoculated bystander feeds.",
+            "nextStageId": null
+          }
+        ]
+      }
+    ],
+    "postSimulationDebrief": {
+      "summary": "Operation Outrage Loop demonstrated how commercial entities weaponize cultural polarization and citizen comment sessions purely to generate ad revenue and dropshipping sales.",
+      "keyTells": [
+        "Extreme moral-emotional vocabulary density in infographics",
+        "Conflating random citizen comments with official state policy",
+        "Immediate monetization bridge routing outrage into overpriced affiliate merchandise"
+      ],
+      "recommendedProtocol": "Protocol AEGIS-OUTRAGE: System 2 friction breathing -> Primary council record verification -> Business registry & affiliate tracing."
+    },
+    "tests": [
+      "skill.disarm.countermeasures",
+      "skill.tactic.emotive-framing"
+    ],
+    "heldOut": false
+  }
+]

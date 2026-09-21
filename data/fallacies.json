@@ -1,0 +1,728 @@
+[
+  {
+    "id": "fallacy-ad-hominem-abusive",
+    "name": "Ad Hominem (Abusive)",
+    "latinName": "Argumentum ad Hominem",
+    "category": "Relevance & Distraction",
+    "definition": "Attacking the personal character, background, appearance, or motives of the speaker rather than addressing the substantive merits of their argument.",
+    "psychologicalVector": "Discredits the messenger to trigger affective disgust and tribal rejection, bypassing System 2 prefrontal scrutiny.",
+    "fallacyExample": "Do not listen to Dr. Vane's epidemiological study on vaccine safety; he took grant money from private research firms five years ago and has a pompous speaking style.",
+    "counterFraming": "The personal history and demeanor of the researcher do not alter the mathematical veracity of the dataset. Point to the specific regression flaw or concede the empirical evidence.",
+    "quiz": {
+      "question": "In a town hall debate on municipal water fluoridation, an opponent states: 'Our city engineer is a convicted drunk driver, so we cannot trust his filtration efficiency report.' What fallacy is active?",
+      "options": [
+        "Straw Man",
+        "Ad Hominem (Abusive)",
+        "False Dilemma",
+        "Texas Sharpshooter"
+      ],
+      "correctIndex": 1,
+      "explanation": "The speaker attacks the engineer's personal criminal record to dismiss technical filtration data, which is a classic abusive ad hominem deflection."
+    },
+    "tags": [
+      "relevance",
+      "deflection",
+      "character-attack",
+      "ad-hominem"
+    ],
+    "teaches": [
+      "skill.fallacy.relevance"
+    ]
+  },
+  {
+    "id": "fallacy-ad-hominem-circumstantial",
+    "name": "Ad Hominem (Circumstantial)",
+    "latinName": "Argumentum ad Hominem Circumstantiae",
+    "category": "Relevance & Distraction",
+    "definition": "Arguing that someone's argument should be dismissed purely because they stand to benefit from the outcome or because of their demographic affiliation.",
+    "psychologicalVector": "Exploits cynicism and suspicion of vested interests to invalidate sound logical premises without examining proof.",
+    "fallacyExample": "Of course the solar panel manufacturer argues that renewable subsidies reduce grid strain—she just wants to sell more solar modules.",
+    "counterFraming": "Even if the proponent has a commercial interest, the physical efficiency metrics and grid stress data remain objectively verifiable.",
+    "quiz": {
+      "question": "A cardiologist publishes peer-reviewed research advocating lower sodium intake. A critic responds: 'He owns stock in a spice company, so his heart disease study is invalid.' What fallacy is being committed?",
+      "options": [
+        "Ad Hominem (Circumstantial)",
+        "Hasty Generalization",
+        "Appeal to Ignorance",
+        "Equivocation"
+      ],
+      "correctIndex": 0,
+      "explanation": "The critic rejects empirical research based solely on the author's perceived financial circumstance rather than evaluating the clinical trial data."
+    },
+    "tags": [
+      "relevance",
+      "circumstantial",
+      "conflict-of-interest",
+      "deflection"
+    ],
+    "teaches": [
+      "skill.fallacy.relevance"
+    ]
+  },
+  {
+    "id": "fallacy-tu-quoque",
+    "name": "Tu Quoque (Appeal to Hypocrisy)",
+    "latinName": "Tu Quoque",
+    "category": "Relevance & Distraction",
+    "definition": "Deflecting criticism by accusing the opponent of committing the exact same infraction, rather than defending against the original charge.",
+    "psychologicalVector": "Leverages moral indignation and perceived hypocrisy to equalize blame and derail accountable discourse.",
+    "fallacyExample": "How can State A criticize our carbon emissions when State A emitted twice as much CO2 per capita during their industrial boom fifty years ago?",
+    "counterFraming": "Hypocrisy does not invalidate truth. Whether State A acted inconsistently in the past does not change whether our current emission trajectory is ecologically unsustainable.",
+    "quiz": {
+      "question": "A parent tells their teenager that smoking causes lung cancer. The teen replies: 'You smoked when you were seventeen, so your advice is wrong.' What fallacy is this?",
+      "options": [
+        "Red Herring",
+        "Tu Quoque",
+        "Slippery Slope",
+        "Genetic Fallacy"
+      ],
+      "correctIndex": 1,
+      "explanation": "The teen points out parental hypocrisy ('you did it too') instead of addressing the medical fact that smoking causes cancer."
+    },
+    "tags": [
+      "relevance",
+      "hypocrisy",
+      "whataboutism",
+      "deflection"
+    ],
+    "teaches": [
+      "skill.fallacy.relevance"
+    ]
+  },
+  {
+    "id": "fallacy-straw-man",
+    "name": "Straw Man",
+    "latinName": "Fallacia Ignorationis Elenchi",
+    "category": "Relevance & Distraction",
+    "definition": "Misrepresenting, exaggerating, or oversimplifying an opponent's argument to make it significantly easier to attack and disprove.",
+    "psychologicalVector": "Creates an extreme, absurd caricature that triggers rapid cognitive contempt, preventing nuanced synthesis.",
+    "fallacyExample": "Proponents of municipal bicycle lanes literally want to confiscate every family automobile and force elderly citizens to pedal through blizzard conditions.",
+    "counterFraming": "That is an extreme caricature of the proposal. The urban planning plan merely designates 4 miles of existing shoulder space for protected transit.",
+    "quiz": {
+      "question": "Senator Green argues for increasing funding to public school STEM labs. Senator Blue tweets: 'My opponent wants to bankrupt our military to buy expensive video games for lazy students!' Which fallacy is Senator Blue using?",
+      "options": [
+        "Straw Man",
+        "Begging the Question",
+        "Appeal to Nature",
+        "False Balance"
+      ],
+      "correctIndex": 0,
+      "explanation": "Senator Blue distorts a STEM lab budget proposal into an absurd claim about bankrupting the military for video games."
+    },
+    "tags": [
+      "relevance",
+      "misrepresentation",
+      "distortion",
+      "caricature"
+    ],
+    "teaches": [
+      "skill.fallacy.relevance"
+    ]
+  },
+  {
+    "id": "fallacy-red-herring",
+    "name": "Red Herring",
+    "latinName": "Ignoratio Elenchi",
+    "category": "Relevance & Distraction",
+    "definition": "Introducing an emotionally charged, irrelevant topic into a debate to divert attention away from the core unresolved issue.",
+    "psychologicalVector": "Overloads working memory with emotional noise, hijacking attentional bandwidth away from critical vulnerabilities.",
+    "fallacyExample": "Why are journalists investigating our corporate tax evasion when there are thousands of homeless veterans sleeping on city streets tonight?",
+    "counterFraming": "Veteran welfare is deeply urgent, but it is an independent issue. Let us conclude the fiscal audit findings before addressing social shelter policy.",
+    "quiz": {
+      "question": "During a press conference about illegal wastewater dumping into a river, the CEO remarks: 'Our company provided Thanksgiving turkeys to 5,000 underprivileged families last month.' What logical evasion is this?",
+      "options": [
+        "Post Hoc",
+        "Red Herring",
+        "Affirming the Consequent",
+        "No True Scotsman"
+      ],
+      "correctIndex": 1,
+      "explanation": "The CEO brings up charitable turkey donations to distract the public from toxic wastewater dumping violations."
+    },
+    "tags": [
+      "relevance",
+      "distraction",
+      "evasion",
+      "deflection"
+    ],
+    "teaches": [
+      "skill.fallacy.relevance"
+    ]
+  },
+  {
+    "id": "fallacy-genetic-fallacy",
+    "name": "Genetic Fallacy",
+    "latinName": "Fallacia Originis",
+    "category": "Relevance & Distraction",
+    "definition": "Judging the truth or validity of an argument solely on the basis of its origin, historical genesis, or the medium through which it arrived.",
+    "psychologicalVector": "Relies on primitive contagion heuristics: associating an idea with an untrusted origin to induce contamination aversion.",
+    "fallacyExample": "Eugenics principles were embraced by mid-20th-century fascists, so any modern research into CRISPR genetic sequencing is inherently fascist.",
+    "counterFraming": "An idea's historical origin does not determine its current empirical validity or ethical application. Evaluate the CRISPR genomic data on its own terms.",
+    "quiz": {
+      "question": "A critic rejects a mathematical theorem by saying: 'That formula was first published in an obscure 19th-century occultist journal, so it must be pseudoscience.' What fallacy is this?",
+      "options": [
+        "Genetic Fallacy",
+        "Circular Reasoning",
+        "False Dilemma",
+        "Equivocation"
+      ],
+      "correctIndex": 0,
+      "explanation": "The critic judges the mathematical proof entirely on its odd publishing origin rather than verifying the mathematical proof steps."
+    },
+    "tags": [
+      "relevance",
+      "origin",
+      "contagion",
+      "lineage"
+    ],
+    "teaches": [
+      "skill.fallacy.relevance"
+    ]
+  },
+  {
+    "id": "fallacy-begging-the-question",
+    "name": "Begging the Question (Circular Argument)",
+    "latinName": "Petitio Principii",
+    "category": "Presumption & Structure",
+    "definition": "An argument where the conclusion is assumed as a premise, offering no independent logical support beyond restating the claim.",
+    "psychologicalVector": "Simulates logical completeness by creating an insular semantic loop that lulls the brain into accepting assumed premises.",
+    "fallacyExample": "The holy parchment is completely inerrant and factual because the supreme prophet wrote it, and we know the supreme prophet never lies because the holy parchment confirms his infallibility.",
+    "counterFraming": "You are using premise A to prove premise B, and premise B to prove premise A. Provide external, empirical evidence independent of the text.",
+    "quiz": {
+      "question": "An executive says: 'Our security software is 100% unhackable because it was designed with unhackable architecture.' What fallacy has been committed?",
+      "options": [
+        "Straw Man",
+        "Begging the Question",
+        "Appeal to Pity",
+        "Slippery Slope"
+      ],
+      "correctIndex": 1,
+      "explanation": "The executive assumes the conclusion ('unhackable') inside the explanation ('designed with unhackable architecture') without providing penetration test evidence."
+    },
+    "tags": [
+      "presumption",
+      "circularity",
+      "tautology",
+      "logic"
+    ],
+    "teaches": [
+      "skill.fallacy.structure",
+      "skill.tactic.equivocation"
+    ]
+  },
+  {
+    "id": "fallacy-false-dilemma",
+    "name": "False Dilemma (Bifurcation)",
+    "latinName": "Fallacia Falsi Dilemmatis",
+    "category": "Presumption & Structure",
+    "definition": "Presenting only two extreme mutually exclusive alternatives when in reality a spectrum of intermediate options or compromises exist.",
+    "psychologicalVector": "Triggers binary threat appraisal ('us vs them', 'total victory or annihilation'), shutting down exploratory synthesis.",
+    "fallacyExample": "Either we completely abolish all border immigration checkpoints, or we build a continuous 50-foot concrete wall along every mile of our frontier.",
+    "counterFraming": "This is an artificial binary. Modern border administration employs smart biometric corridors, seasonal work visas, and targeted sensor surveillance.",
+    "quiz": {
+      "question": "A CEO tells the board: 'Either we eliminate all employee work-from-home privileges immediately, or our company will go completely bankrupt within six months.' Which fallacy is this?",
+      "options": [
+        "False Dilemma",
+        "Texas Sharpshooter",
+        "Appeal to Nature",
+        "Tu Quoque"
+      ],
+      "correctIndex": 0,
+      "explanation": "The CEO artificially limits the possibilities to two extreme outcomes while ignoring hybrid work models, cost optimization, or productivity monitoring."
+    },
+    "tags": [
+      "presumption",
+      "binary",
+      "black-white",
+      "polarization"
+    ],
+    "teaches": [
+      "skill.fallacy.structure"
+    ]
+  },
+  {
+    "id": "fallacy-complex-question",
+    "name": "Loaded Question (Complex Question)",
+    "latinName": "Plurium Interrogationum",
+    "category": "Presumption & Structure",
+    "definition": "Asking a question that contains a hidden, unproven assumption so that any direct affirmative or negative answer forces an admission of guilt.",
+    "psychologicalVector": "Traps the respondent in a forced linguistic frame where denial reinforces the presupposed accusation.",
+    "fallacyExample": "Have you ceased accepting illicit bribes from offshore shell corporations, Minister?",
+    "counterFraming": "I reject the premise embedded within the question. I have never accepted illicit payments at any time, rendering the question 'have you ceased' grammatically invalid.",
+    "quiz": {
+      "question": "A prosecutor asks a defendant on the witness stand: 'Did you enjoy hiding the stolen weapons in your sister's garage?' What fallacy is being deployed?",
+      "options": [
+        "Loaded Question",
+        "Ad Hominem",
+        "Hasty Generalization",
+        "Appeal to Ignorance"
+      ],
+      "correctIndex": 0,
+      "explanation": "The question presupposes that the defendant did indeed hide stolen weapons, making either 'yes' or 'no' an admission of ownership."
+    },
+    "tags": [
+      "presumption",
+      "loaded-question",
+      "framing",
+      "interrogation"
+    ],
+    "teaches": [
+      "skill.fallacy.structure"
+    ]
+  },
+  {
+    "id": "fallacy-circular-reasoning",
+    "name": "Circular Reasoning",
+    "latinName": "Circulus in Demonstrando",
+    "category": "Presumption & Structure",
+    "definition": "A formal defect in which the reasoner begins with what they are trying to end with, creating a closed epistemological loop.",
+    "psychologicalVector": "Exploits semantic equivalence to camouflage the lack of evidentiary progression in discourse.",
+    "fallacyExample": "Violent video games make teenagers aggressively hostile because aggressive teenagers are inherently drawn to violent video games.",
+    "counterFraming": "You have described a cyclical correlation, not demonstrated causation. Show longitudinal control trials isolating game exposure from preexisting behavioral conditions.",
+    "quiz": {
+      "question": "A marketer claims: 'Our brand is the undisputed industry leader because we have the most respected reputation in the marketplace.' What is the structural flaw?",
+      "options": [
+        "Circular Reasoning",
+        "Straw Man",
+        "Post Hoc",
+        "Appeal to Authority"
+      ],
+      "correctIndex": 0,
+      "explanation": "Being the industry leader is equated with having the most respected reputation without external revenue or market share figures."
+    },
+    "tags": [
+      "presumption",
+      "circularity",
+      "tautology",
+      "deduction"
+    ],
+    "teaches": [
+      "skill.fallacy.structure",
+      "skill.fallacy.formal-vs-informal"
+    ]
+  },
+  {
+    "id": "fallacy-affirming-consequent",
+    "name": "Affirming the Consequent",
+    "latinName": "Affirmatio Consequentis",
+    "category": "Presumption & Structure",
+    "definition": "A formal deductive error taking the conditional statement 'If P then Q', observing Q, and invalidly inferring that P must therefore be true.",
+    "psychologicalVector": "Mistakes sufficiency for necessity; confuses backward causal attribution with forward deductive certainty.",
+    "fallacyExample": "If a cyber actor launches a distributed denial of service attack, the server latency spikes above 5,000ms. The server latency is currently 5,200ms; therefore, we are under a DDoS attack.",
+    "counterFraming": "Server latency spikes can be caused by memory leaks, database lock contention, or network hardware failure. Latency alone does not prove a DDoS attack.",
+    "quiz": {
+      "question": "Logic premise: 'If it rains, the street sidewalk gets wet.' Observation: 'The street sidewalk is wet.' Conclusion: 'Therefore, it must have rained.' What deductive error occurred?",
+      "options": [
+        "Affirming the Consequent",
+        "Denying the Antecedent",
+        "False Dilemma",
+        "Red Herring"
+      ],
+      "correctIndex": 0,
+      "explanation": "The sidewalk could be wet from a broken fire hydrant, a street sweeper, or a garden sprinkler. Inferring rain affirms the consequent."
+    },
+    "tags": [
+      "presumption",
+      "deductive-logic",
+      "formal-fallacy",
+      "conditionals"
+    ],
+    "teaches": [
+      "skill.fallacy.structure",
+      "skill.fallacy.formal-vs-informal"
+    ]
+  },
+  {
+    "id": "fallacy-denying-antecedent",
+    "name": "Denying the Antecedent",
+    "latinName": "Negatio Antecedentis",
+    "category": "Presumption & Structure",
+    "definition": "A formal deductive fallacy taking 'If P then Q', observing 'Not P', and invalidly concluding 'Therefore Not Q'.",
+    "psychologicalVector": "Overgeneralizes negation; assumes the specified antecedent is the only possible causal pathway to the consequent.",
+    "fallacyExample": "If you hold a doctoral degree in nuclear physics, you understand reactor containment protocols. You do not hold a PhD in nuclear physics, so you cannot understand containment protocols.",
+    "counterFraming": "A person can master containment engineering through 20 years of active operational technician experience or naval nuclear training without a doctoral degree.",
+    "quiz": {
+      "question": "Premise: 'If you are a certified pilot, you know how to read an altimeter.' Observation: 'Alex is not a certified pilot.' Conclusion: 'Therefore, Alex cannot know how to read an altimeter.' Which formal fallacy is this?",
+      "options": [
+        "Denying the Antecedent",
+        "Affirming the Consequent",
+        "Straw Man",
+        "Appeal to Emotion"
+      ],
+      "correctIndex": 0,
+      "explanation": "Alex could be an aerospace engineer, air traffic controller, or flight simulator enthusiast who knows how to read an altimeter without holding a pilot certificate."
+    },
+    "tags": [
+      "presumption",
+      "formal-fallacy",
+      "negation",
+      "deduction"
+    ],
+    "teaches": [
+      "skill.fallacy.structure",
+      "skill.fallacy.formal-vs-informal"
+    ]
+  },
+  {
+    "id": "fallacy-hasty-generalization",
+    "name": "Hasty Generalization (Insufficient Sample)",
+    "latinName": "Secundum Quid",
+    "category": "Scope & Quantity",
+    "definition": "Drawing a universal or sweeping conclusion about an entire population based on an unrepresentative, statistically insignificant sample size.",
+    "psychologicalVector": "Relies on availability heuristic: vivid singular experiences overpower statistical baseline probabilities.",
+    "fallacyExample": "Both electric cars I test-drove in Minneapolis experienced battery drop in January; therefore, electric vehicles are mechanically unviable for any winter climate.",
+    "counterFraming": "Two individual test drives are statistically insignificant. Fleet telematics from 500,000 Nordic EV deployments show average winter degradation is 18%, not mechanical failure.",
+    "quiz": {
+      "question": "A traveler visits a city, gets overcharged by one taxi driver, and declares on social media: 'Every resident in this entire nation is a corrupt fraudster.' What fallacy is this?",
+      "options": [
+        "Hasty Generalization",
+        "Ad Hominem",
+        "Complex Question",
+        "Affirming the Consequent"
+      ],
+      "correctIndex": 0,
+      "explanation": "The traveler extrapolates the unethical behavior of a single taxi driver to an entire country's population."
+    },
+    "tags": [
+      "scope",
+      "statistics",
+      "sampling-error",
+      "generalization"
+    ],
+    "teaches": [
+      "skill.fallacy.scope"
+    ]
+  },
+  {
+    "id": "fallacy-texas-sharpshooter",
+    "name": "Texas Sharpshooter (Clustering Illusion)",
+    "latinName": "Fallacia Telarii Texani",
+    "category": "Scope & Quantity",
+    "definition": "Cherry-picking data clusters or finding patterns that fit a predetermined hypothesis while completely ignoring the vast surrounding field of contradictory randomness.",
+    "psychologicalVector": "Pareiody and pattern-seeking bias: our brains crave intentional causality and construct false constellations in random noise.",
+    "fallacyExample": "Look at these three cancer patients living within 500 meters of a cell tower! The radio frequency emissions are clearly causing tumors (ignoring the other 40,000 residents with zero cancer).",
+    "counterFraming": "Drawing a target around a random spatial cluster post hoc creates false causality. Epidemiological statistical control across the full cohort shows background rate parity.",
+    "quiz": {
+      "question": "A financial day-trader points out four consecutive Tuesday market rallies following full moons and claims lunar gravity governs equity markets, ignoring 96 non-correlating Tuesdays. What fallacy is this?",
+      "options": [
+        "Texas Sharpshooter",
+        "Genetic Fallacy",
+        "Tu Quoque",
+        "Appeal to Nature"
+      ],
+      "correctIndex": 0,
+      "explanation": "The trader isolates a tiny cluster of matching data points while discarding the overwhelming background data that contradicts the hypothesis."
+    },
+    "tags": [
+      "scope",
+      "cherry-picking",
+      "patternicity",
+      "confirmation-bias"
+    ],
+    "teaches": [
+      "skill.fallacy.scope"
+    ]
+  },
+  {
+    "id": "fallacy-anecdotal-evidence",
+    "name": "Anecdotal Fallacy",
+    "latinName": "Fallacia Testimonii Singularis",
+    "category": "Scope & Quantity",
+    "definition": "Using a personal narrative, isolated testimonial, or vivid story in place of rigorous empirical evidence or statistically controlled studies.",
+    "psychologicalVector": "Narrative bias: our brains are wired for campfire storytelling and empathy, treating emotional resonance as evidentiary weight.",
+    "fallacyExample": "My grandfather smoked two packs of unfiltered cigarettes every single day and lived to be 98 years old, so cigarette health warnings are just government hysteria.",
+    "counterFraming": "Individual outliers exist on all probability distributions. Actuarial life tables and clinical cohort studies across millions prove smoking reduces median lifespan by 10 years.",
+    "quiz": {
+      "question": "In a discussion on child car seats, an individual asserts: 'We never used car seats in the 1970s and I turned out fine, so car seat laws are useless.' What logical fallacy is operating?",
+      "options": [
+        "Anecdotal Fallacy",
+        "Begging the Question",
+        "Straw Man",
+        "Equivocation"
+      ],
+      "correctIndex": 0,
+      "explanation": "The speaker substitutes their personal survival anecdote for epidemiological accident mortality statistics."
+    },
+    "tags": [
+      "scope",
+      "anecdote",
+      "narrative-bias",
+      "survivorship"
+    ],
+    "teaches": [
+      "skill.fallacy.scope"
+    ]
+  },
+  {
+    "id": "fallacy-post-hoc-ergo-propter-hoc",
+    "name": "Post Hoc Ergo Propter Hoc",
+    "latinName": "Post Hoc Ergo Propter Hoc",
+    "category": "Scope & Quantity",
+    "definition": "Assuming that because Event Y occurred immediately after Event X, Event X must have been the direct cause of Event Y.",
+    "psychologicalVector": "Temporal proximity heuristic: chronological succession is reflexively interpreted as mechanistic causation.",
+    "fallacyExample": "We launched our new corporate logo redesign on Monday, and by Thursday our quarterly revenue increased by 30%. The logo redesign caused the revenue surge!",
+    "counterFraming": "Temporal sequence does not establish causality. The quarterly revenue surge coincided with the end-of-year enterprise contract renewal cycle.",
+    "quiz": {
+      "question": "A rooster crows at 5:30 AM every morning. At 5:45 AM, the sun rises over the horizon. The rooster concludes his crowing causes the sun to rise. What fallacy is this?",
+      "options": [
+        "Post Hoc Ergo Propter Hoc",
+        "False Dilemma",
+        "Ad Hominem",
+        "Appeal to Ignorance"
+      ],
+      "correctIndex": 0,
+      "explanation": "The rooster confuses chronological precedence with causal agency."
+    },
+    "tags": [
+      "scope",
+      "causality",
+      "chronology",
+      "correlation"
+    ],
+    "teaches": [
+      "skill.fallacy.scope"
+    ]
+  },
+  {
+    "id": "fallacy-slippery-slope",
+    "name": "Slippery Slope",
+    "latinName": "Fallacia Clivi Lubricosi",
+    "category": "Scope & Quantity",
+    "definition": "Asserting without evidence that a relatively modest initial step or policy change will inevitably trigger a catastrophic, unstoppable chain of events.",
+    "psychologicalVector": "Catastrophic forecasting and anxiety amplification: hijacks risk aversion by painting an inevitable dystopian endgame.",
+    "fallacyExample": "If we allow the city council to mandate compost sorting in commercial restaurants, next year they will inspect home kitchens, and within five years citizens will be imprisoned for eating beef.",
+    "counterFraming": "Each policy tier possesses distinct statutory thresholds and democratic checks. Demonstrating Step A does not prove Step Z is an unavoidable consequence.",
+    "quiz": {
+      "question": "A school board member argues: 'If we allow students to wear hoodies on Friday, discipline will collapse, gang warfare will erupt in hallways, and the school will be permanently closed by state regulators.' What fallacy is this?",
+      "options": [
+        "Slippery Slope",
+        "Tu Quoque",
+        "Red Herring",
+        "Genetic Fallacy"
+      ],
+      "correctIndex": 0,
+      "explanation": "The board member posits a catastrophic, unproven chain reaction stemming from a minor dress code adjustment."
+    },
+    "tags": [
+      "scope",
+      "catastrophizing",
+      "escalation",
+      "chain-reaction"
+    ],
+    "teaches": [
+      "skill.fallacy.scope"
+    ]
+  },
+  {
+    "id": "fallacy-composition-division",
+    "name": "Fallacy of Composition & Division",
+    "latinName": "Fallacia Compositionis / Divisionis",
+    "category": "Scope & Quantity",
+    "definition": "Falsely concluding that what is true of the parts must be true of the whole (Composition), or that what is true of the whole must be true of each individual part (Division).",
+    "psychologicalVector": "Part-whole reductionist bias: fails to account for emergent properties and non-linear systemic dynamics.",
+    "fallacyExample": "Every single component in this aviation engine is exceptionally lightweight, so the entire assembled aerospace turbine will be lightweight.",
+    "counterFraming": "Structural interactions, thousands of fasteners, housing mounts, and thermal fluid mass create emergent weight not present in isolated sub-components.",
+    "quiz": {
+      "question": "A recruiter argues: 'Our software engineering department is the most innovative division in the country; therefore, every single programmer on our payroll is a brilliant innovator.' Which fallacy is this?",
+      "options": [
+        "Division",
+        "Affirming the Consequent",
+        "Straw Man",
+        "Appeal to Emotion"
+      ],
+      "correctIndex": 0,
+      "explanation": "The recruiter commits the fallacy of division by assuming an attribute of the whole department applies uniformly to every individual member."
+    },
+    "tags": [
+      "scope",
+      "composition",
+      "division",
+      "emergent-systems"
+    ],
+    "teaches": [
+      "skill.fallacy.scope"
+    ]
+  },
+  {
+    "id": "fallacy-appeal-to-false-authority",
+    "name": "Appeal to False Authority",
+    "latinName": "Argumentum ad Verecundiam",
+    "category": "Authority & Appeals",
+    "definition": "Citing an individual as an expert authority on a topic when their expertise lies in an entirely unrelated discipline or they lack domain credentials.",
+    "psychologicalVector": "Halo effect and deference to status: generalizes prestige from celebrity, wealth, or one domain into unrelated technical disciplines.",
+    "fallacyExample": "Hollywood actor Marcus Lane insists that quantum computing will collapse the global banking grid by next Tuesday, so we should convert all assets to physical gold.",
+    "counterFraming": "Acting fame provides zero qualifications in quantum hardware or cryptographic protocol analysis. Consult peer-reviewed cryptographers.",
+    "quiz": {
+      "question": "A celebrity chef endorses an unverified herbal supplement for treating chronic cardiac arrhythmias on television. What fallacy is being weaponized?",
+      "options": [
+        "Appeal to False Authority",
+        "False Dilemma",
+        "Slippery Slope",
+        "Texas Sharpshooter"
+      ],
+      "correctIndex": 0,
+      "explanation": "Culinary expertise does not confer authority on cardiovascular pharmacology or clinical medicine."
+    },
+    "tags": [
+      "authority",
+      "credentials",
+      "halo-effect",
+      "expertise"
+    ],
+    "teaches": [
+      "skill.fallacy.appeals"
+    ]
+  },
+  {
+    "id": "fallacy-appeal-to-emotion",
+    "name": "Appeal to Emotion",
+    "latinName": "Argumentum ad Passiones",
+    "category": "Authority & Appeals",
+    "definition": "Manipulating the audience's emotions (fear, pity, outrage, sentimentality) to force agreement in the absence of valid, factual reasoning.",
+    "psychologicalVector": "Emotional hijacking (amygdala capture): intense affective arousal suppresses reflective analytical reasoning.",
+    "fallacyExample": "How can you question the budget expansion for our defense subcontractor when thousands of brave soldiers are weeping in foxholes right now?",
+    "counterFraming": "Soldier welfare is sacrosanct, but that makes auditing contractor procurement waste even more essential to ensure resources reach the frontlines.",
+    "quiz": {
+      "question": "An advertisement for luxury insurance shows a burning house with crying puppies while a somber voice says: 'Don't let this happen to your family—buy Policy X today.' What fallacy is used?",
+      "options": [
+        "Appeal to Emotion",
+        "Denying the Antecedent",
+        "Circular Reasoning",
+        "Genetic Fallacy"
+      ],
+      "correctIndex": 0,
+      "explanation": "The advertisement relies entirely on fear and emotional distress rather than presenting actuarial coverage metrics."
+    },
+    "tags": [
+      "authority",
+      "emotion",
+      "fearmongering",
+      "manipulation"
+    ],
+    "teaches": [
+      "skill.fallacy.appeals",
+      "skill.tactic.emotive-framing"
+    ]
+  },
+  {
+    "id": "fallacy-appeal-to-popularity",
+    "name": "Appeal to Popularity (Bandwagon)",
+    "latinName": "Argumentum ad Populum",
+    "category": "Authority & Appeals",
+    "definition": "Arguing that a claim must be true, valid, or moral simply because a large majority of people believe or practice it.",
+    "psychologicalVector": "Social proof and conformist herd instinct: evolutionary pressure to align with group consensus to avoid social ostracization.",
+    "fallacyExample": "Eighty million people read astrology horoscopes every morning; they cannot all be foolish, so celestial alignment must dictate human personality.",
+    "counterFraming": "Consensus does not generate empirical truth. For centuries, the global consensus believed the sun orbited the Earth until observational astronomy disproved it.",
+    "quiz": {
+      "question": "A crypto promoter tweets: 'Over 10 million users bought MoonToken this week alone! It is impossible for 10 million people to be wrong about an investment!' What fallacy is this?",
+      "options": [
+        "Appeal to Popularity",
+        "Ad Hominem",
+        "Post Hoc",
+        "Straw Man"
+      ],
+      "correctIndex": 0,
+      "explanation": "The promoter argues the token must be a sound investment purely because millions of people bought it, ignoring financial market dynamics."
+    },
+    "tags": [
+      "authority",
+      "bandwagon",
+      "social-proof",
+      "herd-behavior"
+    ],
+    "teaches": [
+      "skill.fallacy.appeals",
+      "skill.tactic.astroturfing"
+    ]
+  },
+  {
+    "id": "fallacy-appeal-to-ignorance",
+    "name": "Appeal to Ignorance",
+    "latinName": "Argumentum ad Ignorantiam",
+    "category": "Authority & Appeals",
+    "definition": "Claiming that a proposition is true simply because it has not yet been conclusively proven false (or false because it has not been proven true).",
+    "psychologicalVector": "Exploits epistemic voids: fills the discomfort of uncertainty with unwarranted affirmative conviction.",
+    "fallacyExample": "Science cannot conclusively prove that extraterrestrial craft are not hiding behind Jupiter's moons; therefore, alien fleets are monitoring us.",
+    "counterFraming": "Absence of disproof is not proof of existence. The burden of proof rests squarely upon the claimant making the extraordinary positive assertion.",
+    "quiz": {
+      "question": "A speaker asserts: 'No auditor has ever found proof that the CEO did NOT store gold bars in an underground vault; therefore, the vault exists!' Which fallacy is active?",
+      "options": [
+        "Appeal to Ignorance",
+        "False Dilemma",
+        "Composition",
+        "Tu Quoque"
+      ],
+      "correctIndex": 0,
+      "explanation": "The speaker treats the lack of disproof as affirmative evidence for the existence of the gold vault."
+    },
+    "tags": [
+      "authority",
+      "ignorance",
+      "burden-of-proof",
+      "epistemology"
+    ],
+    "teaches": [
+      "skill.fallacy.appeals"
+    ]
+  },
+  {
+    "id": "fallacy-appeal-to-tradition",
+    "name": "Appeal to Tradition",
+    "latinName": "Argumentum ad Antiquitatem",
+    "category": "Authority & Appeals",
+    "definition": "Arguing that a policy, practice, or belief is correct or superior solely because it has been practiced for a long historical duration.",
+    "psychologicalVector": "Status quo bias and ancestral veneration: equates temporal longevity with structural wisdom.",
+    "fallacyExample": "We have recorded paper medical charts by hand for over one hundred years at this hospital; switching to electronic databases will ruin our diagnostic excellence.",
+    "counterFraming": "Historical longevity does not equal modern efficacy. Digital systems reduce prescription transcription errors by 82% compared to handwritten charts.",
+    "quiz": {
+      "question": "A village elder opposes water purification filters, stating: 'Our ancestors drank from this river for six generations without filters, so filters are unnecessary.' What fallacy is this?",
+      "options": [
+        "Appeal to Tradition",
+        "Hasty Generalization",
+        "Straw Man",
+        "Affirming the Consequent"
+      ],
+      "correctIndex": 0,
+      "explanation": "The elder justifies drinking untreated river water solely based on historical ancestral custom."
+    },
+    "tags": [
+      "authority",
+      "tradition",
+      "status-quo",
+      "antiquity"
+    ],
+    "teaches": [
+      "skill.fallacy.appeals"
+    ]
+  },
+  {
+    "id": "fallacy-appeal-to-nature",
+    "name": "Appeal to Nature",
+    "latinName": "Argumentum ad Naturam",
+    "category": "Authority & Appeals",
+    "definition": "Claiming that something is inherently good, safe, or beneficial because it is 'natural', or bad because it is 'unnatural' or synthetic.",
+    "psychologicalVector": "Naturalistic romanticism and chemical phobia: equates organic origin with purity and synthetic creation with toxicity.",
+    "fallacyExample": "Hemlock and ricin are 100% all-natural plant extracts, so drinking herbal brews with unrefined hemlock is much healthier than taking synthetic penicillin.",
+    "counterFraming": "Natural origin does not guarantee safety. Arsenic and snake venom are completely natural, while synthetic insulin saves millions of lives daily.",
+    "quiz": {
+      "question": "A wellness blogger writes: 'Synthetic chemotherapy is artificial poison; you should only cure lymphoma with raw natural sunlight and organic juices.' What fallacy is being exploited?",
+      "options": [
+        "Appeal to Nature",
+        "Begging the Question",
+        "Division",
+        "Red Herring"
+      ],
+      "correctIndex": 0,
+      "explanation": "The blogger falsely equates 'natural' with effective and 'synthetic' with harmful, endangering patient health."
+    },
+    "tags": [
+      "authority",
+      "nature",
+      "naturalistic",
+      "wellness"
+    ],
+    "teaches": [
+      "skill.fallacy.appeals"
+    ]
+  }
+]

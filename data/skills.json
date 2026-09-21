@@ -1,0 +1,270 @@
+[
+  {
+    "id": "skill.fallacy.relevance",
+    "label": "Spot relevance and distraction fallacies",
+    "detail": "Ad hominem (abusive and circumstantial), tu quoque, straw man, red herring, genetic fallacy — attacks on the arguer or a substituted claim rather than the argument.",
+    "pillar": "cognitive",
+    "prerequisites": [],
+    "heldOutItemIds": [
+      "q1",
+      "q136",
+      "q137"
+    ]
+  },
+  {
+    "id": "skill.fallacy.structure",
+    "label": "Spot presumption and structural fallacies",
+    "detail": "Begging the question, false dilemma, complex question, circular reasoning, affirming the consequent, denying the antecedent — arguments whose form cannot support the conclusion.",
+    "pillar": "cognitive",
+    "prerequisites": [],
+    "heldOutItemIds": [
+      "q138",
+      "q139"
+    ]
+  },
+  {
+    "id": "skill.fallacy.scope",
+    "label": "Spot scope and quantity fallacies",
+    "detail": "Hasty generalisation, Texas sharpshooter, anecdotal evidence, post hoc, slippery slope, composition and division — inference from the wrong amount or slice of evidence.",
+    "pillar": "cognitive",
+    "prerequisites": [],
+    "heldOutItemIds": [
+      "q2",
+      "q140",
+      "q141"
+    ]
+  },
+  {
+    "id": "skill.fallacy.appeals",
+    "label": "Spot appeals to authority, emotion and crowd",
+    "detail": "False authority, appeal to emotion, popularity, ignorance, tradition and nature — substituting a social or affective cue for evidence.",
+    "pillar": "cognitive",
+    "prerequisites": [],
+    "heldOutItemIds": [
+      "q39",
+      "q142",
+      "q143"
+    ]
+  },
+  {
+    "id": "skill.fallacy.formal-vs-informal",
+    "label": "Distinguish formal from informal fallacies",
+    "detail": "Recognise when an argument fails by its logical form (affirming the consequent, denying the antecedent) versus by its content or context.",
+    "pillar": "cognitive",
+    "prerequisites": [
+      "skill.fallacy.structure"
+    ],
+    "heldOutItemIds": [
+      "q144",
+      "q145"
+    ]
+  },
+  {
+    "id": "skill.bias.confirmation",
+    "label": "Recognise confirmation bias in yourself and in sources",
+    "detail": "Selective search, interpretation and recall of evidence that supports a prior belief.",
+    "pillar": "cognitive",
+    "prerequisites": [],
+    "heldOutItemIds": [
+      "q5"
+    ]
+  },
+  {
+    "id": "skill.bias.availability",
+    "label": "Recognise availability and salience effects",
+    "detail": "Judging frequency or risk by how easily examples come to mind — the mechanism most exploited by high-volume coverage.",
+    "pillar": "cognitive",
+    "prerequisites": [],
+    "heldOutItemIds": [
+      "q18"
+    ]
+  },
+  {
+    "id": "skill.bias.anchoring",
+    "label": "Recognise anchoring and framing effects",
+    "detail": "Disproportionate weight on a first number or frame, including how a question's wording constrains the answers considered.",
+    "pillar": "cognitive",
+    "prerequisites": [],
+    "heldOutItemIds": [
+      "q19"
+    ]
+  },
+  {
+    "id": "skill.bias.attribution",
+    "label": "Recognise attribution errors and ingroup favouritism",
+    "detail": "Explaining others' behaviour by disposition and your own by circumstance; applying different evidentiary standards to in-group and out-group claims.",
+    "pillar": "cognitive",
+    "prerequisites": [],
+    "heldOutItemIds": [
+      "q28"
+    ]
+  },
+  {
+    "id": "skill.bias.probability",
+    "label": "Recognise probability and sunk-cost errors",
+    "detail": "Conjunction fallacy, base-rate neglect, hindsight bias, and continued investment justified by past expenditure.",
+    "pillar": "cognitive",
+    "prerequisites": [],
+    "heldOutItemIds": [
+      "q6"
+    ]
+  },
+  {
+    "id": "skill.tactic.astroturfing",
+    "label": "Identify astroturfing and inauthentic coordination",
+    "detail": "Manufactured grassroots appearance: account creation clustering, near-identical phrasing, synchronised posting, and borrowed local identity.",
+    "pillar": "cognitive",
+    "prerequisites": [],
+    "heldOutItemIds": [
+      "q15"
+    ]
+  },
+  {
+    "id": "skill.tactic.flooding",
+    "label": "Identify flooding, Gish gallop and epistemic exhaustion",
+    "detail": "Overwhelming a channel with volume rather than argument, so that refutation cost exceeds assertion cost.",
+    "pillar": "cognitive",
+    "prerequisites": [],
+    "heldOutItemIds": [
+      "q24"
+    ]
+  },
+  {
+    "id": "skill.tactic.false-balance",
+    "label": "Identify false balance and manufactured doubt",
+    "detail": "Presenting an asymmetric evidentiary picture as a two-sided debate; recognising when 'both sides' misrepresents the state of knowledge.",
+    "pillar": "cognitive",
+    "prerequisites": [],
+    "heldOutItemIds": [
+      "q27"
+    ]
+  },
+  {
+    "id": "skill.tactic.emotive-framing",
+    "label": "Identify loaded language and emotive framing",
+    "detail": "Word choice that imports a conclusion, and framing that makes one response feel like the only reasonable one.",
+    "pillar": "cognitive",
+    "prerequisites": [],
+    "heldOutItemIds": []
+  },
+  {
+    "id": "skill.tactic.equivocation",
+    "label": "Detect equivocation and semantic shift",
+    "detail": "A term changing meaning across an argument, including the no-true-Scotsman move of redefining a category to protect a claim.",
+    "pillar": "cognitive",
+    "prerequisites": [
+      "skill.fallacy.structure"
+    ],
+    "heldOutItemIds": [
+      "q4"
+    ]
+  },
+  {
+    "id": "skill.disarm.plan-prepare",
+    "label": "Map adversary Plan and Prepare activity to DISARM",
+    "detail": "Target profiling, narrative development, and asset establishment before a campaign becomes visible.",
+    "pillar": "cognitive",
+    "prerequisites": [],
+    "heldOutItemIds": []
+  },
+  {
+    "id": "skill.disarm.seed-amplify",
+    "label": "Map Seed and Amplify activity to DISARM",
+    "detail": "Seeding through inauthentic assets, cross-platform amplification, and flooding the information environment.",
+    "pillar": "cognitive",
+    "prerequisites": [
+      "skill.disarm.plan-prepare"
+    ],
+    "heldOutItemIds": []
+  },
+  {
+    "id": "skill.disarm.countermeasures",
+    "label": "Select a proportionate DISARM countermeasure",
+    "detail": "Choosing a response matched to the observed stage, and recognising when a countermeasure amplifies the thing it targets.",
+    "pillar": "cognitive",
+    "prerequisites": [
+      "skill.disarm.seed-amplify"
+    ],
+    "heldOutItemIds": [
+      "q109"
+    ]
+  },
+  {
+    "id": "skill.sift.stop",
+    "label": "SIFT: stop before reacting",
+    "detail": "Notice the emotional pull of a claim and pause before sharing — the step that most determines whether the rest happens at all.",
+    "pillar": "sift",
+    "prerequisites": [],
+    "heldOutItemIds": [
+      "q120",
+      "q121",
+      "q122",
+      "q123"
+    ]
+  },
+  {
+    "id": "skill.sift.investigate-source",
+    "label": "SIFT: investigate the source",
+    "detail": "Establish what the source is, who funds it, and what its track record is — before engaging with its claim.",
+    "pillar": "sift",
+    "prerequisites": [
+      "skill.sift.stop"
+    ],
+    "heldOutItemIds": [
+      "q124",
+      "q125",
+      "q126",
+      "q127"
+    ]
+  },
+  {
+    "id": "skill.sift.find-coverage",
+    "label": "SIFT: find better coverage",
+    "detail": "Lateral reading — leaving the page to see how other, better-placed sources treat the same claim.",
+    "pillar": "sift",
+    "prerequisites": [
+      "skill.sift.investigate-source"
+    ],
+    "heldOutItemIds": [
+      "q128",
+      "q129",
+      "q130",
+      "q131"
+    ]
+  },
+  {
+    "id": "skill.sift.trace-origin",
+    "label": "SIFT: trace claims to their origin",
+    "detail": "Following a quote, statistic or image back to its original context, and noticing what changed on the way.",
+    "pillar": "sift",
+    "prerequisites": [
+      "skill.sift.find-coverage"
+    ],
+    "heldOutItemIds": [
+      "q132",
+      "q133",
+      "q134",
+      "q135"
+    ]
+  },
+  {
+    "id": "skill.forensics.read-measurements",
+    "label": "Read forensic measurements without over-reading them",
+    "detail": "Interpret ELA, a 2D Fourier spectrum, and a spectrogram as indicators with innocent explanations — and state what they cannot establish.",
+    "pillar": "forensics",
+    "prerequisites": [],
+    "heldOutItemIds": [
+      "q117"
+    ]
+  },
+  {
+    "id": "skill.forensics.provenance",
+    "label": "Interpret C2PA provenance correctly",
+    "detail": "Distinguish a parsed manifest from a cryptographically verified one, and know that absence of a manifest is not evidence of tampering.",
+    "pillar": "forensics",
+    "prerequisites": [
+      "skill.forensics.read-measurements"
+    ],
+    "heldOutItemIds": []
+  }
+]

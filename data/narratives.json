@@ -1,0 +1,380 @@
+[
+  {
+    "id": "narrative-deepfake-bank-run",
+    "title": "Operation Liquidity Shock: Synthetic Audio-Driven Bank Run",
+    "summary": "Propagation timeline of an AI-synthesized audio recording claiming the immediate insolvency of Apex Regional Bank, leading to a coordinated retail digital deposit run.",
+    "diffusionTimeline": [
+      {
+        "t_hours": 0,
+        "phase": "Inception & Seeding",
+        "velocitySharesPerHour": 120,
+        "cumulativeReach": 1500,
+        "botnetActivityPct": 92.5,
+        "activeVectors": ["Fringe Finance Telegram", "4chan /biz/"],
+        "sentimentBreakdown": { "outrage": 0.15, "fear": 0.70, "curiosity": 0.10, "skepticism": 0.05 }
+      },
+      {
+        "t_hours": 2,
+        "phase": "Inception & Seeding",
+        "velocitySharesPerHour": 850,
+        "cumulativeReach": 18000,
+        "botnetActivityPct": 88.0,
+        "activeVectors": ["Fringe Telegrams", "Anonymous Twitter Handles"],
+        "sentimentBreakdown": { "outrage": 0.20, "fear": 0.65, "curiosity": 0.10, "skepticism": 0.05 }
+      },
+      {
+        "t_hours": 4,
+        "phase": "Bridge Laundering",
+        "velocitySharesPerHour": 4200,
+        "cumulativeReach": 95000,
+        "botnetActivityPct": 65.0,
+        "activeVectors": ["Day-Trading Subreddits", "Fintech Influencer Accounts"],
+        "sentimentBreakdown": { "outrage": 0.30, "fear": 0.55, "curiosity": 0.10, "skepticism": 0.05 }
+      },
+      {
+        "t_hours": 8,
+        "phase": "Bridge Laundering",
+        "velocitySharesPerHour": 14500,
+        "cumulativeReach": 380000,
+        "botnetActivityPct": 45.0,
+        "activeVectors": ["Microblog Trending Feed", "Stock Trading Discord Servers"],
+        "sentimentBreakdown": { "outrage": 0.35, "fear": 0.50, "curiosity": 0.10, "skepticism": 0.05 }
+      },
+      {
+        "t_hours": 12,
+        "phase": "Mainstream Infiltration",
+        "velocitySharesPerHour": 38000,
+        "cumulativeReach": 1250000,
+        "botnetActivityPct": 28.0,
+        "activeVectors": ["Cable Financial News Tickers", "Mobile Banking Push Alerts"],
+        "sentimentBreakdown": { "outrage": 0.40, "fear": 0.45, "curiosity": 0.08, "skepticism": 0.07 }
+      },
+      {
+        "t_hours": 18,
+        "phase": "Mainstream Infiltration",
+        "velocitySharesPerHour": 52000,
+        "cumulativeReach": 2800000,
+        "botnetActivityPct": 18.0,
+        "activeVectors": ["Mainstream Press Headlines", "Viral TikTok Reaction Clips"],
+        "sentimentBreakdown": { "outrage": 0.45, "fear": 0.35, "curiosity": 0.10, "skepticism": 0.10 }
+      },
+      {
+        "t_hours": 24,
+        "phase": "Institutional Clashes & Decay",
+        "velocitySharesPerHour": 41000,
+        "cumulativeReach": 4100000,
+        "botnetActivityPct": 12.0,
+        "activeVectors": ["Federal Reserve Clarification", "Bank Emergency Press Conference"],
+        "sentimentBreakdown": { "outrage": 0.35, "fear": 0.25, "curiosity": 0.15, "skepticism": 0.25 }
+      },
+      {
+        "t_hours": 36,
+        "phase": "Institutional Clashes & Decay",
+        "velocitySharesPerHour": 18000,
+        "cumulativeReach": 5200000,
+        "botnetActivityPct": 8.0,
+        "activeVectors": ["Forensic Audio Spectral Debunk", "Fact-Checking Consortiums"],
+        "sentimentBreakdown": { "outrage": 0.25, "fear": 0.15, "curiosity": 0.20, "skepticism": 0.40 }
+      },
+      {
+        "t_hours": 48,
+        "phase": "Institutional Clashes & Decay",
+        "velocitySharesPerHour": 6500,
+        "cumulativeReach": 5800000,
+        "botnetActivityPct": 5.0,
+        "activeVectors": ["Post-Mortem SEC Regulatory Bulletins"],
+        "sentimentBreakdown": { "outrage": 0.20, "fear": 0.10, "curiosity": 0.20, "skepticism": 0.50 }
+      }
+    ],
+    "topologyGraph": {
+      "nodes": [
+        { "id": "n1-fringe-origin", "label": "Telegram @ApexWhistleblower", "type": "Seeder", "reach": 5000 },
+        { "id": "n2-botnet-cluster", "label": "Botnet Swarm Hydra (1,200 bots)", "type": "Amplifier", "reach": 150000 },
+        { "id": "n3-reddit-rwallstreet", "label": "r/WallStreetBets Thread", "type": "Bridge", "reach": 850000 },
+        { "id": "n4-fintech-influencer", "label": "Fintech Creator @CryptoMacro", "type": "Influencer", "reach": 600000 },
+        { "id": "n5-cable-news", "label": "Cable Business Ticker", "type": "Mainstream", "reach": 2500000 },
+        { "id": "n6-regulator-desk", "label": "FDIC / Fed Press Desk", "type": "Institutional", "reach": 3000000 }
+      ],
+      "edges": [
+        { "source": "n1-fringe-origin", "target": "n2-botnet-cluster", "type": "Amplification" },
+        { "source": "n2-botnet-cluster", "target": "n3-reddit-rwallstreet", "type": "Cross-Posting" },
+        { "source": "n3-reddit-rwallstreet", "target": "n4-fintech-influencer", "type": "Quote-Broadcast" },
+        { "source": "n4-fintech-influencer", "target": "n5-cable-news", "type": "Laundering" },
+        { "source": "n5-cable-news", "target": "n6-regulator-desk", "type": "Regulatory Trigger" },
+        { "source": "n6-regulator-desk", "target": "n1-fringe-origin", "type": "Direct Refutation" }
+      ]
+    },
+    "countermeasureWindows": [
+      {
+        "timeframe": "T+0h to T+4h (Golden Inoculation Window)",
+        "interventionType": "Rapid Audio Spectral Forensics",
+        "effectivenessRating": "95% (Maximum)",
+        "recommendedAction": "Publish 2048-point linear spectrogram showing 12kHz cutoff and deploy prebunking alerts to financial trading subreddits."
+      },
+      {
+        "timeframe": "T+4h to T+12h (Bridge Severing Window)",
+        "interventionType": "Exchange Circuit Breakers & Statuary Filing Attestation",
+        "effectivenessRating": "75% (Moderate-High)",
+        "recommendedAction": "Coordinate SEC 8-K attestation signed with executive DID keys and halt high-frequency algorithmic short volatility spikes."
+      },
+      {
+        "timeframe": "T+12h to T+48h (Harm Mitigation & Cleanup)",
+        "interventionType": "Truth Sandwich Mainstream Broadcast & Enforcement Referral",
+        "effectivenessRating": "45% (Sub-optimal, Narrative Already Entrenched)",
+        "recommendedAction": "Mandate Truth Sandwich reporting on cable channels and refer short-seller options transaction logs to criminal enforcement."
+      }
+    ]
+  },
+  {
+    "id": "narrative-bioweapon-outbreak",
+    "title": "Operation Chimera: Fabricated Military Biolab Leak",
+    "summary": "Propagation dynamics of weaponized 2014 Ebola drill photos and forged DoD memos alleging an uncontained pathogen breach near a major metropolitan zone.",
+    "diffusionTimeline": [
+      {
+        "t_hours": 0,
+        "phase": "Inception & Seeding",
+        "velocitySharesPerHour": 250,
+        "cumulativeReach": 3200,
+        "botnetActivityPct": 95.0,
+        "activeVectors": ["4chan /pol/", "Anonymous Russian Telegram"],
+        "sentimentBreakdown": { "outrage": 0.10, "fear": 0.80, "curiosity": 0.05, "skepticism": 0.05 }
+      },
+      {
+        "t_hours": 2,
+        "phase": "Inception & Seeding",
+        "velocitySharesPerHour": 1800,
+        "cumulativeReach": 35000,
+        "botnetActivityPct": 90.0,
+        "activeVectors": ["Conspiracy Subreddits", "Fringe X Accounts"],
+        "sentimentBreakdown": { "outrage": 0.15, "fear": 0.75, "curiosity": 0.05, "skepticism": 0.05 }
+      },
+      {
+        "t_hours": 4,
+        "phase": "Bridge Laundering",
+        "velocitySharesPerHour": 8900,
+        "cumulativeReach": 190000,
+        "botnetActivityPct": 70.0,
+        "activeVectors": ["Wellness Lifestyle Influencers", "Parent Discussion Groups"],
+        "sentimentBreakdown": { "outrage": 0.25, "fear": 0.65, "curiosity": 0.05, "skepticism": 0.05 }
+      },
+      {
+        "t_hours": 8,
+        "phase": "Bridge Laundering",
+        "velocitySharesPerHour": 28000,
+        "cumulativeReach": 750000,
+        "botnetActivityPct": 50.0,
+        "activeVectors": ["Neighborhood WhatsApp Groups", "Local News Tip Desks"],
+        "sentimentBreakdown": { "outrage": 0.30, "fear": 0.60, "curiosity": 0.05, "skepticism": 0.05 }
+      },
+      {
+        "t_hours": 12,
+        "phase": "Mainstream Infiltration",
+        "velocitySharesPerHour": 65000,
+        "cumulativeReach": 2200000,
+        "botnetActivityPct": 30.0,
+        "activeVectors": ["Regional TV Evening News", "Viral Short-Form Video"],
+        "sentimentBreakdown": { "outrage": 0.35, "fear": 0.50, "curiosity": 0.08, "skepticism": 0.07 }
+      },
+      {
+        "t_hours": 18,
+        "phase": "Mainstream Infiltration",
+        "velocitySharesPerHour": 82000,
+        "cumulativeReach": 4500000,
+        "botnetActivityPct": 20.0,
+        "activeVectors": ["National News Wire Reports", "Emergency Room Panic Lines"],
+        "sentimentBreakdown": { "outrage": 0.40, "fear": 0.40, "curiosity": 0.10, "skepticism": 0.10 }
+      },
+      {
+        "t_hours": 24,
+        "phase": "Institutional Clashes & Decay",
+        "velocitySharesPerHour": 55000,
+        "cumulativeReach": 6100000,
+        "botnetActivityPct": 15.0,
+        "activeVectors": ["CDC Joint Press Conference", "Reverse Image Verification Release"],
+        "sentimentBreakdown": { "outrage": 0.35, "fear": 0.30, "curiosity": 0.15, "skepticism": 0.20 }
+      },
+      {
+        "t_hours": 36,
+        "phase": "Institutional Clashes & Decay",
+        "velocitySharesPerHour": 24000,
+        "cumulativeReach": 7400000,
+        "botnetActivityPct": 10.0,
+        "activeVectors": ["Adversary Pivot: 'Government Coverup of Chimera'"],
+        "sentimentBreakdown": { "outrage": 0.30, "fear": 0.20, "curiosity": 0.20, "skepticism": 0.30 }
+      },
+      {
+        "t_hours": 48,
+        "phase": "Institutional Clashes & Decay",
+        "velocitySharesPerHour": 9500,
+        "cumulativeReach": 8100000,
+        "botnetActivityPct": 6.0,
+        "activeVectors": ["Decentralized Provenance Debrief", "Academic Epidemiology Bulletin"],
+        "sentimentBreakdown": { "outrage": 0.25, "fear": 0.15, "curiosity": 0.20, "skepticism": 0.40 }
+      }
+    ],
+    "topologyGraph": {
+      "nodes": [
+        { "id": "n1-anon-board", "label": "4chan /pol/ Anonymous Thread", "type": "Seeder", "reach": 12000 },
+        { "id": "n2-sockpuppet-army", "label": "Unit 7412 Sockpuppet Ring", "type": "Amplifier", "reach": 250000 },
+        { "id": "n3-wellness-ring", "label": "Holistic Health Influencer Mesh", "type": "Bridge", "reach": 1200000 },
+        { "id": "n4-local-news", "label": "Regional TV News Desk", "type": "Mainstream", "reach": 3400000 },
+        { "id": "n5-cdc-portal", "label": "CDC / State Health Authority", "type": "Institutional", "reach": 5000000 },
+        { "id": "n6-pharmacy-retail", "label": "Retail Pharmacy Emergency Desk", "type": "Municipal", "reach": 1800000 }
+      ],
+      "edges": [
+        { "source": "n1-anon-board", "target": "n2-sockpuppet-army", "type": "Seeding Payload" },
+        { "source": "n2-sockpuppet-army", "target": "n3-wellness-ring", "type": "Affective Bait" },
+        { "source": "n3-wellness-ring", "target": "n4-local-news", "type": "Laundering" },
+        { "source": "n4-local-news", "target": "n5-cdc-portal", "type": "Inquiry Pressure" },
+        { "source": "n5-cdc-portal", "target": "n6-pharmacy-retail", "type": "Health Advisory" },
+        { "source": "n5-cdc-portal", "target": "n3-wellness-ring", "type": "Direct Inoculation" }
+      ]
+    },
+    "countermeasureWindows": [
+      {
+        "timeframe": "T+0h to T+3h (Visual Provenance Severing)",
+        "interventionType": "Reverse Image Provenance Matching",
+        "effectivenessRating": "92% (High)",
+        "recommendedAction": "Publish automated side-by-side match showing the 2014 Dallas Ebola drill AP archive and flood hashtag streams with the debunk."
+      },
+      {
+        "timeframe": "T+3h to T+10h (Community Bridge Inoculation)",
+        "interventionType": "Hospital Intake Telemetry Transparency",
+        "effectivenessRating": "70% (Moderate)",
+        "recommendedAction": "Stream real-time emergency room zero-pathogen telemetry directly to local community parenting and municipal groups."
+      },
+      {
+        "timeframe": "T+10h to T+48h (Conspiracy Pivot Prebunking)",
+        "interventionType": "Anticipatory ACH Pivot Debunking",
+        "effectivenessRating": "50% (Moderate-Low)",
+        "recommendedAction": "Prebunk the anticipated 'government coverup' pivot before adversaries can deploy DARVO counter-accusations."
+      }
+    ]
+  },
+  {
+    "id": "narrative-election-ballot-tampering",
+    "title": "Operation Broken Ballot: Synthetic Mail-In Ballot Shredding Video",
+    "summary": "Diffusion timeline of an AI-generated 45-second deepfake video claiming systematic destruction of mail-in ballots by election workers on election eve.",
+    "diffusionTimeline": [
+      {
+        "t_hours": 0,
+        "phase": "Inception & Seeding",
+        "velocitySharesPerHour": 300,
+        "cumulativeReach": 4500,
+        "botnetActivityPct": 96.0,
+        "activeVectors": ["Encrypted Partisan Channels", "Fringe Video Hosts"],
+        "sentimentBreakdown": { "outrage": 0.75, "fear": 0.15, "curiosity": 0.05, "skepticism": 0.05 }
+      },
+      {
+        "t_hours": 2,
+        "phase": "Inception & Seeding",
+        "velocitySharesPerHour": 2800,
+        "cumulativeReach": 48000,
+        "botnetActivityPct": 91.0,
+        "activeVectors": ["Hashtag #StolenElectionNow", "Anonymous Meme Accounts"],
+        "sentimentBreakdown": { "outrage": 0.80, "fear": 0.12, "curiosity": 0.04, "skepticism": 0.04 }
+      },
+      {
+        "t_hours": 4,
+        "phase": "Bridge Laundering",
+        "velocitySharesPerHour": 16500,
+        "cumulativeReach": 320000,
+        "botnetActivityPct": 68.0,
+        "activeVectors": ["Partisan Influencer Commentators", "Political Action Committees"],
+        "sentimentBreakdown": { "outrage": 0.82, "fear": 0.10, "curiosity": 0.04, "skepticism": 0.04 }
+      },
+      {
+        "t_hours": 8,
+        "phase": "Bridge Laundering",
+        "velocitySharesPerHour": 48000,
+        "cumulativeReach": 1400000,
+        "botnetActivityPct": 42.0,
+        "activeVectors": ["Candidate Campaign Accounts", "Cable Political Talk Shows"],
+        "sentimentBreakdown": { "outrage": 0.85, "fear": 0.08, "curiosity": 0.03, "skepticism": 0.04 }
+      },
+      {
+        "t_hours": 12,
+        "phase": "Mainstream Infiltration",
+        "velocitySharesPerHour": 95000,
+        "cumulativeReach": 4100000,
+        "botnetActivityPct": 25.0,
+        "activeVectors": ["National Breaking News Bulletins", "Protest Organizing Feeds"],
+        "sentimentBreakdown": { "outrage": 0.78, "fear": 0.10, "curiosity": 0.05, "skepticism": 0.07 }
+      },
+      {
+        "t_hours": 18,
+        "phase": "Mainstream Infiltration",
+        "velocitySharesPerHour": 120000,
+        "cumulativeReach": 7800000,
+        "botnetActivityPct": 16.0,
+        "activeVectors": ["International Press Coverage", "Live Election Eve Special"],
+        "sentimentBreakdown": { "outrage": 0.70, "fear": 0.12, "curiosity": 0.08, "skepticism": 0.10 }
+      },
+      {
+        "t_hours": 24,
+        "phase": "Institutional Clashes & Decay",
+        "velocitySharesPerHour": 85000,
+        "cumulativeReach": 10500000,
+        "botnetActivityPct": 12.0,
+        "activeVectors": ["County Election Board Live Audit", "Judicial Emergency Injunction"],
+        "sentimentBreakdown": { "outrage": 0.55, "fear": 0.15, "curiosity": 0.10, "skepticism": 0.20 }
+      },
+      {
+        "t_hours": 36,
+        "phase": "Institutional Clashes & Decay",
+        "velocitySharesPerHour": 35000,
+        "cumulativeReach": 12200000,
+        "botnetActivityPct": 8.0,
+        "activeVectors": ["Shadow Vector Forensics & Barcode Decryption Release"],
+        "sentimentBreakdown": { "outrage": 0.40, "fear": 0.15, "curiosity": 0.15, "skepticism": 0.30 }
+      },
+      {
+        "t_hours": 48,
+        "phase": "Institutional Clashes & Decay",
+        "velocitySharesPerHour": 14000,
+        "cumulativeReach": 13100000,
+        "botnetActivityPct": 5.0,
+        "activeVectors": ["Official Election Certified Result Attestation"],
+        "sentimentBreakdown": { "outrage": 0.30, "fear": 0.10, "curiosity": 0.20, "skepticism": 0.40 }
+      }
+    ],
+    "topologyGraph": {
+      "nodes": [
+        { "id": "n1-fringe-uploader", "label": "Burner Handle @PatriotLeak2026", "type": "Seeder", "reach": 15000 },
+        { "id": "n2-trending-botnet", "label": "Hashtag Injector Swarm (2,400 bots)", "type": "Amplifier", "reach": 450000 },
+        { "id": "n3-political-commentator", "label": "Prime-Time Political Host", "type": "Bridge", "reach": 2800000 },
+        { "id": "n4-national-networks", "label": "Major Cable Broadcast Syndicates", "type": "Mainstream", "reach": 8000000 },
+        { "id": "n5-election-board", "label": "County Board of Elections", "type": "Institutional", "reach": 6500000 },
+        { "id": "n6-federal-court", "label": "Federal District Court", "type": "Judicial", "reach": 4000000 }
+      ],
+      "edges": [
+        { "source": "n1-fringe-uploader", "target": "n2-trending-botnet", "type": "Initial Seed" },
+        { "source": "n2-trending-botnet", "target": "n3-political-commentator", "type": "Algorithmic Forcing" },
+        { "source": "n3-political-commentator", "target": "n4-national-networks", "type": "Mainstream Bridge" },
+        { "source": "n4-national-networks", "target": "n5-election-board", "type": "Audit Demand" },
+        { "source": "n5-election-board", "target": "n6-federal-court", "type": "Cryptographic Evidentiary Filing" },
+        { "source": "n6-federal-court", "target": "n4-national-networks", "type": "Judicial Finding Publication" }
+      ]
+    },
+    "countermeasureWindows": [
+      {
+        "timeframe": "T+0h to T+2h (Critical Viral Break Window)",
+        "interventionType": "Shadow Geometry & Barcode Decoding Debunk",
+        "effectivenessRating": "94% (Exceptional)",
+        "recommendedAction": "Demonstrate contradictory 45-degree shadow angles and decode invalid 2D PDF417 barcode props before candidate amplification."
+      },
+      {
+        "timeframe": "T+2h to T+8h (Candidate & Media Inoculation)",
+        "interventionType": "Livestreamed Cryptographic Vault Custody Walkthrough",
+        "effectivenessRating": "78% (Strong)",
+        "recommendedAction": "Livestream physical secure vault operations with real-time cryptographic timestamp ledger display to all newsrooms."
+      },
+      {
+        "timeframe": "T+8h to T+48h (Legal & Democratic Restoration)",
+        "interventionType": "W3C Verifiable Ballot Chain Attestation",
+        "effectivenessRating": "60% (Moderate)",
+        "recommendedAction": "File public court attestations of ballot serial hashes with decentralized anchoring to preserve democratic legitimacy."
+      }
+    ]
+  }
+]

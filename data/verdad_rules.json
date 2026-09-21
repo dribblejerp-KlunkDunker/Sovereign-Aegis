@@ -1,0 +1,357 @@
+{
+  "emotionalLexicons": {
+    "outrage": [
+      "treasonous", "traitor", "criminal", "evil", "disgrace", "disgusting",
+      "monstrous", "corrupt", "tyranny", "tyrant", "scandalous", "depraved",
+      "vile", "atrocity", "unforgivable", "sickening", "shameless", "infuriating",
+      "abomination", "heinous", "outrageous", "despicable", "rot", "scum"
+    ],
+    "fear": [
+      "catastrophe", "apocalypse", "deadly", "fatal", "annihilation", "collapse",
+      "peril", "lethal", "toxic", "destroy", "horrifying", "nightmare",
+      "blood bath", "devastation", "doomsday", "massacre", "extinction",
+      "poison", "biohazard", "threat", "panic", "ruin", "terror"
+    ],
+    "urgency": [
+      "act now", "immediate", "breaking", "before it is too late", "must share",
+      "emergency", "urgent", "share before deleted", "critical alert",
+      "time is running out", "red alert", "warning", "distribute immediately",
+      "censored immediately", "viral now", "flash bulletin", "last chance"
+    ],
+    "tribalism": [
+      "the enemy", "they want to destroy us", "our people", "true patriots",
+      "infiltrators", "puppets", "cabal", "sheep", "elites", "deep state",
+      "subversives", "foreign agents", "pure", "traitors within", "globalist agenda",
+      "betrayal of our kind", "loyalists", "fifth column"
+    ],
+    "conspiracy": [
+      "coverup", "they are hiding", "what the media will not tell you",
+      "secret plot", "clandestine", "psyop", "false flag", "controlled opposition",
+      "hidden truth", "shadow government", "orchestrated", "engineered crisis",
+      "mainstream media blackout", "puppeteer", "hoax", "manufactured consensus"
+    ],
+    "fatalism": [
+      "nothing matters", "all politicians lie", "everything is fake", "democracy is dead",
+      "futile", "hopeless", "doomed", "illusion of choice", "rigged system",
+      "surrender", "unavoidable collapse", "powerless", "total fraud"
+    ]
+  },
+  "conspiracyPatterns": [
+    {
+      "pattern": "\\b(mainstream media|msm)\\s+(is hiding|will never tell you|blackout|refuses to report)\\b",
+      "name": "Media Suppression Tropes",
+      "weight": 0.85,
+      "explanation": "Weaponizes institutional distrust by claiming information is being systematically concealed by journalists."
+    },
+    {
+      "pattern": "\\b(secretly|clandestinely)\\s+(engineered|planned|orchestrated|funded)\\s+by\\s+(the elites|globalists|cabal|shadow government)\\b",
+      "name": "Omnipotent Puppet-Master Archetype",
+      "weight": 0.90,
+      "explanation": "Attributes complex geopolitical or economic events to a singular omnipotent hidden orchestrator."
+    },
+    {
+      "pattern": "\\b(false flag|crisis actors|staged event|psyop)\\b",
+      "name": "Event Invalidation & False Flag Reflex",
+      "weight": 0.95,
+      "explanation": "Reflexively dismisses real-world tragedies or kinetic events as simulated theatrical deceptions."
+    },
+    {
+      "pattern": "\\b(depopulation agenda|poisoning the water|forced sterilization|chemtrails)\\b",
+      "name": "Biological & Existential Extermination Plot",
+      "weight": 0.95,
+      "explanation": "Alleges covert mass poisoning or extermination programs conducted by medical/state institutions."
+    },
+    {
+      "pattern": "\\b(plandemic|bioweapon lab|manufactured virus|lab leak coverup)\\b",
+      "name": "Biosecurity Conspiracy Vector",
+      "weight": 0.85,
+      "explanation": "Frames epidemiological outbreaks as deliberate synthetic attacks rather than natural phenomena."
+    },
+    {
+      "pattern": "\\b(stolen election|rigged voting machines|ballot dumping|algorithm switched votes)\\b",
+      "name": "Electoral De-legitimization Vector",
+      "weight": 0.90,
+      "explanation": "Attacks the democratic transition of power by asserting systemic algorithmic vote switching without evidence."
+    },
+    {
+      "pattern": "\\b(great reset|you will own nothing|new world order|un agenda)\\b",
+      "name": "Globalist Enslavement Grand Narrative",
+      "weight": 0.80,
+      "explanation": "Synthesizes disparate regulatory policies into a master conspiracy of global totalitarian enslavement."
+    },
+    {
+      "pattern": "\\b(5g radiation|microchip in the vaccine|quantum dot tracking)\\b",
+      "name": "Technological Subjugation Myth",
+      "weight": 0.90,
+      "explanation": "Fabricates invisible electronic or biological tracking mechanisms inside public infrastructure."
+    },
+    {
+      "pattern": "\\b(controlled opposition|all puppets of|bought and paid for by)\\b",
+      "name": "Universal Complicity Trope",
+      "weight": 0.75,
+      "explanation": "Dismisses nuanced disagreements by claiming all public figures are actors in a scripted theater."
+    },
+    {
+      "pattern": "\\b(connect the dots|do your own research|open your eyes|wake up sheeple)\\b",
+      "name": "Epistemic Flattery & Pattern-Seeking Prompt",
+      "weight": 0.70,
+      "explanation": "Flatters the reader's intellect while inviting pareidolia and associative illusion."
+    },
+    {
+      "pattern": "\\b(adrenochrome|satanic cabal|ritual sacrifice|underground tunnels)\\b",
+      "name": "Occult Demonization Trope",
+      "weight": 0.98,
+      "explanation": "Dehumanizes political opponents by invoking ancient blood libel and occult demonology narratives."
+    },
+    {
+      "pattern": "\\b(weather warfare|haarp directed energy|laser wildfires)\\b",
+      "name": "Meteorological & Atmospheric Weaponization Myth",
+      "weight": 0.88,
+      "explanation": "Attributes natural weather disasters and wildfires to secret directed-energy weapons."
+    }
+  ],
+  "urgencyTriggers": [
+    {
+      "pattern": "\\b(share before (this gets|it is) (deleted|banned|censored|taken down))\\b",
+      "triggerType": "Censorship Preemption",
+      "riskWeight": 0.90
+    },
+    {
+      "pattern": "\\b(emergency alert|critical warning|red alert|breaking mandatory update)\\b",
+      "triggerType": "Simulated Official Alert",
+      "riskWeight": 0.85
+    },
+    {
+      "pattern": "\\b(act (now|immediately)|time is running out|last chance to save)\\b",
+      "triggerType": "Temporal Pressure",
+      "riskWeight": 0.75
+    },
+    {
+      "pattern": "\\b(rt to save lives|repost if you have a heart|forward to everyone)\\b",
+      "triggerType": "Emotional Guilt Amplification",
+      "riskWeight": 0.80
+    },
+    {
+      "pattern": "\\b(before midnight tonight|within the next 24 hours|bank run starting now)\\b",
+      "triggerType": "Panic Timeline Imposition",
+      "riskWeight": 0.85
+    },
+    {
+      "pattern": "\\b(spread this everywhere|make this viral|do not let them bury this)\\b",
+      "triggerType": "Viral Mobilization Command",
+      "riskWeight": 0.70
+    },
+    {
+      "pattern": "\\b(evacuate immediately|stock up on food now|withdraw all cash)\\b",
+      "triggerType": "Direct Kinetic Action Prompt",
+      "riskWeight": 0.95
+    },
+    {
+      "pattern": "\\b(bombshell drop|mind blowing revelation|you won't believe what just happened)\\b",
+      "triggerType": "Sensationalist Hook",
+      "riskWeight": 0.65
+    },
+    {
+      "pattern": "\\b(sound the alarm|wake up everyone you know|protect your family)\\b",
+      "triggerType": "Existential Threat Call",
+      "riskWeight": 0.80
+    },
+    {
+      "pattern": "\\b(this changes everything|the ultimate smoking gun|definitive proof at last)\\b",
+      "triggerType": "Epistemic Hyperbole",
+      "riskWeight": 0.75
+    },
+    {
+      "pattern": "\\b(watch before it's erased|leaked footage they tried to destroy)\\b",
+      "triggerType": "Fabricated Scarcity",
+      "riskWeight": 0.85
+    },
+    {
+      "pattern": "\\b(listen to this voice note immediately|private hospital leak audio)\\b",
+      "triggerType": "Intimate Channel Spoofing",
+      "riskWeight": 0.80
+    }
+  ],
+  "fallacyRegexes": [
+    {
+      "pattern": "\\b(don't listen to him|he is a convicted|he took grant money|he is arrogant|stupid idiot)\\b",
+      "fallacyId": "fallacy-ad-hominem-abusive",
+      "confidence": 0.85
+    },
+    {
+      "pattern": "\\b(he only says that because he owns stock|she stands to profit|paid by the industry|conflict of interest proves)\\b",
+      "fallacyId": "fallacy-ad-hominem-circumstantial",
+      "confidence": 0.80
+    },
+    {
+      "pattern": "\\b(how can you criticize|what about when you|you did the exact same thing|hypocrite)\\b",
+      "fallacyId": "fallacy-tu-quoque",
+      "confidence": 0.85
+    },
+    {
+      "pattern": "\\b(literally wants to ban all|wants to destroy every single|advocates abolishing all)\\b",
+      "fallacyId": "fallacy-straw-man",
+      "confidence": 0.80
+    },
+    {
+      "pattern": "\\b(why are we talking about this when|what about the real problem of|distraction from the real issue)\\b",
+      "fallacyId": "fallacy-red-herring",
+      "confidence": 0.75
+    },
+    {
+      "pattern": "\\b(originated in|first created by fascists|invented by an occultist|born from an evil system)\\b",
+      "fallacyId": "fallacy-genetic-fallacy",
+      "confidence": 0.80
+    },
+    {
+      "pattern": "\\b(it is true because the book says it is true|unhackable because it has unhackable design)\\b",
+      "fallacyId": "fallacy-begging-the-question",
+      "confidence": 0.85
+    },
+    {
+      "pattern": "\\b(either we completely|or our nation will be destroyed|only two choices|you are either with us or)\\b",
+      "fallacyId": "fallacy-false-dilemma",
+      "confidence": 0.90
+    },
+    {
+      "pattern": "\\b(have you stopped taking bribes|did you enjoy hiding the|when will you admit you lied)\\b",
+      "fallacyId": "fallacy-complex-question",
+      "confidence": 0.85
+    },
+    {
+      "pattern": "\\b(because it is popular it must be|industry leader because it has the best reputation)\\b",
+      "fallacyId": "fallacy-circular-reasoning",
+      "confidence": 0.80
+    },
+    {
+      "pattern": "\\b(if the sidewalk is wet it must have rained|latency spiked so it must be a ddos)\\b",
+      "fallacyId": "fallacy-affirming-consequent",
+      "confidence": 0.85
+    },
+    {
+      "pattern": "\\b(he is not a doctor so he cannot know anything|not a pilot so cannot read)\\b",
+      "fallacyId": "fallacy-denying-antecedent",
+      "confidence": 0.80
+    },
+    {
+      "pattern": "\\b(both electric cars I drove|all taxi drivers in that city|every single member of that country)\\b",
+      "fallacyId": "fallacy-hasty-generalization",
+      "confidence": 0.85
+    },
+    {
+      "pattern": "\\b(look at these three cancer patients near the tower|four consecutive market rallies on full moons)\\b",
+      "fallacyId": "fallacy-texas-sharpshooter",
+      "confidence": 0.85
+    },
+    {
+      "pattern": "\\b(my grandfather smoked every day and lived to 98|my cousin tried it and was cured)\\b",
+      "fallacyId": "fallacy-anecdotal-evidence",
+      "confidence": 0.90
+    },
+    {
+      "pattern": "\\b(right after we changed the logo revenue surged|after the vaccine he got a cold so the vaccine caused)\\b",
+      "fallacyId": "fallacy-post-hoc-ergo-propter-hoc",
+      "confidence": 0.85
+    },
+    {
+      "pattern": "\\b(if we allow this next year they will|first it is compost sorting then imprisonment|inevitable slippery slope)\\b",
+      "fallacyId": "fallacy-slippery-slope",
+      "confidence": 0.85
+    },
+    {
+      "pattern": "\\b(every part is lightweight so the whole engine is|department is innovative so every worker is)\\b",
+      "fallacyId": "fallacy-composition-division",
+      "confidence": 0.80
+    },
+    {
+      "pattern": "\\b(hollywood celebrity says|actor marcus lane insists|famous chef endorses cardiology cure)\\b",
+      "fallacyId": "fallacy-appeal-to-false-authority",
+      "confidence": 0.85
+    },
+    {
+      "pattern": "\\b(think of the crying children|how can you doubt when soldiers are dying|for the love of god)\\b",
+      "fallacyId": "fallacy-appeal-to-emotion",
+      "confidence": 0.85
+    },
+    {
+      "pattern": "\\b(80 million people cannot be wrong|over 10 million users bought|everyone is doing it)\\b",
+      "fallacyId": "fallacy-appeal-to-popularity",
+      "confidence": 0.90
+    },
+    {
+      "pattern": "\\b(no one has ever proven it is false|science cannot disprove alien fleets|absence of proof against)\\b",
+      "fallacyId": "fallacy-appeal-to-ignorance",
+      "confidence": 0.85
+    },
+    {
+      "pattern": "\\b(our ancestors did this for six generations|traditional way is always superior|we have always done it this way)\\b",
+      "fallacyId": "fallacy-appeal-to-tradition",
+      "confidence": 0.85
+    },
+    {
+      "pattern": "\\b(100% natural so it cannot harm you|synthetic is artificial poison|nature provides the only real cure)\\b",
+      "fallacyId": "fallacy-appeal-to-nature",
+      "confidence": 0.90
+    },
+    {
+      "pattern": "\\b(obviously|undeniably|indisputably|without a shadow of a doubt)\\s+(proves that|means that)\\b",
+      "fallacyId": "fallacy-begging-the-question",
+      "confidence": 0.70
+    },
+    {
+      "pattern": "\\b(everyone knows that|it is common knowledge that|no intelligent person would deny)\\b",
+      "fallacyId": "fallacy-appeal-to-popularity",
+      "confidence": 0.75
+    },
+    {
+      "pattern": "\\b(if you don't support this policy you hate our country|unpatriotic to question)\\b",
+      "fallacyId": "fallacy-false-dilemma",
+      "confidence": 0.85
+    },
+    {
+      "pattern": "\\b(just asking questions|why won't they answer why|what are they trying to hide)\\b",
+      "fallacyId": "fallacy-complex-question",
+      "confidence": 0.75
+    },
+    {
+      "pattern": "\\b(he worked at a pharmaceutical company 10 years ago|she went to school with)\\b",
+      "fallacyId": "fallacy-ad-hominem-circumstantial",
+      "confidence": 0.75
+    },
+    {
+      "pattern": "\\b(first they come for our guns then they put us in camps)\\b",
+      "fallacyId": "fallacy-slippery-slope",
+      "confidence": 0.90
+    },
+    {
+      "pattern": "\\b(I saw it on a telegram group so it must be real|a doctor friend of a friend said)\\b",
+      "fallacyId": "fallacy-anecdotal-evidence",
+      "confidence": 0.85
+    },
+    {
+      "pattern": "\\b(ancient wisdom from thousands of years ago is always right)\\b",
+      "fallacyId": "fallacy-appeal-to-tradition",
+      "confidence": 0.85
+    }
+  ],
+  "hedgingAndCertaintyMarkers": {
+    "certaintyInflation": [
+      "indisputably", "undeniably", "categorically proven", "absolute fact",
+      "100% conclusive", "beyond all doubt", "unquestionably", "definitive proof"
+    ],
+    "hedgingMarkers": [
+      "it could be argued", "some might suggest", "sources speculate",
+      "reportedly", "allegedly", "it remains possible that", "unconfirmed rumors hint"
+    ],
+    "passiveAttribution": [
+      "it is said that", "many people are saying", "critics claim",
+      "concerns have been raised", "questions are swirling", "insiders whisper"
+    ]
+  },
+  "scoringWeights": {
+    "emotionalMultiplier": 0.35,
+    "conspiracyMultiplier": 0.40,
+    "urgencyMultiplier": 0.30,
+    "fallacyMultiplier": 0.25
+  }
+}

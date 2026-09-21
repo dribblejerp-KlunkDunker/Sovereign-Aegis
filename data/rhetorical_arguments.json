@@ -1,0 +1,416 @@
+[
+  {
+    "id": "arg-ai-risk",
+    "title": "Autonomous AI Existential Ban Argument",
+    "domain": "Artificial Intelligence & Tech Ethics",
+    "difficulty": "Intermediate",
+    "rawText": "Artificial intelligence systems are advancing faster than our regulatory mechanisms. Any technology that advances faster than regulation will inevitably escape human oversight and cause catastrophic harm. Therefore, all research into autonomous neural architectures must be banned immediately by international treaty.",
+    "clauses": [
+      {
+        "id": "c1",
+        "text": "Artificial intelligence systems are advancing faster than our regulatory mechanisms.",
+        "type": "premise",
+        "label": "Premise 1 (Empirical Observation)"
+      },
+      {
+        "id": "c2",
+        "text": "Any technology that advances faster than regulation will inevitably escape human oversight and cause catastrophic harm.",
+        "type": "premise",
+        "label": "Premise 2 (Universal Generalization)"
+      },
+      {
+        "id": "c3",
+        "text": "Therefore, all research into autonomous neural architectures must be banned immediately by international treaty.",
+        "type": "conclusion",
+        "label": "Conclusion (Policy Injunction)"
+      }
+    ],
+    "unstatedAssumption": {
+      "text": "Prohibition treaties can be globally enforced with 100% compliance without driving dangerous research underground or ceding geopolitical asymmetry to non-compliant actors.",
+      "distractors": [
+        "Artificial neural architectures possess subjective consciousness and moral rights equivalent to biological entities.",
+        "Regulatory bodies lack the computational hardware necessary to run deep learning benchmark tests.",
+        "Traditional legal frameworks have successfully halted all historical technological advancements across history."
+      ],
+      "explanation": "The argument moves from 'AI advances faster than regulation' to 'ban all research immediately' without proving that a total ban is enforceable or wouldn't simply shift frontier development into unregulated black markets or adversarial nations."
+    },
+    "structuralFlaw": {
+      "name": "False Dilemma / Slippery Slope",
+      "latin": "Argumentum ad Consequentiam",
+      "category": "Informal / Deductive Overreach",
+      "analysis": "Premise 2 establishes an unsupported universal deterministic claim ('inevitably escape oversight') and leaps from a pace differential directly to global existential catastrophe without evaluating adaptive mitigation or partial governance."
+    },
+    "steelMannedVersion": {
+      "text": "Because frontier AI capability growth outpaces traditional legislative rulemaking, high-leverage safety protocols, hardware-level compute governance, and verifiable international alignment benchmarks must be instituted to prevent catastrophic proliferation.",
+      "improvements": [
+        "Replaces absolute prohibition with verifiable compute governance and staged threshold benchmarks",
+        "Substitutes deterministic doom ('inevitably escape oversight') with targeted risk mitigation protocols",
+        "Preserves legitimate defensive alignment research while addressing uncontrolled dual-use deployment"
+      ],
+      "exercises": [
+        {
+          "id": "ex-ai-risk-1",
+          "prompt": "Which reformulation represents the strongest philosophical steel-man of the concern regarding AI outpacing governance?",
+          "options": [
+            "Banning all computation above simple microcontrollers to guarantee absolute human supremacy.",
+            "Establishing staged capability thresholds and compute auditing so safety verifications scale synchronously with model capability.",
+            "Allowing unrestricted deployment while requiring technology companies to pay a retrospective damage insurance fee.",
+            "Passing symbolic legislative resolutions urging AI labs to adhere to voluntary moral guidelines."
+          ],
+          "correctIndex": 1,
+          "rationale": "Option B establishes proportional, enforceable guardrails linked to measurable capabilities rather than an unenforceable blanket ban or toothless voluntary pledge."
+        }
+      ]
+    },
+    "counterArgument": "A total blanket ban is practically unenforceable, incentivizes covert non-compliant development, and halts defensive alignment research. A targeted capability-threshold governance framework provides enforceable friction without catastrophic evasion.",
+    "tests": [
+      "skill.fallacy.structure"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "arg-wellness-cure",
+    "title": "Natural Purity Immunity Panacea",
+    "domain": "Public Health & Wellness Rhetoric",
+    "difficulty": "Beginner",
+    "rawText": "Ancient forest extracts have been used safely for thousands of years by indigenous healers with zero synthetic chemical side effects. Modern pharmaceutical drugs are synthetic laboratory chemicals designed for corporate shareholder profit. Thus, natural herbal remedies are inherently superior and safer for treating chronic immune disorders than modern medicine.",
+    "clauses": [
+      {
+        "id": "c1",
+        "text": "Ancient forest extracts have been used safely for thousands of years by indigenous healers with zero synthetic chemical side effects.",
+        "type": "premise",
+        "label": "Premise 1 (Appeal to Tradition & Nature)"
+      },
+      {
+        "id": "c2",
+        "text": "Modern pharmaceutical drugs are synthetic laboratory chemicals designed for corporate shareholder profit.",
+        "type": "premise",
+        "label": "Premise 2 (Ad Hominem / Motive Attribution)"
+      },
+      {
+        "id": "c3",
+        "text": "Thus, natural herbal remedies are inherently superior and safer for treating chronic immune disorders than modern medicine.",
+        "type": "conclusion",
+        "label": "Conclusion (Evaluative Superiority)"
+      }
+    ],
+    "unstatedAssumption": {
+      "text": "That biological or botanical origin inherently guarantees safety and therapeutic efficacy, while synthetic pharmacological formulation inherently confers biological toxicity.",
+      "distractors": [
+        "Ancient traditional healers possessed modern molecular biology equipment and randomized control data.",
+        "Synthetic medications are mathematically incapable of providing symptomatic pain relief.",
+        "Natural herbs cannot be cultivated or sold by commercial agricultural corporations for profit."
+      ],
+      "explanation": "The naturalistic fallacy assumes that whatever is natural is inherently good, healthy, and non-toxic, ignoring that many potent poisons are completely natural and that synthesis enables precise dosage and contaminant removal."
+    },
+    "structuralFlaw": {
+      "name": "Appeal to Nature (Naturalistic Fallacy)",
+      "latin": "Argumentum ad Naturam",
+      "category": "Informal Rhetoric",
+      "analysis": "Equates 'natural' with 'safe and effective' and 'synthetic' with 'harmful', ignoring that nature produces lethal toxins and that pharmacological synthesis standardizes dosage and purifies active compounds."
+    },
+    "steelMannedVersion": {
+      "text": "Many ethnobotanical compounds possess verified bioactive properties that warrant rigorous clinical isolation, standardized dose trials, and potential integration into evidence-based therapeutic regimens under medical oversight.",
+      "improvements": [
+        "Grounds the value of traditional extracts in clinical isolation and pharmacological verification rather than an appeal to nature",
+        "Replaces the binary rejection of modern medicine with integrative, evidence-based pharmacology",
+        "Acknowledges active bioactive mechanisms while demanding rigorous clinical safety standards"
+      ],
+      "exercises": [
+        {
+          "id": "ex-wellness-1",
+          "prompt": "How does a steel-manned framing rescue the empirical utility of ethnobotanical medicine without falling into the naturalistic fallacy?",
+          "options": [
+            "By claiming that ancient traditions are sacred and therefore exempt from scientific verification.",
+            "By identifying traditional herbs as candidate lead compounds for rigorous isolation, dosage standardization, and clinical trials.",
+            "By insisting that synthetic pharmaceuticals should only be used as a desperate last resort.",
+            "By arguing that botanical extracts have zero molecular interaction with human biochemical receptors."
+          ],
+          "correctIndex": 1,
+          "rationale": "Treating herbal remedies as candidate sources for isolated bioactive compounds subjects them to standard clinical rigor without dogmatic rejection or uncritical acceptance."
+        }
+      ]
+    },
+    "counterArgument": "Unstandardized natural remedies often suffer from variable potency, heavy metal contamination, and lack of randomized controlled trial validation, while pharmacology isolates active molecules to quantify risk-benefit ratios.",
+    "tests": [
+      "skill.fallacy.structure"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "arg-economic-collapse",
+    "title": "Fiat Hyperinflation Collapse Predicament",
+    "domain": "Financial & Macroeconomic Hype",
+    "difficulty": "Intermediate",
+    "rawText": "The Federal Reserve increased the money supply by trillions in recent cycles. Increasing the money supply mathematically dilutes the purchasing power of every existing unit. Therefore, hyperinflationary collapse of the reserve currency is mathematically certain within the decade, making scarce crypto-commodities the only viable store of human value.",
+    "clauses": [
+      {
+        "id": "c1",
+        "text": "The Federal Reserve increased the money supply by trillions in recent cycles.",
+        "type": "premise",
+        "label": "Premise 1 (Empirical Metric)"
+      },
+      {
+        "id": "c2",
+        "text": "Increasing the money supply mathematically dilutes the purchasing power of every existing unit.",
+        "type": "premise",
+        "label": "Premise 2 (Simplified Monetarist Model)"
+      },
+      {
+        "id": "c3",
+        "text": "Therefore, hyperinflationary collapse of the reserve currency is mathematically certain within the decade, making scarce crypto-commodities the only viable store of human value.",
+        "type": "conclusion",
+        "label": "Conclusion (Deterministic Extrapolation)"
+      }
+    ],
+    "unstatedAssumption": {
+      "text": "That monetary velocity, sovereign taxing power, productivity growth, global reserve currency demand, and central bank contractionary levers are static or ineffective in mitigating inflation.",
+      "distractors": [
+        "Paper currency was originally invented to replace barter trade systems in agricultural societies.",
+        "Commercial banks maintain 100% physical gold reserves in centralized vault storage.",
+        "Global commodities can only be priced and transacted using physical precious metals."
+      ],
+      "explanation": "The argument assumes a simplistic 1-to-1 linear model between broad money supply and instant hyperinflation, ignoring aggregate demand, velocity of money, productivity offsets, and quantitative tightening."
+    },
+    "structuralFlaw": {
+      "name": "Fallacy of the Single Cause / Causal Oversimplification",
+      "latin": "Cum Hoc Ergo Propter Hoc",
+      "category": "Informal / Economic Reductionism",
+      "analysis": "Reduces complex macroeconomic price equilibria to a single linear variable (M2 growth) and makes a categorical leap from inflation risk to inevitable total system hyperinflation."
+    },
+    "steelMannedVersion": {
+      "text": "Persistent expansionary monetary policy without commensurate real GDP productivity growth creates compounding currency debasement risks, justifying defensive asset diversification across productive equities, hard commodities, and sovereign debt.",
+      "improvements": [
+        "Shifts from hyperbolic claims of guaranteed hyperinflationary death to measurable currency debasement risk",
+        "Accounts for macroeconomic trade-offs between liquidity injection and real productivity growth",
+        "Replaces single-asset maximalism with balanced, multi-vector portfolio diversification"
+      ],
+      "exercises": [
+        {
+          "id": "ex-econ-1",
+          "prompt": "Which premise adjustment converts the simplistic hyperinflation assertion into a sound macroeconomic thesis?",
+          "options": [
+            "Asserting that any expansion of central bank balance sheets is treasonous.",
+            "Framing rapid money supply growth as a debasement tail-risk that depends on velocity, output gaps, and sovereign debt service capacity.",
+            "Assuming that digital currencies have zero volatility and guaranteed purchasing power.",
+            "Claiming that inflation is purely an illusion created by statistical index manipulation."
+          ],
+          "correctIndex": 1,
+          "rationale": "Evaluating money supply growth in conjunction with velocity, productive capacity, and fiscal health reflects empirical economic dynamics rather than fatalistic panic."
+        }
+      ]
+    },
+    "counterArgument": "Currency value is governed by global trade demand, monetary velocity, institutional stability, and sovereign taxing authority; excessive debt creates structural drags rather than guaranteed hyperinflationary currency death.",
+    "tests": [
+      "skill.fallacy.structure"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "arg-geopolitical-polar",
+    "title": "Alliance Moral Binary Injunction",
+    "domain": "Geopolitics & Statecraft",
+    "difficulty": "Advanced",
+    "rawText": "Authoritarian regimes are openly funding cyberwarfare and media subversion against democratic nations. In a conflict between liberty and tyranny, neutrality is tacit complicity with the aggressor. Consequently, any nation refusing unconditional military and trade alignment with our alliance is an active ideological adversary that must be sanctioned.",
+    "clauses": [
+      {
+        "id": "c1",
+        "text": "Authoritarian regimes are openly funding cyberwarfare and media subversion against democratic nations.",
+        "type": "premise",
+        "label": "Premise 1 (Threat Identification)"
+      },
+      {
+        "id": "c2",
+        "text": "In a conflict between liberty and tyranny, neutrality is tacit complicity with the aggressor.",
+        "type": "premise",
+        "label": "Premise 2 (Moral Absolute Axiom)"
+      },
+      {
+        "id": "c3",
+        "text": "Consequently, any nation refusing unconditional military and trade alignment with our alliance is an active ideological adversary that must be sanctioned.",
+        "type": "conclusion",
+        "label": "Conclusion (Punitive Classification)"
+      }
+    ],
+    "unstatedAssumption": {
+      "text": "That non-aligned states have no legitimate domestic, geographic, economic, or security constraints that justify diplomatic neutrality, and that neutral posture is functionally equivalent to hostile warfare.",
+      "distractors": [
+        "International treaties are automatically enforceable by multilateral peacekeepers without member state consent.",
+        "Cyberwarfare is exclusively conducted by private independent hacker collectives without nation-state funding.",
+        "Democratic nations do not possess any commercial or trade relationships with non-aligned countries."
+      ],
+      "explanation": "The false dilemma eliminates all intermediate diplomatic postures (such as non-alignment, mediation, regional trade dependence, or humanitarian neutrality) and treats non-coalition members as hostile belligerents."
+    },
+    "structuralFlaw": {
+      "name": "False Dilemma (Bifurcation)",
+      "latin": "Tertium Non Datur",
+      "category": "Formal / Informal Hybrids",
+      "analysis": "Eliminates all nuanced geopolitical postures (such as strategic autonomy, trade mediation, or humanitarian neutrality) and forces an artificial binary: unconditional alignment or hostile designation."
+    },
+    "steelMannedVersion": {
+      "text": "Democracies face coordinated hybrid asymmetric threats that require robust multilateral defense coalitions, and non-aligned partners should be incentivized through strategic security guarantees, technological pacts, and mutually beneficial trade ties.",
+      "improvements": [
+        "Replaces punitive coercive ultimatums with positive strategic incentives and institutional alignment",
+        "Recognizes complex regional realities rather than forcing an artificial binary choice",
+        "Frames coalition defense around resilience and mutual security rather than ideological purity tests"
+      ],
+      "exercises": [
+        {
+          "id": "ex-geopol-1",
+          "prompt": "How does the steel-manned position preserve coalition defense while avoiding a false dilemma regarding non-aligned nations?",
+          "options": [
+            "By demanding immediate regime change in all non-aligned nations.",
+            "By employing positive diplomatic incentives and shared security pacts rather than punitive binary sanctions that drive neutrals into adversary orbits.",
+            "By disbanding all international alliances and adopting absolute isolationism.",
+            "By ignoring cyberwarfare entirely to avoid provoking neighboring states."
+          ],
+          "correctIndex": 1,
+          "rationale": "Strategic engagement and positive incentives strengthen democratic alliances without forcing neutral states into hostile economic or military counter-blocs."
+        }
+      ]
+    },
+    "counterArgument": "Forcing non-aligned nations into adversarial categorization through punitive sanctions alienates potential neutral partners, drives them into deeper economic dependence on adversaries, and destabilizes multilateral diplomacy.",
+    "tests": [
+      "skill.fallacy.structure"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "arg-deepfake-trust",
+    "title": "Zero-Trust Epistemic Nihilism",
+    "domain": "Digital Forensics & Information Warfare",
+    "difficulty": "Intermediate",
+    "rawText": "Generative neural models can now synthesize hyper-realistic video, voice, and documents indistinguishable from authentic footage. When any recorded artifact can be perfectly fabricated, objective media verification becomes technically impossible. Therefore, citizens should dismiss all breaking news reports and journalistic evidence as manufactured state deception.",
+    "clauses": [
+      {
+        "id": "c1",
+        "text": "Generative neural models can now synthesize hyper-realistic video, voice, and documents indistinguishable from authentic footage.",
+        "type": "premise",
+        "label": "Premise 1 (Technological Frontier)"
+      },
+      {
+        "id": "c2",
+        "text": "When any recorded artifact can be perfectly fabricated, objective media verification becomes technically impossible.",
+        "type": "premise",
+        "label": "Premise 2 (Epistemic Surrender)"
+      },
+      {
+        "id": "c3",
+        "text": "Therefore, citizens should dismiss all breaking news reports and journalistic evidence as manufactured state deception.",
+        "type": "conclusion",
+        "label": "Conclusion (Liar's Dividend / Nihilism)"
+      }
+    ],
+    "unstatedAssumption": {
+      "text": "That truth verification in journalism and forensics relies exclusively on single isolated pixels, rather than multi-source triangulation, cryptographic provenance (C2PA), physical corroboration, and independent eyewitness custody chains.",
+      "distractors": [
+        "Generative video models require more electrical energy to train than conventional industrial manufacturing.",
+        "Human eye visual perception is biologically incapable of detecting changes in optical lighting angles.",
+        "News reporting agencies never utilize open-source satellite intelligence or radar telemetry."
+      ],
+      "explanation": "The argument exploits the 'Liar's Dividend': because some media can be faked, it claims no media can ever be trusted, ignoring that evidential truth is built through systemic corroboration, metadata chains, and cryptographic provenance."
+    },
+    "structuralFlaw": {
+      "name": "Liar's Dividend Exploitation / Epistemic Nihilism",
+      "latin": "Ignoratio Epistemica",
+      "category": "Rhetorical Subversion",
+      "analysis": "Weaponizes the existence of forgeries to invalidate all genuine evidence, confusing the difficulty of single-image visual inspection with the total impossibility of holistic investigative corroboration."
+    },
+    "steelMannedVersion": {
+      "text": "Because visual artifacts can now be generated with high perceptual fidelity, society must transition from naive visual trust to cryptographic provenance standards, multi-source lateral verification, and cryptographic media watermarking.",
+      "improvements": [
+        "Replaces epistemic nihilism and surrender with upgraded forensic verification protocols",
+        "Emphasizes cryptographic origin tracking (C2PA/JUMBF) and lateral triangulation over naive sensory inspection",
+        "Defends institutional information integrity without dismissing real synthetic media risks"
+      ],
+      "exercises": [
+        {
+          "id": "ex-deepfake-1",
+          "prompt": "What is the primary methodological flaw of concluding that 'all breaking news is state deception' due to deepfake technology?",
+          "options": [
+            "It assumes generative AI models will never improve in rendering human hands.",
+            "It conflates the difficulty of raw sensory inspection with the total impossibility of multi-source corroboration and cryptographic provenance.",
+            "It overlooks that state actors never attempt to influence public information ecosystems.",
+            "It presumes that all deepfakes are watermarked by artificial intelligence labs."
+          ],
+          "correctIndex": 1,
+          "rationale": "Evidential credibility does not rely on unaided eyesight alone; cryptographic signatures, satellite telemetry, lateral reporting, and corroboration chains verify events despite synthetic media."
+        }
+      ]
+    },
+    "counterArgument": "Authenticity is established through institutional chains of custody, multi-angle telemetry, physical consequence corroboration, and cryptographic signatures, not isolated visual inspection alone.",
+    "tests": [
+      "skill.fallacy.structure"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "arg-algorithm-agency",
+    "title": "Algorithmic Determinism & Moral Absolution",
+    "domain": "Sociotechnical & Human Agency",
+    "difficulty": "Beginner",
+    "rawText": "Engagement algorithms are engineered by top neuroscientists to maximize dopamine addiction and polarize user outrage. Human willpower is powerless against billion-dollar cognitive weaponization systems. Therefore, individuals cannot be held morally or civically responsible for spreading extremist disinformation online.",
+    "clauses": [
+      {
+        "id": "c1",
+        "text": "Engagement algorithms are engineered by top neuroscientists to maximize dopamine addiction and polarize user outrage.",
+        "type": "premise",
+        "label": "Premise 1 (Systemic Incentive)"
+      },
+      {
+        "id": "c2",
+        "text": "Human willpower is powerless against billion-dollar cognitive weaponization systems.",
+        "type": "premise",
+        "label": "Premise 2 (Total Deterministic Helplessness)"
+      },
+      {
+        "id": "c3",
+        "text": "Therefore, individuals cannot be held morally or civically responsible for spreading extremist disinformation online.",
+        "type": "conclusion",
+        "label": "Conclusion (Moral Exemption)"
+      }
+    ],
+    "unstatedAssumption": {
+      "text": "That environmental persuasion pressure, emotional nudging, and algorithmic amplification are functionally equivalent to physical coercion, completely nullifying individual moral agency and critical verification duties.",
+      "distractors": [
+        "Software engineers deliberately code algorithms with the primary purpose of lowering platform user engagement.",
+        "Mobile smartphone screens emit electromagnetic frequencies that physically paralyze human voluntary motor functions.",
+        "Social media accounts are exclusively operated by automated bot scripts rather than human users."
+      ],
+      "explanation": "The argument commits a hard determinism fallacy: because platforms create strong friction against deliberation, it claims individuals possess zero agency and zero responsibility for verifying content before sharing."
+    },
+    "structuralFlaw": {
+      "name": "Hard Determinism / Moral Evasion Fallacy",
+      "latin": "Excusatio Injusta",
+      "category": "Ethical / Epistemic Confusion",
+      "analysis": "Confuses algorithmic optimization and emotional manipulation friction with the absolute elimination of human agency, using structural exploitation to absolve individuals of ethical verification duties."
+    },
+    "steelMannedVersion": {
+      "text": "Platform architectures create severe structural friction against sober epistemic deliberation, requiring both algorithmic design regulation and institutional support alongside personal cognitive inoculation and digital verification training.",
+      "improvements": [
+        "Synthesizes structural platform accountability with individual civic responsibility and epistemic agency",
+        "Replaces binary moral absolution with dual-level governance (systemic reform + cognitive training)",
+        "Recognizes psychological vulnerability without treating humans as passive, helpless automata"
+      ],
+      "exercises": [
+        {
+          "id": "ex-agency-1",
+          "prompt": "How does a steel-manned framework resolve the tension between algorithmic manipulation and personal responsibility?",
+          "options": [
+            "By completely exonerating individuals and fining platform companies for every user repost.",
+            "By establishing dual-layer responsibility: regulating systemic architecture incentives while training individuals in active verification hygiene.",
+            "By banning all algorithmic feeds and returning exclusively to physical print newspapers.",
+            "By asserting that algorithms have zero psychological effect on human emotional arousal."
+          ],
+          "correctIndex": 1,
+          "rationale": "Dual-layer responsibility addresses the reality of algorithmic friction through platform regulation while empowering users with epistemic agency and verification skills."
+        }
+      ]
+    },
+    "counterArgument": "While platforms bear systemic liability for amplifying outrage, individuals retain cognitive agency to practice verification habits, fact-check before sharing, and regulate their digital consumption.",
+    "tests": [
+      "skill.fallacy.structure"
+    ],
+    "heldOut": false
+  }
+]

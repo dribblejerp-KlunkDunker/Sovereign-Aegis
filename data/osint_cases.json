@@ -1,0 +1,718 @@
+{
+  "cases": [
+    {
+      "id": "case-sunburst",
+      "title": "Operation Sunburst: The Dawn Broadcast",
+      "domain": "Chronolocation & Solar Telemetry",
+      "difficulty": "Intermediate",
+      "claim": "A regional state broadcaster published video footage of a large-scale military convoy deployment, asserting: 'Operations commenced at sharp 12:00 PM local solar noon today under clear skies.'",
+      "briefing": "Analysts suspect the footage was prerecorded hours earlier to fabricate an ongoing real-time offensive. Your objective is to perform chronolocational shadow analysis on the vertical lighting masts visible along the highway to determine the true time of capture.",
+      "vectors": [
+        {
+          "name": "Vector 1 // Shadow Geometry",
+          "icon": "☀️",
+          "details": "A standard 10-meter highway luminaire pole casts a distinct, sharp shadow on flat asphalt measured at 28.0 meters in length. The shadow orientation points toward compass heading 340° (North-Northwest)."
+        },
+        {
+          "name": "Vector 2 // Solar Altitude Calculation",
+          "icon": "📐",
+          "details": "Using tan(θ) = height / shadow = 10 / 28 = 0.3571, the sun's altitude angle is arctan(0.3571) ≈ 19.65°. At this latitude (48°N in August), solar noon altitude is 56.4°, which would produce a shadow of only 6.6 meters (0.66x pole height)."
+        },
+        {
+          "name": "Vector 3 // Sun Azimuth Correlation",
+          "icon": "🧭",
+          "details": "A shadow pointing 340° NNW indicates the sun is positioned directly opposite at azimuth 160° (South-Southeast). In this region, a 19.65° altitude at 160° azimuth occurs strictly between 08:15 AM and 08:45 AM local solar time."
+        }
+      ],
+      "deductionQuestion": {
+        "prompt": "What does the solar and shadow telemetry definitively establish about the broadcast?",
+        "options": [
+          "The video was recorded in the early morning (~08:30 AM), directly contradicting the state claim of a 12:00 PM live operation.",
+          "The video is a generative AI synthetic deepfake because shadows are longer than the light pole.",
+          "The video was recorded at astronomical dusk in an equatorial country.",
+          "The shadow length proves the highway was constructed with fraudulent engineering standards."
+        ],
+        "correctIndex": 0,
+        "explanation": "Triangulating the solar altitude angle (19.65°) with shadow azimuth (340°) establishes that the footage was captured around 08:30 AM. The claim of a 12:00 PM live operation is mathematically falsified."
+      },
+      "limitationQuestion": {
+        "prompt": "In accordance with honest analytical doctrine, what does this chronolocation finding NOT establish?",
+        "options": [
+          "It does not establish the destination of the convoy or the strategic intent of the command — only that the broadcast misrepresented capture time.",
+          "It does not establish that shadows are caused by sunlight.",
+          "It proves that all future broadcasts from this channel will be prerecorded.",
+          "It proves that the troops shown were crisis actors."
+        ],
+        "correctIndex": 0,
+        "explanation": "Chronolocation proves temporal misattribution; it cannot determine strategic military intent, unit destination, or whether the vehicles reached their target."
+      },
+      "teaches": [
+        "skill.forensics.read-measurements",
+        "skill.sift.trace-origin"
+      ]
+    },
+    {
+      "id": "case-buckeye",
+      "title": "The Ghost Subdomain: The Buckeye Chronicle",
+      "domain": "Network & Infrastructure Attribution",
+      "difficulty": "Advanced",
+      "claim": "A newly launched online outlet named 'The Buckeye Chronicle' claims to be an independent non-profit local newspaper founded by Ohio civic volunteers reporting on municipal ballot fraud.",
+      "briefing": "Investigative reporters flagged the website for astroturfing. Your task is to pivot across DNS history, certificate transparency logs, and web monetization artifacts to map the true sociotechnical infrastructure behind the publication.",
+      "vectors": [
+        {
+          "name": "Vector 1 // WHOIS & ASN Topography",
+          "icon": "🌐",
+          "details": "The domain was registered via an offshore proxy with redacted registrant data. Reverse IP lookup reveals the host 185.220.101.44 hosts 23 other identical 'hyperlocal' US news sites across six swing states."
+        },
+        {
+          "name": "Vector 2 // Certificate Transparency (crt.sh)",
+          "icon": "🔐",
+          "details": "Certificate transparency query on the site's SSL cert reveals Subject Alternative Names (SAN) that include '*.pravda-news-matrix.net' alongside '*.buckeyechronicle.org', issued in the same automated batch."
+        },
+        {
+          "name": "Vector 3 // AdSense & Tracker Fingerprints",
+          "icon": "🏷️",
+          "details": "Source HTML inspection uncovers Google AdSense publisher ID 'pub-99214018471920' and Tag Manager container 'GTM-TX88912', which match known assets of an influence syndicate previously sanctioned for coordinated inauthentic behavior."
+        }
+      ],
+      "deductionQuestion": {
+        "prompt": "Which combination of technical artifacts decisively connects this site to a coordinated influence network?",
+        "options": [
+          "Shared SSL wildcard certificate SAN entries and identical AdSense/GTM tracking IDs linking it to 23 other state-targeted clones.",
+          "The website using the English language and hosted on a Linux web server.",
+          "The domain using a .org extension, which can only be bought by accredited state governments.",
+          "The presence of an 'About Us' page mentioning civic volunteering."
+        ],
+        "correctIndex": 0,
+        "explanation": "Cryptographic certificate SAN grouping and unique ad tracking IDs (pub-ID / GTM) are high-confidence attribution anchors that reveal coordinated multi-domain operational infrastructure."
+      },
+      "limitationQuestion": {
+        "prompt": "What does this infrastructure link NOT establish about the individual articles published?",
+        "options": [
+          "It establishes infrastructure coordination, but does not prove whether individual articles were human-authored, plagiarized from legitimate reporters, or AI-generated.",
+          "It does not establish that computers run on electrical power.",
+          "It proves that Google AdSense is illegal in the state of Ohio.",
+          "It proves that no citizens in Ohio have ever read the articles."
+        ],
+        "correctIndex": 0,
+        "explanation": "Shared hosting and tracking footprints prove infrastructure syndication, but content provenance requires separate textual and linguistic forensics."
+      },
+      "teaches": [
+        "skill.tactic.astroturfing",
+        "skill.sift.investigate-source"
+      ]
+    },
+    {
+      "id": "case-pantograph",
+      "title": "The Displaced Landmark: The Catenary Contradiction",
+      "domain": "Geospatial & Infrastructure Triangulation",
+      "difficulty": "Intermediate",
+      "claim": "A viral social media clip with 2.4M views claims: 'Violent anti-corruption riots break out in Prague city center, shutting down all municipal transit today.'",
+      "briefing": "Fact-checkers have received conflicting reports. Verify whether the footage depicts Prague, Czechia, by analyzing transportation infrastructure, architectural cues, and street furniture.",
+      "vectors": [
+        {
+          "name": "Vector 1 // Tramway Electrification & Gauge",
+          "icon": "🚋",
+          "details": "The tram featured in the video is a narrow single-truck vintage car running on 1000mm meter-gauge track with an archaic bow collector. Prague's tram network operates strictly on standard 1435mm gauge and modern single-arm pantographs."
+        },
+        {
+          "name": "Vector 2 // Street Furniture & Signage",
+          "icon": "🚏",
+          "details": "A visible street nameplate displays white Dutch/Flemish typography on dark blue enamel with a red corner stamp reading 'Gent'. Prague street signs are standardized red and black enamel with distinct Czech diacritics (háček)."
+        },
+        {
+          "name": "Vector 3 // Architectural Horizon",
+          "icon": "⛪",
+          "details": "In the background stands the distinctive Saint Bavo's Cathedral belfry with Brabantine Gothic brickwork, situated in Ghent, Belgium, over 800 kilometers west of Prague."
+        }
+      ],
+      "deductionQuestion": {
+        "prompt": "Which physical evidence definitively refutes the claim that the event took place in Prague?",
+        "options": [
+          "Meter-gauge tracks, bow-collector tram mechanics, and Flemish Ghent signage are physically incompatible with Prague's standard-gauge transit system.",
+          "The people in the video are wearing winter coats while Prague is always tropical.",
+          "Prague does not possess any paved streets or public electricity.",
+          "The video resolution is 1080p, which is prohibited under Czech privacy law."
+        ],
+        "correctIndex": 0,
+        "explanation": "Railway gauge (1000mm vs 1435mm) and municipal signage formats are fixed physical ground truths that cannot be altered, proving the clip was filmed in Ghent, Belgium."
+      },
+      "limitationQuestion": {
+        "prompt": "What does debunking the location NOT establish regarding the uploader?",
+        "options": [
+          "It proves the location was misattributed, but cannot determine whether the uploader acted with malicious disinformation intent or made an innocent viral repost error.",
+          "It proves the city of Prague does not exist in Central Europe.",
+          "It proves that no protests have ever taken place in Belgium.",
+          "It proves all street signs in Europe are standardized by treaty."
+        ],
+        "correctIndex": 0,
+        "explanation": "Debunking geographic attribution reveals what the media depicts, not the mental state or motivation of the user who shared it."
+      },
+      "teaches": [
+        "skill.sift.find-coverage",
+        "skill.sift.trace-origin"
+      ]
+    },
+    {
+      "id": "case-phantom-general",
+      "title": "The Astroturf Handle: The Phantom General",
+      "domain": "Identity Verification & Social Media Forensics",
+      "difficulty": "Beginner",
+      "claim": "A verified social account '@Gen_Vance_DoD' with a blue checkmark claims to be a serving 3-Star General at the Pentagon, releasing 'unredacted NATO contingency directives'.",
+      "briefing": "The post has triggered panic among security forums. You must verify whether the account represents authentic Department of Defense leadership or an impersonation persona.",
+      "vectors": [
+        {
+          "name": "Vector 1 // Historical Handle Archive",
+          "icon": "🏛️",
+          "details": "The Wayback Machine archive from 4 months prior shows this exact numerical account ID (UID: 894102914) was named '@CryptoPumpKing_99', promoting memecoins before rebranding 72 hours ago."
+        },
+        {
+          "name": "Vector 2 // Reverse Avatar Search",
+          "icon": "🖼️",
+          "details": "Yandex Visual Search and Google Lens locate the avatar photograph in a 2016 US Army retirement press release for General Arthur Vance, but the original uniform name tape was cloned out with Photoshop content-aware fill."
+        },
+        {
+          "name": "Vector 3 // Cryptographic & Official Signatures",
+          "icon": "🔑",
+          "details": "The account provides no PGP key, no links to Defense.gov official bio, and does not possess a verified government organization affiliation checkmark."
+        }
+      ],
+      "deductionQuestion": {
+        "prompt": "What is the decisive investigative proof that '@Gen_Vance_DoD' is an impersonation asset?",
+        "options": [
+          "Permanent UID archival records prove the handle was a rebranded crypto-promotion account using an airbrushed 2016 retired officer portrait.",
+          "The account has fewer than 1,000,000 followers, which is illegal for general officers.",
+          "The general is wearing a green uniform instead of formal gold dress attire.",
+          "The text contains punctuation marks, which military regulations prohibit."
+        ],
+        "correctIndex": 0,
+        "explanation": "UID persistence across handle changes combined with reverse-image matching to a retired officer's press release confirms account repurposing for impersonation."
+      },
+      "limitationQuestion": {
+        "prompt": "What does discovering this impersonation NOT establish about the operator?",
+        "options": [
+          "It confirms the persona is fraudulent, but does not identify the real physical identity, geographic location, or state sponsorship of the operator.",
+          "It proves the real General Vance was never in the military.",
+          "It proves that all verified accounts on social media are bots.",
+          "It proves that NATO directives are written in invisible ink."
+        ],
+        "correctIndex": 0,
+        "explanation": "Unmasking an impersonation persona establishes that the stated identity is false; identifying the true perpetrator behind the keyboard requires subpoena-level server and ISP logs."
+      },
+      "teaches": [
+        "skill.sift.investigate-source",
+        "skill.tactic.astroturfing"
+      ]
+    },
+    {
+      "id": "case-synthetic-satellite",
+      "title": "The Ghost Fleet: The Strait Satellite Anomaly",
+      "domain": "Satellite Imagery & Sensor Forensics",
+      "difficulty": "Advanced",
+      "claim": "An anonymous defense blog published high-resolution optical satellite imagery alleging: 'Commercial Sentinel-2 satellite confirms 8 stealth corvettes crossing the strait at 35 knots today.'",
+      "briefing": "You are tasked with evaluating whether the satellite image is authentic open-source remote sensing data or an artificially synthesized composite.",
+      "vectors": [
+        {
+          "name": "Vector 1 // Ground Sample Distance (GSD)",
+          "icon": "🛰️",
+          "details": "The image claims to be from Sentinel-2, whose public multispectral bands have a GSD limit of 10 meters per pixel. In this image, individual 30mm deck gun barrels (sub-meter detail) are razor-sharp with no pixelation."
+        },
+        {
+          "name": "Vector 2 // Hydrodynamic Wake Mechanics",
+          "icon": "🌊",
+          "details": "Ships traveling at 35 knots generate distinct Kelvin wake patterns with a theoretical constant half-angle of 19.47°. The vessels in the image show turbulent wakes pointing in opposite directions despite parallel headings."
+        },
+        {
+          "name": "Vector 3 // Conflicting Solar Vectors",
+          "icon": "☀️",
+          "details": "Cumulus clouds in the upper quadrant cast shadows toward azimuth 210° (Southwest), while the ship superstructures cast sharp shadows toward azimuth 045° (Northeast) — an optical impossibility."
+        }
+      ],
+      "deductionQuestion": {
+        "prompt": "Which combination of sensor and optical anomalies proves the satellite image is a fabricated composite?",
+        "options": [
+          "Impossible sub-meter resolution for the claimed sensor, conflicting dual shadow vectors, and unphysical reversed wake directions.",
+          "Satellites are incapable of photographing blue water because oceans absorb all sunlight.",
+          "Warships are coated in stealth radar paint which makes them completely transparent to optical cameras.",
+          "The image was saved as a JPEG file, which satellites cannot produce."
+        ],
+        "correctIndex": 0,
+        "explanation": "Resolution exceeding sensor physical limits (GSD mismatch), dual opposing lighting directions, and broken fluid dynamics prove the image is a synthetic Photoshop composite."
+      },
+      "limitationQuestion": {
+        "prompt": "What does proving this image is fabricated NOT establish regarding the regional military situation?",
+        "options": [
+          "It proves this specific image is a fake, but does not prove whether genuine naval movements are or are not occurring elsewhere in the region.",
+          "It proves that navies no longer build corvettes.",
+          "It proves satellites cannot orbit over bodies of water.",
+          "It proves optical sensors are useless for intelligence."
+        ],
+        "correctIndex": 0,
+        "explanation": "Disproving one fabricated piece of photographic evidence does not prove the negative regarding the broader geopolitical situation; analysts must avoid counter-conspiracy certainty."
+      },
+      "teaches": [
+        "skill.forensics.read-measurements",
+        "skill.sift.trace-origin"
+      ]
+    },
+    {
+      "id": "case-flight-transponder",
+      "title": "The Diplomatic Air Corridor: Flight 702",
+      "domain": "ADS-B Telemetry & Transport Tracking",
+      "difficulty": "Intermediate",
+      "claim": "A conspiracy channel posted a Flightradar24 screengrab claiming: 'Government jet carrying diplomatic delegation disappeared over border mountains — evidence of a clandestine landing at an unlisted airfield.'",
+      "briefing": "Analyze the ADS-B transponder telemetry, ground receiver topology, and flight kinematics to determine whether an emergency landing occurred or if a coverage anomaly took place.",
+      "vectors": [
+        {
+          "name": "Vector 1 // Transponder Line-of-Sight Physics",
+          "icon": "📡",
+          "details": "ADS-B signals (1090 MHz) operate on strict line-of-sight propagation. When aircraft descend below the ridgeline of the rugged Zagros range (peaks >3,800m), terrain masks signals from valley-floor receivers."
+        },
+        {
+          "name": "Vector 2 // Crowdsourced Receiver Coverage",
+          "icon": "🗺️",
+          "details": "ADS-B Exchange feeder network maps confirm there are zero feeder stations within a 120km radius of the pass below FL180 (18,000 feet), creating a permanent receiver dead-zone."
+        },
+        {
+          "name": "Vector 3 // Downstream Kinematic Re-acquisition",
+          "icon": "✈️",
+          "details": "The aircraft's Mode S transponder re-emerged 24 minutes later ascending out of the valley at 450 knots groundspeed at FL240, exactly matching the scheduled civil flight corridor timing."
+        }
+      ],
+      "deductionQuestion": {
+        "prompt": "What is the true technical explanation for the transponder disappearance?",
+        "options": [
+          "Line-of-sight terrain masking in an unmonitored mountain dead-zone temporarily interrupted crowdsourced receiver reception.",
+          "The flight crew turned on an anti-gravity cloaking device to land silently.",
+          "The aircraft performed an impossible 90-degree tactical vertical dive to land.",
+          "The Flightradar24 website was hacked by enemy electronic warfare units."
+        ],
+        "correctIndex": 0,
+        "explanation": "Radio line-of-sight constraints and lack of local ground receivers mean transponder dropouts in mountain valleys are routine physical events, not evidence of a secret landing."
+      },
+      "limitationQuestion": {
+        "prompt": "What does understanding the receiver dead-zone NOT establish?",
+        "options": [
+          "It explains the technical cause of the data gap, but cannot establish the internal communication or mechanical status of the aircraft while out of coverage.",
+          "It proves that airplanes do not require wings to fly.",
+          "It proves the flight crew had no flight plan.",
+          "It proves that air traffic control radar is obsolete."
+        ],
+        "correctIndex": 0,
+        "explanation": "A known sensor coverage limitation explains why data is absent, but absence of telemetry cannot positively prove what occurred during the blind window without secondary data."
+      },
+      "teaches": [
+        "skill.forensics.read-measurements",
+        "skill.sift.investigate-source"
+      ]
+    }
+  ],
+  "bellingcat_toolkit": [
+    {
+      "id": "tool-suncalc",
+      "name": "SunCalc",
+      "category": "Chronolocation & Solar",
+      "url": "https://www.suncalc.org",
+      "description": "Calculates sun movement, solar altitude, azimuth angle, and shadow lengths for any location on Earth across any date and time.",
+      "tradecraftUse": "Verifying or falsifying the claimed capture time of photos and videos through shadow direction and length trigonometry.",
+      "limitation": "Ground slope, non-vertical objects, and lens perspective distortion can significantly alter observed shadow lengths without proper baseline correction."
+    },
+    {
+      "id": "tool-shadowcalc",
+      "name": "ShadowCalculator",
+      "category": "Chronolocation & Solar",
+      "url": "http://shadowcalculator.eu",
+      "description": "Interactive Google Maps overlay that simulates shadow lengths of 3D building outlines and vertical structures at designated times.",
+      "tradecraftUse": "Validating urban building shadow projections against satellite imagery.",
+      "limitation": "Does not account for undulating terrain or recent building height modifications."
+    },
+    {
+      "id": "tool-google-earth",
+      "name": "Google Earth Pro (Historical)",
+      "category": "Geolocation & Satellite",
+      "url": "https://www.google.com/earth/versions/#earth-pro",
+      "description": "Desktop GIS platform with high-resolution global satellite archive spanning back decades.",
+      "tradecraftUse": "Tracking changes in infrastructure, terrain destruction, trench construction, and ground markings across historical dates.",
+      "limitation": "Satellite imagery tiles are stitched from varying acquisition dates and time-of-day; cloud cover and shadow skew can obscure critical features."
+    },
+    {
+      "id": "tool-sentinel-hub",
+      "name": "Sentinel Hub EO Browser",
+      "category": "Geolocation & Satellite",
+      "url": "https://apps.sentinel-hub.com/eo-browser/",
+      "description": "Near-real-time optical, infrared, and radar satellite imagery from Copernicus Sentinel-1/2 and Landsat missions.",
+      "tradecraftUse": "Detecting wildfires, floods, thermal signatures, and large-scale troop encampments within 24-48 hours of occurrence.",
+      "limitation": "Maximum optical resolution is 10 meters per pixel — cannot identify individual people, civilian cars, or small tactical equipment."
+    },
+    {
+      "id": "tool-overpass-turbo",
+      "name": "Overpass Turbo (OSM)",
+      "category": "Geolocation & Satellite",
+      "url": "https://overpass-turbo.eu",
+      "description": "Web-based data mining tool for OpenStreetMap that executes custom queries for geographic feature combinations.",
+      "tradecraftUse": "Finding candidate coordinates by querying co-located features (e.g. 'church with copper roof within 50m of railway crossing and pharmacy').",
+      "limitation": "Limited by OpenStreetMap volunteer mapping completeness in rural and conflict zones."
+    },
+    {
+      "id": "tool-peakvisor",
+      "name": "PeakVisor",
+      "category": "Geolocation & Satellite",
+      "url": "https://peakvisor.com",
+      "description": "3D mountain panoramic horizon simulator based on high-accuracy digital elevation models (DEM).",
+      "tradecraftUse": "Matching distant ridgelines and mountain peaks in photo backgrounds to exact camera viewpoint coordinates.",
+      "limitation": "Haze, weather occlusion, and extreme telephoto compression can distort perceived mountain shapes."
+    },
+    {
+      "id": "tool-crt-sh",
+      "name": "crt.sh Certificate Search",
+      "category": "Network & Infrastructure",
+      "url": "https://crt.sh",
+      "description": "Public search engine for Certificate Transparency (CT) logs mandated across modern SSL/TLS certificate authorities.",
+      "tradecraftUse": "Discovering unlisted subdomains, internal test environments, and multi-domain shared certificates linking related infrastructure.",
+      "limitation": "Only logs issued certificates; does not verify whether a listed domain is actively pointed or operational."
+    },
+    {
+      "id": "tool-viewdns",
+      "name": "ViewDNS.info",
+      "category": "Network & Infrastructure",
+      "url": "https://viewdns.info",
+      "description": "Suite of DNS tools including Reverse IP, Reverse WHOIS, Reverse NS, and IP history.",
+      "tradecraftUse": "Pivoting from a single suspicious hostname to discover all websites hosted on the same dedicated server or DNS provider.",
+      "limitation": "Shared cloud hosts (Cloudflare, AWS, Fastly) result in thousands of unrelated domains co-hosted on identical IP addresses."
+    },
+    {
+      "id": "tool-dnsdumpster",
+      "name": "DNSDumpster",
+      "category": "Network & Infrastructure",
+      "url": "https://dnsdumpster.com",
+      "description": "Domain research tool that maps organizational attack surfaces and extracts DNS records, subdomains, and mail servers.",
+      "tradecraftUse": "Uncovering misconfigured subdomains and cross-border MX email servers.",
+      "limitation": "Passive discovery only; does not guarantee active uptime or real ownership verification."
+    },
+    {
+      "id": "tool-shodan",
+      "name": "Shodan",
+      "category": "Network & Infrastructure",
+      "url": "https://www.shodan.io",
+      "description": "Search engine for Internet-connected devices, industrial control systems, webcams, and open ports.",
+      "tradecraftUse": "Locating vulnerable servers, industrial monitoring hardware, and open network cameras mentioned in investigations.",
+      "limitation": "Scans are periodic and asynchronous; open ports may have been patched or reconfigured since the last banner grab."
+    },
+    {
+      "id": "tool-invid",
+      "name": "InVID-WeVerify",
+      "category": "Image & Video Forensics",
+      "url": "https://www.invid-project.eu/tools-and-services/invid-verification-plugin/",
+      "description": "Browser extension for video keyframe extraction, reverse image search, Twitter advanced query parsing, and forensic metadata.",
+      "tradecraftUse": "Extracting thumbnail keyframes from YouTube/X videos to perform reverse image search on video content.",
+      "limitation": "Keyframes from heavily compressed web video often lose distinguishing micro-features needed for search indexing."
+    },
+    {
+      "id": "tool-fotoforensics",
+      "name": "FotoForensics",
+      "category": "Image & Video Forensics",
+      "url": "https://fotoforensics.com",
+      "description": "Online tool providing Error Level Analysis (ELA), metadata inspection, and JPEG compression curve estimation.",
+      "tradecraftUse": "Detecting pasted elements, erased patches, and resaved composite regions in digital photographs.",
+      "limitation": "ELA cannot prove an image is AI-generated; multiple resaves and natural contrast edges frequently produce innocent false positives."
+    },
+    {
+      "id": "tool-google-lens",
+      "name": "Google Lens",
+      "category": "Image & Video Forensics",
+      "url": "https://lens.google.com",
+      "description": "Visual search engine leveraging computer vision to identify architectural landmarks, commercial products, logos, and plants.",
+      "tradecraftUse": "Fast visual matching of unique statues, building facades, consumer packaging, and localized street signs.",
+      "limitation": "Frequently returns generic product lookalikes rather than exact geographic matches when unique features are lacking."
+    },
+    {
+      "id": "tool-yandex-images",
+      "name": "Yandex Visual Search",
+      "category": "Image & Video Forensics",
+      "url": "https://yandex.com/images/",
+      "description": "Reverse image search engine recognized for face-recognition capability and Cyrillic/Eastern European indexing.",
+      "tradecraftUse": "Identifying persons of interest from partial profile angles and geolocating post-Soviet urban landscapes.",
+      "limitation": "Indexed data may be influenced by regional censorship policies and algorithmic biases."
+    },
+    {
+      "id": "tool-tineye",
+      "name": "TinEye Reverse Search",
+      "category": "Image & Video Forensics",
+      "url": "https://tineye.com",
+      "description": "Strict perceptual hash reverse image engine with sort-by-oldest-date capability.",
+      "tradecraftUse": "Finding the earliest known online publication date of an image to prove whether viral media is recycled old footage.",
+      "limitation": "Index size is smaller than Google/Yandex; does not perform well on cropped or modified images."
+    },
+    {
+      "id": "tool-sherlock",
+      "name": "Sherlock Project",
+      "category": "Social Media & Identity",
+      "url": "https://sherlock-project.github.io",
+      "description": "CLI tool that hunts down social media accounts by username across 300+ platforms.",
+      "tradecraftUse": "Mapping the cross-platform footprint of an online persona or investigation target.",
+      "limitation": "High false-positive rate on common names due to soft 404 pages and platform rate-limiting."
+    },
+    {
+      "id": "tool-whatsmyname",
+      "name": "WhatsMyName.app",
+      "category": "Social Media & Identity",
+      "url": "https://whatsmyname.app",
+      "description": "Curated web-based username enumeration tool testing response codes across hundreds of public platforms.",
+      "tradecraftUse": "Rapid initial reconnaissance to identify niche forum and gaming accounts sharing a handle.",
+      "limitation": "Cannot verify whether two accounts with the same handle are operated by the same physical person."
+    },
+    {
+      "id": "tool-wayback",
+      "name": "Wayback Machine",
+      "category": "Social Media & Identity",
+      "url": "https://archive.org/web/",
+      "description": "Digital archive of the World Wide Web with billions of historical captures of web pages.",
+      "tradecraftUse": "Recovering deleted social media posts, altered press releases, and historical WHOIS records.",
+      "limitation": "Only captures pages when triggered by crawler or user; dynamic JavaScript rendering can be incomplete."
+    },
+    {
+      "id": "tool-adsb-exchange",
+      "name": "ADS-B Exchange",
+      "category": "Transport & Maritime",
+      "url": "https://globe.adsbexchange.com",
+      "description": "Unfiltered crowdsourced flight tracking network that does not censor military or VIP aircraft.",
+      "tradecraftUse": "Tracking government transport aircraft, military surveillance orbits, and civilian air traffic.",
+      "limitation": "Depends on amateur radio receiver coverage; low altitudes in mountainous or ocean regions have coverage blackouts."
+    },
+    {
+      "id": "tool-marinetraffic",
+      "name": "MarineTraffic",
+      "category": "Transport & Maritime",
+      "url": "https://www.marinetraffic.com",
+      "description": "AIS (Automatic Identification System) vessel tracking platform displaying commercial maritime traffic.",
+      "tradecraftUse": "Verifying ship positions, port calls, draught changes, and maritime rendezvous.",
+      "limitation": "Ships involved in illicit transfers or military operations routinely disable AIS transponders ('going dark') or spoof GPS positions."
+    }
+  ],
+  "pivot_drills": [
+    {
+      "id": "pd-01",
+      "scenario": "You receive an image of a military truck on a desert road with no EXIF metadata. The background consists of sand dunes and open sky.",
+      "prompt": "What is the most reliable first investigative pivot?",
+      "options": [
+        "Isolate unique vehicle markings, tire tread patterns, or registration plates and crop them for reverse search.",
+        "Reverse search the entire image including the generic sky and sand dunes.",
+        "Declare the image an AI fabrication because there are no buildings.",
+        "Search Twitter for the word 'desert'."
+      ],
+      "correctIndex": 0,
+      "explanation": "High-entropy details (markings, license plates, bumper stencil codes) provide discriminative signal, while generic sand and sky create false positives.",
+      "teaches": ["skill.sift.investigate-source", "skill.forensics.read-measurements"]
+    },
+    {
+      "id": "pd-02",
+      "scenario": "A breaking video shows an alleged military explosion in a major city. The sky is completely overcast and grey.",
+      "prompt": "Which verification technique is most appropriate to chronolocate this video?",
+      "options": [
+        "Cross-reference meteorological METAR airport weather reports and barometric pressure records for cloud-base elevation and precipitation timing.",
+        "Use SunCalc to measure shadow lengths on the pavement.",
+        "Calculate the Doppler shift of vehicle horns in the audio track.",
+        "Check whether the video was filmed on an iPhone or an Android."
+      ],
+      "correctIndex": 0,
+      "explanation": "When shadows are absent due to heavy overcast, historical weather data (METAR reports from nearby airports) provides objective atmospheric ground truth.",
+      "teaches": ["skill.sift.find-coverage", "skill.forensics.read-measurements"]
+    },
+    {
+      "id": "pd-03",
+      "scenario": "You are investigating a website publishing leaked corporate documents. The domain was registered yesterday.",
+      "prompt": "What should you check first to identify connected infrastructure?",
+      "options": [
+        "Query crt.sh for Certificate Transparency logs to inspect Subject Alternative Names (SAN) issued for that server.",
+        "Email the webmaster asking for their physical home address.",
+        "Assume the documents are authentic because the website loads quickly.",
+        "Delete your browser cookies and restart your computer."
+      ],
+      "correctIndex": 0,
+      "explanation": "Certificate Transparency logs expose shared SSL certificates and staging subdomains deployed by the same administrator before DNS propagation is publicized.",
+      "teaches": ["skill.sift.investigate-source", "skill.tactic.astroturfing"]
+    },
+    {
+      "id": "pd-04",
+      "scenario": "A viral photo claims to show a protest in Paris, but a vehicle in the background displays a yellow rear license plate and a white front plate with blue side stripe.",
+      "prompt": "What does this vehicle registration plate pattern indicate?",
+      "options": [
+        "The vehicle conforms to United Kingdom standard plates (yellow rear, white front), indicating the photo was likely taken in the UK, not France.",
+        "The car was manufactured in 1945.",
+        "The vehicle is a secret police surveillance vehicle.",
+        "All European countries use identical license plates."
+      ],
+      "correctIndex": 0,
+      "explanation": "Vehicle registration plate formats (UK yellow rear / white front vs French white front and rear) are critical environmental indicators for geolocation.",
+      "teaches": ["skill.sift.trace-origin", "skill.sift.find-coverage"]
+    },
+    {
+      "id": "pd-05",
+      "scenario": "A user handle 'sentinel_defense_hq' appears on Mastodon. You run Sherlock and find 12 accounts with the same name across GitHub, Reddit, and Telegram.",
+      "prompt": "What is the critical investigative safeguard before linking all 12 accounts to one individual?",
+      "options": [
+        "Verify cross-account cryptographic proofs, biographical links, creation timestamps, and consistent writing style — avoid assuming namesake identity.",
+        "Immediately publish a dossier declaring all 12 accounts are operated by the same spy.",
+        "Assume GitHub accounts can never be created by malicious actors.",
+        "Report all 12 accounts to international law enforcement."
+      ],
+      "correctIndex": 0,
+      "explanation": "Username collisions (namesakes) are extremely common on popular handles; cross-platform attribution requires explicit corroborating evidence such as PGP keys or linked bios.",
+      "teaches": ["skill.sift.investigate-source", "skill.tactic.astroturfing"]
+    },
+    {
+      "id": "pd-06",
+      "scenario": "A photo of an alleged flooded airport runway shows airplane reflections perfectly mirroring the sky, but the building reflections are completely missing.",
+      "prompt": "What does this optical discrepancy suggest?",
+      "options": [
+        "Selective compositing or generative AI synthesis with inconsistent reflection physics.",
+        "The airport was built with stealth anti-reflective concrete.",
+        "The camera lens had water droplets on the front glass element.",
+        "Water only reflects airborne objects."
+      ],
+      "correctIndex": 0,
+      "explanation": "Inconsistent Fresnel reflections where only certain objects cast reflections on standing water is a hallmark of digital manipulation and generative AI rendering errors.",
+      "teaches": ["skill.forensics.read-measurements", "skill.forensics.provenance"]
+    },
+    {
+      "id": "pd-07",
+      "scenario": "You are geolocating a rural railway crossing. You observe single-phase AC catenary masts with distinctive cantilevers and concrete ties.",
+      "prompt": "Which tool provides the fastest query to locate this infrastructure?",
+      "options": [
+        "Overpass Turbo querying OpenStreetMap for electrified railway tags combined with level crossing nodes.",
+        "Reverse image searching a picture of gravel ballast.",
+        "Searching Reddit for 'train tracks'.",
+        "Pinging the local power station's IP address."
+      ],
+      "correctIndex": 0,
+      "explanation": "Overpass Turbo allows direct spatial queries for tagged railway electrification types and road intersections across entire national datasets.",
+      "teaches": ["skill.sift.find-coverage", "skill.forensics.read-measurements"]
+    },
+    {
+      "id": "pd-08",
+      "scenario": "A breaking news claim asserts an oil tanker was captured in the Persian Gulf 30 minutes ago, citing AIS tracking data showing the ship stopped moving.",
+      "prompt": "What limitation of AIS tracking must the analyst consider first?",
+      "options": [
+        "AIS signals can be spoofed by regional electronic warfare transmitters, or legitimate signal loss can be caused by satellite reception latency.",
+        "AIS signals travel at the speed of sound and take 4 days to reach ground stations.",
+        "Oil tankers are prohibited by international treaty from using radio equipment.",
+        "AIS data is only updated once per calendar year."
+      ],
+      "correctIndex": 0,
+      "explanation": "AIS spoofing and terrestrial receiver gaps frequently generate false stationary or displaced coordinates; AIS must be corroborated with optical satellite or naval comms.",
+      "teaches": ["skill.forensics.read-measurements", "skill.sift.investigate-source"]
+    },
+    {
+      "id": "pd-09",
+      "scenario": "An unverified video claims to show a ballistic missile launch site in a desert valley. Commercial optical satellite imagery shows heavy cloud cover over the target area for the entire day.",
+      "prompt": "Which remote sensing modality bypasses cloud cover to detect ground disturbances or vehicle tracks?",
+      "options": [
+        "Sentinel-1 Synthetic Aperture Radar (SAR) coherence and amplitude imagery, which penetrates cloud cover.",
+        "Google Street View panorama archives.",
+        "Increasing the brightness and contrast slider on the cloudy optical image.",
+        "Waiting for the cloud cover to dissipate in historical satellite archives."
+      ],
+      "correctIndex": 0,
+      "explanation": "Synthetic Aperture Radar (SAR) emits microwave pulses that penetrate clouds, haze, and darkness, revealing surface texture changes and metal reflections.",
+      "teaches": ["skill.forensics.read-measurements", "skill.sift.find-coverage"]
+    },
+    {
+      "id": "pd-10",
+      "scenario": "A leaked government PDF contains black redaction boxes covering sensitive names. You download the file directly from a public portal.",
+      "prompt": "What is the primary technical check before assuming the redacted text is permanently obscured?",
+      "options": [
+        "Inspect vector drawing layers and extract underlying text streams, as black rectangle overlays often leave underlying text intact in the PDF DOM.",
+        "Print the PDF on paper and hold it up to a strong halogen light.",
+        "Assume Adobe Acrobat automatically destroys all text underneath black boxes.",
+        "Convert the PDF to an MP3 audio file."
+      ],
+      "correctIndex": 0,
+      "explanation": "Improper digital redaction frequently places vector rectangles over selectable text streams without sanitizing the underlying PDF content stream.",
+      "teaches": ["skill.forensics.provenance", "skill.sift.investigate-source"]
+    },
+    {
+      "id": "pd-11",
+      "scenario": "A social media video claims a crowd marched through downtown Chicago at 2:00 PM yesterday under bright sunshine. Shadow analysis indicates shadows point due South (180°).",
+      "prompt": "Why is a due-South shadow heading (180°) in Chicago (41.88°N) an astronomical impossibility?",
+      "options": [
+        "In the Northern Hemisphere north of the Tropic of Cancer (23.44°N), the sun is always in the southern sky at noon, so shadows must ALWAYS point northward.",
+        "The Earth rotates from north to south on alternate Tuesdays.",
+        "Chicago's skyscrapers generate artificial magnetic fields that rotate sunlight.",
+        "Shadows in the United States always point directly toward Washington, D.C."
+      ],
+      "correctIndex": 0,
+      "explanation": "North of 23.44°N, the sun is always south of zenith at solar noon. Cast shadows must point into the northern quadrant (azimuth 270° to 090°); a due-south shadow is astronomically impossible.",
+      "teaches": ["skill.forensics.read-measurements", "skill.sift.trace-origin"]
+    },
+    {
+      "id": "pd-12",
+      "scenario": "A suspicious cryptocurrency wallet receives 500 ETH from a sanctioned ransomware group. The funds are immediately distributed across 40 new addresses in equal micro-amounts.",
+      "prompt": "What money laundering tradecraft does this pattern represent, and how do forensic analysts track it?",
+      "options": [
+        "A peeling chain or mixer fan-out; tracked using graph clustering algorithms and UTXO/token flow heuristics.",
+        "Proof of Stake validator consensus rewards.",
+        "A hardware wallet firmware update.",
+        "An Ethereum smart contract deleting the blockchain transaction history."
+      ],
+      "correctIndex": 0,
+      "explanation": "Peeling chains and mixer distribution break large sums into uniform sub-transactions; blockchain analytics platforms correlate gas price timestamps and consolidated sweep hops.",
+      "teaches": ["skill.sift.trace-origin", "skill.tactic.astroturfing"]
+    },
+    {
+      "id": "pd-13",
+      "scenario": "An image allegedly showing a new prototype naval vessel in drydock has a C2PA (Content Authenticity Initiative) manifest attached.",
+      "prompt": "What does a cryptographically valid C2PA manifest verify about the image?",
+      "options": [
+        "It verifies the chain of edits, signing device identity, and cryptographic hash integrity of the file since capture.",
+        "It proves that the vessel in the drydock cannot sink.",
+        "It legally guarantees that the state government endorses the photograph.",
+        "It decrypts the classified blueprints of the vessel."
+      ],
+      "correctIndex": 0,
+      "explanation": "C2PA manifests provide cryptographic provenance and edit-history attestations rooted in hardware or editor X.509 certificates, proving the file hasn't been tampered with post-signing.",
+      "teaches": ["skill.forensics.provenance", "skill.sift.investigate-source"]
+    },
+    {
+      "id": "pd-14",
+      "scenario": "You are tracking an unregistered cargo aircraft suspected of arms smuggling. Its Mode-S transponder is transmitting ICAO hex code '7C0B29', but no callsign or destination is filed.",
+      "prompt": "Which primary database lookup maps the 24-bit ICAO aircraft hex code to the physical airframe?",
+      "options": [
+        "The national civil aviation aircraft registry database (e.g. FAA N-number or equivalent state registry cross-referenced via ADS-B Exchange / Planespotters).",
+        "The International Maritime Organization (IMO) ship index.",
+        "WHOIS domain name registration lookup.",
+        "A reverse phone number directory."
+      ],
+      "correctIndex": 0,
+      "explanation": "Every Mode-S/ADS-B transponder has a hard-coded 24-bit ICAO hex address tied to airframe serial number, manufacturer, and national civil registration records.",
+      "teaches": ["skill.sift.investigate-source", "skill.sift.trace-origin"]
+    },
+    {
+      "id": "pd-15",
+      "scenario": "A viral photograph of a wildfire shows high-density smoke plumes. An analyst claims Error Level Analysis (ELA) proves the smoke was digitally edited because the smoke area displays uniform dark purple noise.",
+      "prompt": "Why is this ELA interpretation an analytical fallacy?",
+      "options": [
+        "Low-contrast, uniform surfaces (like dense smoke or blue sky) naturally have low error levels and appear uniformly dark in ELA; this is normal JPEG compression behavior, not evidence of manipulation.",
+        "Error Level Analysis is an optical illusion that has no scientific basis.",
+        "Smoke molecules absorb JPEG quantization tables and emit digital radiation.",
+        "All wildfire photos are automatically classified as authentic by satellites."
+      ],
+      "correctIndex": 0,
+      "explanation": "ELA measures compression error differences. Smooth or low-frequency regions (clouds, smoke, flat walls) naturally have lower error rates; misinterpreting low error as editing is a common forensic rookie trap.",
+      "teaches": ["skill.forensics.read-measurements", "skill.bias.confirmation"]
+    },
+    {
+      "id": "pd-16",
+      "scenario": "A video claims to show a train transporting armored vehicles across the border into Poland. You observe a rail junction with a track gauge visibly wider than Polish standard gauge (1,435 mm), measuring 1,520 mm with break-of-gauge bogie exchange jacks.",
+      "prompt": "What does this physical railway engineering indicator reveal about the location?",
+      "options": [
+        "The track utilizes Russian/post-Soviet broad gauge (1,520 mm), establishing the footage is situated in an Eastern European broad-gauge network or border interchange, not standard European mainlines.",
+        "The train is a hyperloop maglev prototype.",
+        "Standard gauge tracks shrink in cold weather.",
+        "Track width is chosen randomly by individual locomotive drivers."
+      ],
+      "correctIndex": 0,
+      "explanation": "Track gauge differences (1,435 mm standard gauge in Western/Central Europe vs 1,520 mm broad gauge in Eastern Europe) and border bogie exchange infrastructure provide decisive territorial constraints.",
+      "teaches": ["skill.sift.trace-origin", "skill.forensics.read-measurements"]
+    }
+  ]
+}

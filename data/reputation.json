@@ -1,0 +1,209 @@
+{
+  "reputationModel": {
+    "baseScore": 100,
+    "maxScore": 1000,
+    "weightingFactors": {
+      "masterclassCompletion": 0.20,
+      "inoculationResilience": 0.20,
+      "infowarVictory": 0.15,
+      "verdadFalsification": 0.15,
+      "achAnalysis": 0.15,
+      "cryptographicAttestation": 0.15
+    },
+    "decayRateDays": 30
+  },
+  "badgeDefinitions": [
+    {
+      "badgeId": "badge-epistemic-sovereign",
+      "name": "Epistemic Sovereign",
+      "category": "Cognitive Defense",
+      "icon": "icon-shield",
+      "description": "Demonstrated master-level resistance against cognitive biases, affect heuristics, and tribal motivated reasoning.",
+      "unlockCondition": "Complete Masterclass 2 and achieve >85% resilience in 3 Prebunking simulations.",
+      "reputationBonus": 75
+    },
+    {
+      "badgeId": "badge-algorithmic-aegis",
+      "name": "Algorithmic Aegis",
+      "category": "Computational Defense",
+      "icon": "icon-cpu",
+      "description": "Mastered the identification of coordinated inauthentic behavior, botnet swarms, and algorithmic ragebait hooks.",
+      "unlockCondition": "Complete Masterclass 1 and pass the Simulated Botnet Triage Lab with 100% precision.",
+      "reputationBonus": 75
+    },
+    {
+      "badgeId": "badge-forensic-sentinel",
+      "name": "Forensic Sentinel",
+      "category": "OSINT & Verification",
+      "icon": "icon-search",
+      "description": "Proficient in multi-modal synthetic media forensics, acoustic spectrogram analysis, and shadow chronolocation.",
+      "unlockCondition": "Complete Masterclass 3 and successfully debunk 3 multi-modal forensic sample cases.",
+      "reputationBonus": 80
+    },
+    {
+      "badgeId": "badge-cryptographic-attestor",
+      "name": "Cryptographic Attestor",
+      "category": "Decentralized Identity",
+      "icon": "icon-key",
+      "description": "Established a self-sovereign ECDSA P-256 DID identity and published tamper-evident W3C Verifiable Credentials.",
+      "unlockCondition": "Generate a DID keypair, sign an investigative statement, and export a valid JSON-LD credential.",
+      "reputationBonus": 90
+    },
+    {
+      "badgeId": "badge-infowar-commander",
+      "name": "InfoWar Commander",
+      "category": "Tactical Simulation",
+      "icon": "icon-activity",
+      "description": "Commanded a 7-node communication network through an 8-turn hostile information assault to achieve victory.",
+      "unlockCondition": "Win any InfoWar tactical campaign on Medium or Hard difficulty with network health >= 60.",
+      "reputationBonus": 85
+    },
+    {
+      "badgeId": "badge-inoculation-shield",
+      "name": "Inoculation Shield",
+      "category": "Prebunking",
+      "icon": "icon-shield-check",
+      "description": "Successfully completed all 5 foundational prebunking branching scenarios without falling into vulnerability traps.",
+      "unlockCondition": "Achieve cumulative positive resilience deltas in all 5 core prebunking scenarios.",
+      "reputationBonus": 70
+    },
+    {
+      "badgeId": "badge-ach-master-analyst",
+      "name": "ACH Master Analyst",
+      "category": "Structured Analytics",
+      "icon": "icon-grid",
+      "description": "Executed rigorous Richards J. Heuer Analysis of Competing Hypotheses matrix evaluations with zero diagnostic bias.",
+      "unlockCondition": "Complete 3 distinct ACH matrix evaluations with calculated inconsistency scoring.",
+      "reputationBonus": 80
+    },
+    {
+      "badgeId": "badge-source-arbiter",
+      "name": "Source Reputation Arbiter",
+      "category": "Intelligence Evaluation",
+      "icon": "icon-award",
+      "description": "Evaluated 20+ global media sources using Admiralty code ratings and ownership transparency standards.",
+      "unlockCondition": "Audit and filter 20 source profiles in the Source Reputation Directory.",
+      "reputationBonus": 50
+    },
+    {
+      "badgeId": "badge-system2-guardian",
+      "name": "System 2 Guardian",
+      "category": "Cognitive Hygiene",
+      "icon": "icon-heart",
+      "description": "Maintained cognitive sovereignty through disciplined breathing friction and reflective debiasing journaling.",
+      "unlockCondition": "Complete 5 distinct 4-7-8 breathing cycles and export 3 reflective journal entries.",
+      "reputationBonus": 45
+    },
+    {
+      "badgeId": "badge-did-pioneer",
+      "name": "DID Pioneer",
+      "category": "Decentralized Identity",
+      "icon": "icon-user-check",
+      "description": "Early adopter of self-sovereign cryptographic verification within the SOVEREIGN // AEGIS epistemic network.",
+      "unlockCondition": "Initialize a DID profile in the identity management module.",
+      "reputationBonus": 30
+    },
+    {
+      "badgeId": "badge-early-warning-scout",
+      "name": "Early Warning Scout",
+      "category": "Threat Intelligence",
+      "icon": "icon-compass",
+      "description": "Monitored multi-domain early warning threat radars and executed DISARM mitigation playbooks.",
+      "unlockCondition": "Inspect and execute mitigation action checklists across all 6 threat radar domains.",
+      "reputationBonus": 60
+    },
+    {
+      "badgeId": "badge-grand-sovereign",
+      "name": "Grand Epistemic Sovereign",
+      "category": "Mastery",
+      "icon": "icon-crown",
+      "description": "Attained the pinnacle of cognitive fortification, forensic tradecraft, cryptographic identity, and network defense.",
+      "unlockCondition": "Accumulate a total reputation score >= 850 and unlock at least 8 distinct badges.",
+      "reputationBonus": 150
+    }
+  ],
+  "didSchema": {
+    "context": [
+      "https://www.w3.org/ns/did/v1",
+      "https://w3id.org/security/suites/jws-2020/v1",
+      "https://sovereign-aegis.network/ns/v1"
+    ],
+    "type": "DidDocument",
+    "cryptographicSuites": [
+      "JsonWebKey2020",
+      "EcdsaSecp256r1VerificationKey2019"
+    ]
+  },
+  "credentialTemplates": {
+    "epistemicAttestation": {
+      "@context": [
+        "https://www.w3.org/2018/credentials/v1",
+        "https://sovereign-aegis.network/credentials/v1"
+      ],
+      "type": ["VerifiableCredential", "EpistemicAttestationCredential"],
+      "issuer": "did:key:z6MkpTHR8VNsBxYAAWHut2Geadd9jSwuBV8xRoAnwWsdvktH",
+      "issuanceDate": "2026-08-15T20:00:00Z",
+      "credentialSubject": {
+        "id": "did:key:z6MkpTHR8VNsBxYAAWHut2Geadd9jSwuBV8xRoAnwWsdvktH",
+        "attestationType": "FactualVerification",
+        "targetClaim": "Synthetic Audio-Driven Apex Bank Insolvency Claim",
+        "veracityRating": "FALSE",
+        "confidenceScore": 98,
+        "forensicProofHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "proof": {
+        "type": "JsonWebSignature2020",
+        "created": "2026-08-15T20:00:00Z",
+        "proofPurpose": "assertionMethod",
+        "verificationMethod": "did:key:z6MkpTHR8VNsBxYAAWHut2Geadd9jSwuBV8xRoAnwWsdvktH#z6MkpTHR8VNsBxYAAWHut2Geadd9jSwuBV8xRoAnwWsdvktH",
+        "jws": "eyJhbGciOiJFUzI1NiIsImI2NCI6ZmFsc2UsImNyaXQiOlsicmRmLWNhbm9uIl19..MEQCIB1..."
+      }
+    },
+    "forensicDebunkAssertion": {
+      "@context": [
+        "https://www.w3.org/2018/credentials/v1",
+        "https://sovereign-aegis.network/credentials/v1"
+      ],
+      "type": ["VerifiableCredential", "ForensicDebunkAssertionCredential"],
+      "issuer": "did:key:z6MkpTHR8VNsBxYAAWHut2Geadd9jSwuBV8xRoAnwWsdvktH",
+      "issuanceDate": "2026-08-15T20:00:00Z",
+      "credentialSubject": {
+        "id": "did:key:z6MkpTHR8VNsBxYAAWHut2Geadd9jSwuBV8xRoAnwWsdvktH",
+        "debunkType": "DeepfakeMediaFalsification",
+        "targetMediaHash": "d5e8b4e72f8a1926...b9c0",
+        "detectedModalities": ["SpectralCutoff", "RT60Discontinuity"],
+        "admiraltyRating": "A1"
+      },
+      "proof": {
+        "type": "JsonWebSignature2020",
+        "created": "2026-08-15T20:00:00Z",
+        "proofPurpose": "assertionMethod",
+        "verificationMethod": "did:key:z6MkpTHR8VNsBxYAAWHut2Geadd9jSwuBV8xRoAnwWsdvktH#key-1",
+        "jws": "eyJhbGciOiJFUzI1NiJ9..dB92..."
+      }
+    },
+    "masterclassCertification": {
+      "@context": [
+        "https://www.w3.org/2018/credentials/v1",
+        "https://sovereign-aegis.network/credentials/v1"
+      ],
+      "type": ["VerifiableCredential", "MasterclassCertificationCredential"],
+      "issuer": "did:key:z6MkpTHR8VNsBxYAAWHut2Geadd9jSwuBV8xRoAnwWsdvktH",
+      "issuanceDate": "2026-08-15T20:00:00Z",
+      "credentialSubject": {
+        "id": "did:key:z6MkpTHR8VNsBxYAAWHut2Geadd9jSwuBV8xRoAnwWsdvktH",
+        "masterclassId": "mc-01-computational-propaganda",
+        "masterclassName": "Computational Propaganda & Algorithmic Manipulation",
+        "badgeAwarded": "Algorithmic Aegis",
+        "masteryScore": 100
+      },
+      "proof": {
+        "type": "JsonWebSignature2020",
+        "created": "2026-08-15T20:00:00Z",
+        "proofPurpose": "assertionMethod",
+        "verificationMethod": "did:key:z6MkpTHR8VNsBxYAAWHut2Geadd9jSwuBV8xRoAnwWsdvktH#key-1",
+        "jws": "eyJhbGciOiJFUzI1NiJ9..aK81..."
+      }
+    }
+  }
+}

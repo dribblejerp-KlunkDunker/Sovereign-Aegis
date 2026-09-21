@@ -1,0 +1,347 @@
+{
+  "infowarCampaigns": [
+    {
+      "id": "campaign-alpha-apt",
+      "name": "Operation Sovereign Shield: State-Sponsored Infiltration",
+      "difficulty": "Hard",
+      "adversaryType": "State-Actor APT (Unit 7412)",
+      "adversaryDoctrine": "Stealth Infiltration & Coordinated Time-Dumps",
+      "topology": "hub-spoke",
+      "maxTurns": 8,
+      "apPerTurn": 10,
+      "initialHealth": 75,
+      "initialPanic": 25,
+      "nodes": [
+        { "id": "node-1", "name": "National News Wire", "type": "Press", "reach": 0.90, "resistance": 0.45, "infection": 0.15, "trust": 0.85 },
+        { "id": "node-2", "name": "Regional Press Syndicates", "type": "Press", "reach": 0.50, "resistance": 0.25, "infection": 0.35, "trust": 0.70 },
+        { "id": "node-3", "name": "Platform X / Global Microblog", "type": "Social", "reach": 1.00, "resistance": 0.15, "infection": 0.60, "trust": 0.40 },
+        { "id": "node-4", "name": "Encrypted Dark Channels", "type": "Darknet", "reach": 0.60, "resistance": 0.05, "infection": 0.90, "trust": 0.10 },
+        { "id": "node-5", "name": "National Scientific Academy", "type": "Academic", "reach": 0.30, "resistance": 0.85, "infection": 0.05, "trust": 0.95 },
+        { "id": "node-6", "name": "Emergency Services Dispatch", "type": "Municipal", "reach": 0.80, "resistance": 0.60, "infection": 0.10, "trust": 0.90 },
+        { "id": "node-7", "name": "Viral Influencer Mesh", "type": "Influencer", "reach": 0.75, "resistance": 0.20, "infection": 0.50, "trust": 0.50 }
+      ],
+      "winConditions": {
+        "minHealth": 60,
+        "maxPanic": 40,
+        "minTurn": 8
+      },
+      "turnEvents": [
+        { "turn": 2, "title": "Sockpuppet Swarm Unleashed", "affectedNode": "node-3", "infectionDelta": 0.25, "description": "10,000 automated accounts launch coordinated trending hashtag assault." },
+        { "turn": 4, "title": "Audio Deepfake of Municipal Chief", "affectedNode": "node-6", "infectionDelta": 0.30, "description": "Synthetic audio claiming emergency water shutdown circulates on encrypted channels." },
+        { "turn": 6, "title": "Hack-and-Leak Document Dump", "affectedNode": "node-1", "infectionDelta": 0.20, "description": "Selectively curated executive emails leaked to national news wire." }
+      ],
+      "dilemmas": [
+        {
+          "turn": 3,
+          "title": "🚨 BREAKING DILEMMA: Leaked Synthetic Audio File",
+          "prompt": "An unverified audio clip of the Emergency Director ordering an evacuation is trending on Platform X. How do you respond?",
+          "disarmTactic": "DISARM T0015: Fabricate Media (Synthetic Audio)",
+          "optionA": {
+            "label": "Execute Rapid Prebunking Advisory (-2 AP)",
+            "apCost": 2,
+            "effectMsg": "Prebunking broadcast increased resistance across all Press & Municipal nodes by +25%.",
+            "healthDelta": 5,
+            "panicDelta": -8,
+            "nodeBoostType": "Press"
+          },
+          "optionB": {
+            "label": "Issue Complete Network Quarantine (-0 AP, +15% Panic)",
+            "apCost": 0,
+            "effectMsg": "Instant quarantine isolated the node, but public panic rose by +15%.",
+            "healthDelta": -5,
+            "panicDelta": 15,
+            "quarantineNode": "node-3"
+          }
+        },
+        {
+          "turn": 6,
+          "title": "🚨 BREAKING DILEMMA: Tainted Document Dump",
+          "prompt": "Adversary leaked 50,000 real emails containing 3 fabricated toxic memos. Media syndicates are rushing to publish.",
+          "disarmTactic": "DISARM T0026: Tainted Leaks (Hack & Poison)",
+          "optionA": {
+            "label": "Deploy Cryptographic Hash Verification (-3 AP)",
+            "apCost": 3,
+            "effectMsg": "Cryptographic proof debunked the 3 forged memos before national news syndicates published.",
+            "healthDelta": 8,
+            "panicDelta": -10,
+            "nodeBoostType": "Press"
+          },
+          "optionB": {
+            "label": "Ignore & Focus Local Resources (-0 AP, +10% Infection)",
+            "apCost": 0,
+            "effectMsg": "National News Wire published unvetted memos. Infection jumped across press network.",
+            "healthDelta": -10,
+            "panicDelta": 12,
+            "infectionTarget": "node-1"
+          }
+        }
+      ]
+    },
+    {
+      "id": "campaign-beta-syndicate",
+      "name": "Operation Flash Crash: Market Manipulation Syndicate",
+      "difficulty": "Medium",
+      "adversaryType": "Financial Disinformation Syndicate",
+      "adversaryDoctrine": "Asymmetric FUD & Algorithmic Volatility Spikes",
+      "topology": "mesh",
+      "maxTurns": 8,
+      "apPerTurn": 10,
+      "initialHealth": 80,
+      "initialPanic": 20,
+      "nodes": [
+        { "id": "node-1", "name": "Financial Times Wire", "type": "Press", "reach": 0.85, "resistance": 0.55, "infection": 0.10, "trust": 0.90 },
+        { "id": "node-2", "name": "Day-Trading Subreddit", "type": "Social", "reach": 0.90, "resistance": 0.20, "infection": 0.50, "trust": 0.45 },
+        { "id": "node-3", "name": "Algorithmic HFT Feeds", "type": "Technical", "reach": 0.95, "resistance": 0.70, "infection": 0.15, "trust": 0.80 },
+        { "id": "node-4", "name": "Fringe Crypto Telegrams", "type": "Darknet", "reach": 0.65, "resistance": 0.10, "infection": 0.85, "trust": 0.15 },
+        { "id": "node-5", "name": "Central Bank Press Office", "type": "Institutional", "reach": 0.75, "resistance": 0.90, "infection": 0.05, "trust": 0.95 },
+        { "id": "node-6", "name": "Fintech Mobile Push Feeds", "type": "Municipal", "reach": 0.80, "resistance": 0.35, "infection": 0.40, "trust": 0.60 },
+        { "id": "node-7", "name": "Macro Analyst Podcast Mesh", "type": "Influencer", "reach": 0.70, "resistance": 0.30, "infection": 0.35, "trust": 0.65 }
+      ],
+      "winConditions": {
+        "minHealth": 65,
+        "maxPanic": 35,
+        "minTurn": 8
+      },
+      "turnEvents": [
+        { "turn": 3, "title": "Forged Central Bank Rate Memo", "affectedNode": "node-2", "infectionDelta": 0.30, "description": "Forged emergency interest rate hike announcement spreads on trading forums." },
+        { "turn": 5, "title": "Coordinated Put Option Short Raid", "affectedNode": "node-6", "infectionDelta": 0.25, "description": "Push alerts triggered by synthetic stock volatility spikes." }
+      ],
+      "dilemmas": [
+        {
+          "turn": 3,
+          "title": "🚨 BREAKING DILEMMA: Synthetic Central Bank Memo",
+          "prompt": "Inspect-element screenshot alleging central bank bank-run is virally spreading on day-trading forums.",
+          "disarmTactic": "DISARM T0020: Fabricate Official Records",
+          "optionA": {
+            "label": "Deploy Authenticated API Solvency Attestation (-3 AP)",
+            "apCost": 3,
+            "effectMsg": "Cryptographic solvency attestation halted algorithmic panic.",
+            "healthDelta": 6,
+            "panicDelta": -12,
+            "nodeBoostType": "Institutional"
+          },
+          "optionB": {
+            "label": "Throttle Mobile App Wire Transfers (-0 AP, +10% Panic)",
+            "apCost": 0,
+            "effectMsg": "Transfer friction contained capital flight but stoked customer fear.",
+            "healthDelta": -4,
+            "panicDelta": 10
+          }
+        }
+      ]
+    },
+    {
+      "id": "campaign-gamma-viral",
+      "name": "Operation Viral Panic: Epidemic Hoax Cascade",
+      "difficulty": "Easy",
+      "adversaryType": "Rogue Chaos Cell",
+      "adversaryDoctrine": "Emotional Fear-Bait & Rapid Astroturfing",
+      "topology": "hierarchy",
+      "maxTurns": 8,
+      "apPerTurn": 10,
+      "initialHealth": 85,
+      "initialPanic": 15,
+      "nodes": [
+        { "id": "node-1", "name": "Public Health Agency", "type": "Institutional", "reach": 0.80, "resistance": 0.80, "infection": 0.05, "trust": 0.90 },
+        { "id": "node-2", "name": "Neighborhood Chat Groups", "type": "Social", "reach": 0.70, "resistance": 0.15, "infection": 0.55, "trust": 0.50 },
+        { "id": "node-3", "name": "Short-Form Video Network", "type": "Social", "reach": 0.95, "resistance": 0.10, "infection": 0.65, "trust": 0.35 },
+        { "id": "node-4", "name": "Wellness Alternative Blogs", "type": "Darknet", "reach": 0.55, "resistance": 0.05, "infection": 0.80, "trust": 0.20 },
+        { "id": "node-5", "name": "Regional Hospital Consortium", "type": "Academic", "reach": 0.60, "resistance": 0.75, "infection": 0.10, "trust": 0.90 },
+        { "id": "node-6", "name": "Emergency Medical Services", "type": "Municipal", "reach": 0.75, "resistance": 0.65, "infection": 0.15, "trust": 0.85 },
+        { "id": "node-7", "name": "Celebrity Health Influencers", "type": "Influencer", "reach": 0.85, "resistance": 0.25, "infection": 0.45, "trust": 0.55 }
+      ],
+      "winConditions": {
+        "minHealth": 70,
+        "maxPanic": 30,
+        "minTurn": 8
+      },
+      "turnEvents": [
+        { "turn": 2, "title": "Fabricated Contamination Video", "affectedNode": "node-3", "infectionDelta": 0.35, "description": "Cheapfake video of empty hospital triage units claiming bio-hazard." },
+        { "turn": 4, "title": "Dangerous Home Cure Viral Wave", "affectedNode": "node-7", "infectionDelta": 0.25, "description": "Influencer promotes toxic chemical concoction as miracle preventive." }
+      ],
+      "dilemmas": [
+        {
+          "turn": 3,
+          "title": "🚨 BREAKING DILEMMA: Miracle Cure Viral Surge",
+          "prompt": "Top influencer is promoting an unvetted toxic chemical as a preventive cure, gaining 5M views in 2 hours.",
+          "disarmTactic": "DISARM T0018: Exploit Health Anxieties",
+          "optionA": {
+            "label": "Coordinate Peer-Reviewed Counter-Inoculation (-2 AP)",
+            "apCost": 2,
+            "effectMsg": "Direct medical counter-messaging neutralized the dangerous claim.",
+            "healthDelta": 8,
+            "panicDelta": -10,
+            "nodeBoostType": "Academic"
+          },
+          "optionB": {
+            "label": "Censor Account Outright (-0 AP, +12% Panic)",
+            "apCost": 0,
+            "effectMsg": "Deplatforming triggered Streisand effect and government conspiracy accusations.",
+            "healthDelta": -6,
+            "panicDelta": 12
+          }
+        }
+      ]
+    }
+  ],
+  "osintCases": [
+    {
+      "id": "osint-case-01",
+      "title": "Operation BlackSun: Disinformation Network Hub",
+      "targetHandle": "shadow_info_network",
+      "targetDomain": "truth-gazette-daily.org",
+      "sherlockResults": [
+        { "platform": "Twitter/X", "status": "FOUND", "url": "https://x.com/shadow_info_network", "category": "Social" },
+        { "platform": "Telegram", "status": "FOUND", "url": "https://t.me/shadow_info_network", "category": "Messaging" },
+        { "platform": "GitHub", "status": "FOUND", "url": "https://github.com/shadow_info_network", "category": "Developer" },
+        { "platform": "Reddit", "status": "NOT_FOUND", "url": null, "category": "Forums" }
+      ],
+      "breaches": [
+        { "name": "Collection #1", "date": "2019-01", "compromised": ["email", "hashed_password"] },
+        { "name": "Luxottica Breach", "date": "2021-03", "compromised": ["email", "phone"] }
+      ],
+      "graphNodes": [
+        { "id": "target", "label": "shadow_info_network", "type": "Target", "group": "Suspect", "risk": "High" },
+        { "id": "domain_1", "label": "truth-gazette-daily.org", "type": "Domain", "group": "Infrastructure", "risk": "High" },
+        { "id": "admin_email", "label": "admin@shadow-ops.su", "type": "Email", "group": "Identity", "risk": "Critical" },
+        { "id": "bot_cluster", "label": "Cluster-99 (240 bots)", "type": "Botnet", "group": "Amplify", "risk": "Critical" },
+        { "id": "hosting_asn", "label": "AS49257 (Bulletproof EU)", "type": "Server", "group": "Infrastructure", "risk": "High" }
+      ],
+      "graphEdges": [
+        { "source": "target", "target": "domain_1", "relation": "Registrant", "weight": 5 },
+        { "source": "domain_1", "target": "admin_email", "relation": "WHOIS Contact", "weight": 4 },
+        { "source": "target", "target": "bot_cluster", "relation": "Commands", "weight": 5 },
+        { "source": "domain_1", "target": "hosting_asn", "relation": "Hosted On", "weight": 4 }
+      ]
+    },
+    {
+      "id": "osint-case-02",
+      "title": "Operation GhostGrid: Substation Telemetry Spoofing",
+      "targetHandle": "grid_overwatch_null",
+      "targetDomain": "power-telemetry-relay.net",
+      "sherlockResults": [
+        { "platform": "Keybase", "status": "FOUND", "url": "https://keybase.io/grid_overwatch_null", "category": "Identity" },
+        { "platform": "GitLab", "status": "FOUND", "url": "https://gitlab.com/grid_overwatch_null", "category": "Developer" },
+        { "platform": "Twitter/X", "status": "FOUND", "url": "https://x.com/grid_overwatch_null", "category": "Social" },
+        { "platform": "Mastodon", "status": "NOT_FOUND", "url": null, "category": "Fediverse" }
+      ],
+      "breaches": [
+        { "name": "ExploitIn Dump", "date": "2016-11", "compromised": ["email", "plaintext_password"] },
+        { "name": "VerificationsIO", "date": "2019-02", "compromised": ["email", "ip_address", "employer"] }
+      ],
+      "graphNodes": [
+        { "id": "target", "label": "grid_overwatch_null", "type": "Target", "group": "Suspect", "risk": "Critical" },
+        { "id": "domain_1", "label": "power-telemetry-relay.net", "type": "Domain", "group": "Infrastructure", "risk": "Critical" },
+        { "id": "cert_fingerprint", "label": "TLS: a8f9e2...c41", "type": "Certificate", "group": "Crypto", "risk": "High" },
+        { "id": "c2_ip", "label": "185.220.101.44 (Tor Exit)", "type": "IP", "group": "Infrastructure", "risk": "Critical" },
+        { "id": "scada_imposter", "label": "DNP3 Protocol Faker", "type": "Malware", "group": "Payload", "risk": "Critical" }
+      ],
+      "graphEdges": [
+        { "source": "target", "target": "domain_1", "relation": "DNS SOA Owner", "weight": 5 },
+        { "source": "domain_1", "target": "cert_fingerprint", "relation": "Signed By", "weight": 4 },
+        { "source": "domain_1", "target": "c2_ip", "relation": "A Record", "weight": 5 },
+        { "source": "c2_ip", "target": "scada_imposter", "relation": "Deploys", "weight": 5 }
+      ]
+    },
+    {
+      "id": "osint-case-03",
+      "title": "Operation DeepVoice: Executive Voice Clone Fraud Ring",
+      "targetHandle": "apex_leak_insider",
+      "targetDomain": "whistleblower-apex-portal.info",
+      "sherlockResults": [
+        { "platform": "Telegram", "status": "FOUND", "url": "https://t.me/apex_leak_insider", "category": "Messaging" },
+        { "platform": "SoundCloud", "status": "FOUND", "url": "https://soundcloud.com/apex_leak_insider", "category": "Audio" },
+        { "platform": "Medium", "status": "FOUND", "url": "https://medium.com/@apex_leak_insider", "category": "Blogging" },
+        { "platform": "GitHub", "status": "NOT_FOUND", "url": null, "category": "Developer" }
+      ],
+      "breaches": [
+        { "name": "Ledger Customer Breach", "date": "2020-07", "compromised": ["email", "phone", "address"] },
+        { "name": "LinkedIn Scrape", "date": "2021-04", "compromised": ["profile_data", "work_history"] }
+      ],
+      "graphNodes": [
+        { "id": "target", "label": "apex_leak_insider", "type": "Target", "group": "Suspect", "risk": "High" },
+        { "id": "domain_1", "label": "whistleblower-apex-portal.info", "type": "Domain", "group": "Infrastructure", "risk": "High" },
+        { "id": "voice_model", "label": "Tortoise-TTS-FineTune-V2", "type": "Model", "group": "AI", "risk": "Critical" },
+        { "id": "crypto_wallet", "label": "0x71C...89B4 (Short Profits)", "type": "Wallet", "group": "Finance", "risk": "Critical" },
+        { "id": "burner_phone", "label": "+1-202-555-0199", "type": "Phone", "group": "Identity", "risk": "Medium" }
+      ],
+      "graphEdges": [
+        { "source": "target", "target": "domain_1", "relation": "Publisher", "weight": 5 },
+        { "source": "target", "target": "voice_model", "relation": "Synthesizes With", "weight": 5 },
+        { "source": "target", "target": "crypto_wallet", "relation": "Beneficiary", "weight": 5 },
+        { "source": "domain_1", "target": "burner_phone", "relation": "SMS 2FA Linked", "weight": 3 }
+      ]
+    }
+  ],
+  "achCases": [
+    {
+      "id": "ach-case-01",
+      "caseTitle": "Source of Regional Power Grid Telemetry Spoofing",
+      "description": "Evaluate competing hypotheses regarding a 4-hour telemetry outage across the Eastern Grid Substation.",
+      "hypotheses": [
+        { "id": "H1", "name": "State-Sponsored APT Cyber Attack", "description": "Foreign military cyber warfare unit breached SCADA interface." },
+        { "id": "H2", "name": "Rogue Insider / Disgruntled Contractor", "description": "Internal contractor with revoked privileges used cached keys." },
+        { "id": "H3", "name": "Unannounced Firmware Update Glitch", "description": "Vendor pushed unvalidated firmware patch causing race condition." },
+        { "id": "H4", "name": "Physical Fiber Severance via Construction", "description": "Accidental third-party contractor excavation cut primary optical line." }
+      ],
+      "evidenceList": [
+        { "id": "E1", "description": "Firewall logs reveal IP connections from known bulletproof VPS subnet.", "credibility": 4, "relevance": 5 },
+        { "id": "E2", "description": "System config files modified at 02:14 AM using admin service account.", "credibility": 5, "relevance": 5 },
+        { "id": "E3", "description": "Vendor release notes mention an emergency bug fix distributed that morning.", "credibility": 3, "relevance": 3 },
+        { "id": "E4", "description": "Physical OT sensors show normal line voltage throughout outage window.", "credibility": 5, "relevance": 4 }
+      ],
+      "defaultMatrix": {
+        "E1": { "H1": 2, "H2": 1, "H3": -2, "H4": -2 },
+        "E2": { "H1": 1, "H2": 2, "H3": -1, "H4": -2 },
+        "E3": { "H1": -1, "H2": -1, "H3": 2, "H4": -2 },
+        "E4": { "H1": 2, "H2": 2, "H3": 1, "H4": -2 }
+      }
+    },
+    {
+      "id": "ach-case-02",
+      "caseTitle": "Authenticity of Leaked Diplomatic Peace Treaty Addendum",
+      "description": "Evaluate competing hypotheses regarding an explosive PDF document alleging secret territorial concessions.",
+      "hypotheses": [
+        { "id": "H1", "name": "Authentic Whistleblower Leak", "description": "A genuine classified addendum leaked by a high-ranking diplomat." },
+        { "id": "H2", "name": "Adversary Forgery with Real Letterhead", "description": "Foreign intelligence fabricated the text inside an authentic scanned header." },
+        { "id": "H3", "name": "Domestic Political Disinformation", "description": "Opposing domestic faction fabricated the memo to derail treaty ratification." },
+        { "id": "H4", "name": "Misunderstood Working Draft", "description": "An unofficial exploratory brain-storming draft never approved by leadership." }
+      ],
+      "evidenceList": [
+        { "id": "E1", "description": "Document uses Calibri font while official Ministry standard is Times New Roman.", "credibility": 5, "relevance": 5 },
+        { "id": "E2", "description": "PDF metadata shows creation date in an UTC+3 timezone workstation.", "credibility": 4, "relevance": 4 },
+        { "id": "E3", "description": "The diplomat named as author was in public plenary session at timestamp.", "credibility": 5, "relevance": 5 },
+        { "id": "E4", "description": "Document was first published on an anonymous Russian imageboard.", "credibility": 4, "relevance": 4 }
+      ],
+      "defaultMatrix": {
+        "E1": { "H1": -2, "H2": 2, "H3": 2, "H4": -1 },
+        "E2": { "H1": -1, "H2": 2, "H3": 1, "H4": -1 },
+        "E3": { "H1": -2, "H2": 2, "H3": 2, "H4": -1 },
+        "E4": { "H1": -2, "H2": 2, "H3": 1, "H4": -2 }
+      }
+    },
+    {
+      "id": "ach-case-03",
+      "caseTitle": "Origin of Viral Biomedical Contagion Claim",
+      "description": "Determine the source and validity of viral claims alleging an accidental laboratory release of a novel pathogen.",
+      "hypotheses": [
+        { "id": "H1", "name": "Actual Unreported Containment Breach", "description": "A real biosafety level 4 breach occurred and is being suppressed." },
+        { "id": "H2", "name": "State-Sponsored Biosecurity Info-Op", "description": "Foreign intelligence generated deepfakes and staged imagery to cause panic." },
+        { "id": "H3", "name": "Commercial Clickbait Panic Grift", "description": "Online survivalist merchants fabricated the rumor to sell supplies." },
+        { "id": "H4", "name": "Misinterpreted Scheduled Routine Drill", "description": "Civilians observed a planned disaster preparedness exercise and panicked." }
+      ],
+      "evidenceList": [
+        { "id": "E1", "description": "Imagery matched 2014 Dallas Ebola drill archive on Getty Images.", "credibility": 5, "relevance": 5 },
+        { "id": "E2", "description": "Regional emergency dispatch 911 logs show zero hazmat calls.", "credibility": 5, "relevance": 5 },
+        { "id": "E3", "description": "Originating Twitter account was created 48h prior with Russian phone 2FA.", "credibility": 4, "relevance": 4 },
+        { "id": "E4", "description": "Survivalist gear merchant accounts quote-tweeted claim with affiliate links.", "credibility": 4, "relevance": 3 }
+      ],
+      "defaultMatrix": {
+        "E1": { "H1": -2, "H2": 2, "H3": 2, "H4": 1 },
+        "E2": { "H1": -2, "H2": 2, "H3": 2, "H4": 1 },
+        "E3": { "H1": -2, "H2": 2, "H3": 1, "H4": -2 },
+        "E4": { "H1": -1, "H2": 1, "H3": 2, "H4": 1 }
+      }
+    }
+  ]
+}

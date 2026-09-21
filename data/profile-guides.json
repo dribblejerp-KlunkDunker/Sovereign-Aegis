@@ -1,0 +1,89 @@
+{
+  "format": "sovereign-aegis-profile-guides",
+  "contentVersion": 1,
+  "lensAssets": {
+    "openness": [
+      "You look into claims that contradict what you believed — the habit that starves narrative capture before it forms.",
+      "You can hold questions open, which starves manufactured urgency of its power."
+    ],
+    "conscientiousness": [
+      "You check before sharing even when hurried — the habit the misinformation research ties to sharing fewer false claims.",
+      "You track where your claims came from, so retraction and correction stay possible."
+    ],
+    "extraversion": [
+      "Your networks surface second opinions fast when you ask for them.",
+      "You talk decisions through, which catches what solo reasoning misses."
+    ],
+    "agreeableness": [
+      "You give people the benefit of the doubt, which keeps scrutiny specific rather than paranoid.",
+      "Cooperative habits make real verification networks work."
+    ],
+    "emotional-stability": [
+      "You can wait before reacting to upsetting content, which defeats emotion-timed bait.",
+      "Criticism does not easily move your read of the facts."
+    ],
+    "fairness-reciprocity": [
+      "You check what the other side gets from a deal that favors you.",
+      "You can refuse or return a gift that came with strings."
+    ]
+  },
+  "contexts": {
+    "urgency": {
+      "label": "Manufactured urgency",
+      "tacticFamily": "False deadlines, last-chance framing, one-shot windows",
+      "watchpoint": "When a deadline appears suddenly, check whether the deadline itself is the technique before it sets your schedule.",
+      "countermeasure": "If a deadline appears, restate the claim out loud and verify one independent source before responding.",
+      "routeSkillId": "skill.sift.stop"
+    },
+    "authority": {
+      "label": "Authority presentation",
+      "tacticFamily": "Fake credentials, spoofed senders, letterhead and form-number mimicry",
+      "watchpoint": "Official-looking format is presentation, not verification. Spoofed authority counts on exactly this reflex.",
+      "countermeasure": "If authority is claimed, name the credential and check it at the primary source, out of band.",
+      "routeSkillId": "skill.sift.investigate-source"
+    },
+    "social-approval": {
+      "label": "Consensus pressure",
+      "tacticFamily": "Astroturfing, social proof, everyone-agrees framing, ostracism threats",
+      "watchpoint": "Unanimity is cheap to fake. The more a group seems to agree, the more worth checking who is actually doing the agreeing.",
+      "countermeasure": "If everyone is said to agree, find one named dissenter and their reasons before deciding.",
+      "routeSkillId": "skill.tactic.astroturfing"
+    },
+    "scarcity": {
+      "label": "Scarcity and FOMO",
+      "tacticFamily": "Manufactured shortage, exclusion framing, others-already-have-it comparison",
+      "watchpoint": "Scarcity reframes 'is this good?' as 'will I miss it?' — and the second question is much easier to manipulate.",
+      "countermeasure": "If it may run out, decide what you would choose if it did not, then compare.",
+      "routeSkillId": "skill.bias.anchoring"
+    },
+    "conflict": {
+      "label": "Conflict and aggression",
+      "tacticFamily": "Intimidation as leverage, DARVO, concession-under-pressure",
+      "watchpoint": "Sharp tone can be a pressure tactic rather than an argument. A concession made only to end a conversation skips the verification the decision deserved.",
+      "countermeasure": "If conflict spikes, defer the decision by one day by default. Sharpness is not new information.",
+      "routeSkillId": "skill.fallacy.appeals"
+    },
+    "isolation": {
+      "label": "Isolation and secrecy",
+      "tacticFamily": "Keep-this-between-us, special-selection flattery, cutting off other perspectives",
+      "watchpoint": "Being asked to keep something secret is itself the flag. Isolation works by making the secret feel like a bond.",
+      "countermeasure": "If you are asked to keep it secret, name one trusted person you will tell. Secrecy requested is a signal received.",
+      "routeSkillId": "skill.tactic.astroturfing",
+      "note": "If isolation appears in a close relationship alongside control or threats, use the support path in DESIGN-personal-defense-profile.md §8 — no drill substitutes for a human conversation."
+    },
+    "fatigue": {
+      "label": "Fatigue and cognitive load",
+      "tacticFamily": "Late-night persuasion, long-winded pressure, decision fatigue exploitation",
+      "watchpoint": "Tired judgment answers on tone instead of content. Irreversible decisions made exhausted are the ones you are most likely to regret.",
+      "countermeasure": "If you are worn down, no irreversible decisions: schedule the reply for when you have slept.",
+      "routeSkillId": "skill.sift.stop"
+    }
+  },
+  "disconfirmationPrompt": "Record one example that does not fit this picture. A pattern you can disconfirm is evidence; one you cannot is decoration.",
+  "evidenceNote": "This map is built from your own answers and logged events. The countermeasures come from technique-recognition research (inoculation trials, accuracy-prompt meta-analyses); the lens layer is dimensional self-report, which is noisy and context-dependent. Nothing here is a trait prediction or a manipulability score — the same verification toolkit works for every profile, and your observation log decides which watchpoints actually apply to you.",
+  "supportCard": {
+    "title": "This looks bigger than a technique",
+    "body": "Enforced secrecy, isolation, threats, or control over money, movement, or contact are coercive-control markers, not persuasion tactics. A drill cannot assess danger. Tell one trusted person, and contact local professional or emergency support. This card routes to human help on purpose.",
+    "keywords": ["threat", "stalk", "isolat", "coerc", "control me", "afraid of", "hurt me", "won't let me"]
+  }
+}

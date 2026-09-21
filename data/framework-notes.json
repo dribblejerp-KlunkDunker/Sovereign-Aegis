@@ -1,0 +1,73 @@
+{
+  "format": "sovereign-aegis-framework-notes",
+  "contentVersion": 1,
+  "cards": [
+    {
+      "id": "big-five",
+      "name": "Big Five / Five-Factor Model",
+      "tier": "strong",
+      "measures": "Five broad trait dimensions — openness, conscientiousness, extraversion, agreeableness, neuroticism (inverse of emotional stability) — as continuous scores, not categories.",
+      "misuse": "Reading a score as an identity, or as a prediction of behavior in a specific situation. Traits are tendencies, and situations dominate them.",
+      "compatiblePractice": "This is the dimensional layer the reflection inventory is aligned with. Bands, not percentiles; retakes over verdicts."
+    },
+    {
+      "id": "hexaco",
+      "name": "HEXACO",
+      "tier": "strong",
+      "measures": "Six dimensions — adds Honesty-Humility to a Big Five-like core. Honesty-Humility separates fairness and sincerity from the agreeableness cluster.",
+      "misuse": "Treating low Honesty-Humility in oneself (or guessing it in someone else) as a character verdict.",
+      "compatiblePractice": "The inventory's fairness-reciprocity lens is HEXACO-informed: it asks about behavior in specific tempting situations, not about what kind of person you are."
+    },
+    {
+      "id": "attachment",
+      "name": "Adult attachment (anxiety / avoidance dimensions)",
+      "tier": "moderate",
+      "measures": "Two independent dimensions — attachment anxiety and attachment avoidance — that vary by relationship and context rather than forming fixed categories.",
+      "misuse": "The four labels (secure, anxious, avoidant, fearful-avoidant) used as permanent identities. The dimensional research shows within-person variation across relationships.",
+      "compatiblePractice": "Use the dimension language when reflecting on a specific relationship where pressure appears — 'around this person, approval-seeking gets switched on in me' — never as a label for the other person."
+    },
+    {
+      "id": "temperament",
+      "name": "Temperament (Rothbart tradition)",
+      "tier": "moderate",
+      "measures": "Constitutionally based individual differences in reactivity and self-regulation, observable early in development.",
+      "misuse": "Extending infant/child temperament categories unchanged into adult self-description.",
+      "compatiblePractice": "Historical context for where trait differences come from; the reflection inventory does not use it directly."
+    },
+    {
+      "id": "mbti",
+      "name": "MBTI (16 types)",
+      "tier": "popular-weak",
+      "guideId": "lens.mbti",
+      "measures": "Four binary preferences (E/I, S/N, T/F, J/P) producing 16 type codes. Widely used as a shared vocabulary.",
+      "misuse": "Treating the code as a validated predictor or a hiring/diagnosis tool. Scores cluster near midpoints and type changes on retest are common.",
+      "compatiblePractice": "Comparison lens only. The full 16-type guide lives in the Resistance Library (InfoWar ▸ Reading) — read its three rules before the type pages."
+    },
+    {
+      "id": "enneagram",
+      "name": "Enneagram (9 types)",
+      "tier": "popular-weak",
+      "guideId": "lens.enneagram",
+      "measures": "Nine motivation-centered types. The largest systematic review to date (104 samples) found mixed reliability and validity evidence.",
+      "misuse": "Type assignment as identity or prediction; wing/instinct stacking as diagnostic precision.",
+      "compatiblePractice": "Comparison lens only. The 9-type guide lives in the Resistance Library (InfoWar ▸ Reading), with a disconfirming observation for each type."
+    },
+    {
+      "id": "disc",
+      "name": "DiSC",
+      "tier": "popular-weak",
+      "measures": "Four work-style quadrants (Dominance, Influence, Steadiness, Conscientiousness). Psychologists question its predictive validity; peer-reviewed support is thin.",
+      "misuse": "Team-labeling and role assignment from a quadrant score.",
+      "compatiblePractice": "Useful only as vocabulary for describing stylistic differences you already observe in yourself across contexts."
+    },
+    {
+      "id": "dark-triad",
+      "name": "Dark Triad (behavior recognition)",
+      "tier": "moderate",
+      "guideId": "lens.darktriad",
+      "measures": "Machiavellianism, narcissism, and psychopathy as trait measures in research. This app uses ONLY the behavior-recognition side: what exploitative patterns look like from outside.",
+      "misuse": "Labeling another person as a narcissist or psychopath from afar — which this app provides no tool for and will not build. Trait measures are for research, not for diagnosing people in your life.",
+      "compatiblePractice": "Name the tactic, not the person: 'guilt followed by urgency' is actionable; 'they are a manipulator' is a verdict that forecloses evidence. If patterns include threats or control, use the support card."
+    }
+  ]
+}

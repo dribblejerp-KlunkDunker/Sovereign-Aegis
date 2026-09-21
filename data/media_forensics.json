@@ -1,0 +1,361 @@
+{
+  "modalities": [
+    {
+      "modalityId": "image",
+      "name": "Image & Still Visual Forensics",
+      "icon": "icon-eye",
+      "indicators": [
+        {
+          "indicatorId": "img-ind-01",
+          "name": "Error Level Analysis (ELA) Compression Variance",
+          "mechanism": "JPEG compression saves images in 8x8 pixel blocks at a uniform error level. When an image is spliced or modified, the edited regions have a differing compression error rate compared to untouched areas.",
+          "detectionProtocol": "Resave the image at 95% JPEG quality and compute the absolute difference matrix between the original and resaved pixels. High-contrast white glow highlights modified regions.",
+          "confidenceTier": "Strong",
+          "toolsRequired": ["FotoForensics", "GIMP ELA Plugin", "Python OpenCV ELA Module"],
+          "visualTells": [
+            "Bright glowing edges around isolated subjects inserted into a dimmer background",
+            "Discrepancies in high-frequency noise textures across object boundaries",
+            "Mismatched JPEG grid alignment across composite layers"
+          ]
+        },
+        {
+          "indicatorId": "img-ind-02",
+          "name": "Frequency Domain (FFT) & GAN Checkerboard Artifacts",
+          "mechanism": "Generative Adversarial Networks (GANs) and diffusion models leave distinct periodic grid patterns in the 2D Fast Fourier Transform (FFT) power spectrum due to transposed convolution upsampling operations.",
+          "detectionProtocol": "Transform the image luminance channel into frequency space via 2D FFT. Inspect the logarithmic power spectrum for unnatural symmetric starburst spikes or periodic grid peaks.",
+          "confidenceTier": "Definitive",
+          "toolsRequired": ["ImageJ FFT", "NumPy 2D-FFT Analyzer", "Aegis Visual Spectrum Lens"],
+          "visualTells": [
+            "Symmetric cross-shaped or circular harmonic spikes in the Fourier magnitude spectrum",
+            "Absence of natural 1/f spatial frequency decay curves",
+            "Sub-pixel periodic lattice patterns visible under high-pass filtering"
+          ]
+        },
+        {
+          "indicatorId": "img-ind-03",
+          "name": "Shadow & Specular Light Vector Inconsistency",
+          "mechanism": "In genuine physical scenes, all cast shadows and eye corneal specular reflections must converge toward common physical light sources (the sun or artificial fixtures). AI-generated composites frequently generate conflicting light angles.",
+          "detectionProtocol": "Draw linear ray vectors from shadow tips through object anchor points. Triangulate vanishing points and compare with corneal catchlight highlights in subjects' eyes.",
+          "confidenceTier": "Definitive",
+          "toolsRequired": ["SunCalc Solar Geometry", "Ray Tracing Vanishing Point Ruler", "Corneal Reflection Zoom"],
+          "visualTells": [
+            "Shadows of adjacent figures falling at contradictory 45-degree opposing angles",
+            "Irregular corneal catchlight shapes (e.g., square reflection outdoors on an overcast day)",
+            "Absence of contact ambient occlusion shadows beneath human feet or vehicle tires"
+          ]
+        },
+        {
+          "indicatorId": "img-ind-04",
+          "name": "Anatomical & Fine Structure Geometric Anomalies",
+          "mechanism": "Diffusion architectures struggle with complex continuous geometric constraints, producing subtle topological defects in human extremities, teeth, jewelry, text glyphs, and architectural symmetry.",
+          "detectionProtocol": "Execute high-magnification optical inspection on fingers, earlobes, iris pupil boundaries, garment buttonholes, and background architectural lines.",
+          "confidenceTier": "Strong",
+          "toolsRequired": ["Aegis Optical Zoom Inspector", "Anatomical Landmark Detector"],
+          "visualTells": [
+            "Polydactyly (6 fingers) or syndactyly (merged knuckles and fused nails)",
+            "Earrings with mismatched geometry or earlobes melting into jawlines",
+            "Asymmetrical pupil contours (non-circular, notched pupil perimeters)",
+            "Gibberish or pseudo-Cyrillic glyphs on street signs and nameplates"
+          ]
+        },
+        {
+          "indicatorId": "img-ind-05",
+          "name": "EXIF & File Header Structural Integrity",
+          "mechanism": "Raw digital camera images contain comprehensive EXIF/TIFF headers, camera serial numbers, lens focal lengths, and thumbnail previews. Generative AI tools and social scrapers produce bare, truncated, or inconsistent metadata streams.",
+          "detectionProtocol": "Parse raw binary byte headers using ExifTool. Check for presence of MakerNotes, IFD0 pointers, JPEG quantization tables, and C2PA provenance signatures.",
+          "confidenceTier": "Moderate",
+          "toolsRequired": ["ExifTool CLI", "Hex Fiend Binary Inspector", "C2PA Verify Tool"],
+          "visualTells": [
+            "Missing camera serial number and lens make/model tags",
+            "Software tag labeled with known generative pipelines (e.g., 'Stable Diffusion WebUI')",
+            "Discrepancy between embedded thumbnail image and primary full-resolution bitmap"
+          ]
+        }
+      ]
+    },
+    {
+      "modalityId": "audio",
+      "name": "Audio & Vocal Synthetic Media Forensics",
+      "icon": "icon-mic",
+      "indicators": [
+        {
+          "indicatorId": "aud-ind-01",
+          "name": "Vocal Spectral Envelope Cutoff & Harmonic Void",
+          "mechanism": "Neural vocoders (e.g., HiFi-GAN, WaveNet) typically operate at fixed sample rates (e.g., 22.05kHz or 24kHz), introducing a sharp brick-wall frequency cutoff at the Nyquist boundary (11kHz to 12kHz) with empty upper harmonics.",
+          "detectionProtocol": "Generate a high-resolution linear spectrogram (FFT size 2048). Inspect upper frequency spectrum above 10kHz for unnatural zero-energy cliffs or synthetic white noise padding.",
+          "confidenceTier": "Definitive",
+          "toolsRequired": ["Audacity Spectrogram View", "Sonic Visualiser", "iZotope RX Spectral Repair"],
+          "visualTells": [
+            "Sharp horizontal line of zero acoustic energy above 11.025kHz or 12kHz",
+            "Absence of natural high-frequency breath fricatives (s, sh, f sounds)",
+            "Unnaturally rigid harmonic overtone combs without micro-pitch modulations"
+          ]
+        },
+        {
+          "indicatorId": "aud-ind-02",
+          "name": "Acoustic Environment & Reverberation Discontinuity",
+          "mechanism": "Real-world acoustic environments impose specific room impulse response (RT60 reverberation) across speech and background sounds. Cloned voice tracks pasted over atmospheric noise lack matched room acoustics.",
+          "detectionProtocol": "Measure the room reverberation decay time (RT60) during speech pauses versus background noise intervals using impulse response deconvolution.",
+          "confidenceTier": "Strong",
+          "toolsRequired": ["Room EQ Wizard (REW)", "MATLAB Acoustic Toolbox", "Aegis Acoustic Lens"],
+          "visualTells": [
+            "Completely dry vocal track (RT60 = 0.0s) heard inside a large reverberant hall or cathedral",
+            "Abrupt silence cutoffs between words where synthetic noise gating drops to digital zero",
+            "Mismatched stereo spatialization (mono voice centered over wide binaural background)"
+          ]
+        },
+        {
+          "indicatorId": "aud-ind-03",
+          "name": "Phoneme Jitter, Shimmer & Micro-Prosody Loss",
+          "mechanism": "Human vocal fold vibration exhibits natural cycle-to-cycle variation in fundamental frequency (jitter) and amplitude (shimmer). Neural text-to-speech models produce unnaturally steady pitch contours lacking micro-prosodic tremors.",
+          "detectionProtocol": "Extract the fundamental frequency contour (F0) using Praat. Calculate percent pitch jitter and amplitude shimmer across sustained vowel phonemes.",
+          "confidenceTier": "Strong",
+          "toolsRequired": ["Praat Voice Analysis Engine", "Librosa Python Audio Framework"],
+          "visualTells": [
+            "Pitch jitter < 0.1% during emotional shouting (human emotional speech exhibits 1.5% to 3.5% jitter)",
+            "Robotic, flat intonation curves on sentence question endings",
+            "Lack of physiological breath intake pauses before long 20-word clauses"
+          ]
+        },
+        {
+          "indicatorId": "aud-ind-04",
+          "name": "Glottal Pulse Shape & Phase Coherence Anomalies",
+          "mechanism": "Human vocal production is driven by asymmetric physical opening and rapid closing of vocal cords. Neural vocoders generate acoustic waveforms via mathematical filters that alter glottal pulse phase coherence.",
+          "detectionProtocol": "Apply inverse vocal tract filtering to isolate the glottal volume velocity waveform. Inspect glottal pulse symmetry and closing phase derivatives.",
+          "confidenceTier": "Moderate",
+          "toolsRequired": ["VoiceSauce Glottal Analyzer", "Aegis Waveform Phase Scope"],
+          "visualTells": [
+            "Symmetrical sinusoidal glottal pulses instead of natural steep closing slope",
+            "Phase inversion anomalies across stereo channels",
+            "Clicking and metallic micro-pops at phoneme transition boundaries"
+          ]
+        },
+        {
+          "indicatorId": "aud-ind-05",
+          "name": "Codec Transcoding & Compression Artifact History",
+          "mechanism": "Audio passed through multiple messaging apps (WhatsApp, Telegram) undergoes specific lossy compression (Opus, AAC, AMR). Examining codec frame headers reveals whether an audio clip was recorded live or re-encoded.",
+          "detectionProtocol": "Analyze MP4/OGG/AAC container atom structures and frame bitrate allocations. Identify multi-generation transcoding signatures.",
+          "confidenceTier": "Heuristic",
+          "toolsRequired": ["FFprobe Codec Analyzer", "MediaInfo CLI"],
+          "visualTells": [
+            "Low-bitrate AMR container wrapping an ostensibly high-fidelity studio recording",
+            "Nested metadata tags indicating export from desktop audio workstations (DAWs)",
+            "Discontinuous timestamps in stream packet framing"
+          ]
+        }
+      ]
+    },
+    {
+      "modalityId": "video",
+      "name": "Video & Moving Image Deepfake Forensics",
+      "icon": "icon-video",
+      "indicators": [
+        {
+          "indicatorId": "vid-ind-01",
+          "name": "Facial Landmark Boundary Warping & Temporal Flickering",
+          "mechanism": "Face-swapping neural pipelines (e.g., DeepFaceLab, SimSwap) process video frame-by-frame or in short sliding windows, introducing boundary seam warping, micro-jitters, and skin tone flickering across temporal transitions.",
+          "detectionProtocol": "Extract 68 facial landmark coordinates across sequential frames. Compute velocity delta vectors and color variance along the jawline and forehead blending mask perimeters.",
+          "confidenceTier": "Definitive",
+          "toolsRequired": ["Dlib 68-Point Landmark Tracker", "Aegis Temporal Flicker Scope", "OpenCV Optical Flow"],
+          "visualTells": [
+            "Flickering blur along the jawline perimeter when the subject turns their head past 45 degrees",
+            "Sudden loss of wrinkles or moles between consecutive video frames",
+            "Ghosting and double-edge halos around eyeglasses frames or collar lines"
+          ]
+        },
+        {
+          "indicatorId": "vid-ind-02",
+          "name": "Physiological Invariants: Blink Dynamics & Remote Photoplethysmography (rPPG)",
+          "mechanism": "Human blinking follows strict neuro-muscular duration curves (100ms to 400ms duration, 15 to 20 blinks per minute). Furthermore, blood volume pulses in facial micro-vessels cause subtle, imperceptible skin color fluctuations (rPPG) that deepfakes fail to synthesize.",
+          "detectionProtocol": "Track eye aspect ratio (EAR) over time to count blink frequency. Apply spatial-temporal Eulerian Video Magnification (EVM) to detect blood pulse signals on the forehead and cheeks.",
+          "confidenceTier": "Definitive",
+          "toolsRequired": ["rPPG Heart Rate Extractor", "Eulerian Video Magnifier (EVM)", "Eye Aspect Ratio Analyzer"],
+          "visualTells": [
+            "Complete absence of natural blinking over a 60-second monologue",
+            "Incomplete, half-closed eyelid twitches occurring at unnatural 2-second intervals",
+            "Absence of rhythmic cardiac pulse chrominance signals in facial skin regions"
+          ]
+        },
+        {
+          "indicatorId": "vid-ind-03",
+          "name": "Lip-Sync Phoneme-Viseme Geometric Synchronization",
+          "mechanism": "When humans speak, specific phonemes require distinct mouth shapes (visemes) such as bilabial lip closure for /p/, /b/, and /m/ or labiodental teeth contact for /f/ and /v/. AI-driven dubbing pipelines frequently fail tight temporal synchronization.",
+          "detectionProtocol": "Cross-correlate audio phoneme transcript timestamps with mouth aperture distance curves. Measure latency offsets between audio plosives and visual lip closures.",
+          "confidenceTier": "Strong",
+          "toolsRequired": ["SyncNet Lip-Sync Evaluator", "Gentle Forced Aligner", "Aegis Viseme Scope"],
+          "visualTells": [
+            "Pronouncing 'P' or 'B' with open lips without physical bilabial contact",
+            "Teeth and tongue remaining stationary while dental consonants are articulated",
+            "Mouth opening motion lagging or leading audio track by more than 120 milliseconds"
+          ]
+        },
+        {
+          "indicatorId": "vid-ind-04",
+          "name": "Volumetric Lighting & Neural Head Avatar Surface Normals",
+          "mechanism": "Neural Radiance Field (NeRF) and 3D Gaussian Splatting avatars project 3D geometry onto 2D screens, creating subtle distortion in surface normal reflections as the subject rotates in perspective.",
+          "detectionProtocol": "Estimate 3D facial mesh normals from monocular video and compare light gradient vectors against known background light sources.",
+          "confidenceTier": "Strong",
+          "toolsRequired": ["DECA 3D Face Reconstruction", "Surface Normal Estimator", "Blender Light Matcher"],
+          "visualTells": [
+            "Nose bridge shadow failing to elongate when head turns away from the light source",
+            "Teeth appearing flat and two-dimensional inside the oral cavity",
+            "Hair strands remaining rigidly rigid without natural inertial physics during head movement"
+          ]
+        }
+      ]
+    },
+    {
+      "modalityId": "text",
+      "name": "Text & LLM Synthetic Content Forensics",
+      "icon": "icon-file-text",
+      "indicators": [
+        {
+          "indicatorId": "txt-ind-01",
+          "name": "Perplexity & Burstiness Flatlining",
+          "mechanism": "Large Language Models generate text by sampling from token probability distributions, producing uniformly low perplexity (predictability) and low burstiness (sentence length variation). Human writing is characterized by high burstiness: short punchy sentences interspersed with complex clauses.",
+          "detectionProtocol": "Compute cross-entropy perplexity using a reference base model (e.g. GPT-2 / LLaMA) and calculate the standard deviation of sentence lengths and token rarity scores across the document.",
+          "confidenceTier": "Strong",
+          "toolsRequired": ["Binoculars LLM Detector", "Fast-DetectGPT Engine", "Aegis Perplexity Profiler"],
+          "visualTells": [
+            "Uniform sentence lengths (almost every sentence contains 18 to 24 words)",
+            "Near-zero variance in token log-probabilities across entire multi-paragraph essays",
+            "Absence of idiosyncratic typos, colloquial idioms, or specialized local slang"
+          ]
+        },
+        {
+          "indicatorId": "txt-ind-02",
+          "name": "Hedging Inflation, Sycophancy & Cliché Density",
+          "mechanism": "RLHF (Reinforcement Learning from Human Feedback) conditions language models to adopt safe, balanced, and sycophantic rhetorical boilerplate with predictable transition phrases ('It is important to remember', 'In conclusion, while X has benefits, Y presents challenges').",
+          "detectionProtocol": "Scan text against statistical lexicons of LLM filler phrases and calculate the density of balanced hedging clauses per 1,000 words.",
+          "confidenceTier": "Moderate",
+          "toolsRequired": ["Aegis Stylometric Regex Engine", "NLP Cliché Density Scanner"],
+          "visualTells": [
+            "High frequency of signature transition tropes ('Delve into', 'Tapestry of', 'Testament to', 'Beacon of hope')",
+            "Rigid tripartite essay structures (Intro -> Three balanced points -> Summary conclusion)",
+            "Compulsive neutrality that refuses to take a definitive empirical stance"
+          ]
+        },
+        {
+          "indicatorId": "txt-ind-03",
+          "name": "Hallucinatory Factual Certainty & Phantom Citations",
+          "mechanism": "LLMs hallucinate realistic-sounding bibliographic citations, scientific journal DOIs, and legal case precedents by stitching together plausible academic names and keywords without real-world ground truth.",
+          "detectionProtocol": "Extract all named entities, journal names, DOI numbers, and statutory case citations. Execute automated validation against CrossRef, PubMed, and LexisNexis databases.",
+          "confidenceTier": "Definitive",
+          "toolsRequired": ["CrossRef API Resolver", "PubMed Citation Validator", "OpenAlex Identifier Query"],
+          "visualTells": [
+            "Citing 'Journal of Advanced Clinical Cardiology, Vol 44 (2022)' with a non-existent DOI",
+            "Attributing quotes from historical figures using modern 21st-century idioms",
+            "Synthesizing court case names combining real judge names with fictional docket numbers"
+          ]
+        },
+        {
+          "indicatorId": "txt-ind-04",
+          "name": "Stylometric Authorship Invariants & Syntactic Fingerprinting",
+          "mechanism": "Human authors possess unique, persistent stylometric signatures: function word distributions (prepositions, conjunctions), punctuation habits (semicolons, em-dashes), and vocabulary richness (Type-Token Ratio).",
+          "detectionProtocol": "Perform Delta stylometric analysis comparing the disputed text against a verified baseline corpus of the claimed author's authentic writings.",
+          "confidenceTier": "Strong",
+          "toolsRequired": ["Stylo R-Package", "JGAAP Stylometry Suite", "Aegis Function Word Profiler"],
+          "visualTells": [
+            "Drastic departure from the author's historical function word distribution vector",
+            "Sudden disappearance of author's characteristic grammatical eccentricities",
+            "Vocabulary diversity collapsing to generic middle-frequency English"
+          ]
+        }
+      ]
+    }
+  ],
+  "forensicTriageChecklist": [
+    {
+      "stepNumber": 1,
+      "title": "Provenance & Ingestion Hash Verification",
+      "action": "Calculate SHA-256 hash of original file immediately upon receipt and archive on immutable storage.",
+      "expectedEvidence": "Cryptographic hash digest matching initial capture state."
+    },
+    {
+      "stepNumber": 2,
+      "title": "Container Metadata & EXIF Analysis",
+      "action": "Extract raw byte headers, EXIF/ID3/C2PA tags, software creator signatures, and creation timestamps.",
+      "expectedEvidence": "Presence or absence of authentic camera/sensor tags and C2PA signing certificates."
+    },
+    {
+      "stepNumber": 3,
+      "title": "Multi-Engine Reverse Search Triangulation",
+      "action": "Query Google, Yandex, Bing, TinEye, and CrossRef to find earliest web appearances and original contexts.",
+      "expectedEvidence": "Historical archive match disproving claim of breaking novelty."
+    },
+    {
+      "stepNumber": 4,
+      "title": "Frequency Domain & Spectral Inspection",
+      "action": "Run 2D Fast Fourier Transform (FFT) for imagery or 2048-point linear spectrogram for audio assets.",
+      "expectedEvidence": "Detection of Nyquist frequency cutoffs, GAN lattice spikes, or vocoder harmonic voids."
+    },
+    {
+      "stepNumber": 5,
+      "title": "Physical & Environmental Physics Verification",
+      "action": "Calculate solar shadow azimuth (SunCalc), room reverberation decay (RT60), and facial lighting gradients.",
+      "expectedEvidence": "Confirmation of physical lighting consistency or proof of contradictory ray vectors."
+    },
+    {
+      "stepNumber": 6,
+      "title": "Physiological & Anatomical Landmark Check",
+      "action": "Inspect eye blinking rate (EAR), skin blood volume pulse (rPPG), earlobe geometry, and phoneme-viseme sync.",
+      "expectedEvidence": "Biological pulse confirmation or artificial facial warping detection."
+    },
+    {
+      "stepNumber": 7,
+      "title": "Cryptographic Attestation & Reporting",
+      "action": "Compile forensic findings into standardized W3C JSON-LD attestation and sign with analyst DID key.",
+      "expectedEvidence": "Verifiable ECDSA-signed forensic debunk credential."
+    }
+  ],
+  "sampleCases": [
+    {
+      "caseId": "case-01-forged-military-briefing",
+      "mediaType": "Image",
+      "title": "Forged Defense Ministry Emergency Deployment Directive",
+      "syntheticProbability": 0.96,
+      "detectedArtifacts": [
+        "Calibri font non-compliance on official letterhead",
+        "Error Level Analysis (ELA) reveals bright glowing bounding box around signature block",
+        "EXIF metadata author is 'User_Desktop_Win11' created 6 hours prior"
+      ],
+      "groundTruth": "Fabricated document created by adversary psy-ops unit using Photoshop and scanned letterhead template."
+    },
+    {
+      "caseId": "case-02-ceo-voice-clone-heist",
+      "mediaType": "Audio",
+      "title": "Synthetic CEO Audio Wire Transfer Authorization",
+      "syntheticProbability": 0.99,
+      "detectedArtifacts": [
+        "Brick-wall spectral energy cutoff at exactly 12.0kHz",
+        "Pitch jitter across vowels < 0.08% indicating text-to-speech vocoder synthesis",
+        "Zero room reverberation (RT60 = 0.0s) heard over simulated cell phone background noise"
+      ],
+      "groundTruth": "AI voice clone generated using commercial elevenlabs voice engine to attempt unauthorized corporate wire fraud."
+    },
+    {
+      "caseId": "case-03-ballot-shredding-video",
+      "mediaType": "Video",
+      "title": "Polling Warehouse Mail-In Ballot Shredding Video",
+      "syntheticProbability": 0.92,
+      "detectedArtifacts": [
+        "Contradictory solar shadow vectors between worker figures (45 deg) and building fixtures (130 deg)",
+        "Zero natural eye blinks over 45-second actor monologue",
+        "Mouth opening lags audio plosives /p/ and /b/ by 180 milliseconds"
+      ],
+      "groundTruth": "Staged synthetic video combining paid actors, AI lip-sync dubbing, and fake prop ballot forms."
+    },
+    {
+      "caseId": "case-04-synthetic-whistleblower-essay",
+      "mediaType": "Text",
+      "title": "Anonymous Whistleblower Manifesto on Secret Climate Geoengineering",
+      "syntheticProbability": 0.94,
+      "detectedArtifacts": [
+        "Perplexity cross-entropy score flatlined at 12.4 with near-zero burstiness",
+        "High density of LLM transition tropes ('tapestry of deception', 'delve into', 'it is important to remember')",
+        "Phantom citations referencing fictitious 2024 studies with non-existent DOI numbers"
+      ],
+      "groundTruth": "Synthetic essay generated via GPT-4 prompt to seed viral climate conspiracy theories."
+    }
+  ]
+}

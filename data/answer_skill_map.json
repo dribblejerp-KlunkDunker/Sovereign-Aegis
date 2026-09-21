@@ -1,0 +1,320 @@
+{
+  "Ad Hominem": [
+    "skill.fallacy.relevance"
+  ],
+  "Whataboutism (Tu Quoque)": [
+    "skill.fallacy.relevance"
+  ],
+  "Slippery Slope": [
+    "skill.fallacy.scope"
+  ],
+  "Post Hoc Ergo Propter Hoc": [
+    "skill.fallacy.scope"
+  ],
+  "Fallacy of Composition": [
+    "skill.fallacy.scope"
+  ],
+  "False Dilemma (Bifurcation)": [
+    "skill.fallacy.structure"
+  ],
+  "Affirming the Consequent (Formal Fallacy)": [
+    "skill.fallacy.formal-vs-informal",
+    "skill.fallacy.structure"
+  ],
+  "Argumentum ad Populum (Bandwagon)": [
+    "skill.fallacy.appeals"
+  ],
+  "No True Scotsman": [
+    "skill.tactic.equivocation"
+  ],
+  "Equivocation (Semantic Shift)": [
+    "skill.tactic.equivocation"
+  ],
+  "Confirmation Bias": [
+    "skill.bias.confirmation"
+  ],
+  "Availability Heuristic": [
+    "skill.bias.availability"
+  ],
+  "Anchoring Effect": [
+    "skill.bias.anchoring"
+  ],
+  "Fundamental Attribution Error / Ingroup Favoritism": [
+    "skill.bias.attribution"
+  ],
+  "Sunk Cost Fallacy": [
+    "skill.bias.probability"
+  ],
+  "Conjunction Fallacy": [
+    "skill.bias.probability"
+  ],
+  "Hindsight Bias": [
+    "skill.bias.probability"
+  ],
+  "Gish Gallop": [
+    "skill.tactic.flooding"
+  ],
+  "Astroturfing": [
+    "skill.tactic.astroturfing"
+  ],
+  "False Balance (Bothsidesism)": [
+    "skill.tactic.false-balance"
+  ],
+  "Loaded / Emotive Language": [
+    "skill.tactic.emotive-framing"
+  ],
+  "T0001: Target Profiling": [
+    "skill.disarm.plan-prepare"
+  ],
+  "T0004: Establish Inauthentic Assets / Spoofing": [
+    "skill.disarm.plan-prepare",
+    "skill.tactic.astroturfing"
+  ],
+  "T0048: Flood the Information Environment / Epistemic Pollution": [
+    "skill.disarm.seed-amplify",
+    "skill.tactic.flooding"
+  ],
+  "Corneal Specular Reflection Asymmetry": [
+    "skill.forensics.read-measurements"
+  ],
+  "Synthetic Phoneme Prosody / Respiration Absence": [
+    "skill.forensics.read-measurements"
+  ],
+  "Boundary Smearing & Topology Hallucination": [
+    "skill.forensics.read-measurements"
+  ],
+  "GAN Deconvolution Grid Signature": [
+    "skill.forensics.read-measurements"
+  ],
+  "Straw Man": [
+    "skill.fallacy.relevance"
+  ],
+  "Genetic Fallacy": [
+    "skill.fallacy.relevance"
+  ],
+  "Red Herring": [
+    "skill.fallacy.relevance"
+  ],
+  "Hasty Generalisation": [
+    "skill.fallacy.scope"
+  ],
+  "Texas Sharpshooter": [
+    "skill.fallacy.scope"
+  ],
+  "Appeal to False Authority": [
+    "skill.fallacy.appeals"
+  ],
+  "Appeal to Tradition": [
+    "skill.fallacy.appeals"
+  ],
+  "Appeal to Nature": [
+    "skill.fallacy.appeals"
+  ],
+  "Appeal to Ignorance": [
+    "skill.fallacy.appeals"
+  ],
+  "Appeal to Fear": [
+    "skill.fallacy.appeals",
+    "skill.tactic.emotive-framing"
+  ],
+  "Denying the Antecedent (Formal Fallacy)": [
+    "skill.fallacy.formal-vs-informal",
+    "skill.fallacy.structure"
+  ],
+  "Undistributed Middle (Formal Fallacy)": [
+    "skill.fallacy.formal-vs-informal",
+    "skill.fallacy.structure"
+  ],
+  "Affirming a Disjunct (Formal Fallacy)": [
+    "skill.fallacy.formal-vs-informal",
+    "skill.fallacy.structure"
+  ],
+  "The form is invalid even though the conclusion is true": [
+    "skill.fallacy.formal-vs-informal"
+  ],
+  "Base-Rate Neglect dressed as a formal inference": [
+    "skill.fallacy.formal-vs-informal",
+    "skill.bias.probability"
+  ],
+  "Fallacy Fallacy (Argument from Fallacy)": [
+    "skill.fallacy.formal-vs-informal"
+  ],
+  "Biased Assimilation": [
+    "skill.bias.confirmation"
+  ],
+  "Selective Recall": [
+    "skill.bias.confirmation"
+  ],
+  "Positive Test Strategy": [
+    "skill.bias.confirmation"
+  ],
+  "HARKing (Hypothesising After Results are Known)": [
+    "skill.bias.confirmation"
+  ],
+  "Availability Cascade": [
+    "skill.bias.availability"
+  ],
+  "Framing Effect": [
+    "skill.bias.availability",
+    "skill.tactic.emotive-framing"
+  ],
+  "Insufficient Adjustment from an anchor": [
+    "skill.bias.anchoring"
+  ],
+  "Ingroup Attribution Asymmetry": [
+    "skill.bias.attribution"
+  ],
+  "Dispositional Over-Attribution": [
+    "skill.bias.attribution"
+  ],
+  "Cui Bono Fallacy": [
+    "skill.bias.attribution"
+  ],
+  "Actor-Observer Asymmetry": [
+    "skill.bias.attribution"
+  ],
+  "Base-Rate Neglect": [
+    "skill.bias.probability"
+  ],
+  "Gambler's Fallacy": [
+    "skill.bias.probability"
+  ],
+  "Survivorship Bias": [
+    "skill.bias.probability"
+  ],
+  "Astroturfing (Coordinated Account Creation)": [
+    "skill.tactic.astroturfing",
+    "skill.disarm.seed-amplify"
+  ],
+  "Astroturfing (Front Group)": [
+    "skill.tactic.astroturfing",
+    "skill.disarm.plan-prepare"
+  ],
+  "Coordinated Inauthentic Behaviour": [
+    "skill.tactic.astroturfing"
+  ],
+  "Firehose of Falsehood": [
+    "skill.tactic.flooding",
+    "skill.disarm.seed-amplify"
+  ],
+  "Epistemic Flooding by Compliance": [
+    "skill.tactic.flooding"
+  ],
+  "Brigading": [
+    "skill.tactic.flooding"
+  ],
+  "Manufactured Doubt": [
+    "skill.tactic.false-balance"
+  ],
+  "Neutrality as an evasion of editorial judgement": [
+    "skill.tactic.false-balance"
+  ],
+  "This is appropriate — balance matches the actual state of evidence": [
+    "skill.tactic.false-balance"
+  ],
+  "Complex Question (Loaded Question)": [
+    "skill.tactic.emotive-framing",
+    "skill.fallacy.structure"
+  ],
+  "Narrative Development and Pretesting": [
+    "skill.disarm.plan-prepare"
+  ],
+  "Narrative Laundering": [
+    "skill.disarm.seed-amplify"
+  ],
+  "Cross-Platform Amplification": [
+    "skill.disarm.seed-amplify"
+  ],
+  "Useful-Idiot Recruitment / Organic Amplifier Seeding": [
+    "skill.disarm.seed-amplify"
+  ],
+  "Timing Exploitation in Seeding": [
+    "skill.disarm.seed-amplify"
+  ],
+  "Asset Rotation after Attrition": [
+    "skill.disarm.seed-amplify",
+    "skill.disarm.countermeasures"
+  ],
+  "The countermeasure amplifies what it targets": [
+    "skill.disarm.countermeasures"
+  ],
+  "Prebunking (Inoculation)": [
+    "skill.disarm.countermeasures"
+  ],
+  "The manifest is parsed but not cryptographically verified": [
+    "skill.forensics.provenance"
+  ],
+  "This is not evidence of tampering": [
+    "skill.forensics.provenance"
+  ],
+  "The signature is valid but says nothing about the signer's trustworthiness": [
+    "skill.forensics.provenance"
+  ],
+  "Strong evidence the image is synthetic, since a generator had no incentive to lie": [
+    "skill.forensics.provenance"
+  ],
+  "Stripping a manifest is trivial and leaves the pixels untouched": [
+    "skill.forensics.provenance"
+  ],
+  "The manifest belongs to a different asset than the one you are holding": [
+    "skill.forensics.provenance",
+    "skill.forensics.read-measurements"
+  ],
+  "An indicator with several innocent explanations, not a finding": [
+    "skill.forensics.read-measurements"
+  ],
+  "SIFT: Stop — Pause to assess urgency cues and emotional arousal reflex": [
+    "skill.sift.stop"
+  ],
+  "SIFT: Stop — Recognize partisan cognitive ease and pause before reacting": [
+    "skill.sift.stop"
+  ],
+  "SIFT: Stop — Check panic contagion and artificial deadline pressure": [
+    "skill.sift.stop"
+  ],
+  "SIFT: Stop — Disrupt the autonomic share reflex and acknowledge visceral fear": [
+    "skill.sift.stop"
+  ],
+  "SIFT: Investigate the Source — Open new tabs to research corporate funding and 990 tax disclosures": [
+    "skill.sift.investigate-source"
+  ],
+  "SIFT: Investigate the Source — Verify the domain against official institutional WHO registries via lateral search": [
+    "skill.sift.investigate-source"
+  ],
+  "SIFT: Investigate the Source — Evaluate platform track record, domain WHOIS age, and disclosure history": [
+    "skill.sift.investigate-source"
+  ],
+  "SIFT: Investigate the Source — Search for listed board members on institutional university websites to verify affiliation": [
+    "skill.sift.investigate-source"
+  ],
+  "SIFT: Find Better Coverage — Cross-reference established wire services (AP, Reuters) and local emergency dispatch feeds": [
+    "skill.sift.find-coverage"
+  ],
+  "SIFT: Find Better Coverage — Look for independent scientific consensus in peer-reviewed journals and authoritative medical bodies": [
+    "skill.sift.find-coverage"
+  ],
+  "SIFT: Find Better Coverage — Seek reporting from diverse international correspondents with established diplomatic beats": [
+    "skill.sift.find-coverage"
+  ],
+  "SIFT: Find Better Coverage — Consult authoritative meteorological tracking agencies (e.g., NOAA, National Hurricane Center)": [
+    "skill.sift.find-coverage"
+  ],
+  "SIFT: Trace Claims to Original Context — Conduct reverse image search to discover the photo original date and location": [
+    "skill.sift.trace-origin"
+  ],
+  "SIFT: Trace Claims to Original Context — Locate the full written court opinion to inspect surrounding conditioning clauses": [
+    "skill.sift.trace-origin"
+  ],
+  "SIFT: Trace Claims to Original Context — Find the primary research paper or epidemiological dataset from which the chart was extracted": [
+    "skill.sift.trace-origin"
+  ],
+  "SIFT: Trace Claims to Original Context — Locate the complete, unedited press conference video to hear the full conversational flow": [
+    "skill.sift.trace-origin"
+  ],
+  "Circular Reasoning (Petitio Principii)": [
+    "skill.fallacy.structure"
+  ],
+  "Appeal to Authority": [
+    "skill.fallacy.appeals"
+  ]
+}

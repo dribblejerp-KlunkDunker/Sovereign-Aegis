@@ -1,0 +1,1143 @@
+[
+  {
+    "id": "sift-stop-001",
+    "lab": "stop",
+    "difficulty": "beginner",
+    "domain": "Health",
+    "claim": "BREAKING: Scientists have discovered that drinking coffee causes cancer — doctors are hiding this from you because Big Pharma funds cancer treatments! Share before they delete this!",
+    "manipulationSignals": [
+      "urgency",
+      "conspiracy",
+      "share_pressure",
+      "us_vs_them"
+    ],
+    "correctDecision": "stop",
+    "explanation": "Multiple red flags demand a stop: 'BREAKING' pressure, suppression conspiracy, and an explicit share command are classic manipulation vectors designed to bypass deliberation. The word 'causing' overstates epidemiological association data. Real medical consensus on coffee and cancer is complex and context-dependent.",
+    "learningPoints": [
+      "Urgency language ('BREAKING') is a System 1 hijack",
+      "Share pressure is a contagion amplifier, not a credibility signal",
+      "Suppression narratives ('they are hiding this') follow a template pattern"
+    ],
+    "sm2Tags": [
+      "urgency-signals",
+      "conspiracy-pattern",
+      "share-pressure"
+    ],
+    "tests": [
+      "skill.sift.stop"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "sift-stop-002",
+    "lab": "stop",
+    "difficulty": "intermediate",
+    "domain": "Finance",
+    "claim": "Federal Reserve insiders confirm: a major bank collapse is imminent. The government is restricting withdrawals starting Monday. Protect your family now.",
+    "manipulationSignals": [
+      "false_authority",
+      "urgency",
+      "family_appeal",
+      "specificity_trap"
+    ],
+    "correctDecision": "stop",
+    "explanation": "The claim uses 'insiders confirm' — an anonymous authority that cannot be verified. The specific date 'Monday' creates urgency without a verifiable source. Bank run narratives are a high-frequency disinformation pattern during financial stress. The 'protect your family' appeal targets tribalism not evidence.",
+    "learningPoints": [
+      "Anonymous insider sources are unfalsifiable",
+      "Specific dates create false urgency",
+      "Financial panic narratives are a high-value adversary payload"
+    ],
+    "sm2Tags": [
+      "false-authority",
+      "specificity-trap",
+      "urgency-signals"
+    ],
+    "tests": [
+      "skill.sift.stop"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "sift-stop-003",
+    "lab": "stop",
+    "difficulty": "advanced",
+    "domain": "Elections",
+    "claim": "Voting machine manufacturer CEO sends private email to board: 'We can shift 40,000 votes in any county with 48hr notice.' Source: leaked document posted to secure-leaks.io",
+    "manipulationSignals": [
+      "fabricated_document",
+      "technical_specificity",
+      "single_source",
+      "obscure_platform"
+    ],
+    "correctDecision": "stop",
+    "explanation": "Advanced manipulation: technical specificity ('40,000 votes', '48hr notice') creates false credibility. The source platform 'secure-leaks.io' is an obscure, unverifiable host — not a known press outlet. Private emails appearing on single obscure platforms have an extremely high base rate of fabrication. Lateral reading required before any evaluation.",
+    "learningPoints": [
+      "Technical precision mimics credibility — numbers alone are not evidence",
+      "Unknown source platforms require lateral reading first",
+      "Election manipulation claims require extraordinary sourcing"
+    ],
+    "sm2Tags": [
+      "fabricated-documents",
+      "technical-specificity",
+      "source-evaluation"
+    ],
+    "tests": [
+      "skill.sift.stop"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "sift-investigate-001",
+    "lab": "investigate",
+    "difficulty": "beginner",
+    "domain": "Science",
+    "claim": "A leading virologist warns that the new H5N1 strain could be '100 times more lethal' than seasonal flu.",
+    "sourceToEvaluate": {
+      "name": "Dr. Marcus Hendricks",
+      "affiliation": "claimed: 'Harvard Medical School'",
+      "lateralReadingFindings": "No Dr. Marcus Hendricks found on Harvard Medical School faculty directory. The name appears on a health supplement company blog and several alternative health forums. Harvard's actual H5N1 researchers are Dr. Anthony Okoye and Dr. Sarah Chen, who made no such statement.",
+      "verdict": "FABRICATED AUTHORITY",
+      "trustScore": 8
+    },
+    "correctAnswer": "unreliable",
+    "explanation": "Lateral reading — searching the source name independently rather than trusting the claim — reveals the authority is fabricated. A real virologist making a statement of this magnitude would appear in academic databases, PubMed, or official Harvard communications.",
+    "learningPoints": [
+      "Always lateral-read the source, not just the claim",
+      "Institutional affiliation claims must be independently verified",
+      "PubMed and institutional faculty pages are the right verification tools"
+    ],
+    "sm2Tags": [
+      "lateral-reading",
+      "authority-verification",
+      "fabricated-authority"
+    ],
+    "tests": [
+      "skill.sift.investigate-source"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "sift-investigate-002",
+    "lab": "investigate",
+    "difficulty": "intermediate",
+    "domain": "Media",
+    "claim": "BBC News reports that French government has banned all AI-generated content in elections.",
+    "sourceToEvaluate": {
+      "name": "BBC News",
+      "affiliation": "British Broadcasting Corporation",
+      "lateralReadingFindings": "BBC News is an established international broadcaster with a long track record of editorial accountability. However, lateral reading of this specific claim shows no BBC article on a French AI ban in elections. The claim circulated from 'bbc-news24.net' — a domain that mimics BBC but is not affiliated. The actual BBC domain is bbc.com/news.",
+      "verdict": "DOMAIN SPOOFING",
+      "trustScore": 35
+    },
+    "correctAnswer": "domain_spoof",
+    "explanation": "This is a domain spoofing attack: the trustworthy brand (BBC) is being impersonated by a look-alike domain. Always verify that the actual URL matches the authentic publisher's domain. BBC = bbc.com/news, not bbc-news24.net or similar variants.",
+    "learningPoints": [
+      "Brand spoofing via look-alike domains is a high-frequency tactic",
+      "Always verify the actual URL, not just the brand name",
+      "Legitimate outlets do not use hyphens or numbers in their primary domain"
+    ],
+    "sm2Tags": [
+      "domain-spoofing",
+      "source-verification",
+      "url-analysis"
+    ],
+    "tests": [
+      "skill.sift.investigate-source"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "sift-investigate-003",
+    "lab": "investigate",
+    "difficulty": "advanced",
+    "domain": "Government",
+    "claim": "WikiLeaks document #HRC-07734 reveals Secretary of State authorized illegal arms transfers to three Gulf states.",
+    "sourceToEvaluate": {
+      "name": "WikiLeaks archive",
+      "affiliation": "Julian Assange organization",
+      "lateralReadingFindings": "WikiLeaks does have a real document archive. However, document #HRC-07734 does not exist in the verifiable WikiLeaks archive. The document is attributed to 'WikiLeaks' but circulates via Telegram channels and secondary blogs. WikiLeaks published a finite set of Cablegate documents that are searchable at wikileaks.org/plusd/. Cross-referencing the claimed document number returns no results.",
+      "verdict": "FABRICATED DOCUMENT ATTRIBUTED TO REAL SOURCE",
+      "trustScore": 15
+    },
+    "correctAnswer": "fabricated_attribution",
+    "explanation": "Advanced disinformation: using a real source (WikiLeaks) as a false attribution anchor. The document number is specific enough to seem verifiable, but searching the actual WikiLeaks archive reveals it does not exist. This is harder to catch because it relies on people not actually checking the primary source.",
+    "learningPoints": [
+      "Real source + fabricated document is an advanced disinformation technique",
+      "Always find and search the primary archive, not third-party references to it",
+      "Specific document numbers without a working link are a red flag"
+    ],
+    "sm2Tags": [
+      "fabricated-attribution",
+      "primary-source-verification",
+      "document-verification"
+    ],
+    "tests": [
+      "skill.sift.investigate-source"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "sift-coverage-001",
+    "lab": "coverage",
+    "difficulty": "beginner",
+    "domain": "Health",
+    "claim": "Study finds red wine extends lifespan by 20 years.",
+    "coverageOptions": [
+      {
+        "id": "opt-a",
+        "source": "WineLoversDaily.com",
+        "headline": "Scientists PROVE red wine adds 20 years to your life!",
+        "rating": "unreliable",
+        "reason": "Advocacy site with strong financial incentive to sensationalize; no link to actual study"
+      },
+      {
+        "id": "opt-b",
+        "source": "Fox News Health",
+        "headline": "Red wine and longevity: What the latest research really shows",
+        "rating": "better",
+        "reason": "Mainstream outlet with editorial standards; likely to hedge and contextualize"
+      },
+      {
+        "id": "opt-c",
+        "source": "Nature.com (original study)",
+        "headline": "Resveratrol dosage and telomere length in murine subjects: a controlled trial",
+        "rating": "best",
+        "reason": "Primary research source. Note: murine (mouse) study — does not transfer to human lifespan claims without further research"
+      }
+    ],
+    "correctAnswer": "opt-c",
+    "explanation": "The original peer-reviewed study is always better than any coverage of it. The headline '20 years' almost certainly misrepresents a laboratory finding in mice. Reading the primary source reveals the actual scope and limitations of the research.",
+    "learningPoints": [
+      "Primary sources outrank all secondary coverage",
+      "Animal model results do not directly translate to human outcomes",
+      "Extreme lifespan numbers should always trigger primary source lookup"
+    ],
+    "sm2Tags": [
+      "primary-sources",
+      "science-reporting",
+      "sensationalism-detection"
+    ],
+    "tests": [
+      "skill.sift.find-coverage"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "sift-coverage-002",
+    "lab": "coverage",
+    "difficulty": "intermediate",
+    "domain": "Technology",
+    "claim": "OpenAI's new model passes the Turing Test definitively.",
+    "coverageOptions": [
+      {
+        "id": "opt-a",
+        "source": "TechCrunch (news article)",
+        "headline": "OpenAI claims new model 'indistinguishable from humans' in internal tests",
+        "rating": "better",
+        "reason": "Reputable tech news with editorial oversight; correctly attributes to internal tests"
+      },
+      {
+        "id": "opt-b",
+        "source": "OpenAI Blog (primary announcement)",
+        "headline": "GPT-X achieves 73% human-pass rate in controlled Turing evaluation",
+        "rating": "best",
+        "reason": "Primary source with exact numbers; note 73% is not 'definitive' — 50% would be chance"
+      },
+      {
+        "id": "opt-c",
+        "source": "Reddit r/technology (viral post)",
+        "headline": "AI is now officially smarter than humans — the era of human intelligence is over",
+        "rating": "unreliable",
+        "reason": "No source link; catastrophizing framing; conflates a narrow benchmark with general intelligence"
+      }
+    ],
+    "correctAnswer": "opt-b",
+    "explanation": "The original OpenAI blog post contains the actual number (73%), which is far from 'definitive' when understood in context. Media interpretations escalate the framing significantly. Technical claims require reading the primary announcement, not downstream summaries.",
+    "learningPoints": [
+      "Benchmark results require primary source context to interpret",
+      "Percentage claims (73%) are more precise than 'definitive' framing",
+      "Catastrophizing re-framings on social platforms distort narrow findings"
+    ],
+    "sm2Tags": [
+      "benchmark-interpretation",
+      "primary-sources",
+      "ai-claims"
+    ],
+    "tests": [
+      "skill.sift.find-coverage"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "sift-coverage-003",
+    "lab": "coverage",
+    "difficulty": "advanced",
+    "domain": "Geopolitics",
+    "claim": "NATO secret document reveals alliance plans to partition Russia after military defeat.",
+    "coverageOptions": [
+      {
+        "id": "opt-a",
+        "source": "RT (Russia Today)",
+        "headline": "Leaked NATO document exposes plan to dismember Russia — war criminal alliance revealed",
+        "rating": "unreliable",
+        "reason": "State-operated media with documented history of disinformation amplification; strong editorial incentive to frame NATO negatively"
+      },
+      {
+        "id": "opt-b",
+        "source": "Reuters & AP wire services",
+        "headline": "No NATO partition plan exists, alliance officials say, amid document claims",
+        "rating": "better",
+        "reason": "Wire services independently seeking comment and denials; skeptical framing"
+      },
+      {
+        "id": "opt-c",
+        "source": "NATO.int official press office",
+        "headline": "Statement on circulating document claims: NATO has no such planning document",
+        "rating": "best",
+        "reason": "Official primary source denial with institutional accountability"
+      }
+    ],
+    "correctAnswer": "opt-c",
+    "explanation": "The primary source here is NATO's official response. For government documents attributed to institutions, the institution's official response is the anchor. RT's framing contains strong editorial spin that serves Russian state communication objectives — this is a documented pattern requiring source-awareness.",
+    "learningPoints": [
+      "State media outlets have documented editorial biases that require acknowledgment",
+      "Institutional official statements are primary sources for institutional claims",
+      "Multiple independent wire services seeking comment is a corroboration signal"
+    ],
+    "sm2Tags": [
+      "state-media-bias",
+      "geopolitical-narratives",
+      "institutional-verification"
+    ],
+    "tests": [
+      "skill.sift.find-coverage"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "sift-trace-001",
+    "lab": "trace",
+    "difficulty": "beginner",
+    "domain": "Social Media",
+    "claim": "Viral photo showing flooding 'in Miami yesterday' circulating widely on X.",
+    "traceChain": [
+      {
+        "step": 1,
+        "action": "Reverse image search (Google Images / TinEye)",
+        "result": "Image found in 2019 Reuters archive, labeled 'Flooding in Jakarta, Indonesia following Typhoon Mitag'"
+      },
+      {
+        "step": 2,
+        "action": "Check EXIF metadata",
+        "result": "Original file timestamp: October 3, 2019. GPS coordinates: -6.2°S, 106.8°E (Jakarta, not Miami)"
+      },
+      {
+        "step": 3,
+        "action": "Search Reuters/AP archives for Miami flooding on claimed date",
+        "result": "No flood event in Miami on claimed date in any wire service archive"
+      }
+    ],
+    "verdict": "RECYCLED IMAGE — Wrong location and date",
+    "explanation": "Reverse image search is the first tool for viral images. This photo was recycled from a 2019 Jakarta flood event. The EXIF metadata confirms both the wrong year and wrong hemisphere. Miami is in the Northern Hemisphere (+25°N); Jakarta is in the Southern Hemisphere (-6°S).",
+    "learningPoints": [
+      "Reverse image search should be the first action on viral images",
+      "EXIF metadata contains verifiable timestamps and GPS coordinates",
+      "Stock photo recycling is a high-frequency disinformation technique"
+    ],
+    "sm2Tags": [
+      "reverse-image-search",
+      "exif-metadata",
+      "image-recycling"
+    ],
+    "tests": [
+      "skill.sift.trace-origin"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "sift-trace-002",
+    "lab": "trace",
+    "difficulty": "intermediate",
+    "domain": "Quotes",
+    "claim": "Albert Einstein quote circulating: 'The definition of insanity is doing the same thing over and over again and expecting different results.'",
+    "traceChain": [
+      {
+        "step": 1,
+        "action": "Search Einstein Archive at albert-einstein.org",
+        "result": "No such quote in 80,000+ documents. Not found in any paper, letter, or speech."
+      },
+      {
+        "step": 2,
+        "action": "Search Quote Investigator (quoteinvestigator.com)",
+        "result": "Earliest verified appearance: 1981 Narcotics Anonymous pamphlet. No Einstein attribution before 1990s."
+      },
+      {
+        "step": 3,
+        "action": "Check Wikiquote Einstein 'Misattributed' section",
+        "result": "Quote listed under 'Misattributed' with citation to Narcotics Anonymous origin"
+      }
+    ],
+    "verdict": "MISATTRIBUTED — Quote is from a 1981 NA pamphlet, not Einstein",
+    "explanation": "This is one of the most widely spread misattributed quotes on the internet. Tracing quotes to their origin requires the Einstein Archive, Quote Investigator, and Wikiquote's misattributed sections — not Google alone. The Einstein name is used as a false authority amplifier.",
+    "learningPoints": [
+      "Famous name attributions require archive verification",
+      "Quote Investigator is the authoritative tool for quote tracing",
+      "Misattributed quotes are a low-effort authority manufacturing technique"
+    ],
+    "sm2Tags": [
+      "quote-verification",
+      "misattribution",
+      "authority-manufacturing"
+    ],
+    "tests": [
+      "skill.sift.trace-origin"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "sift-trace-003",
+    "lab": "trace",
+    "difficulty": "advanced",
+    "domain": "Video",
+    "claim": "Video showing 'troops crossing the border' shared widely, attributed to 'happening right now in [country]'.",
+    "traceChain": [
+      {
+        "step": 1,
+        "action": "Extract distinctive frames — identify landmarks, vehicles, terrain",
+        "result": "Vehicles have left-hand drive steering. Road signs partially visible in Cyrillic."
+      },
+      {
+        "step": 2,
+        "action": "Search Bellingcat's video verification database",
+        "result": "Identical footage found in 2022 Bellingcat verification report — original video is Russian military exercise footage from Voronezh, March 2022"
+      },
+      {
+        "step": 3,
+        "action": "Check metadata using InVID/WeVerify browser extension",
+        "result": "Video upload timestamp predates claimed event by 14 months. Original upload from Russian state TV YouTube account."
+      }
+    ],
+    "verdict": "RECYCLED MILITARY FOOTAGE — 2022 Russian exercise reframed as current event",
+    "explanation": "Advanced video verification requires frame-by-frame analysis of vehicle types, road markings, signs, and terrain. Bellingcat's open-source methodology for video geolocation is the professional standard. InVID/WeVerify extension is the primary tool for metadata extraction without downloading the video.",
+    "learningPoints": [
+      "Bellingcat and InVID/WeVerify are professional video verification tools",
+      "Vehicle steering side and road signs provide geolocation anchors",
+      "Upload timestamp verification catches recycled footage claims"
+    ],
+    "sm2Tags": [
+      "video-verification",
+      "geolocation",
+      "bellingcat-methods"
+    ],
+    "tests": [
+      "skill.sift.trace-origin"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "sift-stop-004",
+    "lab": "stop",
+    "difficulty": "beginner",
+    "domain": "Environment",
+    "claim": "Wildfires are a globalist population control strategy. The wind always blows the fire toward people, and satellites can target specific houses. Share this truth!",
+    "manipulationSignals": [
+      "conspiracy",
+      "pseudoscience",
+      "share_pressure",
+      "targeted_persecution"
+    ],
+    "correctDecision": "stop",
+    "explanation": "This claim layers multiple implausible mechanisms (controlled wind, satellite-targeted fires) without any mechanism of action or evidence. The 'share this truth' is explicit share pressure. The globalist frame is a well-documented conspiratorial archetype. Physical reality: wildfires follow wind patterns and fuel load — both well-understood and publicly documented by NOAA and NIFC.",
+    "learningPoints": [
+      "Implausible mechanism claims require the highest evidential bar",
+      "Geographic targeting claims for natural disasters follow a documented conspiratorial template",
+      "NOAA and NIFC are primary sources for wildfire behavior"
+    ],
+    "sm2Tags": [
+      "conspiracy-archetypes",
+      "pseudoscience-patterns",
+      "share-pressure"
+    ],
+    "tests": [
+      "skill.sift.stop"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "sift-investigate-004",
+    "lab": "investigate",
+    "difficulty": "beginner",
+    "domain": "Politics",
+    "claim": "Economist Dr. Sarah Pemberton warns that the US dollar will lose reserve currency status by 2025.",
+    "sourceToEvaluate": {
+      "name": "Dr. Sarah Pemberton",
+      "affiliation": "claimed: 'Former IMF Senior Economist'",
+      "lateralReadingFindings": "IMF public staff directory has no record of Dr. Sarah Pemberton. A Sarah Pemberton does appear on LinkedIn as a mortgage broker in Perth, Australia. The quote circulates on gold investment sites and precious metals newsletters — sources with financial incentive to promote dollar collapse narratives.",
+      "verdict": "FABRICATED EXPERT",
+      "trustScore": 5
+    },
+    "correctAnswer": "unreliable",
+    "explanation": "Lateral reading reveals the expert does not exist in the institution claimed. The distribution channel (gold investment sites) has a financial incentive to promote this narrative. Dollar collapse predictions from fabricated IMF experts are a documented pattern in precious metals marketing.",
+    "learningPoints": [
+      "Financial doomsday experts frequently appear on sites with commercial incentive for the claim",
+      "IMF staff are publicly listed — verify at imf.org/external/np/sec/pr/",
+      "Distribution channel incentives should inform source evaluation"
+    ],
+    "sm2Tags": [
+      "fabricated-expert",
+      "financial-incentive-bias",
+      "imf-verification"
+    ],
+    "tests": [
+      "skill.sift.investigate-source"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "sift-coverage-004",
+    "lab": "coverage",
+    "difficulty": "intermediate",
+    "domain": "Crime",
+    "claim": "Violent crime has surged 40% in major US cities over the past year.",
+    "coverageOptions": [
+      {
+        "id": "opt-a",
+        "source": "Breitbart News",
+        "headline": "Crime EXPLOSION: 40% surge in cities confirms failed Democrat policy disaster",
+        "rating": "unreliable",
+        "reason": "Strong partisan framing; headline uses emotional amplifiers; no primary statistical source cited"
+      },
+      {
+        "id": "opt-b",
+        "source": "FBI Crime Statistics (UCR/NIBRS)",
+        "headline": "2023 Crime Statistics: Violent crime trends by metropolitan area (PDF Report)",
+        "rating": "best",
+        "reason": "Primary government statistical source with methodology documentation"
+      },
+      {
+        "id": "opt-c",
+        "source": "Washington Post fact-check",
+        "headline": "'40% surge' crime claim: what the data actually shows",
+        "rating": "better",
+        "reason": "Editorial fact-checking with cited primary data, though still an interpretation layer"
+      }
+    ],
+    "correctAnswer": "opt-b",
+    "explanation": "Crime statistics must be traced to FBI UCR/NIBRS primary data. The 40% number may be drawn from a specific subset, city, or crime type — context that only the primary statistical report provides. Partisan framing adds emotional loading that distorts the underlying data.",
+    "learningPoints": [
+      "FBI UCR and NIBRS are the primary sources for US crime statistics",
+      "Specific percentage claims require checking the precise subset they refer to",
+      "Partisan framing is a credibility signal, not the claim itself"
+    ],
+    "sm2Tags": [
+      "statistical-claims",
+      "primary-government-data",
+      "crime-statistics"
+    ],
+    "tests": [
+      "skill.sift.find-coverage"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "sift-trace-004",
+    "lab": "trace",
+    "difficulty": "beginner",
+    "domain": "Images",
+    "claim": "Photo of a politician shaking hands with a notorious criminal.",
+    "traceChain": [
+      {
+        "step": 1,
+        "action": "Reverse image search both faces separately",
+        "result": "Politician photo found in official government archive from a 2018 fundraiser. 'Criminal' photo is from a 2015 stock photo library (Getty Images #GP-182047)."
+      },
+      {
+        "step": 2,
+        "action": "Check for compositing artifacts — shadow direction, skin tone matching, edge halos",
+        "result": "Shadow falls left on politician (outdoor afternoon light). Shadow falls right on second figure (indoor studio light). Compositing seam visible at neck boundary."
+      },
+      {
+        "step": 3,
+        "action": "Search FotoForensics.com ELA analysis",
+        "result": "High ELA activity concentrated exclusively at the boundary of the second figure, indicating the two images were joined at different compression levels"
+      }
+    ],
+    "verdict": "FABRICATED COMPOSITE — Two independently sourced images merged",
+    "explanation": "Shadow direction inconsistency is the fastest visual tell for composites. Reverse image searching each figure independently reveals both originals. FotoForensics ELA analysis shows the compression artifacts at the join boundary that are characteristic of image splicing.",
+    "learningPoints": [
+      "Shadow direction is the fastest composite detection signal",
+      "Reverse-image-searching each subject separately reveals composite origins",
+      "FotoForensics.com provides accessible ELA analysis"
+    ],
+    "sm2Tags": [
+      "composite-detection",
+      "shadow-analysis",
+      "ela-analysis"
+    ],
+    "tests": [
+      "skill.sift.trace-origin"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "sift-stop-005",
+    "lab": "stop",
+    "difficulty": "intermediate",
+    "domain": "Technology",
+    "claim": "5G towers confirmed to suppress the human immune system at the cellular level. Peer-reviewed study from the Journal of Electromagnetic Biology & Medicine proves the link.",
+    "manipulationSignals": [
+      "fake_study_citation",
+      "technical_language",
+      "health_fear"
+    ],
+    "correctDecision": "stop",
+    "explanation": "This uses technical language and a real journal name to seem credible. However: (1) Stopping to check: the Journal of Electromagnetic Biology & Medicine is real but publishes highly contested non-consensus research. (2) 'Confirmed' and 'proves' are certainty markers that no single study can support. (3) The specific mechanism claim ('cellular level immune suppression') requires checking: known physics of 5G frequencies (millimeter wave) does not penetrate tissue. WHO and ICNIRP maintain that 5G within regulatory limits has no demonstrated health effects.",
+    "learningPoints": [
+      "Real journal names can be used as false credibility anchors",
+      "'Confirms' and 'proves' are certainty inflation markers in scientific claims",
+      "WHO and ICNIRP are primary sources for electromagnetic health standards"
+    ],
+    "sm2Tags": [
+      "certainty-inflation",
+      "fake-study-citation",
+      "electromagnetic-claims"
+    ],
+    "tests": [
+      "skill.sift.stop"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "sift-investigate-005",
+    "lab": "investigate",
+    "difficulty": "advanced",
+    "domain": "Science",
+    "claim": "NASA engineer whistleblower reveals Mars photos are taken in Devon Island, Canada, and the entire Mars program is faked.",
+    "sourceToEvaluate": {
+      "name": "Anonymous NASA whistleblower",
+      "affiliation": "claimed: former NASA engineer",
+      "lateralReadingFindings": "Devon Island conspiracy theory has circulated since 2001. NASA does conduct Mars analog research on Devon Island — this is publicly documented and not secret. Mars rovers transmit data through NASA's Deep Space Network (DSN), publicly logged at eyes.nasa.gov with real-time telemetry. Independent amateur astronomers globally have tracked Mars missions. The ESA, ISRO, and China's CNSA have independent Mars programs with separately verified results.",
+      "verdict": "CONSPIRACY BUILT ON HALF-TRUTH",
+      "trustScore": 10
+    },
+    "correctAnswer": "half_truth",
+    "explanation": "This is an advanced pattern: building a conspiracy on a true fact (NASA does use Devon Island for research) and extending it to an implausible conclusion (entire program is faked). The multiplicity of independent space programs (ESA, ISRO, CNSA) makes a global conspiracy logistically impossible. Lateral reading immediately finds the Devon Island research is publicly documented, not secret.",
+    "learningPoints": [
+      "Half-truth foundations make conspiracies harder to dismiss",
+      "Multiple independent programs reaching identical conclusions is strong disconfirmation",
+      "Real-time telemetry data (DSN) is public and independently verifiable"
+    ],
+    "sm2Tags": [
+      "half-truth-conspiracy",
+      "independent-corroboration",
+      "telemetry-verification"
+    ],
+    "tests": [
+      "skill.sift.investigate-source"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "sift-coverage-005",
+    "lab": "coverage",
+    "difficulty": "advanced",
+    "domain": "Economics",
+    "claim": "Central Bank Digital Currency (CBDC) pilot allows government to freeze any individual's financial access at will.",
+    "coverageOptions": [
+      {
+        "id": "opt-a",
+        "source": "Zero Hedge",
+        "headline": "CBDC: The end of financial freedom — total government control is here",
+        "rating": "unreliable",
+        "reason": "Zero Hedge has documented history of gold-bullion and crypto promotional content; strong editorial bias against central banking institutions"
+      },
+      {
+        "id": "opt-b",
+        "source": "Bank for International Settlements (BIS)",
+        "headline": "Project Icebreaker: Cross-border CBDC design principles and governance",
+        "rating": "best",
+        "reason": "Primary technical design document from the international institution that coordinates CBDC research"
+      },
+      {
+        "id": "opt-c",
+        "source": "Financial Times",
+        "headline": "CBDC pilots: what central banks are actually testing and why privacy advocates are watching",
+        "rating": "better",
+        "reason": "Balanced reporting with cited technical sources and advocacy group responses"
+      }
+    ],
+    "correctAnswer": "opt-b",
+    "explanation": "CBDC design questions require the primary technical documentation. BIS publishes the actual design specifications, which define exactly what programmability features do and do not exist. The editorial framing of 'total government control' distorts features that exist in some designs and not others — a distinction only readable in the primary technical document.",
+    "learningPoints": [
+      "Central bank primary technical documents define what features actually exist",
+      "Financial editorial bias is often tied to competing asset class interests",
+      "BIS publishes authoritative CBDC research at bis.org/topics/cbdc.htm"
+    ],
+    "sm2Tags": [
+      "financial-primary-sources",
+      "editorial-bias",
+      "technical-documents"
+    ],
+    "tests": [
+      "skill.sift.find-coverage"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "sift-trace-005",
+    "lab": "trace",
+    "difficulty": "advanced",
+    "domain": "Statistics",
+    "claim": "Graph showing 'COVID vaccines cause 40x more deaths than COVID itself' — widely shared on social media.",
+    "traceChain": [
+      {
+        "step": 1,
+        "action": "Identify the data source axis labels and units",
+        "result": "Y-axis label reads 'VAERS Reports' — not 'confirmed deaths'. VAERS (Vaccine Adverse Event Reporting System) is a passive surveillance system that captures unverified reports."
+      },
+      {
+        "step": 2,
+        "action": "Find the original VAERS data on CDC website",
+        "result": "VAERS explicitly states on every download: 'A report to VAERS generally does not prove that the identified vaccine(s) caused the adverse event described.' The number in the graph is raw reports, not confirmed causal deaths."
+      },
+      {
+        "step": 3,
+        "action": "Find peer-reviewed analysis comparing VAERS reports to confirmed outcomes",
+        "result": "CDC MMWR and published meta-analyses show actual confirmed vaccine-related deaths are orders of magnitude lower than raw VAERS counts due to the passive, unverified nature of the system."
+      }
+    ],
+    "verdict": "STATISTICAL MISREPRESENTATION — VAERS raw reports misrepresented as confirmed deaths",
+    "explanation": "This is one of the most important statistical literacy exercises: VAERS is a reporting system, not a confirmed causation database. Every VAERS data download includes a disclaimer. The graph removes this context and presents raw report counts as confirmed causal deaths — a fundamental misrepresentation of what the data means.",
+    "learningPoints": [
+      "VAERS captures reports, not confirmed causation — the disclaimer is part of the data",
+      "Axis labels define what a graph actually shows",
+      "Passive surveillance systems have known ascertainment biases"
+    ],
+    "sm2Tags": [
+      "vaers-misrepresentation",
+      "statistical-literacy",
+      "passive-surveillance-systems"
+    ],
+    "tests": [
+      "skill.sift.trace-origin"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "sift-stop-006",
+    "lab": "stop",
+    "difficulty": "intermediate",
+    "domain": "Science",
+    "claim": "The Royal Astronomical Society has published preliminary observations suggesting the comet's orbital period is about 340 years, revised from an earlier estimate of 290. The paper notes the estimate may shift again as more observations come in.",
+    "manipulationSignals": [],
+    "correctDecision": "continue",
+    "explanation": "Nothing here is trying to move you. A named institution, a hedged claim, a stated revision, and an explicit acknowledgement that the number may change again — that is what ordinary science communication looks like. The stop reflex is for noticing an emotional pull; there is no pull here to notice. Treating this as suspicious is the mirror-image error to credulity, and it is just as costly: an operator who distrusts everything has not become discerning, only unreachable.",
+    "learningPoints": [
+      "Hedged, revisable claims are a credibility signal, not a weakness",
+      "The absence of urgency and share pressure is itself information",
+      "Reflexive distrust is a failure mode, not a safe default"
+    ],
+    "sm2Tags": [
+      "calibrated-trust",
+      "hedging-as-signal"
+    ],
+    "tests": [
+      "skill.sift.stop"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "sift-stop-007",
+    "lab": "stop",
+    "difficulty": "advanced",
+    "domain": "Government",
+    "claim": "The city transit authority announced that the Line 4 closure has been extended by three weeks. The notice cites a contractor delay, links to the revised schedule, and gives a phone number for affected riders.",
+    "manipulationSignals": [],
+    "correctDecision": "continue",
+    "explanation": "Mundane, verifiable, and self-undermining in the way real institutional communication tends to be — nobody invents an announcement that makes them look incompetent. It names a cause, links a document and offers a channel to complain. There is no emotional lever, no out-group, and nothing being asked of you beyond information. Engaging with and sharing this is the correct behaviour.",
+    "learningPoints": [
+      "Claims that embarrass their own source rarely need a stop",
+      "A checkable reference and a complaint channel are cheap for honest sources and expensive for dishonest ones",
+      "Not every claim about authority is a claim by an adversary"
+    ],
+    "sm2Tags": [
+      "calibrated-trust",
+      "verifiable-reference"
+    ],
+    "tests": [
+      "skill.sift.stop"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "sift-stop-008",
+    "lab": "stop",
+    "difficulty": "advanced",
+    "domain": "Health",
+    "claim": "A meta-analysis in a peer-reviewed journal reports that a widely used sleep supplement performs no better than placebo across 14 trials. The authors disclose funding from a public research council and note that two included trials were small enough to skew the pooled estimate.",
+    "manipulationSignals": [],
+    "correctDecision": "continue",
+    "explanation": "This is a negative result, disclosed funding, and a stated limitation that weakens the authors' own headline. Every one of those cuts against manipulation. It is worth noticing that the conclusion may be unwelcome — an operator who stops here because they take the supplement is stopping for motivated reasons, not epistemic ones, which is the harder version of this skill: the stop reflex must not be selectively applied to claims you dislike.",
+    "learningPoints": [
+      "Disclosed limitations and null results are markers of good-faith reporting",
+      "Watch whether your urge to stop tracks the evidence or your priors",
+      "Selective scepticism is confirmation bias wearing safety equipment"
+    ],
+    "sm2Tags": [
+      "calibrated-trust",
+      "motivated-scepticism"
+    ],
+    "tests": [
+      "skill.sift.stop"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "sift-investigate-006",
+    "lab": "investigate",
+    "difficulty": "intermediate",
+    "domain": "Economics",
+    "claim": "An analysis piece states that regional unemployment rose for the fourth consecutive quarter.",
+    "sourceToEvaluate": {
+      "name": "Meridian Regional Economics Bulletin",
+      "affiliation": "claimed: 'independent research bulletin'",
+      "lateralReadingFindings": "Registered as a subsidiary of a property developers' association. Masthead lists no economists. Every issue in the past two years concludes that regional taxes should fall. The unemployment figures themselves are copied accurately from the national statistics office.",
+      "verdict": "ACCURATE DATA, UNDISCLOSED INTEREST",
+      "trustScore": 34
+    },
+    "correctAnswer": "half_truth",
+    "explanation": "The numbers check out — this is not fabrication, and calling it so would be an over-read. What lateral reading exposes is an undisclosed interest shaping which true facts get published and what conclusion is drawn from them. Selection is an editorial act, and a source can mislead without ever stating a falsehood.",
+    "learningPoints": [
+      "A source can be factually accurate and still systematically misleading",
+      "Ownership and funding shape selection, not just wording",
+      "Verifying the figures is not the same as verifying the argument"
+    ],
+    "sm2Tags": [
+      "undisclosed-interest",
+      "selection-effects",
+      "lateral-reading"
+    ],
+    "tests": [
+      "skill.sift.investigate-source"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "sift-investigate-007",
+    "lab": "investigate",
+    "difficulty": "advanced",
+    "domain": "Science",
+    "claim": "A paper reports that a common agricultural fungicide has no measurable effect on pollinator colony survival.",
+    "sourceToEvaluate": {
+      "name": "Journal of Applied Agronomy (peer-reviewed)",
+      "affiliation": "indexed, editorial board of 14 named academics at six institutions",
+      "lateralReadingFindings": "Journal is indexed in Scopus with a 40-year history. The study discloses funding from the fungicide manufacturer in the declarations section, pre-registered its protocol, and its methods and raw data are published. Two independent groups have since replicated the null result.",
+      "verdict": "RELIABLE — DISCLOSED FUNDING, REPLICATED",
+      "trustScore": 88
+    },
+    "correctAnswer": "reliable",
+    "explanation": "Industry funding is a reason to look harder, not a reason to dismiss — and here the looking is what settles it: pre-registration, published data, and independent replication are exactly the checks that make funding less able to determine the result. Reflexively rejecting anything an interested party paid for would discard most applied science, which is a failure of investigation rather than a success of it.",
+    "learningPoints": [
+      "Disclosed funding is a prompt to check the method, not a verdict",
+      "Pre-registration and replication constrain what funding can buy",
+      "Reflexive dismissal is as unexamined as reflexive acceptance"
+    ],
+    "sm2Tags": [
+      "calibrated-trust",
+      "funding-disclosure",
+      "replication"
+    ],
+    "tests": [
+      "skill.sift.investigate-source"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "sift-investigate-008",
+    "lab": "investigate",
+    "difficulty": "advanced",
+    "domain": "Media",
+    "claim": "A breaking-news account with 400,000 followers reports an explosion at a named chemical plant.",
+    "sourceToEvaluate": {
+      "name": "@RegionalAlertNet",
+      "affiliation": "claimed: 'verified breaking news, since 2011'",
+      "lateralReadingFindings": "Account created four months ago. Bio and avatar copied from a dormant local news outlet that closed in 2019. Follower growth: 380,000 within eleven days. No local emergency service, wire agency or nearby resident has reported an incident.",
+      "verdict": "IMPERSONATION OF A DEFUNCT OUTLET",
+      "trustScore": 6
+    },
+    "correctAnswer": "domain_spoof",
+    "explanation": "The account borrows the credibility of a real outlet that no longer exists to defend its own name — the strongest available identity to steal. Distinguish this from fabricated attribution, where a quote is put in a real person's mouth: here the entire OUTLET is the forgery, and the account-age against follower-count mismatch is what makes it visible in seconds.",
+    "learningPoints": [
+      "Defunct outlets are attractive identities to impersonate — nobody is left to object",
+      "Account age against audience size is a fast, cheap check",
+      "Absence of corroboration from emergency services is itself a finding on a breaking claim"
+    ],
+    "sm2Tags": [
+      "impersonation",
+      "account-age",
+      "corroboration"
+    ],
+    "tests": [
+      "skill.sift.investigate-source"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "sift-coverage-006",
+    "lab": "coverage",
+    "difficulty": "intermediate",
+    "domain": "Government",
+    "claim": "The city has \"quietly cut\" the winter shelter budget by 60%.",
+    "coverageOptions": [
+      {
+        "id": "opt-a",
+        "source": "CityWatchdog (advocacy blog)",
+        "headline": "EXPOSED: council guts shelter funding by 60% while homelessness climbs",
+        "rating": "unreliable",
+        "reason": "Campaigning source; the 60% is not sourced and no budget line is named"
+      },
+      {
+        "id": "opt-b",
+        "source": "Regional Herald",
+        "headline": "Shelter budget falls 60% as council shifts spend to year-round housing",
+        "rating": "better",
+        "reason": "Names the budget line, quotes both the council and a shelter operator, explains where the money went"
+      },
+      {
+        "id": "opt-c",
+        "source": "Council budget document (primary)",
+        "headline": "Appendix 7: Homelessness Services, FY allocations",
+        "rating": "best",
+        "reason": "The underlying figures, but 240 pages with no explanation of the reallocation"
+      }
+    ],
+    "correctAnswer": "opt-b",
+    "explanation": "The primary document is not automatically the best coverage. It confirms the 60% but cannot tell you what the claim turns on — whether the money was cut or moved. The Herald piece is the better answer because it does the work the question requires: sourcing the number AND supplying the context that decides what it means. Going to the primary source is a step, not a finish line.",
+    "learningPoints": [
+      "\"Find better coverage\" means better for the question you are asking",
+      "A primary document can be authoritative and still uninformative",
+      "The context that decides a claim is often absent from the raw data"
+    ],
+    "sm2Tags": [
+      "primary-vs-useful",
+      "reallocation-vs-cut",
+      "lateral-reading"
+    ],
+    "tests": [
+      "skill.sift.find-coverage"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "sift-coverage-007",
+    "lab": "coverage",
+    "difficulty": "advanced",
+    "domain": "Health",
+    "claim": "A new blood test \"detects fifty cancers before symptoms appear\".",
+    "coverageOptions": [
+      {
+        "id": "opt-a",
+        "source": "Manufacturer press release",
+        "headline": "Landmark trial: single blood test detects 50 cancers early",
+        "rating": "unreliable",
+        "reason": "Reports sensitivity but omits false-positive rate and the population screened"
+      },
+      {
+        "id": "opt-b",
+        "source": "The Lancet (original trial)",
+        "headline": "Multi-cancer early detection in a screening population: a prospective study",
+        "rating": "best",
+        "reason": "Reports sensitivity by stage, specificity, and positive predictive value in the screened population"
+      },
+      {
+        "id": "opt-c",
+        "source": "National broadcaster health desk",
+        "headline": "What the new cancer blood test can and cannot do yet",
+        "rating": "better",
+        "reason": "Accurate and well-hedged, but does not give the stage-by-stage numbers a decision would need"
+      }
+    ],
+    "correctAnswer": "opt-b",
+    "explanation": "Here the primary source IS the right destination, because the claim turns on numbers only the trial reports — positive predictive value in a screening population is the figure that decides whether \"detects fifty cancers\" means anything useful. Contrast this with the shelter-budget scenario, where the primary document could not answer the question: which source is best depends on what you need from it, not on a ranking of source types.",
+    "learningPoints": [
+      "Sensitivity without specificity is an incomplete claim",
+      "Positive predictive value depends on prevalence in the screened population",
+      "The best source is the one that carries the figure your question turns on"
+    ],
+    "sm2Tags": [
+      "ppv-vs-sensitivity",
+      "screening-populations",
+      "primary-source"
+    ],
+    "tests": [
+      "skill.sift.find-coverage"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "sift-coverage-008",
+    "lab": "coverage",
+    "difficulty": "intermediate",
+    "domain": "Technology",
+    "claim": "A messaging app \"has been broken\" and messages can now be read by anyone.",
+    "coverageOptions": [
+      {
+        "id": "opt-a",
+        "source": "Aggregator tech blog",
+        "headline": "Popular messenger encryption BROKEN — switch apps now",
+        "rating": "unreliable",
+        "reason": "Rewrites a security advisory it links to but appears not to have read; no CVE, no conditions"
+      },
+      {
+        "id": "opt-b",
+        "source": "Original security advisory (vendor)",
+        "headline": "CVE-2026-XXXX: metadata exposure under specific downgrade conditions",
+        "rating": "best",
+        "reason": "States exactly what is affected, under what conditions, and what is not affected"
+      },
+      {
+        "id": "opt-c",
+        "source": "Independent cryptographer's analysis",
+        "headline": "What the messenger advisory actually says",
+        "rating": "better",
+        "reason": "Accurate and readable, adds useful judgement, but is one researcher's reading of opt-b"
+      }
+    ],
+    "correctAnswer": "opt-b",
+    "explanation": "The advisory is upstream of both other pieces and is the only one that defines the scope — metadata under downgrade conditions is a serious but far narrower claim than \"encryption broken\". The cryptographer's analysis is genuinely good coverage and would be the right answer if the advisory were unreadable; the reason it loses here is only that it derives from the source you can reach directly.",
+    "learningPoints": [
+      "Coverage that rewrites a source without reading it inherits none of its precision",
+      "\"Broken\" is rarely a technical claim — find the scope conditions",
+      "Prefer the upstream document when it is readable; prefer the explainer when it is not"
+    ],
+    "sm2Tags": [
+      "scope-conditions",
+      "upstream-source",
+      "headline-inflation"
+    ],
+    "tests": [
+      "skill.sift.find-coverage"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "sift-trace-006",
+    "lab": "trace",
+    "difficulty": "intermediate",
+    "domain": "Quotes",
+    "claim": "A widely shared graphic attributes to a sitting central bank governor the line: \"We will let inflation run hot and let savers pay for it.\"",
+    "traceChain": [
+      {
+        "step": 1,
+        "action": "Search the exact phrase in quotation marks",
+        "result": "Earliest instance is a satirical finance account, posted with a \"if central bankers were honest\" framing that later reposts dropped"
+      },
+      {
+        "step": 2,
+        "action": "Search the official speech and press-conference transcripts for the period",
+        "result": "No such phrase. The governor did say inflation would be \"allowed to run somewhat above target temporarily\""
+      },
+      {
+        "step": 3,
+        "action": "Check the graphic's image history",
+        "result": "Portrait is a press-conference still from a different year, cropped from an agency photograph"
+      }
+    ],
+    "verdict": "SATIRE STRIPPED OF ITS FRAME — Invented quote, real speaker",
+    "explanation": "The origin is not a lie but a joke that lost its context on the way. This is one of the most common paths a fabricated quote takes, and it means the person who first wrote it may have deceived nobody. Tracing to origin is what distinguishes it from deliberate fabrication — and the real quotation it distorts is close enough to make the fake plausible.",
+    "learningPoints": [
+      "Satire losing its frame is a major source of fabricated quotes",
+      "The most convincing fake quotes sit near something real that was said",
+      "Finding the first instance is what separates a hoax from a joke"
+    ],
+    "sm2Tags": [
+      "context-collapse",
+      "quote-verification",
+      "satire-laundering"
+    ],
+    "tests": [
+      "skill.sift.trace-origin"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "sift-trace-007",
+    "lab": "trace",
+    "difficulty": "advanced",
+    "domain": "Statistics",
+    "claim": "A chart circulating as \"official figures\" shows violent crime doubling in five years.",
+    "traceChain": [
+      {
+        "step": 1,
+        "action": "Identify the source cited on the chart",
+        "result": "Cites the national statistics office, which publishes the underlying series"
+      },
+      {
+        "step": 2,
+        "action": "Compare the chart against the published series",
+        "result": "The values match exactly. The y-axis on the chart begins at 82% of the first value rather than at zero"
+      },
+      {
+        "step": 3,
+        "action": "Check the definitional footnote in the source release",
+        "result": "Recording standards changed in year three, expanding what counts as a violent offence. The release says the series is not comparable across that boundary"
+      }
+    ],
+    "verdict": "ACCURATE NUMBERS, BROKEN COMPARISON — Truncated axis and a definition change",
+    "explanation": "Every figure on this chart is real, which is what makes it effective — there is nothing to fact-check. The distortion is in the axis and in comparing across a definitional break the publisher explicitly warned about. Tracing to origin here does not expose a fake; it exposes that the honest source already documented why the comparison does not hold.",
+    "learningPoints": [
+      "A truncated y-axis is a rhetorical choice, not a data error",
+      "Definition changes break time series, and publishers usually say so in the notes",
+      "Tracing to origin often finds the caveat rather than the fabrication"
+    ],
+    "sm2Tags": [
+      "axis-truncation",
+      "series-breaks",
+      "read-the-footnote"
+    ],
+    "tests": [
+      "skill.sift.trace-origin"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "sift-trace-008",
+    "lab": "trace",
+    "difficulty": "advanced",
+    "domain": "Video",
+    "claim": "Footage circulates showing a politician stumbling badly at a public event, captioned as evidence of ill health.",
+    "traceChain": [
+      {
+        "step": 1,
+        "action": "Reverse-search keyframes and locate the earliest upload",
+        "result": "Earliest upload is 14 seconds long. A broadcaster archive holds the full 3-minute clip from the same camera position"
+      },
+      {
+        "step": 2,
+        "action": "Compare the clip against the full recording",
+        "result": "The stumble occurs while stepping over a cable; the politician steadies immediately and continues. Both are in the full recording"
+      },
+      {
+        "step": 3,
+        "action": "Check the short clip for manipulation",
+        "result": "No frame interpolation, no re-encoding artefacts beyond ordinary platform compression, playback speed unaltered"
+      }
+    ],
+    "verdict": "AUTHENTIC FOOTAGE, DECEPTIVE EDIT — Nothing altered except where it stops",
+    "explanation": "Forensics would find nothing here, because there is nothing to find: the pixels are real and unmodified. The deception is entirely in the cut, and the only tool that exposes it is finding the fuller recording. This is why provenance and origin-tracing matter even when a file passes every technical check — and why \"no manipulation detected\" is not a verdict on a claim.",
+    "learningPoints": [
+      "Selective editing leaves no forensic trace — the frames are genuine",
+      "The shortest circulating version is rarely the original",
+      "A clean forensic result says nothing about whether the framing is honest"
+    ],
+    "sm2Tags": [
+      "selective-editing",
+      "find-the-full-clip",
+      "forensics-limits"
+    ],
+    "tests": [
+      "skill.sift.trace-origin"
+    ],
+    "heldOut": false
+  }
+]

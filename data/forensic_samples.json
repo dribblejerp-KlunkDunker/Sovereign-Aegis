@@ -1,0 +1,144 @@
+[
+  {
+    "id": "sample-c2pa-photo",
+    "type": "image",
+    "title": "Authentic Photojournalist Capture (C2PA Signed)",
+    "source": "Leica M11-P Hardware Provenance",
+    "isSynthetic": false,
+    "veracityScore": 98,
+    "c2paManifest": {
+      "verified": true,
+      "issuer": "Leica Camera AG (Hardware Root CA)",
+      "signingTime": "2026-08-14T14:22:18Z",
+      "claimedTitle": "Civic Rally Press Documentation",
+      "claimGenerator": "Leica Content Credentials Engine v1.4.2",
+      "signatureAlgorithm": "ECDSA P-256 (secp256r1) with SHA-256",
+      "assertions": [
+        { "label": "c2pa.actions", "data": { "actions": [{ "action": "c2pa.created", "parameters": { "cameraModel": "Leica M11-P", "iso": 400, "focalLength": "35mm", "aperture": "f/2.8", "shutter": "1/500s" } }] } },
+        { "label": "c2pa.hash.data", "data": { "alg": "sha256", "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855" } },
+        { "label": "stds.schema-org.CreativeWork", "data": { "author": [{ "name": "Elena Rostova", "@type": "Person" }], "locationCreated": "Geneva, Switzerland" } }
+      ],
+      "tamperStatus": "UNMODIFIED"
+    },
+    "forensics": {
+      "ela": { "anomalyDetected": false, "uniformityScore": 94, "notes": "Uniform compression grid. No localized high-contrast quantization anomalies found." },
+      "fft": { "spectralSpikes": false, "noiseFloor": "Natural Poisson-Gaussian sensor noise (SNR: 38dB)", "notes": "Continuous isotropic radial decay. Zero periodic checkerboard grid artifacts." },
+      "biometrics": { "cornealReflectionSymmetric": true, "earMorphology": "Anatomically coherent antihelix and lobule curvature", "pupilCircularity": 0.96 }
+    },
+    "syntheticMarkers": []
+  },
+  {
+    "id": "sample-diffusion-portrait",
+    "type": "image",
+    "title": "Synthetic AI Portrait (Flux / Midjourney v6)",
+    "source": "Latent Diffusion Model",
+    "isSynthetic": true,
+    "veracityScore": 12,
+    "c2paManifest": {
+      "verified": false,
+      "issuer": "None (Stripped / Unsigned Metadata)",
+      "signingTime": null,
+      "claimGenerator": "Unknown / Synthetic Generation Pipeline",
+      "signatureAlgorithm": "N/A",
+      "assertions": [
+        { "label": "c2pa.ai_generative", "data": { "generationType": "text-to-image", "model": "Flux-1.dev / Midjourney v6" } }
+      ],
+      "tamperStatus": "SYNTHETIC_GENERATION"
+    },
+    "forensics": {
+      "ela": { "anomalyDetected": true, "uniformityScore": 34, "notes": "Severe localized high-frequency edge discontinuities along hair-background boundary and collar texture." },
+      "fft": { "spectralSpikes": true, "noiseFloor": "Synthetic latent smoothing (Sub-pixel variance collapsed)", "notes": "Prominent orthogonal frequency spikes at 4x and 8x upscaling harmonics indicating UNet deconvolution." },
+      "biometrics": { "cornealReflectionSymmetric": false, "earMorphology": "Malformed cartilage fusion on left pinna", "pupilCircularity": 0.78, "notes": "Catchlights in left eye show a studio softbox while right eye reflects an outdoor sunset (specular contradiction)." }
+    },
+    "syntheticMarkers": [
+      "Asymmetric corneal specular highlights (dual conflicting light sources)",
+      "High-frequency Fourier orthogonal grid spikes (Diffusion UNet artifact)",
+      "Non-uniform Error Level Analysis (ELA) quantization variance",
+      "Irregular dental micro-spacing and non-standard incisor count"
+    ]
+  },
+  {
+    "id": "sample-voice-authentic",
+    "type": "audio",
+    "title": "Authentic Official Press Briefing Audio",
+    "source": "Studio Dynamic Microphone Capture",
+    "isSynthetic": false,
+    "veracityScore": 95,
+    "c2paManifest": {
+      "verified": true,
+      "issuer": "Broadcasting Provenance Authority",
+      "signatureAlgorithm": "Ed25519"
+    },
+    "forensics": {
+      "spectrogram": { "cutoffFrequency": "22.5 kHz (Full Acoustic Bandwidth)", "vocoderArtifacts": false },
+      "pitchContour": { "naturalJitter": "1.42% (Normal Human Vocal Cord Micro-Tremor)", "glottalPulseContinuous": true },
+      "roomAcoustics": { "reverbDecay": "RT60: 0.42s (Natural Coherent Room Impulse Response)", "backgroundFloor": "-54 dB Ambient Noise Floor" }
+    },
+    "syntheticMarkers": []
+  },
+  {
+    "id": "sample-voice-clone",
+    "type": "audio",
+    "title": "Neural Voice Clone (ElevenLabs / VALL-E)",
+    "source": "Zero-Shot Text-To-Speech Neural Model",
+    "isSynthetic": true,
+    "veracityScore": 15,
+    "c2paManifest": {
+      "verified": false,
+      "issuer": "None (Unauthenticated Audio Stream)"
+    },
+    "forensics": {
+      "spectrogram": { "cutoffFrequency": "16.0 kHz (Sharp Neural Vocoder Brickwall Filter)", "vocoderArtifacts": true },
+      "pitchContour": { "naturalJitter": "0.18% (Unnaturally Flat Neural Trajectory)", "glottalPulseContinuous": false, "notes": "Missing micro-prosodic pitch perturbation during consonant-vowel transitions." },
+      "roomAcoustics": { "reverbDecay": "RT60: 0.02s (Completely Anaechoic / Dry Synthetic Output)", "backgroundFloor": "Digital Zero Silence Between Syllables (Gating Artifact)" }
+    },
+    "syntheticMarkers": [
+      "Brickwall spectral cutoff at exactly 16.0 kHz (Vocoder compression artifact)",
+      "Sub-physiological pitch jitter (<0.3%) indicating synthetic neural prosody",
+      "Unnatural phase jumps at phoneme boundaries",
+      "Absence of environmental room acoustics (abrupt zero-amplitude silence)"
+    ]
+  },
+  {
+    "id": "sample-deepfake-video",
+    "type": "video",
+    "title": "Face-Swap Video (DeepFaceLab / SimSwap)",
+    "source": "Generative Autoencoder Video Pipeline",
+    "isSynthetic": true,
+    "veracityScore": 18,
+    "c2paManifest": {
+      "verified": false,
+      "issuer": "None"
+    },
+    "forensics": {
+      "temporal": { "frameJitter": "14.2% Inter-frame Jaw Seam Variance", "blendBoundary": "Visible Gaussian feathering along lower mandible" },
+      "visemePhoneme": { "syncDelta": "+140ms (Auditory 'B/P' Bilabial Plosive Lag vs Lip Movement)", "notes": "Mouth opens 3 frames after audio plosive burst." },
+      "blinkRate": { "rate": "4.2 blinks/min (Abnormally Low / Frozen Gaze)", "saccadeNatural": false }
+    },
+    "syntheticMarkers": [
+      "Jawline boundary blend blur and temporal warping across frame transitions",
+      "+140ms audio-visual viseme desynchronization on bilabial plosives",
+      "Abnormal blink interval (>12 seconds continuous unblinking gaze)",
+      "Specular mismatch between face mesh lighting and background shadows"
+    ]
+  },
+  {
+    "id": "sample-authentic-video",
+    "type": "video",
+    "title": "Authentic Press Conference Video (Broadcast Cam)",
+    "source": "Broadcast ENG Optical Camera Capture",
+    "isSynthetic": false,
+    "veracityScore": 96,
+    "c2paManifest": {
+      "verified": true,
+      "issuer": "Sony Electronics Broadcast Hardware CA",
+      "tamperStatus": "UNMODIFIED"
+    },
+    "forensics": {
+      "temporal": { "frameJitter": "1.1% Natural Camera Micro-Motion", "blendBoundary": "Continuous natural skin-to-background edge gradient" },
+      "visemePhoneme": { "syncDelta": "0ms (Coherent Bilabial Acoustic Alignment)", "notes": "Lip closure corresponds exactly with acoustic plosive energy." },
+      "blinkRate": { "rate": "17.4 blinks/min (Normal Physiological Baseline)", "saccadeNatural": true }
+    },
+    "syntheticMarkers": []
+  }
+]

@@ -1,0 +1,404 @@
+[
+  {
+    "domainId": "election",
+    "domainName": "Electoral Integrity & Democratic Processes",
+    "icon": "icon-vote",
+    "radarAngle": 30,
+    "radarDistance": 0.85,
+    "threatLevel": "Critical",
+    "activeIncidents": [
+      {
+        "id": "inc-elec-01",
+        "headline": "Coordinated Mail-In Ballot Shredding Deepfake Surge",
+        "severity": "Critical",
+        "originVector": "Darknet Channels -> Microblog Viral Bridges",
+        "disarmCodes": ["T0005", "T0023", "T0030", "T0035"],
+        "summary": "High-definition synthetic video showing municipal election workers allegedly destroying ballots in competitive swing districts.",
+        "indicators": [
+          "Solar shadow angle mismatch on exterior warehouse fixtures",
+          "Automated botnet surge generating 45,000 retweets per hour",
+          "Non-standard barcode formatting on ballot props"
+        ]
+      },
+      {
+        "id": "inc-elec-02",
+        "headline": "Spoofed Polling Location Closure SMS Campaign",
+        "severity": "High",
+        "originVector": "Automated SMS Broadcast Gateways",
+        "disarmCodes": ["T0001", "T0014", "T0027"],
+        "summary": "Targeted SMS messages sent to registered student voters falsely claiming their campus polling site has been relocated 15 miles away.",
+        "indicators": [
+          "Originating numbers trace to virtual VoIP aggregator",
+          "Timing coincides with opening of morning voting hours",
+          "Official county election portal reports regular operations"
+        ]
+      }
+    ],
+    "disarmPlaybook": {
+      "playbookCode": "PLAYBOOK-ELEC-SHIELD",
+      "title": "Electoral Integrity Rapid Response Protocol",
+      "targetDisarmPhases": ["Seed", "Amplify", "Measure & Adapt"],
+      "actionChecklist": [
+        {
+          "stepId": "elec-step-1",
+          "task": "Issue immediate multi-channel public prebunk bulletin debunking the fake warehouse video.",
+          "disarmRef": "T0023",
+          "recommendedLeadTime": "Within 30 minutes of detection"
+        },
+        {
+          "stepId": "elec-step-2",
+          "task": "Deploy network graph rate-limiting telemetry to platform trust & safety desks.",
+          "disarmRef": "T0030",
+          "recommendedLeadTime": "Within 45 minutes"
+        },
+        {
+          "stepId": "elec-step-3",
+          "task": "Publish cryptographically signed statement from County Registrar confirming true polling locations.",
+          "disarmRef": "T0011",
+          "recommendedLeadTime": "Within 60 minutes"
+        },
+        {
+          "stepId": "elec-step-4",
+          "task": "Broadcast emergency carrier alert correcting SMS disinformation to affected zip codes.",
+          "disarmRef": "T0014",
+          "recommendedLeadTime": "Within 90 minutes"
+        }
+      ]
+    }
+  },
+  {
+    "domainId": "health",
+    "domainName": "Public Health & Biosecurity",
+    "icon": "icon-shield-cross",
+    "radarAngle": 90,
+    "radarDistance": 0.72,
+    "threatLevel": "High",
+    "activeIncidents": [
+      {
+        "id": "inc-health-01",
+        "headline": "Synthetic Military Biolab Atmospheric Leak Rumor",
+        "severity": "High",
+        "originVector": "Anonymous Imageboards -> Fringe Health Blogs",
+        "disarmCodes": ["T0004", "T0011", "T0027", "T0033"],
+        "summary": "Recycled 2014 Ebola drill photos weaponized to claim an ongoing airborne Level 4 pathogen release near a metropolitan hub.",
+        "indicators": [
+          "Reverse image match to 2014 Dallas medical preparedness archive",
+          "Zero emergency hospital intake anomalies across regional health telemetry",
+          "High density of panic-buying affiliate links in reply threads"
+        ]
+      },
+      {
+        "id": "inc-health-02",
+        "headline": "Toxic Pharmaceutical Batch Recall Forgery",
+        "severity": "Elevated",
+        "originVector": "Compromised Healthcare Influencer Accounts",
+        "disarmCodes": ["T0013", "T0024", "T0031"],
+        "summary": "Forged FDA warning letter claiming standard pediatric insulin batches have been contaminated with industrial heavy metals.",
+        "indicators": [
+          "Typography in warning letter is Calibri instead of FDA standard Arial",
+          "FDA statutory recall database confirms normal compliance",
+          "Compromised verified influencer handles forwarding identical text templates"
+        ]
+      }
+    ],
+    "disarmPlaybook": {
+      "playbookCode": "PLAYBOOK-BIO-AEGIS",
+      "title": "Biosecurity & Health Communication Defense Protocol",
+      "targetDisarmPhases": ["Prepare", "Seed", "Amplify"],
+      "actionChecklist": [
+        {
+          "stepId": "health-step-1",
+          "task": "Extract reverse image archive provenance and publish visual comparison debunk.",
+          "disarmRef": "T0027",
+          "recommendedLeadTime": "Immediate (T+15m)"
+        },
+        {
+          "stepId": "health-step-2",
+          "task": "Issue verifiable C2PA-signed health advisory from State Surgeon General.",
+          "disarmRef": "T0011",
+          "recommendedLeadTime": "Within 45 minutes"
+        },
+        {
+          "stepId": "health-step-3",
+          "task": "Coordinate hospital intake telemetry transparency dashboard for public view.",
+          "disarmRef": "T0004",
+          "recommendedLeadTime": "Within 2 hours"
+        },
+        {
+          "stepId": "health-step-4",
+          "task": "Alert pharmaceutical pharmacy networks with cryptographic recall verification status.",
+          "disarmRef": "T0031",
+          "recommendedLeadTime": "Within 3 hours"
+        }
+      ]
+    }
+  },
+  {
+    "domainId": "geopolitics",
+    "domainName": "Geopolitical Conflict & State Operations",
+    "icon": "icon-globe",
+    "radarAngle": 150,
+    "radarDistance": 0.90,
+    "threatLevel": "Critical",
+    "activeIncidents": [
+      {
+        "id": "inc-geo-01",
+        "headline": "Synthetic Hot-Mic Audio of Bilateral Summit Slurs",
+        "severity": "Critical",
+        "originVector": "State Intelligence Front Outlet -> Foreign Press",
+        "disarmCodes": ["T0002", "T0011", "T0023", "T0035", "T0047"],
+        "summary": "Cloned AI audio recording of lead peace negotiator allegedly making ethnic slurs during confidential treaty talks.",
+        "indicators": [
+          "Spectrogram reveals sharp Nyquist cutoff at 12kHz with empty upper harmonics",
+          "RT60 room reverberation is 0.0s, contradicting the 2.4s acoustic decay of the summit hall",
+          "Temporal alibi confirms diplomat was speaking in live televised plenary session"
+        ]
+      },
+      {
+        "id": "inc-geo-02",
+        "headline": "Fabricated Border Troop Mobilization Video",
+        "severity": "Critical",
+        "originVector": "Regional P2P Telegram Channels",
+        "disarmCodes": ["T0020", "T0023", "T0030", "T0043"],
+        "summary": "Video game combat footage from Arma 3 passed off as live thermal camera footage of an armored column crossing the DMZ.",
+        "indicators": [
+          "Vehicle polygonal rendering artifacts visible under high-pass filtering",
+          "Satellite SAR imaging reveals normal peacetime posture across border corridor",
+          "Adversary botnet cluster broadcasting synchronized mobilization hashtags"
+        ]
+      }
+    ],
+    "disarmPlaybook": {
+      "playbookCode": "PLAYBOOK-GEO-SOVEREIGN",
+      "title": "Geopolitical Disinformation & De-escalation Protocol",
+      "targetDisarmPhases": ["Plan", "Seed", "Amplify", "Measure & Adapt"],
+      "actionChecklist": [
+        {
+          "stepId": "geo-step-1",
+          "task": "Execute joint diplomatic acoustic verification and publish spectral debunk.",
+          "disarmRef": "T0023",
+          "recommendedLeadTime": "Within 45 minutes"
+        },
+        {
+          "stepId": "geo-step-2",
+          "task": "Release unclassified commercial satellite SAR imagery proving calm border baseline.",
+          "disarmRef": "T0011",
+          "recommendedLeadTime": "Within 2 hours"
+        },
+        {
+          "stepId": "geo-step-3",
+          "task": "Issue diplomatic demarche identifying adversary intelligence front entities.",
+          "disarmRef": "T0043",
+          "recommendedLeadTime": "Within 6 hours"
+        },
+        {
+          "stepId": "geo-step-4",
+          "task": "Deploy multi-language forensic debunk packs to international wire syndicates.",
+          "disarmRef": "T0036",
+          "recommendedLeadTime": "Within 8 hours"
+        }
+      ]
+    }
+  },
+  {
+    "domainId": "finance",
+    "domainName": "Financial Systems & Market Manipulation",
+    "icon": "icon-trending-down",
+    "radarAngle": 210,
+    "radarDistance": 0.65,
+    "threatLevel": "Elevated",
+    "activeIncidents": [
+      {
+        "id": "inc-fin-01",
+        "headline": "Synthetic CEO Audio-Driven Bank Run Attack",
+        "severity": "High",
+        "originVector": "Financial Subreddits -> Trading Bots",
+        "disarmCodes": ["T0011", "T0014", "T0023", "T0030", "T0034"],
+        "summary": "Coordinated short-seller syndicate deploys cloned audio claiming insolvency of regional bank to trigger retail deposit flight.",
+        "indicators": [
+          "Pre-market put options volume spikes 800% preceding the audio release",
+          "Acoustic frequency analysis indicates neural vocoder synthesis",
+          "Forged FDIC conservatorship PDF containing amateur desktop metadata tags"
+        ]
+      },
+      {
+        "id": "inc-fin-02",
+        "headline": "Spoofed Central Bank Interest Rate Hike Flash",
+        "severity": "Elevated",
+        "originVector": "Typosquatted News Domain (bloomberg-markets.co)",
+        "disarmCodes": ["T0012", "T0016", "T0022", "T0034"],
+        "summary": "Typosquatted news website flashes fake emergency 150bps interest rate hike, triggering algorithmic trading selloffs.",
+        "indicators": [
+          "Domain registered 14 hours prior via privacy proxy",
+          "Hosting IP on bulletproof ASN cluster",
+          "Central Bank official RSS feed contains zero rate adjustment announcements"
+        ]
+      }
+    ],
+    "disarmPlaybook": {
+      "playbookCode": "PLAYBOOK-FIN-AEGIS",
+      "title": "Financial Market Integrity Defense Playbook",
+      "targetDisarmPhases": ["Prepare", "Seed", "Amplify"],
+      "actionChecklist": [
+        {
+          "stepId": "fin-step-1",
+          "task": "Cross-reference claim with SEC EDGAR statutory filings and issue market clarification.",
+          "disarmRef": "T0011",
+          "recommendedLeadTime": "Within 15 minutes"
+        },
+        {
+          "stepId": "fin-step-2",
+          "task": "Coordinate exchange circuit-breaker trading halts on affected equities.",
+          "disarmRef": "T0034",
+          "recommendedLeadTime": "Within 20 minutes"
+        },
+        {
+          "stepId": "fin-step-3",
+          "task": "Sinkhole typosquatted domain and notify financial network registrar desks.",
+          "disarmRef": "T0012",
+          "recommendedLeadTime": "Within 45 minutes"
+        },
+        {
+          "stepId": "fin-step-4",
+          "task": "Refer anomalous pre-release options trading patterns to securities enforcement.",
+          "disarmRef": "T0014",
+          "recommendedLeadTime": "Within 2 hours"
+        }
+      ]
+    }
+  },
+  {
+    "domainId": "infrastructure",
+    "domainName": "Critical Infrastructure & Cyber-Physical Security",
+    "icon": "icon-zap",
+    "radarAngle": 270,
+    "radarDistance": 0.78,
+    "threatLevel": "High",
+    "activeIncidents": [
+      {
+        "id": "inc-infra-01",
+        "headline": "Regional Power Grid Telemetry Spoofing Campaign",
+        "severity": "High",
+        "originVector": "Compromised SCADA Relay -> Hardcoded SVG Outage Web Map",
+        "disarmCodes": ["T0007", "T0016", "T0027", "T0033", "T0046"],
+        "summary": "Fabricated interactive outage map showing 85% regional grid blackout to induce panic buying and fuel hoarding during winter storm.",
+        "indicators": [
+          "Web map source code reveals hardcoded SVG animation loop rather than live API data",
+          "Regional grid operator (ISO) telemetry shows stable 60Hz generation frequency",
+          "Domain registered 48h prior via offshore registrar"
+        ]
+      },
+      {
+        "id": "inc-infra-02",
+        "headline": "Municipal Water Supply Chemical Contamination Hoax",
+        "severity": "High",
+        "originVector": "Forwarded Voice Notes on Messaging Apps",
+        "disarmCodes": ["T0024", "T0026", "T0033"],
+        "summary": "Anonymous forwarded voice memo claiming water reservoirs were poisoned with toxic runoff, advising citizens to avoid tap water.",
+        "indicators": [
+          "Municipal water testing sensors show normal chemical purity readings",
+          "Identical forwarded voice note circulating across 6 non-adjacent metropolitan cities",
+          "Zero toxicological hospital admissions recorded"
+        ]
+      }
+    ],
+    "disarmPlaybook": {
+      "playbookCode": "PLAYBOOK-INFRA-SHIELD",
+      "title": "Critical Infrastructure Epistemic Defense Protocol",
+      "targetDisarmPhases": ["Prepare", "Seed", "Amplify"],
+      "actionChecklist": [
+        {
+          "stepId": "infra-step-1",
+          "task": "Publish real-time physical ISO telemetry dashboard showing 60Hz grid stability.",
+          "disarmRef": "T0027",
+          "recommendedLeadTime": "Within 30 minutes"
+        },
+        {
+          "stepId": "infra-step-2",
+          "task": "Broadcast municipal emergency SMS confirming tap water testing laboratory results.",
+          "disarmRef": "T0024",
+          "recommendedLeadTime": "Within 45 minutes"
+        },
+        {
+          "stepId": "infra-step-3",
+          "task": "Deconstruct fake SVG map DOM code and publish technical proof of the static animation loop.",
+          "disarmRef": "T0016",
+          "recommendedLeadTime": "Within 1 hour"
+        },
+        {
+          "stepId": "infra-step-4",
+          "task": "Coordinate with retail supply logistics to prevent artificial fuel and bottled water hoarding.",
+          "disarmRef": "T0007",
+          "recommendedLeadTime": "Within 2 hours"
+        }
+      ]
+    }
+  },
+  {
+    "domainId": "ai-ecosystem",
+    "domainName": "Synthetic Media & AI Disinformation",
+    "icon": "icon-cpu",
+    "radarAngle": 330,
+    "radarDistance": 0.95,
+    "threatLevel": "Critical",
+    "activeIncidents": [
+      {
+        "id": "inc-ai-01",
+        "headline": "Autonomous Multi-Agent Disinformation Swarm Deployment",
+        "severity": "Critical",
+        "originVector": "LLM Autonomous Agent Network across 5 Platforms",
+        "disarmCodes": ["T0010", "T0030", "T0034", "T0036", "T0045"],
+        "summary": "Coordinated network of 10,000 autonomous LLM agents dynamically debating each other to manufacture false consensus on public policy.",
+        "indicators": [
+          "Syntactic burstiness and perplexity flatlined across thousands of distinct accounts",
+          "Sub-minute response latencies across 20+ multilingual forum channels",
+          "Shared prompt injection defense patterns in agent error logs"
+        ]
+      },
+      {
+        "id": "inc-ai-02",
+        "headline": "Real-Time Neural Video Avatar Impersonation of Judicial Officials",
+        "severity": "Critical",
+        "originVector": "Live Streamed Deepfake Video Channels",
+        "disarmCodes": ["T0011", "T0023", "T0035", "T0047"],
+        "summary": "Real-time interactive deepfake video of a supreme court justice announcing fabricated judicial rulings during oral arguments.",
+        "indicators": [
+          "Blink rate anomaly (zero blinks across 3 minutes of continuous speech)",
+          "Eulerian video magnification detects absence of facial capillary blood pulse (rPPG)",
+          "Official court docket system confirms zero emergency rulings"
+        ]
+      }
+    ],
+    "disarmPlaybook": {
+      "playbookCode": "PLAYBOOK-AI-AEGIS",
+      "title": "Autonomous AI Disinformation Neutralization Protocol",
+      "targetDisarmPhases": ["Prepare", "Seed", "Amplify", "Measure & Adapt"],
+      "actionChecklist": [
+        {
+          "stepId": "ai-step-1",
+          "task": "Deploy rPPG blood pulse and facial landmark flicker analysis to expose live stream deepfake.",
+          "disarmRef": "T0023",
+          "recommendedLeadTime": "Immediate (T+10m)"
+        },
+        {
+          "stepId": "ai-step-2",
+          "task": "Extract LLM agent cluster behavioral signatures and deliver graph blocks to platform APIs.",
+          "disarmRef": "T0030",
+          "recommendedLeadTime": "Within 30 minutes"
+        },
+        {
+          "stepId": "ai-step-3",
+          "task": "Issue court-verified W3C cryptographic attestation of authentic docket rulings.",
+          "disarmRef": "T0011",
+          "recommendedLeadTime": "Within 45 minutes"
+        },
+        {
+          "stepId": "ai-step-4",
+          "task": "Deploy automated multi-lingual stylometric anomaly alerts across public discussion forums.",
+          "disarmRef": "T0036",
+          "recommendedLeadTime": "Within 2 hours"
+        }
+      ]
+    }
+  }
+]

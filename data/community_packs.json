@@ -1,0 +1,315 @@
+[
+  {
+    "id": "pack-election-2026",
+    "title": "2026 Election Deepfakes & Synthetic Audio Infiltration",
+    "author": "Sovereign Defense Collective",
+    "version": "1.2.0",
+    "description": "Comprehensive investigative training pack focusing on zero-day generative audio leaks, localized voting district robocalls, and synthetic video debate fabrications.",
+    "domain": "AI Forensics & Statecraft",
+    "difficulty": "Intermediate",
+    "stats": { "scenarios": 2, "cards": 4, "arguments": 2 },
+    "scenarios": [
+      {
+        "id": "sc-elec-robocall",
+        "title": "Midnight Precinct Relocation Robocall",
+        "domain": "Electoral Defense",
+        "briefing": "At 2:00 AM on election eve, 150,000 registered voters in District 7 receive an automated synthetic voicemail matching the mayor's voice declaring polling locations have moved 12 miles away.",
+        "clues": [
+          "Audio lacks natural glottal stop acoustics and room reverb matching official press conferences.",
+          "VoIP telephony headers trace to an offshore bulletproof SIP relay.",
+          "City election board's cryptographic verification portal has no record of the directive."
+        ],
+        "playbook": "DISARM M0042 (Rapid Prebunking) & M0023 (Cryptographic Provenance Confirmation)"
+      }
+    ],
+    "cards": [
+      {
+        "id": "pack-card-robocall-telephony",
+        "domain": "AI Media Forensics",
+        "prompt": "\"A midnight automated voicemail from a governor tells citizens their polling site has moved. The voice sounds identical, but the audio file has no natural ambient room acoustic signature.\"",
+        "diagnosis": "Synthetic TTS Telephony Spoofing",
+        "latin": "Vocis Falsificatio",
+        "mechanism": "Neural text-to-speech voice cloning deployed over automated SIP trunking without authentic environmental acoustic reverb.",
+        "countermeasure": "Verify through official government cryptographic feeds or certified broadcast emergency systems before acting on audio directives."
+      },
+      {
+        "id": "pack-card-temporal-dump",
+        "domain": "DISARM Framework",
+        "prompt": "\"Adversaries release a fabricated audio scandal 8 hours prior to voting blackout periods when courts and media cannot legally or practically complete forensic verification.\"",
+        "diagnosis": "DISARM Tactic T0032: Time-Critical Information Dumping",
+        "latin": "Inundatio Temporalis",
+        "mechanism": "Exploiting temporal latency in journalistic verification to ensure the persuasive payload influences voters before debunks can propagate.",
+        "countermeasure": "Institute institutional verification moratoriums: Treat unverified last-minute leaks as hostile influence payloads until verified."
+      }
+    ],
+    "arguments": [
+      {
+        "id": "pack-arg-voting-trust",
+        "title": "Post-Truth Voting Boycott Argument",
+        "domain": "Elections & Democratic Integrity",
+        "rawText": "Deepfake audio and video can now deceive 90% of ordinary voters. If voters cannot distinguish authentic candidate statements from generative forgeries, democratic elections are fundamentally illegitimate. Therefore, citizens should boycott all democratic elections until AI generation is eliminated.",
+        "clauses": [
+          { "id": "pc1", "text": "Deepfake audio and video can now deceive 90% of ordinary voters.", "type": "premise", "label": "Premise 1" },
+          { "id": "pc2", "text": "If voters cannot distinguish authentic candidate statements from generative forgeries, democratic elections are fundamentally illegitimate.", "type": "premise", "label": "Premise 2" },
+          { "id": "pc3", "text": "Therefore, citizens should boycott all democratic elections until AI generation is eliminated.", "type": "conclusion", "label": "Conclusion" }
+        ],
+        "unstatedAssumption": "That voting boycott preserves democracy rather than completely ceding electoral outcomes to extremist factions and bad-faith manipulators.",
+        "structuralFlaw": {
+          "name": "Self-Defeating Nihilism / Slippery Slope",
+          "latin": "Petitio Nihilistica",
+          "category": "Informal Rhetoric",
+          "analysis": "Recommends an action (boycotting) that accelerates the exact democratic collapse it purports to lament, ignoring technical countermeasures like cryptographic signing."
+        },
+        "steelMannedVersion": "Because synthetic deception creates severe voter confusion, election authorities must deploy cryptographic C2PA content provenance and verified broadcast channels to secure voter information.",
+        "counterArgument": "Boycotting democratic participation surrenders self-governance to malicious actors; the defensive solution is hardening verification infrastructure, not abandoning civic duties."
+      }
+    ]
+  },
+  {
+    "id": "pack-fintech-bankrun",
+    "title": "Fintech, Crypto & Algorithmic Bank-Run Manipulation",
+    "author": "Epistemic Finance Lab",
+    "version": "1.0.4",
+    "description": "Simulation pack examining coordinated liquidity panics, synthetic short-seller dossiers, and astroturfed algorithmic deposit runs.",
+    "domain": "Financial Epistemology",
+    "difficulty": "Intermediate",
+    "stats": { "scenarios": 2, "cards": 3, "arguments": 1 },
+    "scenarios": [
+      {
+        "id": "sc-fin-liquidity-panic",
+        "title": "Manufactured Regional Bank Deposit Run",
+        "domain": "Fintech & Macroeconomics",
+        "briefing": "Coordinated bot networks publish fabricated screenshots claiming a regional lender has halted withdrawals, sparking $4B in automated app-based wire transfers within 2 hours.",
+        "clues": [
+          "Screenshots show inspect-element DOM alterations of HTML balance tables.",
+          "Viral tweets originate from accounts created in the same 48-hour window.",
+          "Short interest on the bank's stock surged 400% 3 days prior to the coordinated leak."
+        ],
+        "playbook": "Circuit-breaker friction, real-time cryptographic solvency attestations, and short-seller network tracing."
+      }
+    ],
+    "cards": [
+      {
+        "id": "pack-card-dom-spoof",
+        "domain": "AI Media Forensics",
+        "prompt": "\"A viral post shows an apparent banking app screenshot showing 'WITHDRAWALS SUSPENDED BY CENTRAL BANK'. The typography in the alert box uses Arial while the rest of the UI uses SF Pro.\"",
+        "diagnosis": "Client-Side DOM Manipulation / Font Metric Inconsistency",
+        "latin": "Falsificatio Typographica",
+        "mechanism": "Editing local browser HTML via Developer Tools to manufacture fraudulent banking alerts without accessing the underlying backend.",
+        "countermeasure": "Never trust client-side screenshots: Verify service status directly via authenticated API endpoints or regulatory status pages."
+      },
+      {
+        "id": "pack-card-fud-short",
+        "domain": "DISARM Framework",
+        "prompt": "\"An anonymous financial influencer buys deep out-of-the-money put options on a biotech stock, then publishes an alarming claim that their phase 3 cancer drug killed 12 patients.\"",
+        "diagnosis": "Market Manipulation via Asymmetric FUD (Fear, Uncertainty, Doubt)",
+        "latin": "Mercatus Subversio",
+        "mechanism": "Fabricating negative catastrophic rumors to profit from directional derivative options before clinical trial registries can issue official corrections.",
+        "countermeasure": "Check clinical trial databases (ClinicalTrials.gov / FDA) and cross-reference insider trading options volume."
+      }
+    ],
+    "arguments": [
+      {
+        "id": "pack-arg-crypto-scarcity",
+        "title": "Algorithmic Inevitability Fallacy",
+        "domain": "Fintech & Crypto Rhetoric",
+        "rawText": "Bitcoin has a hard mathematical cap of 21 million units. Human governments always increase the supply of fiat currency. Mathematics is superior to human politics. Therefore, holding 100% of one's liquid net worth in Bitcoin is completely risk-free.",
+        "clauses": [
+          { "id": "fc1", "text": "Bitcoin has a hard mathematical cap of 21 million units.", "type": "premise", "label": "Premise 1" },
+          { "id": "fc2", "text": "Human governments always increase the supply of fiat currency.", "type": "premise", "label": "Premise 2" },
+          { "id": "fc3", "text": "Mathematics is superior to human politics.", "type": "premise", "label": "Premise 3" },
+          { "id": "fc4", "text": "Therefore, holding 100% of one's liquid net worth in Bitcoin is completely risk-free.", "type": "conclusion", "label": "Conclusion" }
+        ],
+        "unstatedAssumption": "That asset scarcity eliminates price volatility, technological protocol bugs, regulatory prohibition risks, and liquidity crises.",
+        "structuralFlaw": {
+          "name": "Equivocation & Non Sequitur",
+          "latin": "Non Sequitur",
+          "category": "Formal / Informal Hybrid",
+          "analysis": "Leaps from mathematical supply limit to complete economic risklessness, ignoring liquidity, market demand fluctuations, and cybersecurity custody risks."
+        },
+        "steelMannedVersion": "Scarce digital commodities provide a non-sovereign monetary hedge against long-term fiat inflation, making them a rational component of a diversified portfolio.",
+        "counterArgument": "Supply scarcity does not equal demand stability or purchasing power preservation; extreme concentration in volatile assets introduces solvency and liquidity risks."
+      }
+    ]
+  },
+  {
+    "id": "pack-health-pseudoscience",
+    "title": "Biomedical Pseudoscience & Clinical Trial Cherry-Picking",
+    "author": "Open Medical Epistemology Initiative",
+    "version": "2.1.0",
+    "description": "Training deck focused on p-hacking, statistical distortion, predatory journals, and miracle cure marketing.",
+    "domain": "Health & Scientific Epistemology",
+    "difficulty": "Beginner",
+    "stats": { "scenarios": 2, "cards": 3, "arguments": 1 },
+    "scenarios": [
+      {
+        "id": "sc-health-miracle-cure",
+        "title": "The $800 Quantum Mitochondria Rejuvenation Protocol",
+        "domain": "Biomedical Marketing",
+        "briefing": "A wellness influencer claims a proprietary blend of seaweed and electromagnetic water cures autoimmune diseases, citing an 'International Journal of Quantum Healing' study with n=6 participants.",
+        "clues": [
+          "Study was published in a pay-to-publish predatory journal with zero peer review.",
+          "Trial lacked a placebo-controlled double-blind control group.",
+          "The author owns 85% of the supplement manufacturing facility."
+        ],
+        "playbook": "Check PubMed indexing, verify sample size power calculations, and audit author financial disclosures."
+      }
+    ],
+    "cards": [
+      {
+        "id": "pack-card-phacking",
+        "domain": "Cognitive Bias",
+        "prompt": "\"Researchers test 100 different jelly bean colors against acne without an initial hypothesis. By pure chance, green jelly beans yield p < 0.05, and a headline announces 'GREEN JELLY BEANS CAUSE ACNE!'\"",
+        "diagnosis": "P-Hacking / Multiple Comparisons Fallacy",
+        "latin": "Exploratio Datorum Abusiva",
+        "mechanism": "Testing multiple statistical hypotheses on the same dataset without Bonferroni or False Discovery Rate (FDR) corrections, guaranteeing false positive discoveries.",
+        "countermeasure": "Demand preregistered clinical trials: Check whether the hypothesis and primary outcome were locked in an open registry prior to data collection."
+      },
+      {
+        "id": "pack-card-rel-vs-abs-risk",
+        "domain": "Logical Fallacy",
+        "prompt": "\"A headline screams: 'NEW DRUG REDUCES HEART ATTACK RISK BY 50%!' Reading the study reveals absolute risk dropped from 2 in 10,000 to 1 in 10,000.\"",
+        "diagnosis": "Relative vs. Absolute Risk Framing Manipulation",
+        "latin": "Distorsio Numeri Relativi",
+        "mechanism": "Reporting dramatic relative risk reductions while concealing minuscule absolute risk changes to exaggerate therapeutic benefits.",
+        "countermeasure": "Calculate Absolute Risk Reduction (ARR) and Number Needed to Treat (NNT): 'What is the absolute baseline risk in real human numbers?'"
+      }
+    ],
+    "arguments": [
+      {
+        "id": "pack-arg-ancient-wisdom",
+        "title": "Ancient Herb Infallibility Syllogism",
+        "domain": "Health Epistemology",
+        "rawText": "Ayurvedic tree bark has been used by herbalists for 3,000 years. If a remedy was dangerous or ineffective, human cultures would have discarded it centuries ago. Therefore, double-blind randomized clinical trials for traditional herbal therapies are an unnecessary waste of taxpayer money.",
+        "clauses": [
+          { "id": "hc1", "text": "Ayurvedic tree bark has been used by herbalists for 3,000 years.", "type": "premise", "label": "Premise 1" },
+          { "id": "hc2", "text": "If a remedy was dangerous or ineffective, human cultures would have discarded it centuries ago.", "type": "premise", "label": "Premise 2" },
+          { "id": "hc3", "text": "Therefore, double-blind randomized clinical trials for traditional herbal therapies are an unnecessary waste of taxpayer money.", "type": "conclusion", "label": "Conclusion" }
+        ],
+        "unstatedAssumption": "That pre-modern historical survival of a practice guarantees molecular safety and efficacy against subtle chronic toxicities or placebo effects.",
+        "structuralFlaw": {
+          "name": "Appeal to Tradition (Argumentum ad Antiquitatem)",
+          "latin": "Argumentum ad Antiquitatem",
+          "category": "Informal Fallacy",
+          "analysis": "Confuses historical longevity with empirical efficacy, ignoring that practices like bloodletting survived for millennia despite being lethal."
+        },
+        "steelMannedVersion": "Traditional ethnobotanical treatments often contain potent bioactive molecules that provide valuable leads for rigorous clinical extraction, toxicology screening, and trial validation.",
+        "counterArgument": "Historical use cannot detect chronic organ toxicity, heavy metal contamination, or subtle drug interactions; clinical trials are essential to establish safe dosage and efficacy."
+      }
+    ]
+  },
+  {
+    "id": "pack-statecraft-hybrid",
+    "title": "Statecraft Disinformation & Hybrid Warfare (DISARM TTPs)",
+    "author": "Sovereign Cognitive Security Unit",
+    "version": "3.0.1",
+    "description": "Tactical curriculum mapping state-sponsored asymmetric influence operations, active measures, and pipeline infiltration.",
+    "domain": "Geopolitics & Defense",
+    "difficulty": "Advanced",
+    "stats": { "scenarios": 3, "cards": 4, "arguments": 2 },
+    "scenarios": [
+      {
+        "id": "sc-statecraft-pipeline",
+        "title": "Subsea Infrastructure Sabotage Blame Swarm",
+        "domain": "Hybrid Warfare",
+        "briefing": "Following an undersea fiber-optic cable cut, state proxies release simultaneous forged naval sonar logs implicating an allied nation.",
+        "clues": [
+          "Sonar telemetry logs contain incorrect timestamp metadata from an obsolete recording format.",
+          "Key dissemination accounts share IP infrastructure with a state intelligence apparatus.",
+          "Official admiralty radar records place the accused allied vessel 600 nautical miles away."
+        ],
+        "playbook": "Triangulate satellite AIS transponder logs, forensic metadata inspection, and coordinated diplomatic attribution."
+      }
+    ],
+    "cards": [
+      {
+        "id": "pack-card-disarmt0026",
+        "domain": "DISARM Framework",
+        "prompt": "\"State hackers breach a regional energy company's email server, insert 5 forged memos alleging toxic leaks into a batch of 10,000 genuine emails, and leak the entire archive to journalists.\"",
+        "diagnosis": "DISARM Tactic T0026: Tainted Leaks (Hack & Poison)",
+        "latin": "Infiltratio Documentorum",
+        "mechanism": "Hiding fabricated documents inside a massive dump of authentic stolen files so that the verified authenticity of 99% of the dump masks the 1% forgery.",
+        "countermeasure": "Hash and verify individual documents: Never authenticate a collection in bulk based on a random sample of genuine files."
+      }
+    ],
+    "arguments": [
+      {
+        "id": "pack-arg-neutrality-proxy",
+        "title": "Moral Equivalence Statecraft Argument",
+        "domain": "Geopolitical Discourse",
+        "rawText": "All major sovereign powers engage in intelligence operations and foreign persuasion. Since all powers act in self-interest, there is zero moral difference between democratic defensive coalitions and authoritarian conquest. Thus, supporting international defense treaties is pure hypocrisy.",
+        "clauses": [
+          { "id": "gc1", "text": "All major sovereign powers engage in intelligence operations and foreign persuasion.", "type": "premise", "label": "Premise 1" },
+          { "id": "gc2", "text": "Since all powers act in self-interest, there is zero moral difference between democratic defensive coalitions and authoritarian conquest.", "type": "premise", "label": "Premise 2" },
+          { "id": "gc3", "text": "Thus, supporting international defense treaties is pure hypocrisy.", "type": "conclusion", "label": "Conclusion" }
+        ],
+        "unstatedAssumption": "That engaging in intelligence activities erases the fundamental distinction between self-defense of sovereign states and aggressive military annexation.",
+        "structuralFlaw": {
+          "name": "False Equivalence / Tu Quoque",
+          "latin": "Aequiparantia Falsa",
+          "category": "Informal Rhetoric",
+          "analysis": "Conflates common tactical tools (intelligence gathering) with political objectives (preservation of territorial sovereignty vs unprovoked conquest)."
+        },
+        "steelMannedVersion": "States must rigorously audit their own foreign policy actions and uphold human rights standards to maintain the moral and diplomatic legitimacy of defensive alliances.",
+        "counterArgument": "Universal state self-interest does not negate the crucial ethical and legal distinction between defensive treaty coalitions and unlawful offensive aggression."
+      }
+    ]
+  },
+  {
+    "id": "pack-social-ragebait",
+    "title": "Viral Social Media Rage-Bait & Astroturfing",
+    "author": "Algorithmic Sovereignty Network",
+    "version": "1.1.0",
+    "description": "Deconstruction pack for engagement-maximizing outrage algorithms, out-of-context video clips, and engineered culture-war polarizers.",
+    "domain": "Sociotechnical Media",
+    "difficulty": "Beginner",
+    "stats": { "scenarios": 2, "cards": 3, "arguments": 1 },
+    "scenarios": [
+      {
+        "id": "sc-social-rage-clip",
+        "title": "The 6-Second Cropped Transit Fight",
+        "domain": "Social Media Mechanics",
+        "briefing": "A 6-second video goes viral with 40M views claiming a security guard assaulted an innocent bystander. Full CCTV reveals the clip was cropped to remove the bystander brandishing a weapon.",
+        "clues": [
+          "Clip starts abruptly at the physical strike without preceding context.",
+          "Original full CCTV footage shows a 4-minute de-escalation attempt.",
+          "The posting account is an anonymous monetization bot that reposts viral conflict clips."
+        ],
+        "playbook": "Perform reverse video frame search (Google/Yandex Lens), locate uncut footage, and evaluate temporal boundaries."
+      }
+    ],
+    "cards": [
+      {
+        "id": "pack-card-context-truncation",
+        "domain": "Propaganda Tactics",
+        "prompt": "\"A 4-second video clip shows a public figure saying 'We will destroy the system', omitting the preceding phrase 'If corruption continues unchecked...'\"",
+        "diagnosis": "Context Truncation / Quote Mining (Fallacy of Quoting Out of Context)",
+        "latin": "Contextus Amputatus",
+        "mechanism": "Selectively clipping video, audio, or text to invert or distort the speaker's true intent to manufacture viral outrage.",
+        "countermeasure": "Locate the primary unedited transcript: Always demand the 60 seconds of context before and after any shocking 5-second soundbite."
+      }
+    ],
+    "arguments": [
+      {
+        "id": "pack-arg-outrage-algorithm",
+        "title": "Platform Rage-Optimization Syllogism",
+        "domain": "Platform Ethics",
+        "rawText": "Social media platforms make 80% of their ad revenue from high-arousal negative outrage content. Whatever maximizes ad revenue will be systematically amplified by recommendation algorithms. Therefore, what trends on social media reflects the worst possible distortions of human reality rather than objective consensus.",
+        "clauses": [
+          { "id": "rc1", "text": "Social media platforms make 80% of their ad revenue from high-arousal negative outrage content.", "type": "premise", "label": "Premise 1" },
+          { "id": "rc2", "text": "Whatever maximizes ad revenue will be systematically amplified by recommendation algorithms.", "type": "premise", "label": "Premise 2" },
+          { "id": "rc3", "text": "Therefore, what trends on social media reflects the worst possible distortions of human reality rather than objective consensus.", "type": "conclusion", "label": "Conclusion" }
+        ],
+        "unstatedAssumption": "That algorithmic amplification completely supersedes all authentic positive virality and organic cultural consensus.",
+        "structuralFlaw": {
+          "name": "Overgeneralization / Hasty Conclusion",
+          "latin": "Generalizatio Praecox",
+          "category": "Informal / Deductive Overreach",
+          "analysis": "Correctly identifies structural profit incentives towards outrage, but leaps to a universal conclusion that all trending content is completely divorced from reality."
+        },
+        "steelMannedVersion": "Engagement-maximizing algorithms disproportionately amplify polarizing and emotionally provocative content, requiring users to discount trending topics as accurate indicators of public consensus.",
+        "counterArgument": "While algorithms bias towards outrage, social media also facilitates vital real-time disaster alerts, open-source investigative breakthroughs, and civic coordination when vetted with rigorous epistemic friction."
+      }
+    ]
+  }
+]

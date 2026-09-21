@@ -1,0 +1,978 @@
+[
+  {
+    "id": "mc-01-computational-propaganda",
+    "moduleNumber": 1,
+    "title": "Computational Propaganda & Algorithmic Manipulation",
+    "subtitle": "Mastering botnet topologies, algorithmic amplification, and coordinated inauthentic behavior",
+    "badge": "Algorithmic Aegis",
+    "estimatedMinutes": 45,
+    "theorySections": [
+      {
+        "heading": "1. Anatomy of Coordinated Inauthentic Behavior (CIB)",
+        "content": "Computational propaganda represents the automated, algorithmic weaponization of social media platforms to manipulate public opinion at scale. Rather than relying on organic human consensus, adversaries deploy coordinated networks of sockpuppets, botnets, and paid commercial astroturfing farms. These systems exploit the platform's engagement-maximizing algorithms: by generating hundreds of retweets, quote-tweets, and replies within sub-minute intervals, they trigger recommendation algorithms to promote divisive or fabricated narratives into mainstream trending feeds.",
+        "keyTakeaways": [
+          "CIB relies on synchronized timing and high-centrality amplifier nodes rather than genuine organic engagement.",
+          "Algorithms optimize for affective arousal (especially moral outrage), which computational propaganda actively supplies.",
+          "The primary objective is rarely convincing everyone; it is manufacturing the illusion of overwhelming social consensus (social proof)."
+        ]
+      },
+      {
+        "heading": "2. Botnet Topologies & Amplification Physics",
+        "content": "Modern botnets are structured in sophisticated network topologies: (a) Star Swarms, where thousands of low-follower accounts surround a single central influencer; (b) Mesh Bridges, where automated personas cross-link between disparate fringe subcultures to ferry narratives across ideological silos; and (c) Sleeper Cells, where aged accounts post benign content (weather, sports, memes) for months to build algorithmic trust before pivoting synchronously to active geopolitical influence operations.",
+        "keyTakeaways": [
+          "Network centrality metrics (Betweenness and Eigenvector centrality) reveal coordination bridges.",
+          "Temporal clustering (burstiness in milliseconds) distinguishes automated scripts from human keystrokes.",
+          "Sleeper accounts weaponize historical account age to bypass basic platform anti-spam filters."
+        ]
+      },
+      {
+        "heading": "3. The Firehose of Falsehood & Censorship by Noise",
+        "content": "Unlike 20th-century state propaganda that sought to enforce a single monolithic ideological orthodoxy, contemporary computational propaganda frequently employs the 'Firehose of Falsehood'. Adversaries release dozens of conflicting, contradictory, and bizarre narrative variations simultaneously. The epistemic objective is not to persuade citizens of a specific falsehood, but to induce profound cognitive cynicism: convincing the public that objective truth is fundamentally unknowable, thereby paralyzing democratic decision-making.",
+        "keyTakeaways": [
+          "Censorship by noise drowns out verified factual reporting without needing to hack or silence journalists.",
+          "Epistemic cynicism leads to civic paralysis, voter apathy, and surrender of critical thinking.",
+          "Countermeasures require System 2 friction pacing and disciplined primary source triage."
+        ]
+      }
+    ],
+    "diagnostic": {
+      "diagnosticTitle": "Computational Manipulation Diagnostic Matrix",
+      "axes": [
+        "Network Topology Literacy",
+        "Algorithmic Exploitation Awareness",
+        "Coordination Anomaly Detection",
+        "Epistemic Cynicism Resilience",
+        "Information Void Vigilance"
+      ],
+      "questions": [
+        {
+          "questionId": "q1-cib-timing",
+          "scenario": "A sudden hashtag alleging election fraud gains 50,000 tweets in 8 minutes. Telemetry shows 85% of tweets originated within 12 seconds of each other.",
+          "questionText": "What does this temporal signature indicate?",
+          "options": [
+            {
+              "text": "Viral organic grassroots enthusiasm across diverse demographics.",
+              "scoreDelta": -10,
+              "feedback": "Organic human behavior shows natural Poisson distribution, not sub-minute synchronous bursts."
+            },
+            {
+              "text": "Automated script execution via centralized command-and-control API.",
+              "scoreDelta": 20,
+              "feedback": "Correct. Sub-second and tight-interval clustering is a definitive tell for automated botnet coordination."
+            },
+            {
+              "text": "A standard breaking news push alert received by mobile users.",
+              "scoreDelta": 0,
+              "feedback": "Push alerts generate staggered responses over several minutes, not millisecond synchronization."
+            },
+            {
+              "text": "Platform server cache synchronization bug.",
+              "scoreDelta": -5,
+              "feedback": "Server cache updates do not fabricate distinct user account tweet payloads."
+            }
+          ],
+          "axisWeights": {
+            "Coordination Anomaly Detection": 1,
+            "Network Topology Literacy": 0.8
+          }
+        },
+        {
+          "questionId": "q2-sleeper-accounts",
+          "scenario": "An account created 4 years ago that posted only soccer statistics suddenly begins posting 100 times per day about regional pipeline sabotage.",
+          "questionText": "How should an epistemic defender evaluate this account's credibility?",
+          "options": [
+            {
+              "text": "Trust the account because it has a 4-year verified operational history.",
+              "scoreDelta": -15,
+              "feedback": "Account age alone is vulnerable to credential stuffing, theft, or sleeper-cell monetization."
+            },
+            {
+              "text": "Audit for an abrupt topic pivot and investigate if credentials were sold or compromised.",
+              "scoreDelta": 20,
+              "feedback": "Superb. Sudden categorical topic shifts and velocity spikes indicate hijacked or awakened sleeper accounts."
+            },
+            {
+              "text": "Assume the soccer fan became an investigative energy journalist overnight.",
+              "scoreDelta": -10,
+              "feedback": "Unrealistic assumption without corroborating professional bylines or institutional affiliations."
+            },
+            {
+              "text": "Ignore the account because soccer fans cannot understand energy infrastructure.",
+              "scoreDelta": -5,
+              "feedback": "Ad hominem dismissal fails to conduct proper forensic account auditing."
+            }
+          ],
+          "axisWeights": {
+            "Coordination Anomaly Detection": 0.9,
+            "Algorithmic Exploitation Awareness": 0.7
+          }
+        },
+        {
+          "questionId": "q3-firehose-response",
+          "scenario": "Following an industrial explosion, 14 conflicting explanations emerge within 2 hours: foreign drones, space lasers, corrupt union bosses, insurance fraud, and secret bioweapons.",
+          "questionText": "What is the primary psychological hazard of this information environment?",
+          "options": [
+            {
+              "text": "Users will easily identify the correct theory through crowd-sourced voting.",
+              "scoreDelta": -10,
+              "feedback": "Crowd voting under high noise environments consistently favors sensationalist outliers."
+            },
+            {
+              "text": "Cognitive overload inducing cynicism and the feeling that 'nothing is real and everyone lies.'",
+              "scoreDelta": 20,
+              "feedback": "Spot on. The firehose of falsehood is engineered to break epistemic confidence and induce paralysis."
+            },
+            {
+              "text": "The public will immediately consult peer-reviewed industrial engineering journals.",
+              "scoreDelta": -5,
+              "feedback": "High-urgency crises trigger reactive System 1 scrolling rather than academic journal searches."
+            },
+            {
+              "text": "All 14 explanations contain partial equal grains of truth.",
+              "scoreDelta": -15,
+              "feedback": "False balance fallacy; fabricated conspiracy theories do not share truth equity with factual telemetry."
+            }
+          ],
+          "axisWeights": {
+            "Epistemic Cynicism Resilience": 1,
+            "Information Void Vigilance": 0.8
+          }
+        },
+        {
+          "questionId": "q4-mesh-bridging",
+          "scenario": "A health wellness influencer with 500k followers begins reposting obscure geopolitical military manifestos from anonymous messaging channels.",
+          "questionText": "What operational influence tactic is being executed here?",
+          "options": [
+            {
+              "text": "Bridge Laundering: moving fringe radicalizing narratives into mainstream trust networks.",
+              "scoreDelta": 20,
+              "feedback": "Correct. Bridge laundering exploits the relational trust of lifestyle influencers to sanitize fringe propaganda."
+            },
+            {
+              "text": "Accidental algorithmic misrouting by platform content tags.",
+              "scoreDelta": -10,
+              "feedback": "Content decisions made by human creators represent tactical bridge insertions, not routing bugs."
+            },
+            {
+              "text": "Normal diversification of wellness content into geopolitical strategy.",
+              "scoreDelta": -5,
+              "feedback": "Uncritical acceptance of radical narrative insertion ignores weaponized laundering vectors."
+            },
+            {
+              "text": "Government mandated public interest broadcasting.",
+              "scoreDelta": -15,
+              "feedback": "Public interest mandates are transparently labeled and follow statutory protocols."
+            }
+          ],
+          "axisWeights": {
+            "Network Topology Literacy": 1,
+            "Algorithmic Exploitation Awareness": 0.9
+          }
+        },
+        {
+          "questionId": "q5-algo-outrage",
+          "scenario": "A social network's ranking algorithm gives 5x weighting to 'angry' reactions compared to 'like' reactions.",
+          "questionText": "How do adversarial influence operators exploit this algorithmic parameter?",
+          "options": [
+            {
+              "text": "By crafting nuanced, conciliatory diplomatic compromise proposals.",
+              "scoreDelta": -15,
+              "feedback": "Nuanced compromise generates low emotional arousal and is algorithmically suppressed."
+            },
+            {
+              "text": "By generating hyperbolic moral-outrage ragebait to maximize distribution velocity.",
+              "scoreDelta": 20,
+              "feedback": "Precisely. Adversaries optimize for the exact emotional tokens that algorithms reward with visibility."
+            },
+            {
+              "text": "By posting scientific statistical confidence tables.",
+              "scoreDelta": -10,
+              "feedback": "Raw statistical tables lack the affective emotional charge required for viral algorithmic velocity."
+            },
+            {
+              "text": "By paying for sponsored search keywords.",
+              "scoreDelta": 0,
+              "feedback": "Paid search does not exploit social feed outrage weighting multipliers."
+            }
+          ],
+          "axisWeights": {
+            "Algorithmic Exploitation Awareness": 1,
+            "Epistemic Cynicism Resilience": 0.7
+          }
+        }
+      ]
+    },
+    "practicalExercise": {
+      "exerciseId": "ex-01-cib-triage",
+      "exerciseTitle": "Simulated Botnet Triage Lab",
+      "instructions": "Inspect the simulated Twitter/X hashtag stream. Identify the 3 botnet coordinator nodes based on account creation date, posting cadence, and retweet-to-original-post ratio.",
+      "simulationData": {
+        "hashtag": "#EnergyCrisisNow",
+        "nodes": [
+          {
+            "handle": "@user_749182",
+            "createdDaysAgo": 3,
+            "origPostPct": 0.01,
+            "burstRps": 12.4,
+            "isBot": true
+          },
+          {
+            "handle": "@dr_smith_power",
+            "createdDaysAgo": 1820,
+            "origPostPct": 0.85,
+            "burstRps": 0.1,
+            "isBot": false
+          },
+          {
+            "handle": "@patriot_eagle_99",
+            "createdDaysAgo": 5,
+            "origPostPct": 0,
+            "burstRps": 18.2,
+            "isBot": true
+          },
+          {
+            "handle": "@city_times_news",
+            "createdDaysAgo": 3400,
+            "origPostPct": 0.92,
+            "burstRps": 0.2,
+            "isBot": false
+          },
+          {
+            "handle": "@freedom_bot_alpha",
+            "createdDaysAgo": 2,
+            "origPostPct": 0.02,
+            "burstRps": 22,
+            "isBot": true
+          }
+        ]
+      },
+      "rubric": {
+        "correctIdentificationsRequired": 3,
+        "maxFalsePositives": 0,
+        "pointsAwarded": 100
+      }
+    },
+    "skills": [
+      "skill.disarm.plan-prepare",
+      "skill.disarm.seed-amplify",
+      "skill.tactic.astroturfing",
+      "skill.tactic.flooding"
+    ]
+  },
+  {
+    "id": "mc-02-epistemic-health-biases",
+    "moduleNumber": 2,
+    "title": "Epistemic Health & Cognitive Debiasing",
+    "subtitle": "Deconstructing cognitive biases, affect heuristics, and hostile framing vectors",
+    "badge": "Epistemic Sovereign",
+    "estimatedMinutes": 40,
+    "theorySections": [
+      {
+        "heading": "1. Dual-Process Cognitive Architecture (System 1 vs System 2)",
+        "content": "Human cognition operates on two interacting computational regimes: System 1 (fast, automatic, affective, stereotypic, energy-frugal) and System 2 (slow, deliberative, logical, computationally expensive). Adversarial information design is precision-engineered to capture System 1 by triggering acute moral indignation, existential dread, or tribal validation. When affective arousal spikes, the brain's prefrontal cortex down-regulates epistemic skepticism, accepting claims without activating cognitive verification routines.",
+        "keyTakeaways": [
+          "Disinformation exploits speed: if you feel compelled to share within 5 seconds, your System 1 has been captured.",
+          "Epistemic sovereignty requires intentional cognitive friction: forcing a 30-second delay before reacting.",
+          "Affective valence (how good or bad a claim makes you feel) is not an index of factual veracity."
+        ]
+      },
+      {
+        "heading": "2. The Affect Heuristic & Motivated Reasoning",
+        "content": "The affect heuristic leads individuals to judge risks and benefits based on their immediate emotional feelings toward an entity rather than empirical statistics. In motivated reasoning, the brain functions not as an impartial judge seeking truth, but as a defense attorney defending an identity-defining belief. Incoming facts that threaten the tribe are subjected to hyper-critical scrutiny, while absurd claims that validate the tribe are accepted with near-zero friction.",
+        "keyTakeaways": [
+          "Confirmation bias is asymmetrical: low scrutiny for friendly claims, impossible scrutiny for unfriendly claims.",
+          "Tribal belonging often takes evolutionary precedence over abstract epistemic accuracy.",
+          "Epistemic humility involves actively seeking disconfirming evidence against your favored hypotheses."
+        ]
+      },
+      {
+        "heading": "3. Epistemic Aftercare & Cognitive Hygiene",
+        "content": "Prolonged exposure to weaponized information environments induces chronic cognitive exhaustion, cynicism, and somatic stress. Epistemic aftercare consists of evidence-based psychological hygiene practices: (a) Somatic down-regulation (e.g., 4-7-8 parasympathetic breathing); (b) Cognitive reframing (deconstructing manipulated emotional hooks); and (c) Structured epistemic journaling to untangle personal identity from factual claims.",
+        "keyTakeaways": [
+          "Somatic regulation calms amygdala activation, restoring prefrontal executive function.",
+          "Reframing neutralizes emotional loaded language into neutral propositional logic.",
+          "Regular debiasing journaling builds longitudinal psychological immunity against influence campaigns."
+        ]
+      }
+    ],
+    "diagnostic": {
+      "diagnosticTitle": "Cognitive Bias & Affective Vulnerability Profile",
+      "axes": [
+        "System 2 Friction Capacity",
+        "Affect Heuristic Awareness",
+        "Motivated Reasoning Resistance",
+        "Tribal Identity Decoupling",
+        "Epistemic Humility"
+      ],
+      "questions": [
+        {
+          "questionId": "q1-affect-reaction",
+          "scenario": "You read an unverified headline reporting that your most disliked political opponent was caught in an embarrassing financial corruption scandal.",
+          "questionText": "What is the optimal first cognitive action?",
+          "options": [
+            {
+              "text": "Immediately share it to celebrate the opponent's downfall.",
+              "scoreDelta": -20,
+              "feedback": "Classic confirmation bias trap. Friendly claims require identical forensic rigor."
+            },
+            {
+              "text": "Recognize the surge of emotional satisfaction as a cognitive vulnerability and pause for verification.",
+              "scoreDelta": 20,
+              "feedback": "Masterclass! Identifying emotional pleasure as a signal to activate System 2 friction is the hallmark of epistemic sovereignty."
+            },
+            {
+              "text": "Assume it must be true because that opponent has a corrupt personality.",
+              "scoreDelta": -15,
+              "feedback": "Ad hominem and halo effect heuristic bypasses evidence evaluation."
+            },
+            {
+              "text": "Check if the opponent has resigned yet.",
+              "scoreDelta": -5,
+              "feedback": "Assumes the unverified claim is factual before verifying the primary source."
+            }
+          ],
+          "axisWeights": {
+            "Affect Heuristic Awareness": 1,
+            "System 2 Friction Capacity": 0.9
+          }
+        },
+        {
+          "questionId": "q2-disconfirming-evidence",
+          "scenario": "A new peer-reviewed study contradicts a scientific theory you have publicly championed for three years.",
+          "questionText": "How does an epistemically sovereign analyst respond?",
+          "options": [
+            {
+              "text": "Scour the author's social media to find something offensive to dismiss the study.",
+              "scoreDelta": -20,
+              "feedback": "Abusive ad hominem deflection driven by defensive motivated reasoning."
+            },
+            {
+              "text": "Examine the study's sample size, methodology, and statistical power with an open willingness to update your beliefs.",
+              "scoreDelta": 20,
+              "feedback": "Exemplary epistemic humility. True analysts update beliefs in proportion to valid Bayesian evidence."
+            },
+            {
+              "text": "Declare that modern science has been corrupted by dark money.",
+              "scoreDelta": -15,
+              "feedback": "Conspiratorial defense mechanism deployed to protect ego."
+            },
+            {
+              "text": "Ignore the study and pretend you never saw it.",
+              "scoreDelta": -10,
+              "feedback": "Epistemic avoidance preserves comfort at the expense of reality."
+            }
+          ],
+          "axisWeights": {
+            "Epistemic Humility": 1,
+            "Motivated Reasoning Resistance": 0.9
+          }
+        },
+        {
+          "questionId": "q3-tribal-polarization",
+          "scenario": "A close friend within your social circle posts a fabricated meme that insults an opposing political party.",
+          "questionText": "What action best balances social health with epistemic integrity?",
+          "options": [
+            {
+              "text": "Like and share it because supporting your friend's morale is more important than truth.",
+              "scoreDelta": -20,
+              "feedback": "Sacrificing truth for tribal solidarity accelerates collective epistemic decay."
+            },
+            {
+              "text": "Privately and respectfully provide the factual debunk to your friend without public shaming.",
+              "scoreDelta": 20,
+              "feedback": "Superb interpersonal tradecraft. Private correction preserves dignity while upholding factual accuracy."
+            },
+            {
+              "text": "Publicly humiliate your friend with vitriolic personal attacks.",
+              "scoreDelta": -10,
+              "feedback": "Aggressive confrontation triggers defensive doubling-down and fractures relationships."
+            },
+            {
+              "text": "Permanently block your friend without saying a word.",
+              "scoreDelta": -5,
+              "feedback": "Avoidance creates insular echo chambers rather than fostering resilience."
+            }
+          ],
+          "axisWeights": {
+            "Tribal Identity Decoupling": 1,
+            "Motivated Reasoning Resistance": 0.8
+          }
+        },
+        {
+          "questionId": "q4-urgency-friction",
+          "scenario": "A viral post claims an emergency medical recall is taking place right now and screams: 'SHARE THIS IMMEDIATELY BEFORE IT IS BANNED!'",
+          "questionText": "What psychological exploit is being weaponized?",
+          "options": [
+            {
+              "text": "Urgency Suppression Trigger: artificial panic to short-circuit deliberate analysis.",
+              "scoreDelta": 20,
+              "feedback": "Spot on. Artificial urgency is the primary psychological wedge used to bypass System 2 scrutiny."
+            },
+            {
+              "text": "Genuine civic whistleblowing from an altruistic citizen.",
+              "scoreDelta": -15,
+              "feedback": "Legitimate regulatory recalls follow official statutory bulletin channels, not caps-lock viral panic."
+            },
+            {
+              "text": "Standard journalistic formatting conventions.",
+              "scoreDelta": -10,
+              "feedback": "Professional journalism strictly avoids hysterical caps-lock panic commands."
+            },
+            {
+              "text": "A legal disclaimer mandated by the FDA.",
+              "scoreDelta": -15,
+              "feedback": "Completely false; regulatory agencies never mandate panic-sharing commands."
+            }
+          ],
+          "axisWeights": {
+            "System 2 Friction Capacity": 1,
+            "Affect Heuristic Awareness": 0.8
+          }
+        },
+        {
+          "questionId": "q5-aftercare-recovery",
+          "scenario": "After spending two hours reading hostile social media flame wars, you feel physical chest tightness, irritability, and despair.",
+          "questionText": "What is the recommended epistemic aftercare protocol?",
+          "options": [
+            {
+              "text": "Drink an energy drink and continue arguing for another two hours.",
+              "scoreDelta": -20,
+              "feedback": "Compounding physiological stress leads to severe cognitive degradation and toxic behavior."
+            },
+            {
+              "text": "Disengage from screens, execute a 4-7-8 breathing cycle, and perform an epistemic reframing exercise.",
+              "scoreDelta": 20,
+              "feedback": "Perfect recovery protocol. Down-regulating the autonomic nervous system restores prefrontal cognitive sovereignty."
+            },
+            {
+              "text": "Post an angry rant about how terrible all humans are.",
+              "scoreDelta": -15,
+              "feedback": "Cathartic venting reinforces neural pathways of cynicism and despair."
+            },
+            {
+              "text": "Take sleeping pills immediately.",
+              "scoreDelta": -10,
+              "feedback": "Pharmacological sedation fails to address cognitive debiasing and somatic self-regulation."
+            }
+          ],
+          "axisWeights": {
+            "System 2 Friction Capacity": 0.8,
+            "Affect Heuristic Awareness": 0.9
+          }
+        }
+      ]
+    },
+    "practicalExercise": {
+      "exerciseId": "ex-02-reframing-lab",
+      "exerciseTitle": "Hostile Rhetoric Reframing Workshop",
+      "instructions": "Strip the moral-emotional outrage modifiers from the provided inflammatory statement and extract the core testable empirical claim.",
+      "simulationData": {
+        "originalStatement": "Those traitorous, demonic corrupt bureaucrats in the water division are secretly poisoning our innocent children with toxic fluoridated industrial waste to line their filthy pockets!",
+        "neutralClaim": "The municipal water authority is dosing fluoride into the municipal water supply at levels exceeding statutory health guidelines.",
+        "emotionalTokensDetected": [
+          "traitorous",
+          "demonic",
+          "corrupt",
+          "secretly poisoning",
+          "innocent children",
+          "toxic",
+          "filthy pockets"
+        ]
+      },
+      "rubric": {
+        "emotionalTokensStripped": 7,
+        "testableVariablesExtracted": [
+          "Fluoride concentration (ppm)",
+          "Statutory threshold standard",
+          "Municipal audit records"
+        ],
+        "pointsAwarded": 100
+      }
+    },
+    "skills": [
+      "skill.bias.confirmation",
+      "skill.bias.availability",
+      "skill.bias.anchoring",
+      "skill.bias.attribution",
+      "skill.bias.probability"
+    ]
+  },
+  {
+    "id": "mc-03-osint-verification",
+    "moduleNumber": 3,
+    "title": "OSINT & Verification Tradecraft",
+    "subtitle": "Forensic investigations, infrastructure pivoting, metadata triangulation, and geolocation",
+    "badge": "Forensic Sentinel",
+    "estimatedMinutes": 50,
+    "theorySections": [
+      {
+        "heading": "1. The OSINT Investigation Cycle & Threat Modeling",
+        "content": "Open Source Intelligence (OSINT) is the disciplined collection, processing, and analysis of publicly available data to produce actionable intelligence. The operational cycle follows five strict phases: (1) Planning & Direction (defining intelligence requirements and operational security posture); (2) Collection (harvesting domain registrations, DNS records, social handles, imagery); (3) Processing (normalizing timestamps, EXIF extraction, optical character recognition); (4) Analysis & Synthesis (corroborating across independent vectors, testing competing hypotheses); and (5) Dissemination (cryptographic reporting with verifiable proof artifacts).",
+        "keyTakeaways": [
+          "Operational security (OPSEC) is foundational: never touch adversary infrastructure from personal accounts or bare IP addresses.",
+          "Single-source confirmation is an intelligence failure: require at least two independent corroborating vectors.",
+          "Always preserve immutable cryptographic hashes (SHA-256) of digital evidence upon discovery."
+        ]
+      },
+      {
+        "heading": "2. Infrastructure Pivoting: WHOIS, DNS & ASN Triangulation",
+        "content": "Disinformation campaigns inevitably leave digital footprints across internet infrastructure. By querying WHOIS databases, historical DNS A/MX/NS/SOA records, SSL/TLS certificate transparency logs, and Autonomous System Numbers (ASNs), investigators can connect seemingly unrelated front websites to a common threat actor cluster or bulletproof hosting provider.",
+        "keyTakeaways": [
+          "Shared Google Analytics (UA/GA4) IDs, AdSense publisher IDs, and TLS certificate fingerprints link disparate domains.",
+          "Passive DNS tracking reveals fast-flux IP rotations and infrastructure reuse across campaigns.",
+          "Bulletproof hosting ASNs provide strong attribution heuristics for organized cyber-disinformation operations."
+        ]
+      },
+      {
+        "heading": "3. Multi-Modal Media Forensics & Geolocation",
+        "content": "Visual and audio assets must undergo rigorous forensic verification: (a) Reverse image search across multiple engines (Google, Yandex, Bing, TinEye); (b) Chronolocation using sun shadow angles (SunCalc) and weather radar archives; (c) Geolocation by cross-referencing architectural fixtures, road signage, vegetation, and satellite imagery; and (d) Error Level Analysis (ELA) to detect localized image splicing.",
+        "keyTakeaways": [
+          "Metadata (EXIF) is easily stripped or forged; rely on physical and architectural invariants.",
+          "Shadow vector geometry and solar azimuth provide precise mathematical timestamps for outdoor footage.",
+          "Never assume image context: verify original publishing genesis before evaluating claims."
+        ]
+      }
+    ],
+    "diagnostic": {
+      "diagnosticTitle": "OSINT & Verification Proficiency Profile",
+      "axes": [
+        "Infrastructure Pivoting Mastery",
+        "Geolocation & Chronolocation",
+        "Evidence Chain of Custody",
+        "Multi-Engine Search Tradecraft",
+        "Forensic Artifact Recognition"
+      ],
+      "questions": [
+        {
+          "questionId": "q1-dns-pivot",
+          "scenario": "You discover three suspicious news blogs spreading identical fabricated headlines. All three use Cloudflare proxying to hide their origin IP.",
+          "questionText": "What OSINT pivot method can bypass the proxy to link the infrastructure?",
+          "options": [
+            {
+              "text": "Inspect historical DNS records (pre-Cloudflare A records) and shared Google Analytics / AdSense IDs.",
+              "scoreDelta": 20,
+              "feedback": "Excellent tradecraft! Historical DNS archives and shared tracking IDs frequently expose true backend origin servers."
+            },
+            {
+              "text": "Send a threatening email to the contact form asking for their IP.",
+              "scoreDelta": -20,
+              "feedback": "Violates OPSEC, tips off the adversary, and achieves zero actionable intelligence."
+            },
+            {
+              "text": "Assume Cloudflare makes the sites completely impossible to investigate.",
+              "scoreDelta": -10,
+              "feedback": "Defeatist assumption; web applications leak telemetry through certificate logs, mail servers, and tracking codes."
+            },
+            {
+              "text": "DDOS the servers to see where the error logs report.",
+              "scoreDelta": -20,
+              "feedback": "Illegal cyberattack that destroys evidence and violates professional intelligence ethics."
+            }
+          ],
+          "axisWeights": {
+            "Infrastructure Pivoting Mastery": 1,
+            "Multi-Engine Search Tradecraft": 0.8
+          }
+        },
+        {
+          "questionId": "q2-suncalc-chrono",
+          "scenario": "A breaking video claims a violent clash occurred at 2:00 PM today in Paris. Forensic shadow analysis reveals the sun azimuth angle is 285 degrees and shadows are 3x actor height.",
+          "questionText": "What does this physical evidence prove?",
+          "options": [
+            {
+              "text": "The video was filmed in the late evening / sunset (around 7:30 PM in summer), proving the 2:00 PM claim is fabricated.",
+              "scoreDelta": 20,
+              "feedback": "Superb chronolocation! Solar azimuth at 285 degrees and long shadows correspond to late evening sun, mathematically disproving the 2:00 PM claim."
+            },
+            {
+              "text": "The camera lens had high optical distortion making shadows appear long.",
+              "scoreDelta": -10,
+              "feedback": "Optical distortion does not alter the absolute angular direction of solar shadows relative to true north."
+            },
+            {
+              "text": "The weather was cloudy.",
+              "scoreDelta": -15,
+              "feedback": "Crisp, directional 3x length shadows require direct, low-angle unclouded sunlight."
+            },
+            {
+              "text": "Paris is located in the southern hemisphere.",
+              "scoreDelta": -20,
+              "feedback": "Basic geographic absurdity."
+            }
+          ],
+          "axisWeights": {
+            "Geolocation & Chronolocation": 1,
+            "Forensic Artifact Recognition": 0.9
+          }
+        },
+        {
+          "questionId": "q3-exif-trust",
+          "scenario": "An anonymous source emails you a JPEG photo claiming to show a secret military base, with EXIF GPS coordinates pointing directly to the Pentagon.",
+          "questionText": "How should an investigator treat this EXIF metadata?",
+          "options": [
+            {
+              "text": "Accept the GPS coordinates as absolute proof because cameras cannot lie.",
+              "scoreDelta": -20,
+              "feedback": "EXIF metadata is unencrypted plaintext that can be spoofed in 5 seconds with any basic hex editor."
+            },
+            {
+              "text": "Treat EXIF data as unverified lead; independently geolocate terrain, satellite views, and architectural landmarks.",
+              "scoreDelta": 20,
+              "feedback": "Spot on. Never trust EXIF metadata alone; always require independent physical triangulation."
+            },
+            {
+              "text": "Delete the photo immediately as classified material.",
+              "scoreDelta": -5,
+              "feedback": "Premature action without verifying if the photo is a public tourist snapshot or hoax."
+            },
+            {
+              "text": "Publish the photo with the headline 'Pentagon coordinates confirmed.'",
+              "scoreDelta": -15,
+              "feedback": "Irresponsible journalism amplifying potentially spoofed coordinates."
+            }
+          ],
+          "axisWeights": {
+            "Evidence Chain of Custody": 1,
+            "Forensic Artifact Recognition": 0.9
+          }
+        },
+        {
+          "questionId": "q4-reverse-search-multiverse",
+          "scenario": "You run a suspicious crisis image through Google Lens and receive 0 matches. The poster claims it is breaking news from 10 minutes ago.",
+          "questionText": "What is the critical next investigative step?",
+          "options": [
+            {
+              "text": "Conclude the image is 100% authentic and breaking.",
+              "scoreDelta": -15,
+              "feedback": "Google Lens index lags on regional and foreign platforms. Single-engine failure is never proof of novelty."
+            },
+            {
+              "text": "Query alternative image search engines (Yandex, Bing, Baidu, TinEye) and crop specific distinctive background elements.",
+              "scoreDelta": 20,
+              "feedback": "Masterclass tradecraft! Yandex and Bing frequently index Eastern European and Asian archives that Google misses."
+            },
+            {
+              "text": "Assume the image was generated by DALL-E 3.",
+              "scoreDelta": -5,
+              "feedback": "Unwarranted assumption without running forensic artifact inspection."
+            },
+            {
+              "text": "Ask the poster to pinky-swear they took the photo.",
+              "scoreDelta": -20,
+              "feedback": "Humorous but completely worthless verification."
+            }
+          ],
+          "axisWeights": {
+            "Multi-Engine Search Tradecraft": 1,
+            "Forensic Artifact Recognition": 0.8
+          }
+        },
+        {
+          "questionId": "q5-cryptographic-custody",
+          "scenario": "You scrape a crucial web page containing evidence of botnet coordination. You anticipate the adversary will delete the page within hours.",
+          "questionText": "What is the proper procedure for establishing verifiable chain of custody?",
+          "options": [
+            {
+              "text": "Take a simple screenshot on your phone.",
+              "scoreDelta": -10,
+              "feedback": "Phone screenshots lack cryptographic verifiable timestamps, headers, and DOM completeness."
+            },
+            {
+              "text": "Archive the page on multiple public archives (Wayback, Archive.today), save WARC container, and compute SHA-256 hash.",
+              "scoreDelta": 20,
+              "feedback": "Flawless evidentiary preservation! WARC archives paired with SHA-256 hashes withstand courtroom scrutiny."
+            },
+            {
+              "text": "Copy and paste the text into a Word document.",
+              "scoreDelta": -15,
+              "feedback": "Word documents have zero legal chain-of-custody value and are easily editable."
+            },
+            {
+              "text": "Print the page onto physical paper.",
+              "scoreDelta": 0,
+              "feedback": "Physical printing loses digital metadata, SSL certificates, and network headers."
+            }
+          ],
+          "axisWeights": {
+            "Evidence Chain of Custody": 1,
+            "Infrastructure Pivoting Mastery": 0.7
+          }
+        }
+      ]
+    },
+    "practicalExercise": {
+      "exerciseId": "ex-03-osint-domain-pivot",
+      "exerciseTitle": "Infrastructure Correlation Lab",
+      "instructions": "Correlate three suspicious disinformation domains. Identify the shared Google AdSense publisher ID and backend hosting ASN connecting the cluster.",
+      "simulationData": {
+        "domainRecords": [
+          {
+            "domain": "global-patriot-truth.com",
+            "adsenseId": "pub-992817491029",
+            "asn": "AS49257",
+            "sslIssuer": "Let's Encrypt"
+          },
+          {
+            "domain": "real-freedom-dispatch.org",
+            "adsenseId": "pub-992817491029",
+            "asn": "AS49257",
+            "sslIssuer": "Let's Encrypt"
+          },
+          {
+            "domain": "breaking-news-syndicate.su",
+            "adsenseId": "pub-992817491029",
+            "asn": "AS49257",
+            "sslIssuer": "Sectigo"
+          }
+        ]
+      },
+      "rubric": {
+        "sharedAdsenseIdentified": "pub-992817491029",
+        "sharedAsnIdentified": "AS49257",
+        "attributionConclusion": "Coordinated commercial disinformation cluster operated by a single monetization entity on bulletproof hosting.",
+        "pointsAwarded": 100
+      }
+    },
+    "skills": [
+      "skill.sift.stop",
+      "skill.sift.investigate-source",
+      "skill.sift.find-coverage",
+      "skill.sift.trace-origin"
+    ]
+  },
+  {
+    "id": "mc-04-decentralized-provenance",
+    "moduleNumber": 4,
+    "title": "Decentralized Provenance & Cryptographic Attestation",
+    "subtitle": "WebCrypto signatures, verifiable credentials, DID architecture, and tamper-evident auditing",
+    "badge": "Cryptographic Attestor",
+    "estimatedMinutes": 35,
+    "theorySections": [
+      {
+        "heading": "1. Cryptographic Truth vs Institutional Authority",
+        "content": "In an era where audio, video, and text can be synthetically fabricated at near-zero marginal cost, passive sensory verification ('seeing is believing') is fatally compromised. The epistemic defense paradigm must transition to cryptographic provenance: mathematics-based verification where statements, media, and investigations are digitally signed at creation using asymmetric public-key cryptography (ECDSA P-256 / Ed25519). Authenticity is verified not by trusting a centralized platform, but by mathematically validating an unbroken cryptographic chain of custody.",
+        "keyTakeaways": [
+          "Zero-trust information consumption: verify the cryptographic signature before evaluating the assertion.",
+          "Asymmetric keypairs allow private signing by analysts with public verification by the global community.",
+          "Cryptographic hashes (SHA-256) create immutable digital fingerprints of evidence that detect single-bit alterations."
+        ]
+      },
+      {
+        "heading": "2. Decentralized Identifiers (DIDs) & W3C Verifiable Credentials",
+        "content": "Decentralized Identifiers (DIDs) provide a globally unique, persistent, cryptographically verifiable identifier that does not depend on a centralized registry or identity provider (e.g. `did:key:z6MkpTHR8V...`). Coupled with W3C Verifiable Credentials, analysts can issue tamper-evident attestations, forensic debunk certifications, and reputation badges that can be mathematically verified by any third party offline.",
+        "keyTakeaways": [
+          "DIDs eliminate reliance on centralized social media verified checkmarks that can be purchased or revoked.",
+          "JSON-LD credential formats ensure cross-platform interoperability and canonical semantic structure.",
+          "Selective disclosure allows analysts to prove credentials without revealing sensitive operational identities."
+        ]
+      },
+      {
+        "heading": "3. The C2PA Standard & Content Credentials",
+        "content": "The Coalition for Content Provenance and Authenticity (C2PA) defines an open technical standard allowing publishers, cameras, and editing software to embed cryptographically signed provenance manifests directly into media files. These manifests record the exact hardware camera sensor, edits performed, AI tools utilized, and signing entity, creating an indelible chain of custody from capture to screen.",
+        "keyTakeaways": [
+          "C2PA manifests reveal whether generative AI inpainting, voice cloning, or manual splicing was applied.",
+          "Stripping a C2PA manifest generates an observable tamper signal, alerting downstream consumers.",
+          "Decentralized ledgers provide permanent timestamp anchor points that prevent retroactive backdating."
+        ]
+      }
+    ],
+    "diagnostic": {
+      "diagnosticTitle": "Cryptographic Provenance & Decentralized Identity Profile",
+      "axes": [
+        "Public-Key Cryptography Literacy",
+        "W3C Verifiable Credential Architecture",
+        "Digital Signature Verification",
+        "Tamper Detection Tradecraft",
+        "Decentralized DID Governance"
+      ],
+      "questions": [
+        {
+          "questionId": "q1-signature-tamper",
+          "scenario": "An analyst signs an investigative statement using ECDSA P-256. An adversary modifies a single character in the report summary from 'not guilty' to 'now guilty' and re-distributes the original signature.",
+          "questionText": "What occurs when a verifier runs `crypto.subtle.verify()` on the altered statement?",
+          "options": [
+            {
+              "text": "The signature verifies successfully because 99.9% of the text is unchanged.",
+              "scoreDelta": -20,
+              "feedback": "Cryptographic signatures are avalanche-sensitive; changing even a single bit completely invalidates the signature."
+            },
+            {
+              "text": "The verification algorithm returns `false`, detecting the tampering immediately and definitively.",
+              "scoreDelta": 20,
+              "feedback": "Flawless understanding. Any modification to the signed plaintext invalidates the cryptographic mathematical equality."
+            },
+            {
+              "text": "The browser crashes due to a hash collision.",
+              "scoreDelta": -10,
+              "feedback": "Cryptographic verification fails cleanly with a boolean false; it does not crash."
+            },
+            {
+              "text": "The algorithm automatically repairs the character back to 'not'.",
+              "scoreDelta": -15,
+              "feedback": "Digital signatures are verification mechanisms, not error-correcting codes."
+            }
+          ],
+          "axisWeights": {
+            "Digital Signature Verification": 1,
+            "Tamper Detection Tradecraft": 0.9
+          }
+        },
+        {
+          "questionId": "q2-did-key-nature",
+          "scenario": "You generate a self-sovereign DID using the `did:key` method.",
+          "questionText": "Where is the public key stored and registered?",
+          "options": [
+            {
+              "text": "On a centralized Google or Microsoft server.",
+              "scoreDelta": -15,
+              "feedback": "DIDs are decentralized and self-sovereign, eliminating centralized server registries."
+            },
+            {
+              "text": "The public key itself is cryptographically encoded directly into the DID string string identifier.",
+              "scoreDelta": 20,
+              "feedback": "Correct! In `did:key`, the identifier is a multicodec-encoded representation of the public key itself, requiring zero lookup databases."
+            },
+            {
+              "text": "In a physical government filing cabinet in Geneva.",
+              "scoreDelta": -20,
+              "feedback": "Humorous but incorrect."
+            },
+            {
+              "text": "It is not stored anywhere because keys are temporary session tokens.",
+              "scoreDelta": -10,
+              "feedback": "Cryptographic public keys are permanent mathematical points derived from private keys."
+            }
+          ],
+          "axisWeights": {
+            "Decentralized DID Governance": 1,
+            "Public-Key Cryptography Literacy": 0.8
+          }
+        },
+        {
+          "questionId": "q3-c2pa-manifest",
+          "scenario": "A breaking news photograph contains a valid C2PA manifest showing it was captured on a Nikon Z9 camera at 10:14 AM and signed by Reuters, with no edits recorded.",
+          "questionText": "What level of epistemic confidence does this provide compared to a raw viral JPEG on Twitter?",
+          "options": [
+            {
+              "text": "Identical confidence because C2PA is just another corporate marketing badge.",
+              "scoreDelta": -15,
+              "feedback": "C2PA relies on hardware secure elements and cryptographically signed certificate authorities, providing verifiable chain of custody."
+            },
+            {
+              "text": "Significantly higher confidence because hardware and editorial signing keys mathematically certify the capture device and edit history.",
+              "scoreDelta": 20,
+              "feedback": "Spot on. Hardware-backed cryptographic provenance elevates verification from guesswork to mathematical proof."
+            },
+            {
+              "text": "Lower confidence because signed files are larger in byte size.",
+              "scoreDelta": -20,
+              "feedback": "File size has no negative bearing on cryptographic authenticity."
+            },
+            {
+              "text": "Zero confidence because all digital files are equally fake.",
+              "scoreDelta": -15,
+              "feedback": "Nihilistic cynicism ignores the fundamental mathematical guarantees of public-key cryptography."
+            }
+          ],
+          "axisWeights": {
+            "Tamper Detection Tradecraft": 1,
+            "W3C Verifiable Credential Architecture": 0.8
+          }
+        },
+        {
+          "questionId": "q4-private-key-opsec",
+          "scenario": "You are generating a new analyst DID keypair in the SOVEREIGN // AEGIS WebCrypto module.",
+          "questionText": "What is the supreme security rule regarding the exported ECDSA private key?",
+          "options": [
+            {
+              "text": "Paste it into a public Discord chat for safekeeping.",
+              "scoreDelta": -20,
+              "feedback": "Catastrophic OPSEC failure. Anyone with the private key can impersonate your cryptographic signature."
+            },
+            {
+              "text": "Store it securely in encrypted local browser storage (IndexedDB) and never share or transmit the private key string.",
+              "scoreDelta": 20,
+              "feedback": "Masterclass OPSEC! The private key must remain exclusively within client-side secure hardware/storage."
+            },
+            {
+              "text": "Email it to your local police department.",
+              "scoreDelta": -15,
+              "feedback": "Unnecessary and compromises your private key across unencrypted email relays."
+            },
+            {
+              "text": "Print it on a billboard.",
+              "scoreDelta": -20,
+              "feedback": "Absurd compromise of private key material."
+            }
+          ],
+          "axisWeights": {
+            "Public-Key Cryptography Literacy": 1,
+            "Decentralized DID Governance": 0.9
+          }
+        },
+        {
+          "questionId": "q5-jsonld-schema",
+          "scenario": "You inspect a W3C Verifiable Credential JSON-LD document. The `@context` URI is missing or malformed.",
+          "questionText": "Why does JSON-LD require a valid `@context` block?",
+          "options": [
+            {
+              "text": "To make the file look pretty in code editors.",
+              "scoreDelta": -15,
+              "feedback": "Context is a strict semantic data mapping requirement, not cosmetic styling."
+            },
+            {
+              "text": "To map human-readable JSON property terms to unambiguous, machine-readable ontological URIs for cryptographic canonicalization.",
+              "scoreDelta": 20,
+              "feedback": "Flawless semantic web understanding! `@context` maps schema properties to RDF URIs, enabling deterministic JSON-LD normalization (URDNA2015)."
+            },
+            {
+              "text": "To download fonts from Google Fonts.",
+              "scoreDelta": -20,
+              "feedback": "Completely unrelated to typography."
+            },
+            {
+              "text": "To enable cookie tracking on the recipient.",
+              "scoreDelta": -15,
+              "feedback": "JSON-LD credentials do not track cookies."
+            }
+          ],
+          "axisWeights": {
+            "W3C Verifiable Credential Architecture": 1,
+            "Digital Signature Verification": 0.8
+          }
+        }
+      ]
+    },
+    "practicalExercise": {
+      "exerciseId": "ex-04-crypto-signing-lab",
+      "exerciseTitle": "Client-Side Cryptographic Attestation Lab",
+      "instructions": "Generate an ECDSA P-256 keypair, sign a factual debrief payload, and verify the resulting base64url signature against a tampered copy.",
+      "simulationData": {
+        "statement": {
+          "claimId": "claim-882194",
+          "assessment": "FALSE",
+          "confidence": 98,
+          "timestamp": "2026-08-15T20:00:00Z"
+        },
+        "expectedSignatureAlgorithm": "ECDSA-SHA256-P256",
+        "tamperedStatement": {
+          "claimId": "claim-882194",
+          "assessment": "TRUE",
+          "confidence": 98,
+          "timestamp": "2026-08-15T20:00:00Z"
+        }
+      },
+      "rubric": {
+        "keyPairGenerated": true,
+        "validSignatureProduced": true,
+        "tamperDetected": true,
+        "pointsAwarded": 100
+      }
+    },
+    "skills": [
+      "skill.forensics.read-measurements",
+      "skill.forensics.provenance",
+      "skill.fallacy.formal-vs-informal"
+    ]
+  }
+]

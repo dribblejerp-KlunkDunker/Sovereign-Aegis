@@ -1,0 +1,239 @@
+{
+  "framework": "DISARM Blue (countermeasures)",
+  "version": "Latest Framework",
+  "source": "https://github.com/DISARMFoundation/DISARMframeworks/blob/main/generated_pages/disarm_blue_framework.md",
+  "license": "CC-BY-SA-4.0",
+  "note": "Countermeasures are listed by the earliest tactic stage they are likely to be used in, per the DISARM Foundation. Some are flagged notRecommended by the framework itself.",
+  "stages": [
+    {
+      "id": "TA01",
+      "name": "Plan Strategy",
+      "countermeasures": [
+        { "id": "C00006", "name": "Charge for social media" },
+        { "id": "C00008", "name": "Create shared fact-checking database" },
+        { "id": "C00010", "name": "Enhanced privacy regulation for social media" },
+        { "id": "C00012", "name": "Platform regulation" },
+        { "id": "C00013", "name": "Rating framework for news" },
+        { "id": "C00016", "name": "Censorship" },
+        { "id": "C00017", "name": "Repair broken social connections" },
+        { "id": "C00019", "name": "Reduce effect of division-enablers" },
+        { "id": "C00021", "name": "Encourage in-person communication" },
+        { "id": "C00022", "name": "Innoculate. Positive campaign to promote feeling of safety" },
+        { "id": "C00024", "name": "Promote healthy narratives" },
+        { "id": "C00026", "name": "Shore up democracy based messages" },
+        { "id": "C00027", "name": "Create culture of civility" },
+        { "id": "C00073", "name": "Inoculate populations through media literacy training" },
+        { "id": "C00096", "name": "Strengthen institutions that are always truth tellers" },
+        { "id": "C00111", "name": "Reduce polarisation by connecting and presenting sympathetic renditions of opposite views" },
+        { "id": "C00153", "name": "Take pre-emptive action against actors' infrastructure" },
+        { "id": "C00159", "name": "Have a disinformation response plan" },
+        { "id": "C00161", "name": "Coalition Building with stakeholders and Third-Party Inducements" },
+        { "id": "C00170", "name": "elevate information as a critical domain of statecraft" },
+        { "id": "C00174", "name": "Create a healthier news environment" },
+        { "id": "C00176", "name": "Improve Coordination amongst stakeholders: public and private" },
+        { "id": "C00190", "name": "open engagement with civil society" },
+        { "id": "C00205", "name": "strong dialogue between the federal government and private sector to encourage better reporting" },
+        { "id": "C00212", "name": "build public resilience by making civil society more vibrant" },
+        { "id": "C00220", "name": "Develop a monitoring and intelligence plan" },
+        { "id": "C00221", "name": "Run a disinformation red team, and design mitigation factors" },
+        { "id": "C00223", "name": "Strengthen Trust in social media platforms" }
+      ]
+    },
+    {
+      "id": "TA02",
+      "name": "Plan Objectives",
+      "countermeasures": [
+        { "id": "C00009", "name": "Educate high profile influencers on best practices" },
+        { "id": "C00011", "name": "Media literacy. Games to identify fake news" },
+        { "id": "C00028", "name": "Make information provenance available" },
+        { "id": "C00029", "name": "Create fake website to issue counter narrative and counter narrative through physical merchandise" },
+        { "id": "C00030", "name": "Develop a compelling counter narrative (truth based)" },
+        { "id": "C00031", "name": "Dilute the core narrative - create multiple permutations, target / amplify" },
+        { "id": "C00060", "name": "Legal action against for-profit engagement factories" },
+        { "id": "C00070", "name": "Block access to disinformation resources" },
+        { "id": "C00092", "name": "Establish a truth teller reputation score for influencers" },
+        { "id": "C00144", "name": "Buy out troll farm employees / offer them jobs" },
+        { "id": "C00156", "name": "Better tell your country or organisation story" },
+        { "id": "C00164", "name": "compatriot policy" },
+        { "id": "C00169", "name": "develop a creative content hub" },
+        { "id": "C00207", "name": "Run a competing disinformation campaign - not recommended", "notRecommended": true },
+        { "id": "C00222", "name": "Tabletop simulations" }
+      ]
+    },
+    {
+      "id": "TA05",
+      "name": "Microtarget",
+      "countermeasures": [
+        { "id": "C00065", "name": "Reduce political targeting" },
+        { "id": "C00066", "name": "Co-opt a hashtag and drown it out (hijack it back)" },
+        { "id": "C00130", "name": "Mentorship: elders, youth, credit. Learn vicariously." },
+        { "id": "C00178", "name": "Fill information voids with non-disinformation content" },
+        { "id": "C00216", "name": "Use advertiser controls to stem flow of funds to bad actors" }
+      ]
+    },
+    {
+      "id": "TA06",
+      "name": "Develop Content",
+      "countermeasures": [
+        { "id": "C00014", "name": "Real-time updates to fact-checking database" },
+        { "id": "C00032", "name": "Hijack content and link to truth- based info" },
+        { "id": "C00071", "name": "Block source of pollution" },
+        { "id": "C00072", "name": "Remove non-relevant content from special interest groups - not recommended", "notRecommended": true },
+        { "id": "C00074", "name": "Identify and delete or rate limit identical content" },
+        { "id": "C00075", "name": "normalise language" },
+        { "id": "C00076", "name": "Prohibit images in political discourse channels" },
+        { "id": "C00078", "name": "Change Search Algorithms for Disinformation Content" },
+        { "id": "C00080", "name": "Create competing narrative" },
+        { "id": "C00081", "name": "Highlight flooding and noise, and explain motivations" },
+        { "id": "C00082", "name": "Ground truthing as automated response to pollution" },
+        { "id": "C00084", "name": "Modify disinformation narratives, and rebroadcast them" },
+        { "id": "C00085", "name": "Mute content" },
+        { "id": "C00086", "name": "Distract from noise with addictive content" },
+        { "id": "C00087", "name": "Make more noise than the disinformation" },
+        { "id": "C00091", "name": "Honeypot social community" },
+        { "id": "C00094", "name": "Force full disclosure on corporate sponsor of research" },
+        { "id": "C00106", "name": "Click-bait centrist content" },
+        { "id": "C00107", "name": "Content moderation" },
+        { "id": "C00142", "name": "Platform adds warning label and decision point when sharing content" },
+        { "id": "C00165", "name": "Ensure integrity of official documents" },
+        { "id": "C00202", "name": "Set data 'honeytraps'" },
+        { "id": "C00219", "name": "Add metadata to content that's out of the control of disinformation creators" }
+      ]
+    },
+    {
+      "id": "TA07",
+      "name": "Select Channels and Affordances",
+      "countermeasures": [
+        { "id": "C00090", "name": "Fake engagement system" },
+        { "id": "C00097", "name": "Require use of verified identities to contribute to poll or comment" },
+        { "id": "C00098", "name": "Revocation of allowlisted or \"verified\" status" },
+        { "id": "C00099", "name": "Strengthen verification methods" },
+        { "id": "C00101", "name": "Create friction by rate-limiting engagement" },
+        { "id": "C00103", "name": "Create a bot that engages / distract trolls" },
+        { "id": "C00105", "name": "Buy more advertising than misinformation creators" },
+        { "id": "C00195", "name": "Redirect searches away from disinformation or extremist content" }
+      ]
+    },
+    {
+      "id": "TA08",
+      "name": "Conduct Pump Priming",
+      "countermeasures": [
+        { "id": "C00100", "name": "Hashtag jacking" },
+        { "id": "C00112", "name": "\"Prove they are not an op!\"" },
+        { "id": "C00113", "name": "Debunk and defuse a fake expert / credentials." },
+        { "id": "C00114", "name": "Don't engage with payloads" },
+        { "id": "C00115", "name": "Expose actor and intentions" },
+        { "id": "C00116", "name": "Provide proof of involvement" },
+        { "id": "C00117", "name": "Downgrade / de-amplify so message is seen by fewer people" },
+        { "id": "C00118", "name": "Repurpose images with new text" },
+        { "id": "C00119", "name": "Engage payload and debunk." },
+        { "id": "C00120", "name": "Open dialogue about design of platforms to produce different outcomes" },
+        { "id": "C00121", "name": "Tool transparency and literacy for channels people follow." },
+        { "id": "C00136", "name": "Microtarget most likely targets then send them countermessages" },
+        { "id": "C00154", "name": "Ask media not to report false information" },
+        { "id": "C00184", "name": "Media exposure" },
+        { "id": "C00188", "name": "Newsroom/Journalist training to counter influence moves" }
+      ]
+    },
+    {
+      "id": "TA09",
+      "name": "Deliver Content",
+      "countermeasures": [
+        { "id": "C00109", "name": "Dampen Emotional Reaction" },
+        { "id": "C00122", "name": "Content moderation" },
+        { "id": "C00123", "name": "Remove or rate limit botnets" },
+        { "id": "C00124", "name": "Don't feed the trolls" },
+        { "id": "C00125", "name": "Prebunking" },
+        { "id": "C00126", "name": "Social media amber alert" },
+        { "id": "C00128", "name": "Create friction by marking content with ridicule or other \"decelerants\"" },
+        { "id": "C00129", "name": "Use banking to cut off access" },
+        { "id": "C00147", "name": "Make amplification of social media posts expire (e.g. can't like/ retweet after n days)" },
+        { "id": "C00182", "name": "Redirection / malware detection/ remediation" },
+        { "id": "C00200", "name": "Respected figure (influencer) disavows misinfo" },
+        { "id": "C00211", "name": "Use humorous counter-narratives" }
+      ]
+    },
+    {
+      "id": "TA10",
+      "name": "Drive Offline Activity",
+      "countermeasures": []
+    },
+    {
+      "id": "TA11",
+      "name": "Persist in the Information Environment",
+      "countermeasures": [
+        { "id": "C00131", "name": "Seize and analyse botnet servers" },
+        { "id": "C00138", "name": "Spam domestic actors with lawsuits" },
+        { "id": "C00139", "name": "Weaponise youtube content matrices" },
+        { "id": "C00143", "name": "(botnet) DMCA takedown requests to waste group time" }
+      ]
+    },
+    {
+      "id": "TA12",
+      "name": "Assess Effectiveness",
+      "countermeasures": [
+        { "id": "C00140", "name": "\"Bomb\" link shorteners with lots of calls" },
+        { "id": "C00148", "name": "Add random links to network graphs" },
+        { "id": "C00149", "name": "Poison the monitoring & evaluation data" }
+      ]
+    },
+    {
+      "id": "TA13",
+      "name": "Target Audience Analysis",
+      "countermeasures": []
+    },
+    {
+      "id": "TA14",
+      "name": "Develop Narratives",
+      "countermeasures": []
+    },
+    {
+      "id": "TA15",
+      "name": "Establish Assets",
+      "countermeasures": [
+        { "id": "C00034", "name": "Create more friction at account creation" },
+        { "id": "C00036", "name": "Infiltrate the in-group to discredit leaders (divide)" },
+        { "id": "C00040", "name": "third party verification for people" },
+        { "id": "C00042", "name": "Address truth contained in narratives" },
+        { "id": "C00044", "name": "Keep people from posting to social media immediately" },
+        { "id": "C00046", "name": "Marginalise and discredit extremist groups" },
+        { "id": "C00047", "name": "Honeypot with coordinated inauthentics" },
+        { "id": "C00048", "name": "Name and Shame Influencers" },
+        { "id": "C00051", "name": "Counter social engineering training" },
+        { "id": "C00052", "name": "Infiltrate platforms" },
+        { "id": "C00053", "name": "Delete old accounts / Remove unused social media accounts" },
+        { "id": "C00056", "name": "Encourage people to leave social media" },
+        { "id": "C00058", "name": "Report crowdfunder as violator" },
+        { "id": "C00059", "name": "Verification of project before posting fund requests" },
+        { "id": "C00062", "name": "Free open library sources worldwide" },
+        { "id": "C00067", "name": "Denigrate the recipient/ project (of online funding)" },
+        { "id": "C00077", "name": "Active defence: run TA15 \"develop people\" - not recommended", "notRecommended": true },
+        { "id": "C00093", "name": "Influencer code of conduct" },
+        { "id": "C00133", "name": "Deplatform Account*" },
+        { "id": "C00135", "name": "Deplatform message groups and/or message boards" },
+        { "id": "C00155", "name": "Ban incident actors from funding sites" },
+        { "id": "C00160", "name": "find and train influencers" },
+        { "id": "C00162", "name": "Unravel/target the Potemkin villages" },
+        { "id": "C00172", "name": "social media source removal" },
+        { "id": "C00189", "name": "Ensure that platforms are taking down flagged accounts" },
+        { "id": "C00197", "name": "remove suspicious accounts" },
+        { "id": "C00203", "name": "Stop offering press credentials to propaganda outlets" }
+      ]
+    },
+    {
+      "id": "TA16",
+      "name": "Establish Legitimacy",
+      "countermeasures": []
+    },
+    {
+      "id": "TA17",
+      "name": "Maximise Exposure",
+      "countermeasures": []
+    },
+    {
+      "id": "TA18",
+      "name": "Drive Online Harms",
+      "countermeasures": []
+    }
+  ]
+}

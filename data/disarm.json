@@ -1,0 +1,1191 @@
+[
+  {
+    "id": "T0001",
+    "phase": "Plan",
+    "title": "Define Target Audience & Epistemic Vulnerabilities",
+    "description": "Adversaries segment the target population based on demographic, psychographic, and political polarization metrics to identify groups susceptible to cognitive manipulation.",
+    "adversaryTactics": [
+      "Psychographic profiling utilizing leaked consumer datasets",
+      "Analysis of social fault lines and wedge issue sensitivities",
+      "Mapping online community echo chambers and high-centrality influencers"
+    ],
+    "observableIndicators": [
+      "Surge in audience micro-segmentation probes on advertising platforms",
+      "Scraping of community forum discourse metrics",
+      "Polling queries focused on emotional outrage triggers"
+    ],
+    "countermeasures": [
+      "Conduct baseline community vulnerability assessments",
+      "Deploy localized epistemic prebunking curricula",
+      "Enhance platform data privacy protections to prevent psychographic scraping"
+    ],
+    "severityLevel": "High",
+    "relatedFallacies": [
+      "fallacy-appeal-to-emotion",
+      "fallacy-false-dilemma"
+    ],
+    "teaches": [
+      "skill.disarm.plan-prepare"
+    ]
+  },
+  {
+    "id": "T0002",
+    "phase": "Plan",
+    "title": "Establish Strategic Influence Objectives & End-States",
+    "description": "Adversaries formalize high-level objectives such as eroding trust in democratic institutions, suppressing voter turnout, or destabilizing critical market sectors.",
+    "adversaryTactics": [
+      "Alignment with geopolitical grand strategy directives",
+      "Setting measurable Key Performance Indicators (KPIs) for cognitive disruption",
+      "Defining narrative themes intended to persist across multiple election cycles"
+    ],
+    "observableIndicators": [
+      "State-sponsored strategic doctrine publications",
+      "Coordinated thematic shifts across known state media outlets",
+      "Intelligence community threat warning advisories"
+    ],
+    "countermeasures": [
+      "Cross-agency threat modeling and intelligence sharing",
+      "Establishing sovereign institutional verification desks",
+      "Public transparency reporting on foreign influence doctrines"
+    ],
+    "severityLevel": "Critical",
+    "relatedFallacies": [
+      "fallacy-slippery-slope",
+      "fallacy-genetic-fallacy"
+    ],
+    "teaches": [
+      "skill.disarm.plan-prepare"
+    ]
+  },
+  {
+    "id": "T0003",
+    "phase": "Plan",
+    "title": "Conduct Epistemic Reconnaissance & Network Infiltration",
+    "description": "Adversaries passively map the target information ecosystem, identifying key opinion leaders, gatekeepers, and algorithmic amplification vectors.",
+    "adversaryTactics": [
+      "Network graph topology analysis of community interaction graphs",
+      "Monitoring hashtag velocity and engagement decay constants",
+      "Identifying vulnerable or unverified local media syndicates"
+    ],
+    "observableIndicators": [
+      "Anomalous crawling of regional journalistic archives",
+      "Synthetic account follow-patterns targeting civic leaders",
+      "Automated probing of newsroom submission tips"
+    ],
+    "countermeasures": [
+      "Implement zero-trust journalistic verification protocols",
+      "Monitor newsroom email and tip channels for reconnaissance payloads",
+      "Deploy social graph anomaly detection sensors"
+    ],
+    "severityLevel": "Medium",
+    "relatedFallacies": [
+      "fallacy-appeal-to-popularity",
+      "fallacy-ad-hominem-circumstantial"
+    ],
+    "teaches": [
+      "skill.disarm.plan-prepare"
+    ]
+  },
+  {
+    "id": "T0004",
+    "phase": "Plan",
+    "title": "Map Information Ecology & Channel Redundancy",
+    "description": "Adversaries catalog distribution nodes across surface web, dark channels, and peer-to-peer messaging networks to establish resilient multi-channel propagation paths.",
+    "adversaryTactics": [
+      "Mapping cross-platform routing paths (e.g., Telegram -> 4chan -> Reddit -> X)",
+      "Identifying unregulated regional mirror sites and hosting providers",
+      "Planning multi-tier content syndication redundancy"
+    ],
+    "observableIndicators": [
+      "Simultaneous domain registrations across varied regional TLDs",
+      "Creation of synchronized broadcast channels across Telegram and Discord",
+      "Automated cross-posting bridge configurations"
+    ],
+    "countermeasures": [
+      "Multi-platform threat vector tracing and telemetry sharing",
+      "DNS sinkholing of coordinated proxy infrastructure",
+      "Developing resilient verified state communication channels"
+    ],
+    "severityLevel": "High",
+    "relatedFallacies": [
+      "fallacy-appeal-to-popularity",
+      "fallacy-begging-the-question"
+    ],
+    "teaches": [
+      "skill.disarm.plan-prepare"
+    ]
+  },
+  {
+    "id": "T0005",
+    "phase": "Plan",
+    "title": "Select Narrative Themes & Polarization Hooks",
+    "description": "Adversaries craft narrative themes designed to exploit existing societal grievances, institutional distrust, or existential anxieties.",
+    "adversaryTactics": [
+      "Weaponizing historical traumas and ethnic/sectarian tensions",
+      "Inverting factual narratives into conspiratorial frameworks",
+      "Crafting linguistically tailored slogans and memes"
+    ],
+    "observableIndicators": [
+      "Coordinated focus-group testing in fringe message boards",
+      "Sudden convergence of distinct fringe groups around a novel catchphrase",
+      "Early warning telemetry alerts on high-outrage lexicon surges"
+    ],
+    "countermeasures": [
+      "Proactive narrative prebunking and inoculation campaigns",
+      "Transparent civic engagement addressing underlying grievances",
+      "Linguistic telemetry monitoring for weaponized meme clusters"
+    ],
+    "severityLevel": "High",
+    "relatedFallacies": [
+      "fallacy-straw-man",
+      "fallacy-appeal-to-emotion"
+    ],
+    "teaches": [
+      "skill.disarm.plan-prepare"
+    ]
+  },
+  {
+    "id": "T0006",
+    "phase": "Plan",
+    "title": "Establish Covert Command & Coordination Channels",
+    "description": "Adversaries create secure, out-of-band operational communication channels (bulletproof messaging, steganography, encrypted relays) to direct campaign operators.",
+    "adversaryTactics": [
+      "Use of encrypted mesh networks and disposable SIM cards",
+      "Steganographic instruction embedding in benign imagery",
+      "Hierarchical cell-based operational security compartmentalization"
+    ],
+    "observableIndicators": [
+      "Anomalous traffic spikes to privacy-focused relay endpoints",
+      "Command-and-control signatures in compromised marketing software",
+      "Structured task-assignment messages posted in public forums disguised as crypto chatter"
+    ],
+    "countermeasures": [
+      "Adversary infrastructure takedowns and operational disruption",
+      "Endpoint monitoring and traffic analysis on high-risk nodes",
+      "Cryptographic forensic examination of image containers"
+    ],
+    "severityLevel": "Critical",
+    "relatedFallacies": [
+      "fallacy-genetic-fallacy",
+      "fallacy-appeal-to-ignorance"
+    ],
+    "teaches": [
+      "skill.disarm.plan-prepare"
+    ]
+  },
+  {
+    "id": "T0007",
+    "phase": "Plan",
+    "title": "Model Cognitive Impact & Kinetic Spillover",
+    "description": "Adversaries simulate the downstream behavioral consequences of information operations, planning for physical protests, supply chain runs, or market shocks.",
+    "adversaryTactics": [
+      "Agent-based modeling of civilian panic dynamics",
+      "Targeting critical logistical nodes alongside disinformation bursts",
+      "Scheduling releases during major geopolitical summits or crisis moments"
+    ],
+    "observableIndicators": [
+      "Timing synchronicity between cyber incidents and narrative drops",
+      "Simulated panic exercises leaked from adversarial think tanks",
+      "Spikes in synthetic sentiment testing prior to planned operations"
+    ],
+    "countermeasures": [
+      "Inter-agency crisis simulation and tabletop war-gaming",
+      "Establishing rapid-response civil defense communication desks",
+      "Deploying real-time market and logistics anomaly detection"
+    ],
+    "severityLevel": "Critical",
+    "relatedFallacies": [
+      "fallacy-slippery-slope",
+      "fallacy-post-hoc-ergo-propter-hoc"
+    ],
+    "teaches": [
+      "skill.disarm.plan-prepare"
+    ]
+  },
+  {
+    "id": "T0008",
+    "phase": "Prepare",
+    "title": "Micro-Target Vulnerable Audiences & Clusters",
+    "description": "Adversaries identify and prepare messaging vectors targeting susceptible demographic, political, or psychological audience segments to seed customized disinformation payloads.",
+    "adversaryTactics": [
+      "Scraping audience identifiers from specialized social channels",
+      "Building micro-targeted messaging variants for distinct demographic clusters",
+      "Probing cluster susceptibility with low-cost polarizing ad variants"
+    ],
+    "observableIndicators": [
+      "Coordinated influx of customized ads across regional demographic segments",
+      "Anomalous engagement spikes in fringe political forums",
+      "A/B testing of polarizing messaging narratives across isolated subgroups"
+    ],
+    "countermeasures": [
+      "Inoculate susceptible demographic clusters before high-reach hubs are contaminated",
+      "Deploy localized media literacy and prebunking interventions",
+      "Mandate transparency on political and issue-based micro-targeted advertising"
+    ],
+    "severityLevel": "High",
+    "relatedFallacies": [
+      "fallacy-appeal-to-emotion",
+      "fallacy-false-dilemma"
+    ],
+    "teaches": [
+      "skill.disarm.plan-prepare"
+    ]
+  },
+  {
+    "id": "T0009",
+    "phase": "Prepare",
+    "title": "Establish Multi-Tier Amplification & Bot Networks",
+    "description": "Adversaries build or purchase automated amplification networks, botnets, and coordinated sockpuppet swarms to boost reach and bypass algorithmic suppression.",
+    "adversaryTactics": [
+      "Purchasing commercial bot farm amplification packages",
+      "Synchronizing automated account activity across peak engagement windows",
+      "Leveraging algorithmic engagement loops to force hashtags into trending feeds"
+    ],
+    "observableIndicators": [
+      "Super-linear retweet/share velocity from newly created accounts",
+      "High temporal co-occurrence of identical keyword phrasing across accounts",
+      "Abnormal bot-like follower-to-following ratios across amplifying nodes"
+    ],
+    "countermeasures": [
+      "Deploy algorithmic friction and circuit breakers to dampen propagation velocity",
+      "Enforce bot detection and automated account rate-limiting",
+      "Implement forensic network graph anomaly detection across trending topics"
+    ],
+    "severityLevel": "Critical",
+    "relatedFallacies": [
+      "fallacy-appeal-to-popularity",
+      "fallacy-appeal-to-emotion"
+    ],
+    "teaches": [
+      "skill.disarm.plan-prepare"
+    ]
+  },
+  {
+    "id": "T0010",
+    "phase": "Prepare",
+    "title": "Develop Synthetic Personas & Sockpuppet Clusters",
+    "description": "Adversaries generate synthetic identities with AI-generated profile photos, fabricated backstories, and established history to mimic authentic citizens.",
+    "adversaryTactics": [
+      "StyleGAN-generated human portraits for profile avatars",
+      "Automated persona warming via benign sports/weather retweets for 90 days",
+      "Purchasing aged accounts with established social karma and followers"
+    ],
+    "observableIndicators": [
+      "Pupil-distance and ocular symmetry artifacts in avatar photos",
+      "Sudden shift in posting topic from benign sports to contentious geopolitics",
+      "High temporal regularity in daily posting cadences"
+    ],
+    "countermeasures": [
+      "Forensic image inspection using frequency analysis and ocular alignment checks",
+      "Account behavioral anomaly scoring and timeline history auditing",
+      "Platform KYC verification and cryptographic identity validation"
+    ],
+    "severityLevel": "High",
+    "relatedFallacies": [
+      "fallacy-appeal-to-false-authority",
+      "fallacy-appeal-to-popularity"
+    ],
+    "teaches": [
+      "skill.disarm.plan-prepare"
+    ]
+  },
+  {
+    "id": "T0011",
+    "phase": "Prepare",
+    "title": "Fabricate Forged Evidence & Deceptive Documents",
+    "description": "Adversaries fabricate official government memos, corporate internal emails, or scientific reports containing subtle disinformation payloads.",
+    "adversaryTactics": [
+      "Photoshop alteration of declassified document letterheads",
+      "Insertion of fabricated paragraphs into authentic leaked PDFs",
+      "Spoofing digital signature headers and metadata blocks"
+    ],
+    "observableIndicators": [
+      "Font typeface mismatches (e.g., Calibri vs required Times New Roman)",
+      "Missing or invalid cryptographic digital signatures",
+      "Inconsistent classification banner timestamps and revision numbers"
+    ],
+    "countermeasures": [
+      "Document forensics (font analysis, compression artifact analysis)",
+      "Cryptographic provenance attestation via W3C Verifiable Credentials",
+      "Official public repository verification and hash matching"
+    ],
+    "severityLevel": "Critical",
+    "relatedFallacies": [
+      "fallacy-appeal-to-false-authority",
+      "fallacy-genetic-fallacy"
+    ],
+    "teaches": [
+      "skill.disarm.plan-prepare"
+    ]
+  },
+  {
+    "id": "T0012",
+    "phase": "Prepare",
+    "title": "Create Deceptive Lookalike Domain Infrastructure",
+    "description": "Adversaries register domains designed to impersonate legitimate media outlets, institutions, or fact-checking bodies (typosquatting and brand spoofing).",
+    "adversaryTactics": [
+      "Internationalized Domain Names (IDN) homograph attacks using Cyrillic glyphs",
+      "Registering domain permutations (e.g., reuters-press.org, bbc-breaking.co)",
+      "Mirroring CSS stylesheets and CMS layouts of target outlets"
+    ],
+    "observableIndicators": [
+      "WHOIS creation dates under 30 days old",
+      "TLS certificates issued by free automated authorities without CAA records",
+      "Hosting IP resolved to bulletproof hosting autonomous systems (ASNs)"
+    ],
+    "countermeasures": [
+      "Automated WHOIS and DNS historical lookup via OSINT suite",
+      "Domain reputation intelligence integration and registrar takedown notices",
+      "Browser extension alerts for newly registered lookalike domains"
+    ],
+    "severityLevel": "High",
+    "relatedFallacies": [
+      "fallacy-appeal-to-false-authority",
+      "fallacy-ad-hominem-circumstantial"
+    ],
+    "teaches": [
+      "skill.disarm.plan-prepare"
+    ]
+  },
+  {
+    "id": "T0013",
+    "phase": "Prepare",
+    "title": "Compromise Legitimate Verified Accounts",
+    "description": "Adversaries hijack verified journalist, celebrity, or government social media accounts via credential stuffing, phishing, or SIM swapping to gain instant credibility.",
+    "adversaryTactics": [
+      "Targeted spear-phishing campaigns against media personnel",
+      "Exploiting leaked credentials from third-party database breaches",
+      "Session token hijacking via malicious browser extensions"
+    ],
+    "observableIndicators": [
+      "Abrupt change in geographic login IP address and device user-agent",
+      "Sudden surge in atypical contentious political broadcasting",
+      "Deletion of past historical posts to rebrand the account"
+    ],
+    "countermeasures": [
+      "Mandatory hardware FIDO2/WebAuthn MFA for public interest accounts",
+      "Platform automated circuit breakers on sudden behavioral deviations",
+      "Cryptographic statement signing using independent private keys"
+    ],
+    "severityLevel": "Critical",
+    "relatedFallacies": [
+      "fallacy-appeal-to-false-authority",
+      "fallacy-appeal-to-popularity"
+    ],
+    "teaches": [
+      "skill.disarm.plan-prepare"
+    ]
+  },
+  {
+    "id": "T0014",
+    "phase": "Prepare",
+    "title": "Seed Microtargeted Dark Ads & Coordinated Ad Buys",
+    "description": "Adversaries purchase targeted digital advertisements visible only to specific vulnerable cohorts, evading public scrutiny while testing manipulative messaging.",
+    "adversaryTactics": [
+      "Using shell companies and prepaid virtual credit cards for ad funding",
+      "Targeting niche demographic cohorts based on anxiety indicators",
+      "A/B testing dozens of sensational headlines to optimize virality"
+    ],
+    "observableIndicators": [
+      "Surge in non-indexed ad impressions from anonymous ad accounts",
+      "Discrepancies between public ad library disclosures and localized feeds",
+      "High ad spend velocity originating from newly created business managers"
+    ],
+    "countermeasures": [
+      "Mandatory real-time public advertising transparency databases",
+      "Ad library scraping and algorithmic monitoring by watchdog groups",
+      "Enhanced identity verification for political and issue advertising buyers"
+    ],
+    "severityLevel": "High",
+    "relatedFallacies": [
+      "fallacy-appeal-to-emotion",
+      "fallacy-false-dilemma"
+    ],
+    "teaches": [
+      "skill.disarm.plan-prepare"
+    ]
+  },
+  {
+    "id": "T0015",
+    "phase": "Prepare",
+    "title": "Pre-Position Front Organizations & Astro-Turf Entities",
+    "description": "Adversaries establish ostensibly independent think tanks, NGOs, or grassroots advocacy groups to serve as laundering conduits for influence narratives.",
+    "adversaryTactics": [
+      "Registering corporate entities in jurisdictions with opaque beneficial ownership",
+      "Staffing front organizations with real but compromised experts",
+      "Publishing voluminous pseudo-academic whitepapers and indexes"
+    ],
+    "observableIndicators": [
+      "Lack of physical office presence or verified tax filings",
+      "Opaque funding sources and hidden board of directors",
+      "Singular narrative focus aligning with state foreign policy objectives"
+    ],
+    "countermeasures": [
+      "Investigative OSINT financial flow tracing and corporate registry audits",
+      "Source reputation scoring penalizing opaque funding structures",
+      "Academic citation index filtering of predatory front journals"
+    ],
+    "severityLevel": "High",
+    "relatedFallacies": [
+      "fallacy-appeal-to-false-authority",
+      "fallacy-genetic-fallacy"
+    ],
+    "teaches": [
+      "skill.disarm.plan-prepare"
+    ]
+  },
+  {
+    "id": "T0016",
+    "phase": "Prepare",
+    "title": "Establish Disposable Infrastructure & Domain Typosquatting",
+    "description": "Adversaries build throwaway hosting clusters, transient landing pages, and disposable URL shorteners designed to survive rapid blacklisting cycles.",
+    "adversaryTactics": [
+      "Fast-flux DNS techniques rotating backend IP addresses every few minutes",
+      "Deploying content across dynamic cloud storage buckets (S3, Firebase)",
+      "Leveraging compromised legitimate WordPress installations as redirection hops"
+    ],
+    "observableIndicators": [
+      "High TTL churn in DNS records",
+      "Redirect chains spanning multiple disparate TLDs",
+      "Identical obfuscated JavaScript redirection scripts across dozens of domains"
+    ],
+    "countermeasures": [
+      "Fast-flux detection and proactive DNS sinkholing",
+      "Real-time URL redirection chain unwinding and sandbox analysis",
+      "Collaborative threat intelligence feeds sharing disposable infrastructure IPs"
+    ],
+    "severityLevel": "High",
+    "relatedFallacies": [
+      "fallacy-appeal-to-false-authority",
+      "fallacy-complex-question"
+    ],
+    "teaches": [
+      "skill.disarm.plan-prepare"
+    ]
+  },
+  {
+    "id": "T0017",
+    "phase": "Prepare",
+    "title": "Prepare Coordinated Hashtag Campaigns & Visual Memes",
+    "description": "Adversaries design viral meme libraries, coordinated hashtags, and graphic templates in advance of scheduled events to immediately capture attention.",
+    "adversaryTactics": [
+      "Pre-rendering hundreds of emotive memes targeting anticipated debate outcomes",
+      "Registering coordinated hashtag variations to circumvent keyword filters",
+      "Distributing media packs to distributed volunteer and paid troll brigades"
+    ],
+    "observableIndicators": [
+      "Sudden synchronous appearance of identical hashtag permutations",
+      "Uniform image file metadata (creation tool, dimensions) across different uploaders",
+      "Cross-platform coordination in private staging groups"
+    ],
+    "countermeasures": [
+      "Perceptual image hashing (pHash) to detect coordinated meme variants",
+      "Hashtag co-occurrence network analysis",
+      "Early warning narrative telemetry tracking pre-positioned visual assets"
+    ],
+    "severityLevel": "Medium",
+    "relatedFallacies": [
+      "fallacy-appeal-to-emotion",
+      "fallacy-straw-man"
+    ],
+    "teaches": [
+      "skill.disarm.plan-prepare"
+    ]
+  },
+  {
+    "id": "T0020",
+    "phase": "Seed",
+    "title": "Plant Narrative in Niche Fringe Channels & Forums",
+    "description": "Adversaries introduce unverified rumors, forged documents, or conspiracy seeds into fringe discussion boards (4chan, 8kun, niche Telegram channels) to test traction.",
+    "adversaryTactics": [
+      "Posting provocative anonymous 'leaks' framed as insider disclosures",
+      "Using sensationalist language tailored to forum subculture vernacular",
+      "Engaging self-reply sockpuppets to generate initial discussion momentum"
+    ],
+    "observableIndicators": [
+      "Novel narrative emergence in anonymous imageboards with zero antecedent citations",
+      "Coordinated burst of replies within 3 minutes of original post",
+      "Rapid screenshot capture and distribution to secondary platforms"
+    ],
+    "countermeasures": [
+      "Automated monitoring of fringe forum narrative emergence",
+      "Cross-referencing claims against verified knowledge graphs",
+      "Documenting original seeding timestamps to establish chronological genesis"
+    ],
+    "severityLevel": "Medium",
+    "relatedFallacies": [
+      "fallacy-appeal-to-ignorance",
+      "fallacy-begging-the-question"
+    ],
+    "teaches": [
+      "skill.disarm.seed-amplify"
+    ]
+  },
+  {
+    "id": "T0021",
+    "phase": "Seed",
+    "title": "Deploy Coordinated Hack-and-Leak Operations",
+    "description": "Adversaries exfiltrate genuine internal communications, selectively release damaging excerpts, and blend in fabricated documents to maximize disruption.",
+    "adversaryTactics": [
+      "Timing release to coincide with high-visibility political moments",
+      "Providing exclusive tranches to investigative journalists under tight deadlines",
+      "Interspersing forged counterfeit emails into large authentic archives"
+    ],
+    "observableIndicators": [
+      "Sudden data dumps hosted on dedicated anonymous onion sites",
+      "Metadata timestamps indicating selective curation and document removal",
+      "Hash discrepancies in individual files within large compressed archives"
+    ],
+    "countermeasures": [
+      "Rigorous journalistic verification before reporting on leaked materials",
+      "Comprehensive digital forensic analysis of archive integrity and hashes",
+      "Clear editorial labeling of hack-and-leak origin and potential fabrications"
+    ],
+    "severityLevel": "Critical",
+    "relatedFallacies": [
+      "fallacy-texas-sharpshooter",
+      "fallacy-ad-hominem-circumstantial"
+    ],
+    "teaches": [
+      "skill.disarm.seed-amplify"
+    ]
+  },
+  {
+    "id": "T0022",
+    "phase": "Seed",
+    "title": "Manipulate Search Engine Indexing & SEO Poisoning",
+    "description": "Adversaries optimize malicious landing pages for trending crisis keywords, ensuring that users seeking breaking news are routed to manipulated narratives.",
+    "adversaryTactics": [
+      "Keyword stuffing around emerging disaster, election, or celebrity queries",
+      "Building automated backlink networks on compromised web servers",
+      "Exploiting search engine algorithmic 'freshness' biases during breaking news"
+    ],
+    "observableIndicators": [
+      "Low-quality domains ranking highly for high-velocity breaking news queries",
+      "Identical boilerplate text and backlink structures across dozens of satellite blogs",
+      "Sudden rank spikes for domains registered within preceding 48 hours"
+    ],
+    "countermeasures": [
+      "Search engine algorithmic demotion of unverified domain rank spikes during crisis events",
+      "Prioritizing authoritative, cryptographically attested journalistic sources",
+      "User education on evaluating search result provenance and domain credentials"
+    ],
+    "severityLevel": "High",
+    "relatedFallacies": [
+      "fallacy-appeal-to-popularity",
+      "fallacy-hasty-generalization"
+    ],
+    "teaches": [
+      "skill.disarm.seed-amplify"
+    ]
+  },
+  {
+    "id": "T0023",
+    "phase": "Seed",
+    "title": "Distribute Altered Media & Synthetic Deepfakes",
+    "description": "Adversaries generate synthetic video, cloned audio, or altered images showing public officials making controversial statements or committing crimes.",
+    "adversaryTactics": [
+      "Voice cloning using diffusion acoustic models trained on public speeches",
+      "Face-swap and neural lip-sync deepfakes inserted into authentic press conferences",
+      "Cheapfakes: recontextualizing old footage with misleading chyrons and audio edits"
+    ],
+    "observableIndicators": [
+      "Facial boundary blending artifacts and unnatural blink cadences",
+      "Acoustic frequency gaps and lack of natural ambient room reverberation",
+      "Reverse image search matches pointing to historical events with different contexts"
+    ],
+    "countermeasures": [
+      "Multi-modal forensic analysis (ELA, spectral analysis, face landmark tracking)",
+      "Cryptographic media provenance standards (C2PA / Content Credentials)",
+      "Rapid-response public verification by referenced individuals and institutions"
+    ],
+    "severityLevel": "Critical",
+    "relatedFallacies": [
+      "fallacy-appeal-to-emotion",
+      "fallacy-appeal-to-false-authority"
+    ],
+    "teaches": [
+      "skill.disarm.seed-amplify"
+    ]
+  },
+  {
+    "id": "T0024",
+    "phase": "Seed",
+    "title": "Infiltrate Grassroots Discussion Groups & Private Chats",
+    "description": "Adversaries insert undercover operatives or automated personas into local community groups (parent associations, neighborhood chats) to spread localized rumors.",
+    "adversaryTactics": [
+      "Adopting localized dialect and expressing sympathy with local grievances",
+      "Forwarding fear-inducing audio memos claiming to be from 'a doctor at the hospital'",
+      "Gradually shifting group focus toward extreme polarization narratives"
+    ],
+    "observableIndicators": [
+      "Anonymous members sharing forwarded voice notes without attribution",
+      "Identical message templates appearing simultaneously across hundreds of local groups",
+      "Aggressive emotional appeals urging members to 'forward before it gets deleted'"
+    ],
+    "countermeasures": [
+      "Community media literacy and digital hygiene workshops",
+      "Platform limits on viral message forwarding and forwarding chain indicators",
+      "Local community fact-checking and trusted elder verification desks"
+    ],
+    "severityLevel": "High",
+    "relatedFallacies": [
+      "fallacy-anecdotal-evidence",
+      "fallacy-appeal-to-emotion"
+    ],
+    "teaches": [
+      "skill.disarm.seed-amplify"
+    ]
+  },
+  {
+    "id": "T0025",
+    "phase": "Seed",
+    "title": "Fabricate Whistleblower Disclosures & Anonymous Leaks",
+    "description": "Adversaries fabricate persona profiles claiming to be high-ranking whistleblowers in intelligence, healthcare, or financial sectors releasing explosive secrets.",
+    "adversaryTactics": [
+      "Publishing anonymous manifestos using technical jargon and insider terminology",
+      "Creating fake employment verification records on social platforms",
+      "Refusing direct media interviews while demanding public viral spread"
+    ],
+    "observableIndicators": [
+      "Lack of corroboration from known institutional organizational charts",
+      "Inconsistencies in claimed internal protocols, clearances, and terminology",
+      "Immediate amplification by foreign state media and botnet clusters"
+    ],
+    "countermeasures": [
+      "Rigorous journalistic verification of whistleblower bona fides",
+      "Cross-referencing claimed insider documents with public regulatory filings",
+      "Epistemic friction prompts when consuming anonymous whistleblower manifestos"
+    ],
+    "severityLevel": "High",
+    "relatedFallacies": [
+      "fallacy-appeal-to-false-authority",
+      "fallacy-appeal-to-ignorance"
+    ],
+    "teaches": [
+      "skill.disarm.seed-amplify"
+    ]
+  },
+  {
+    "id": "T0026",
+    "phase": "Seed",
+    "title": "Seed Ragebait & Polarization Bait Content",
+    "description": "Adversaries produce highly provocative, morally inflammatory content designed specifically to elicit rage and provoke hostile cross-partisan clashes.",
+    "adversaryTactics": [
+      "Framing benign local disputes as existential cultural warfare",
+      "Highlighting extreme outlier opinions as representative of an entire political group",
+      "Using hyper-aggressive linguistic modifiers (e.g., 'treasonous', 'disgusting')"
+    ],
+    "observableIndicators": [
+      "High emotional arousal lexicon density in headlines",
+      "Absence of substantive policy context or opposing viewpoint representation",
+      "Bimodal distribution of user reactions (intense anger vs passionate cheer)"
+    ],
+    "countermeasures": [
+      "Cognitive aftercare and System 2 friction pacer interventions",
+      "Algorithmic deprioritization of high-ragebait engagement signals",
+      "Epistemic reframing exercises decomposing moral-emotional rhetoric"
+    ],
+    "severityLevel": "High",
+    "relatedFallacies": [
+      "fallacy-appeal-to-emotion",
+      "fallacy-straw-man"
+    ],
+    "teaches": [
+      "skill.disarm.seed-amplify"
+    ]
+  },
+  {
+    "id": "T0027",
+    "phase": "Seed",
+    "title": "Exploit Breaking News Information Voids",
+    "description": "During the initial chaotic hours of a crisis or disaster, adversaries flood the void of verified facts with speculative, misleading, or fabricated narratives.",
+    "adversaryTactics": [
+      "Rushing fabricated casualty numbers and false suspect identities into breaking threads",
+      "Re-posting footage from past conflicts labelled as breaking live footage",
+      "Exploiting public desperation for updates to drive traffic to disinfo domains"
+    ],
+    "observableIndicators": [
+      "High-velocity claims emerging prior to official first-responder press conferences",
+      "Conflicting, sensational casualty figures with no identifiable on-the-ground source",
+      "Rapid deletion and revision of posts when initial claims are disproven"
+    ],
+    "countermeasures": [
+      "Establishing official crisis communication channels with high-cadence updates",
+      "Deploying prebunking alerts warning the public of information void hazards",
+      "Platform implementation of crisis friction banners on unverified trending topics"
+    ],
+    "severityLevel": "Critical",
+    "relatedFallacies": [
+      "fallacy-hasty-generalization",
+      "fallacy-appeal-to-ignorance"
+    ],
+    "teaches": [
+      "skill.disarm.seed-amplify"
+    ]
+  },
+  {
+    "id": "T0030",
+    "phase": "Amplify",
+    "title": "Deploy Automated Botnet Swarms & Coordination Scripts",
+    "description": "Adversaries deploy coordinated networks of automated accounts to mass-retweet, like, and comment on target posts to game platform recommendation algorithms.",
+    "adversaryTactics": [
+      "Using headless browsers and API automation to trigger coordinated retweets",
+      "Timing amplification bursts to push topics into algorithmic trending sections",
+      "Synchronizing posting times to sub-second precision across thousands of nodes"
+    ],
+    "observableIndicators": [
+      "High temporal clustering of retweets (hundreds within single seconds)",
+      "Low account age and generic default avatar density in amplification graphs",
+      "Near-zero original content generation relative to massive retweet volume"
+    ],
+    "countermeasures": [
+      "Network graph topology analysis identifying dense, synchronized subgraphs",
+      "Algorithmic rate limiting and bot detection challenge-response systems",
+      "Public transparency dashboards showing bot amplification percentages"
+    ],
+    "severityLevel": "Critical",
+    "relatedFallacies": [
+      "fallacy-appeal-to-popularity",
+      "fallacy-hasty-generalization"
+    ],
+    "teaches": [
+      "skill.disarm.seed-amplify"
+    ]
+  },
+  {
+    "id": "T0031",
+    "phase": "Amplify",
+    "title": "Engage Paid Influencer Astroturfing Campaigns",
+    "description": "Adversaries contract commercial micro-influencers and public figures to organically post pre-written talking points without disclosing sponsorship.",
+    "adversaryTactics": [
+      "Using marketing agencies as intermediary cutouts to obscure foreign funding",
+      "Providing influencers with identical creative briefs and mandatory phrases",
+      "Targeting creators across lifestyle, fitness, and gaming niches to reach broad demographics"
+    ],
+    "observableIndicators": [
+      "Multiple disparate influencers posting identical turns of phrase simultaneously",
+      "Sudden political pivots from previously non-political lifestyle creators",
+      "Absence of required sponsored content / paid partnership disclosure tags"
+    ],
+    "countermeasures": [
+      "Investigative cross-influencer textual similarity scanning",
+      "Strict regulatory enforcement of advertising disclosure mandates",
+      "Public exposure of deceptive marketing intermediary networks"
+    ],
+    "severityLevel": "High",
+    "relatedFallacies": [
+      "fallacy-appeal-to-false-authority",
+      "fallacy-tu-quoque"
+    ],
+    "teaches": [
+      "skill.disarm.seed-amplify"
+    ]
+  },
+  {
+    "id": "T0032",
+    "phase": "Amplify",
+    "title": "Crosspost Across Decentralized Alternative Networks",
+    "description": "Adversaries syndicate content across federated, decentralized, and fringe networks (Mastodon, Nostr, BitChute, Rumble) to evade mainstream moderation takedowns.",
+    "adversaryTactics": [
+      "Automated syndication pipelines mirroring posts across 10+ alternative platforms",
+      "Creating permanent decentralized storage records on IPFS / Arweave",
+      "Directing mainstream users to uncensored alternative platforms for 'the real story'"
+    ],
+    "observableIndicators": [
+      "Simultaneous identical uploads across multiple decentralized protocols",
+      "Outbound links in mainstream comments directing traffic to decentralized mirrors",
+      "High resilience of content availability despite mainstream platform bans"
+    ],
+    "countermeasures": [
+      "Cross-protocol OSINT monitoring and decentralized threat intelligence feeds",
+      "Community-driven decentralized moderation and reputation scoring protocols",
+      "Cryptographic attestation and provenance verification across federated networks"
+    ],
+    "severityLevel": "Medium",
+    "relatedFallacies": [
+      "fallacy-appeal-to-popularity",
+      "fallacy-appeal-to-ignorance"
+    ],
+    "teaches": [
+      "skill.disarm.seed-amplify"
+    ]
+  },
+  {
+    "id": "T0033",
+    "phase": "Amplify",
+    "title": "Flood Information Space (Censorship by Noise)",
+    "description": "Adversaries produce massive volumes of contradictory narratives, bizarre theories, and noise to exhaust public cognitive capacity and render truth unknowable.",
+    "adversaryTactics": [
+      "Releasing 10 mutually exclusive explanations for a single incident within 24 hours",
+      "Flooding discussion forums with spam, irrelevancies, and absurdist parodies",
+      "Promoting fatalistic cynicism ('everything is fake, trust nothing')"
+    ],
+    "observableIndicators": [
+      "Exponential explosion in conflicting narrative variants around an incident",
+      "High cynicism and epistemic exhaustion sentiment markers in public comments",
+      "Decline in engagement with authoritative factual investigative reports"
+    ],
+    "countermeasures": [
+      "System 2 friction pacing and epistemic aftercare debiasing tools",
+      "Clear, authoritative chronological syntheses from trusted independent bodies",
+      "Public education on the 'firehose of falsehood' propaganda technique"
+    ],
+    "severityLevel": "Critical",
+    "relatedFallacies": [
+      "fallacy-red-herring",
+      "fallacy-appeal-to-ignorance"
+    ],
+    "teaches": [
+      "skill.disarm.seed-amplify"
+    ]
+  },
+  {
+    "id": "T0034",
+    "phase": "Amplify",
+    "title": "Manipulate Platform Recommendation Algorithms",
+    "description": "Adversaries exploit platform algorithmic vulnerabilities (watch-time optimization, outrage weighting, fast click-through) to force content into viral discovery feeds.",
+    "adversaryTactics": [
+      "Optimizing video thumbnail hooks and retention cliff triggers",
+      "Creating manufactured controversies in comment sections to boost engagement score",
+      "Coordinating initial view-duration spikes using click farms"
+    ],
+    "observableIndicators": [
+      "Disproportionate algorithmic recommendation of sensational fringe channels",
+      "Extreme velocity of recommendation loops routing users toward radicalizing content",
+      "High comment-to-view ratios driven by antagonistic debate"
+    ],
+    "countermeasures": [
+      "Platform algorithmic auditing and adjustment away from pure engagement optimization",
+      "Incorporating source credibility and factuality ratings into ranking algorithms",
+      "User controls allowing transparent inspection and tuning of recommendation weights"
+    ],
+    "severityLevel": "High",
+    "relatedFallacies": [
+      "fallacy-appeal-to-emotion",
+      "fallacy-appeal-to-popularity"
+    ],
+    "teaches": [
+      "skill.disarm.seed-amplify"
+    ]
+  },
+  {
+    "id": "T0035",
+    "phase": "Amplify",
+    "title": "Launder Through Unwitting Mainstream Outlets",
+    "description": "Adversaries bait legitimate journalists and mainstream news outlets into covering fabricated rumors by framing them as 'debates' or 'what people are saying.'",
+    "adversaryTactics": [
+      "Publishing sensational claims on secondary news blogs that mainstream press cite",
+      "Prompting politicians to ask questions about the rumor in public hearings",
+      "Framing debunking articles that inadvertently repeat and cement the false premise"
+    ],
+    "observableIndicators": [
+      "Mainstream news headlines utilizing 'weasel words' ('Outcry as rumors swirl...')",
+      "Attribution chains tracing back to anonymous blogs or single unverified tweets",
+      "Debunking articles lacking 'Truth Sandwiches' (repeating falsehoods in the headline)"
+    ],
+    "countermeasures": [
+      "Journalistic training on the 'Truth Sandwich' reporting protocol (Fact -> Myth -> Fact)",
+      "Strict editorial sourcing standards requiring independent primary evidence",
+      "Media self-regulation on reporting unverified viral online chatter"
+    ],
+    "severityLevel": "Critical",
+    "relatedFallacies": [
+      "fallacy-appeal-to-popularity",
+      "fallacy-straw-man"
+    ],
+    "teaches": [
+      "skill.disarm.seed-amplify"
+    ]
+  },
+  {
+    "id": "T0036",
+    "phase": "Amplify",
+    "title": "Coordinate Multi-Language Translation Waves",
+    "description": "Adversaries translate disinformation campaigns into dozens of languages simultaneously, exploiting lower content moderation capacity in non-English markets.",
+    "adversaryTactics": [
+      "Automated neural machine translation of propaganda articles into regional dialects",
+      "Distributing localized versions tailored to specific regional cultural sensibilities",
+      "Targeting diaspora communities in Western democracies with origin-language narratives"
+    ],
+    "observableIndicators": [
+      "Synchronous publication of identical article text across 20+ language domains",
+      "Translation artifacts and unnatural linguistic syntax in regional language feeds",
+      "Disproportionate viral spread in markets with minimal platform safety staff"
+    ],
+    "countermeasures": [
+      "Equitable platform resource allocation for multilingual content moderation",
+      "Cross-border fact-checking networks and shared multilingual debunk databases",
+      "Multilingual NLP heuristic scanning for coordinated translation signatures"
+    ],
+    "severityLevel": "High",
+    "relatedFallacies": [
+      "fallacy-appeal-to-popularity",
+      "fallacy-genetic-fallacy"
+    ],
+    "teaches": [
+      "skill.disarm.seed-amplify"
+    ]
+  },
+  {
+    "id": "T0037",
+    "phase": "Amplify",
+    "title": "Brigade and Harass Fact-Checkers and Researchers",
+    "description": "Adversaries direct coordinated online harassment campaigns against independent fact-checkers, journalists, and researchers to intimidate them into silence.",
+    "adversaryTactics": [
+      "Doxxing personal addresses and phone numbers of verification researchers",
+      "Mass-reporting researcher social media accounts to trigger automated suspensions",
+      "Deploying abusive troll swarms to overwhelm researcher notification feeds"
+    ],
+    "observableIndicators": [
+      "Coordinated surge in abusive replies within minutes of a fact-check publication",
+      "Spikes in automated account abuse reports against verified researchers",
+      "Doxxing payloads distributed on anonymous imageboards and Telegram channels"
+    ],
+    "countermeasures": [
+      "Institutional legal, digital security, and psychosocial support for researchers",
+      "Platform rapid-response white-listing and protection for accredited fact-checkers",
+      "Cryptographic decentralized publishing of debunks to prevent single-point censorship"
+    ],
+    "severityLevel": "Critical",
+    "relatedFallacies": [
+      "fallacy-ad-hominem-abusive",
+      "fallacy-appeal-to-emotion"
+    ],
+    "teaches": [
+      "skill.disarm.seed-amplify"
+    ]
+  },
+  {
+    "id": "T0040",
+    "phase": "Measure & Adapt",
+    "title": "Track Narrative Penetration & Public Sentiment Velocity",
+    "description": "Adversaries monitor social listening tools, public opinion polling, and search engine trends to evaluate whether the disinformation has achieved cognitive impact.",
+    "adversaryTactics": [
+      "Tracking volume and velocity of narrative keywords in mainstream discourse",
+      "Measuring shift in target demographic sentiment toward strategic institutions",
+      "Evaluating the degree to which political candidates adopt the narrative"
+    ],
+    "observableIndicators": [
+      "Commercial social listening API queries originating from adversary-associated entities",
+      "Publication of internal adversary analytical reports assessing campaign ROI",
+      "Sudden adjustments in narrative messaging indicating optimization cycles"
+    ],
+    "countermeasures": [
+      "Public defense narrative intelligence monitoring matching adversary telemetry",
+      "Longitudinal polling tracking resilience to specific disinformation vectors",
+      "Platform restriction of bulk social listening APIs to sanctioned entities"
+    ],
+    "severityLevel": "Medium",
+    "relatedFallacies": [
+      "fallacy-texas-sharpshooter",
+      "fallacy-post-hoc-ergo-propter-hoc"
+    ],
+    "teaches": [
+      "skill.disarm.countermeasures"
+    ]
+  },
+  {
+    "id": "T0041",
+    "phase": "Measure & Adapt",
+    "title": "A/B Test Polarization & Emotional Resonance",
+    "description": "Adversaries systematically deploy multiple narrative permutations across different test cohorts to identify which emotional triggers produce maximum viral velocity.",
+    "adversaryTactics": [
+      "Testing fear-based vs outrage-based headlines on paid ad cohorts",
+      "Varying visual imagery (faces, logos, charts) to measure engagement variance",
+      "Refining language based on click-through and sharing conversion rates"
+    ],
+    "observableIndicators": [
+      "Multiple micro-variations of identical articles published simultaneously",
+      "Rapid convergence toward single high-performing headline formula after 48 hours",
+      "Anomalous distribution of ad spend favoring hyper-emotional variants"
+    ],
+    "countermeasures": [
+      "Automated detection of multi-variant text clustering in news feeds",
+      "Public transparency requirements for all commercial and political A/B testing",
+      "Cognitive defense tools highlighting emotionally engineered headline structures"
+    ],
+    "severityLevel": "High",
+    "relatedFallacies": [
+      "fallacy-appeal-to-emotion",
+      "fallacy-straw-man"
+    ],
+    "teaches": [
+      "skill.disarm.countermeasures"
+    ]
+  },
+  {
+    "id": "T0042",
+    "phase": "Measure & Adapt",
+    "title": "Pivot Narrative Variant Upon Factual Debunking",
+    "description": "When a specific claim is conclusively disproven, adversaries mutate the narrative into a secondary unfalsifiable theory ('the coverup proves the crime').",
+    "adversaryTactics": [
+      "Shifting from 'Event X happened' to 'The government is staging a massive coverup of Event X'",
+      "Moving goalposts by demanding impossible standards of proof from fact-checkers",
+      "Incorporating the debunking organization into the conspiracy narrative"
+    ],
+    "observableIndicators": [
+      "Immediate narrative shift across fringe networks within hours of a major debunk",
+      "Spikes in conspiracy terminology ('coverup', 'complicit', 'psy-op')",
+      "Re-framing official refutations as confirmation of guilt"
+    ],
+    "countermeasures": [
+      "Prebunking the anticipated pivot before releasing the factual debunk",
+      "Anticipatory Heuer Analysis of Competing Hypotheses (ACH) mapping pivot vectors",
+      "Epistemic reframing exercises exposing goalpost-shifting fallacies"
+    ],
+    "severityLevel": "High",
+    "relatedFallacies": [
+      "fallacy-begging-the-question",
+      "fallacy-appeal-to-ignorance"
+    ],
+    "teaches": [
+      "skill.disarm.countermeasures"
+    ]
+  },
+  {
+    "id": "T0043",
+    "phase": "Measure & Adapt",
+    "title": "Deploy Counter-Accusations & DARVO Tactics",
+    "description": "When caught conducting disinformation or cyber espionage, adversaries Deny, Attack, and Reverse Victim and Offender (DARVO), claiming to be the true targets.",
+    "adversaryTactics": [
+      "Issuing official state denials claiming the evidence is a fabricated provocation",
+      "Accusing investigating bodies of being biased geopolitical intelligence fronts",
+      "Filing retaliatory diplomatic protests and sanctioning independent researchers"
+    ],
+    "observableIndicators": [
+      "Mirroring the exact terminology of the accusation back onto the investigators",
+      "High density of whataboutism and tu quoque arguments in official statements",
+      "Retaliatory disinformation campaigns targeting the investigating personnel"
+    ],
+    "countermeasures": [
+      "Publishing undeniable, cryptographically verified forensic proof tranches",
+      "Multilateral international attestation and joint attribution statements",
+      "Public education on DARVO rhetorical deflection mechanisms"
+    ],
+    "severityLevel": "Critical",
+    "relatedFallacies": [
+      "fallacy-tu-quoque",
+      "fallacy-ad-hominem-abusive"
+    ],
+    "teaches": [
+      "skill.disarm.countermeasures"
+    ]
+  },
+  {
+    "id": "T0044",
+    "phase": "Measure & Adapt",
+    "title": "Archive Exploitation & Selective Historical Scrubbing",
+    "description": "Adversaries delete compromised operational domains, remove failed social posts, and manipulate web archives to eliminate forensic traces of failed operations.",
+    "adversaryTactics": [
+      "Submitting robots.txt exclusions and DMCA takedowns to public web archives",
+      "Mass-deleting burner accounts once narrative has transitioned to mainstream bridge",
+      "Injecting altered retroactive dates into newly published articles"
+    ],
+    "observableIndicators": [
+      "Sudden mass-deletion of tweets from high-volume accounts",
+      "Gaps in historical snapshots on public archive platforms (Wayback Machine, Archive.today)",
+      "Discrepancies between cached server headers and live page publication dates"
+    ],
+    "countermeasures": [
+      "Immutable, decentralized web archiving on distributed cryptographic ledgers",
+      "Real-time forensic snapshotting of emerging threat infrastructure",
+      "Attestation of web evidence using WebCrypto signatures and verifiable timestamps"
+    ],
+    "severityLevel": "High",
+    "relatedFallacies": [
+      "fallacy-genetic-fallacy",
+      "fallacy-texas-sharpshooter"
+    ],
+    "teaches": [
+      "skill.disarm.countermeasures"
+    ]
+  },
+  {
+    "id": "T0045",
+    "phase": "Measure & Adapt",
+    "title": "Iterate Evasion Tactics Based on Platform Moderation Actions",
+    "description": "Adversaries study platform moderation policies and algorithmic safety filters to invent 'algospeak', evasion homoglyphs, and novel bypass techniques.",
+    "adversaryTactics": [
+      "Replacing banned keywords with phonetic substitutions, emojis, or leetspeak",
+      "Embedding text inside image screenshots to bypass automated textual NLP scanners",
+      "Rotating IP address subnets and device fingerprints to evade hardware bans"
+    ],
+    "observableIndicators": [
+      "Emergence of novel phonetic slang substituting for sensitive political terms",
+      "Surge in image-only text posts containing contentious claims",
+      "Rapid migration to newly launched platform features with weaker moderation tools"
+    ],
+    "countermeasures": [
+      "Multi-modal OCR and semantic embedding inspection of image-text posts",
+      "Dynamic heuristic updating in NLP safety engines (as in VERDAD heuristic rules)",
+      "Behavior-based rather than purely keyword-based threat actor detection"
+    ],
+    "severityLevel": "High",
+    "relatedFallacies": [
+      "fallacy-red-herring",
+      "fallacy-straw-man"
+    ],
+    "teaches": [
+      "skill.disarm.countermeasures"
+    ]
+  },
+  {
+    "id": "T0046",
+    "phase": "Measure & Adapt",
+    "title": "Weaponize Cognitive Exhaustion & Civic Apathy",
+    "description": "Adversaries aim to induce profound cognitive exhaustion in the populace, causing citizens to disengage entirely from civic participation and critical thinking.",
+    "adversaryTactics": [
+      "Sustaining high-intensity information bombardment over extended time horizons",
+      "Amplifying nihilistic cynicism through popular culture memes and humor",
+      "Making truth appear so complex and contested that verification seems futile"
+    ],
+    "observableIndicators": [
+      "Widespread sentiment analysis reflecting despair, helplessness, and apathy",
+      "Decline in voter participation and community organization attendance",
+      "High prevalence of 'it doesn't matter what's true' comments in public discourse"
+    ],
+    "countermeasures": [
+      "System 2 cognitive aftercare, structured breathing, and reflective recovery tools",
+      "Promoting epistemic self-efficacy and accessible verification tradecraft",
+      "Fostering local in-person community resilience and deliberative democracy assemblies"
+    ],
+    "severityLevel": "Critical",
+    "relatedFallacies": [
+      "fallacy-appeal-to-emotion",
+      "fallacy-appeal-to-ignorance"
+    ],
+    "teaches": [
+      "skill.disarm.countermeasures"
+    ]
+  },
+  {
+    "id": "T0047",
+    "phase": "Measure & Adapt",
+    "title": "Execute Retaliatory Information Counter-Strikes",
+    "description": "When an adversary's campaign is exposed, they launch rapid-fire retaliatory smear campaigns against the exposing nation, agency, or individual journalists.",
+    "adversaryTactics": [
+      "Dumping fabricated kompromat against lead investigators within 24 hours",
+      "Launching DDoS attacks against fact-checking and independent news websites",
+      "Coordinating diplomatic expulsions and issuing state-backed arrest warrants"
+    ],
+    "observableIndicators": [
+      "Sudden synchronized publication of scandalous allegations against exposing actors",
+      "Concurrent infrastructure cyberattacks against investigative news servers",
+      "High volume of hostile social media traffic targeting specific journalist handles"
+    ],
+    "countermeasures": [
+      "Pre-emptive contingency planning and digital security hardening for investigative teams",
+      "Decentralized mirror hosting (IPFS, Tor onion services) to ensure continuous report availability",
+      "Unified solidarity statements and shared security protocols across journalistic consortiums"
+    ],
+    "severityLevel": "Critical",
+    "relatedFallacies": [
+      "fallacy-ad-hominem-abusive",
+      "fallacy-tu-quoque"
+    ],
+    "teaches": [
+      "skill.disarm.countermeasures"
+    ]
+  }
+]

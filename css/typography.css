@@ -1,0 +1,273 @@
+/**
+ * SOVEREIGN // AEGIS — Typography & Text Styling System
+ * Classical Roman Inscriptions, Scholastic Humanism, and Intelligence Telemetry
+ */
+
+/* ==========================================================================
+   1. GLOBAL TYPOGRAPHY DEFAULTS
+   ========================================================================== */
+body {
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  line-height: 1.65;
+  color: var(--parchment-primary);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ==========================================================================
+   2. HEADINGS HIERARCHY
+   ========================================================================== */
+h1, h2, h3, h4, h5, h6,
+.heading-1, .heading-2, .heading-3, .heading-4, .heading-5, .heading-6 {
+  margin-top: 0;
+  margin-bottom: var(--space-3);
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--parchment-bright);
+}
+
+h1, .heading-1 {
+  font-family: var(--font-display);
+  font-size: 2.25rem;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--bronze-light);
+}
+
+h2, .heading-2 {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--parchment-bright);
+  border-bottom: 1px solid var(--border-default);
+  padding-bottom: var(--space-2);
+}
+
+h3, .heading-3 {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: var(--bronze-primary);
+}
+
+h4, .heading-4 {
+  font-family: var(--font-serif);
+  font-size: 1.2rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--parchment-primary);
+}
+
+h5, .heading-5 {
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--parchment-secondary);
+}
+
+h6, .heading-6 {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--parchment-muted);
+}
+
+/* ==========================================================================
+   3. BRAND & CREST TITLES
+   ========================================================================== */
+.brand-title {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 900;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  background: var(--bronze-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: block;
+  line-height: 1.1;
+}
+
+.brand-subtitle {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--parchment-muted);
+  display: block;
+}
+
+.crest-title {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 900;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--bronze-light);
+  text-shadow: 0 0 20px var(--bronze-glow);
+}
+
+/* ==========================================================================
+   4. BODY & SCHOLARLY TEXT
+   ========================================================================== */
+p, .body-text {
+  margin-top: 0;
+  margin-bottom: var(--space-4);
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--parchment-primary);
+}
+
+.body-lead {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-weight: 500;
+  line-height: 1.75;
+  color: var(--parchment-bright);
+}
+
+.body-secondary {
+  font-family: var(--font-serif);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--parchment-secondary);
+}
+
+.body-muted {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: var(--parchment-muted);
+}
+
+/* ==========================================================================
+   5. CLASSICAL ACCENTS & LATIN MAXIMS
+   ========================================================================== */
+blockquote, .quote-classical {
+  margin: var(--space-4) 0;
+  padding: var(--space-3) var(--space-5);
+  font-family: var(--font-quote);
+  font-size: 1.25rem;
+  font-style: italic;
+  line-height: 1.6;
+  color: var(--parchment-primary);
+  border-left: 3px solid var(--bronze-primary);
+  background: linear-gradient(90deg, rgba(212, 163, 89, 0.07) 0%, transparent 100%);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+}
+
+.quote-author {
+  display: block;
+  margin-top: var(--space-2);
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-style: normal;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--bronze-light);
+}
+
+.epistemic-maxim {
+  font-family: var(--font-quote);
+  font-size: 1.15rem;
+  font-style: italic;
+  color: var(--bronze-light);
+  letter-spacing: 0.02em;
+}
+
+.latin-maxim {
+  font-family: var(--font-quote);
+  font-size: 1.05rem;
+  font-style: italic;
+  color: var(--bronze-primary);
+}
+
+/* ==========================================================================
+   6. MONOSPACE TELEMETRY & CRYPTO STAMPS
+   ========================================================================== */
+code, kbd, samp, pre, .font-mono {
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+}
+
+code {
+  padding: 0.15em 0.4em;
+  background: var(--bg-surface-inset);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-xs);
+  color: var(--bronze-light);
+}
+
+pre {
+  margin: var(--space-3) 0;
+  padding: var(--space-4);
+  background: var(--bg-surface-inset);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-sm);
+  overflow-x: auto;
+  color: var(--parchment-secondary);
+}
+
+pre code {
+  padding: 0;
+  background: transparent;
+  border: none;
+  color: inherit;
+}
+
+.telemetry-metric {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.crypto-hash {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  word-break: break-all;
+  color: var(--crypto-violet);
+  background: var(--bg-surface-inset);
+  padding: 2px 6px;
+  border: 1px solid var(--crypto-border);
+  border-radius: var(--radius-xs);
+}
+
+.status-label {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+/* ==========================================================================
+   7. UTILITY TEXT CLASSES
+   ========================================================================== */
+.text-bronze { color: var(--bronze-primary) !important; }
+.text-gold { color: var(--gold-primary) !important; }
+.text-emerald { color: var(--veracity-green) !important; }
+.text-amber { color: var(--suspicion-amber) !important; }
+.text-crimson { color: var(--disinfo-crimson) !important; }
+.text-cyan { color: var(--intel-cyan) !important; }
+.text-violet { color: var(--crypto-violet) !important; }
+.text-parchment { color: var(--parchment-primary) !important; }
+.text-muted { color: var(--parchment-muted) !important; }
+
+.text-left { text-align: left; }
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+.text-uppercase { text-transform: uppercase; }
+.text-italic { font-style: italic; }
