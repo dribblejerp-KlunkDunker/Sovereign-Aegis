@@ -198,7 +198,8 @@ async function runTests() {
         store: {
           get(key) {
             if (key === 'sift.stats') return { correct: 10, total: 10 };
-            if (key === 'arena.stats') return { correct: 20, total: 20 };
+            // NOTE: 'arena.stats' is intentionally NOT mocked — nothing writes that store
+            // key; Pattern Recognition is measured from the attempt log and injected.
             if (key === 'sm2.deck') return JSON.stringify([{ id: 'c1', repetitions: 4 }, { id: 'c2', repetitions: 3 }]);
             if (key === 'cognitive.progress') return { c1: { completed: true }, c2: { completed: true }, c3: { completed: true }, c4: { completed: true } };
             if (key === 'ach.analysisCount') return 5;
@@ -212,13 +213,41 @@ async function runTests() {
       const moduleInstance = Object.create(OnboardingModule);
       moduleInstance._app = mockApp;
 
-      const scores = moduleInstance._computeCompetencyScores();
+      const scores = moduleInstance._computeCompetencyScores({ arenaAccuracy: 100 });
       harness.assertEqual(scores.siftVerification, 100, 'SIFT accuracy is 100%');
       harness.assertEqual(scores.patternRecognition, 100, 'Pattern recognition is 100%');
       harness.assertEqual(scores.memoryRetention, 100, 'Memory retention is 100%');
       harness.assertEqual(scores.theoreticalDepth, 100, 'Theoretical depth is 100%');
       harness.assertEqual(scores.analyticalPractice, 100, 'Analytical practice is 100%');
       harness.assertEqual(scores.overallResilience, 100, 'Overall Resilience Index is 100%');
+      harness.assertEqual(scores.siftPoints, 450, 'SIFT points pass through');
+    });
+
+    await harness.it('Pattern Recognition is measured from real arena attempts, never a store key', () => {
+      const mockApp = {
+        store: {
+          get: (key) => (key === 'sift.stats' ? { correct: 10, total: 10 } : null)
+        }
+      };
+      const moduleInstance = Object.create(OnboardingModule);
+      moduleInstance._app = mockApp;
+
+      // 3 practice arena attempts (2 correct) + 1 held-out probe + 1 non-arena record:
+      // only the 3 practice arena records count → round(2/3*100) = 67%.
+      const arenaAccuracy = moduleInstance.arenaAccuracyFromAttempts([
+        { context: 'arena', correct: true },
+        { context: 'arena', correct: true },
+        { context: 'arena', correct: false },
+        { context: 'arena', correct: true, heldOut: true },
+        { context: 'sift', correct: true }
+      ]);
+      harness.assertEqual(arenaAccuracy, 67, 'arenaAccuracyFromAttempts: 2/3 practice correct = 67%, held-out excluded');
+      harness.assertEqual(moduleInstance.arenaAccuracyFromAttempts(null), 0, 'No attempts → honest 0');
+
+      const scores = moduleInstance._computeCompetencyScores({ arenaAccuracy });
+      harness.assertEqual(scores.patternRecognition, 67, 'Pattern Recognition reflects real attempt data');
+      // Reweighted Resilience Index: 0.30*100 + 0.30*67 + 0 + 0 + 0 = 50.1 → 50
+      harness.assertEqual(scores.overallResilience, 50, 'Resilience Index uses the 0.30/0.30/0.15/0.15/0.10 weights');
     });
 
     await harness.it('Factors infowar.stats victories cleanly into analyticalPractice', () => {

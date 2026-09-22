@@ -1225,15 +1225,6 @@ export const InfoWar = {
             </div>
             ${/* locally-built fragment — must NOT be encoded */ this._renderBlueCountermeasures(diag)}
           `;
-          try {
-            recordAttempt({
-              skillIds: ['skill.disarm.plan-prepare', 'skill.disarm.countermeasures'],
-              itemId: `infowar-disarm-${val}`,
-              correct: true,
-              context: CONTEXTS.INFOWAR || 'infowar',
-              confidence: 'sure'
-            }).catch(() => {});
-          } catch {}
           TacticalAudio.playSelect();
         } else if (diagContainer) {
           diagContainer.style.display = 'none';

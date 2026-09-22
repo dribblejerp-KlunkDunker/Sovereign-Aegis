@@ -1,0 +1,74 @@
+# SOVEREIGN // AEGIS — CI
+#
+# Headless gate (45 suites + the Playwright reverse-face-search suite) runs on every
+# push. The full browser E2E suite runs on demand via workflow_dispatch
+# (Actions tab → "Run workflow"), because it drives every pillar through real
+# Chromium and is slower than the push gate needs to be.
+#
+# Runs from the repository root, where package.json, tests/ and index.html live.
+
+name: CI
+
+on:
+  push:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    name: Headless gate (+ browser E2E on demand)
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      # npm test includes the reverse-face-search Playwright suite, and the E2E
+      # suite below drives real Chromium — both need the browser present.
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Headless gate (45 suites)
+        run: |
+          node tests/run-all.js 2>&1 | tee headless-gate.log
+          node tests/test-reverse-face-search-upload.js 2>&1 | tee reverse-face.log
+
+      - name: Summarize headless results
+        if: always()
+        run: |
+          {
+            echo "## Headless gate"
+            echo '```'
+            grep -E "\[PASS\]|\[FAIL\]|FAILURES|Assertion composition|Static dataset|Logic, crypto" headless-gate.log || true
+            echo '```'
+            echo "## Reverse-face-search Playwright suite"
+            echo '```'
+            tail -5 reverse-face.log || true
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      # On-demand only: run from the Actions tab → Run workflow.
+      - name: Browser E2E suite (on demand)
+        if: github.event_name == 'workflow_dispatch'
+        run: node tests/test-e2e.js 2>&1 | tee e2e.log
+
+      - name: Summarize E2E results
+        if: always() && github.event_name == 'workflow_dispatch'
+        run: |
+          {
+            echo "## Browser E2E"
+            echo '```'
+            tail -15 e2e.log || true
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"

@@ -598,9 +598,28 @@ export const OnboardingModule = {
   // ──────────────────────────────────────────────────────────────
   // OPERATOR PROFILE
   // ──────────────────────────────────────────────────────────────
-  _computeCompetencyScores() {
+
+  /**
+   * Arena accuracy from real attempt-log records — the raw material for the Pattern
+   * Recognition axis. Practice items only: held-out probes measure transfer elsewhere
+   * and are excluded here. No attempts means an honest 0, never a fabricated one.
+   * @param {Array<{context?: string, correct?: boolean, heldOut?: boolean}>|null} attempts
+   * @returns {number} 0-100
+   */
+  arenaAccuracyFromAttempts(attempts) {
+    const arena = (Array.isArray(attempts) ? attempts : [])
+      .filter((a) => a && a.context === 'arena' && typeof a.correct === 'boolean' && a.heldOut !== true);
+    if (!arena.length) return 0;
+    return Math.round((arena.filter((a) => a.correct).length / arena.length) * 100);
+  },
+
+  /**
+   * @param {{arenaAccuracy?: number}} [injections] — real measured values the caller
+   *   pulled from stores that are not synchronous (the attempt log). Omitted => 0.
+   */
+  _computeCompetencyScores(injections = {}) {
+    const arenaAccuracy = Number.isFinite(injections.arenaAccuracy) ? injections.arenaAccuracy : 0;
     const siftStats = this._app?.store?.get('sift.stats') || { correct: 0, total: 0, byLab: {} };
-    const arenaStats = this._app?.store?.get('arena.stats') || { correct: 0, total: 0 };
     const memoryDeck = this._app?.store?.get('sm2.deck');
     let deck = [];
     if (memoryDeck) {
@@ -620,10 +639,6 @@ export const OnboardingModule = {
       ? Math.round((siftStats.correct / siftStats.total) * 100)
       : 0;
 
-    const arenaAccuracy = arenaStats.total > 0
-      ? Math.round((arenaStats.correct / arenaStats.total) * 100)
-      : 0;
-
     const memoryCoverage = deck.length > 0
       ? Math.min(100, Math.round((deck.filter(c => c.repetitions > 2).length / deck.length) * 100))
       : 0;
@@ -635,12 +650,14 @@ export const OnboardingModule = {
     const analyticalPractice = Math.min(100, (achAnalyses * 15) + (verdadAudits * 5) + (infowarVictories * 20));
 
     const siftPoints = parseInt(this._app?.store?.get('operator.siftPoints') || '0', 10);
+    // Weights sum to 1: 0.30 verification + 0.30 arena pattern recognition +
+    // 0.15 retention + 0.15 theory + 0.10 practice.
     const overallResilience = Math.min(100, Math.round(
       (siftAccuracy * 0.30) +
-      (arenaAccuracy * 0.20) +
-      (memoryCoverage * 0.20) +
+      (arenaAccuracy * 0.30) +
+      (memoryCoverage * 0.15) +
       (theoreticalDepth * 0.15) +
-      (analyticalPractice * 0.15)
+      (analyticalPractice * 0.10)
     ));
 
     return {
@@ -698,7 +715,15 @@ export const OnboardingModule = {
     const container = document.getElementById('operator-profile-panel');
     if (!container) return;
 
-    const scores = this._computeCompetencyScores();
+    // Pattern Recognition is measured from the local attempt log (real arena answers),
+    // not a store key — the log is the only writer of arena outcomes.
+    let arenaAccuracy = 0;
+    try {
+      arenaAccuracy = this.arenaAccuracyFromAttempts(await AttemptLog.readAll());
+    } catch {
+      arenaAccuracy = 0;
+    }
+    const scores = this._computeCompetencyScores({ arenaAccuracy });
     const nextAction = this._computeNextAction(scores, { ratedAnswers: await this._countRatedAnswers() });
     const siftPoints = parseInt(this._app.store.get('operator.siftPoints') || '0', 10);
     const onboardedAt = this._app.store.get('app.onboardedAt');

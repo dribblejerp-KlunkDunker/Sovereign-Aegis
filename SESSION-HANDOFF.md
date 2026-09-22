@@ -96,19 +96,23 @@ that generation is long gone; HEAD `f49988c` (2026-09-20) was clean before this 
    for the merge/purge/section-card behavior (280 assertions). Phase 2: DONE.
 2. **Phase 4 transfer study** — protocol written, not run. Both outcomes are worth
    having; the app cannot claim "it trains" until this is measured.
-3. **Game-surface honesty findings** (audit of 2026-09-20, all unfixed, all small):
-   - `onboarding.js` reads `arena.stats` for the Pattern Recognition axis — dead key,
-     nothing writes it; axis permanently 0. Compute from the attempt log
-     (`context: 'arena'`) or write the key in `infiniteArena.js endRound()`.
-   - Gauntlet/Triage end screens: "Accuracy" is points÷total (shows 150%); label
-     says "Correct" over the points stat. Count correct outcomes; rename the label.
-   - `infowar.js` records `correct: true, confidence: 'sure'` on AAR diagnostic
-     *selection*, and pins `confidence: 'sure'` on the campaign-end attempt;
-     `osint.js` drill pins `'sure'` too. Drop the pinned confidence (null is
-     correctly invisible to calibration); make the diagnostic predict-before-reveal
-     or stop recording it.
-   - `cognitive.js _renderForensics()` — dead code with fabricated 72/88/95%
-     SUSPECT presets and a single-number verdict. Delete.
+3. **Game-surface honesty findings** (audit of 2026-09-20) — **FIXED 2026-09-21**:
+   - Pattern Recognition axis: now measured from the attempt log (`context: 'arena'`,
+     held-out excluded) via `onboarding.js arenaAccuracyFromAttempts()` + injected into
+     `_computeCompetencyScores({ arenaAccuracy })`; Resilience Index reweighted
+     0.30/0.30/0.15/0.15/0.10 (tests updated).
+   - Gauntlet end screen: separate Points (game score) vs real correct-count;
+     Accuracy = correct÷answered with the denominator shown.
+   - InfoWar AAR-diagnostic guaranteed-correct attempt removed (campaign-completion
+     attempt kept, `correct: Boolean(eng.won)`).
+   - Dead `_renderForensics()` (fabricated SUSPECT percentages) deleted;
+     `mediaForensics.js` owns the subtab.
+   - Found & fixed during live verification (pre-existing): `_answerGauntlet` used an
+     undefined `host` — every answer threw ReferenceError before feedback/scoring. The
+     full live path now works (verified in-browser: answers, crit hits, honest debrief).
+   - Still open from the same audit: `osint.js` drill defaults `confidence: 'sure'`
+     (default param on `evaluateCaseAnswer`; the UI selector exists — consider
+     requiring an explicit choice).
 4. **Browser E2E in CI.** Add a workflow; report headless vs browser numbers
    separately (the §8 review's own wording, still open).
 5. **§8 hardening leftovers:** one-click legacy private-JWK rotation; move `index.html`'s

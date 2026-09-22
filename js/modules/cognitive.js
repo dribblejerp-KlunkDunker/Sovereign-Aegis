@@ -719,6 +719,7 @@ export const CognitiveLab = {
     this._gauntletActive = true;
     this._gauntletIdx = 0;
     this._gauntletScore = 0;
+    this._gauntletCorrect = 0;
     this._gauntletCritCount = 0;
     this._gauntletStreak = 0;
     this._gauntletMaxStreak = 0;
@@ -819,9 +820,11 @@ export const CognitiveLab = {
     const correct = idx === q.correctIndex;
     const latencyMs = this._gauntletShownAt ? Math.max(0, Date.now() - this._gauntletShownAt) : 3000;
     const isCritical = correct && latencyMs > 0 && latencyMs <= 2500;
-    const cardEl = host.querySelector('.card-bronze');
+    const host = document.getElementById('fallacy-gauntlet');
+    const cardEl = host?.querySelector('.card-bronze');
 
     if (correct) {
+      this._gauntletCorrect++;
       this._gauntletStreak++;
       if (this._gauntletStreak > this._gauntletMaxStreak) this._gauntletMaxStreak = this._gauntletStreak;
       if (isCritical) {
@@ -888,7 +891,8 @@ export const CognitiveLab = {
     const host = document.getElementById('fallacy-gauntlet');
     if (!host) return;
     const total = this._gauntletIdx;
-    const acc = total > 0 ? Math.round((this._gauntletScore / total) * 100) : 0;
+    const correctCount = this._gauntletCorrect || 0;
+    const acc = total > 0 ? Math.round((correctCount / total) * 100) : 0;
     if (acc >= 70 && total >= 3) {
       TacticalAudio.playVictory();
     } else {
@@ -901,8 +905,8 @@ export const CognitiveLab = {
           <h3 class="card-title" style="margin:6px 0;">Gauntlet Complete — ${esc(reason)}</h3>
         </div>
         <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:18px;">
-          <div class="stat-card"><div class="stat-val bronze">${esc(this._gauntletScore)}</div><div class="stat-lbl">Correct</div></div>
-          <div class="stat-card"><div class="stat-val amber">${esc(acc)}%</div><div class="stat-lbl">Accuracy (${esc(total)} answered)</div></div>
+          <div class="stat-card"><div class="stat-val bronze">${esc(this._gauntletScore)}</div><div class="stat-lbl">Points</div></div>
+          <div class="stat-card"><div class="stat-val amber">${esc(acc)}%</div><div class="stat-lbl">Accuracy (${esc(correctCount)} / ${esc(total)} answered)</div></div>
           <div class="stat-card"><div class="stat-val crim">${esc(this._gauntletMaxStreak)}</div><div class="stat-lbl">Best Streak</div></div>
         </div>
         <p class="body-muted" style="text-align:center;font-size:0.8rem;margin-bottom:16px;">
@@ -1087,113 +1091,6 @@ export const CognitiveLab = {
         });
       });
     }
-  },
-
-  // ─────────────────────────────────────────────
-  // AI FORENSICS LAB
-  // ─────────────────────────────────────────────
-  _renderForensics() {
-    const container = document.getElementById('subtab-forensics');
-    if (!container) return;
-
-    const forensicCriteria = [
-      { id: 'f1', level: 'badge-veracity', label: '01 — Specular Reflection Asymmetry (Pupil Highlights)', detail: 'Examine specular reflection asymmetry in each iris independently. GAN-generated faces frequently produce mirrored or physically impossible light sources. Real eyes reflect the same light source from different angles.', severity: 'High' },
-      { id: 'f2', level: 'badge-veracity', label: '02 — Ear & Jewelry Boundary Artifacts', detail: 'Check the boundary between hair, ears, and neck. Diffusion models struggle with fine spatial details — earrings blur into lobes, hair merges unnaturally with jewelry.', severity: 'High' },
-      { id: 'f3', level: 'badge-suspicion', label: '03 — Teeth Texture Repetition Frequency', detail: 'Examine individual teeth for texture repetition. GANs often tile texture patterns across the dental arch, producing rhythmically identical enamel patterns between adjacent teeth.', severity: 'Medium' },
-      { id: 'f4', level: 'badge-suspicion', label: '04 — Error Level Analysis (ELA) Compression Gradient', detail: 'Error Level Analysis (ELA) reveals tampered regions by analyzing JPEG compression artifacts. Spliced regions exhibit dramatically different ELA brightness from authentic surrounding pixels.', severity: 'Medium' },
-      { id: 'f5', level: 'badge-disinfo', label: '05 — Synthetic Phoneme Prosody & TTS Flatness', detail: 'TTS voice clones flatten the F0 contour (pitch trajectory) across sentence boundaries. Human speech shows micro-accelerations on stressed syllables and natural breath pause patterns.', severity: 'Critical' },
-      { id: 'f6', level: 'badge-disinfo', label: '06 — Metadata & Timestamp Inconsistencies', detail: 'EXIF GPS timestamps, camera model info, and timezone encoding frequently mismatch claimed context. A "breaking" photo with a 2019 EXIF timestamp is archival, not live.', severity: 'Critical' },
-      { id: 'f7', level: 'badge-intel', label: '07 — GAN Frequency Domain Artifacts (PRNU/DFT)', detail: 'PRNU (Photo Response Non-Uniformity) fingerprints are absent in synthetic images. Additionally, upsampling checkerboard artifacts appear at specific spatial frequencies in the DFT spectrum.', severity: 'Medium' },
-      { id: 'f8', level: 'badge-intel', label: '08 — Video Temporal Boundary Inconsistencies', detail: 'Deepfake video blending artifacts manifest at scene cuts: blink rate irregularity, temporal shimmer at face-background boundary, and frame-to-frame identity drift across lighting changes.', severity: 'Medium' },
-    ];
-
-    const presets = [
-      { name: 'GAN Face — Studio Portrait', icon: '🖼️', suspicion: 72, signals: ['Pupil reflection (LEFT iris missing catchlight)', 'Ear lobe boundary dissolve', 'Hair-background blending artifact'] },
-      { name: 'Audio Clone — Political Speech', icon: '🎙️', suspicion: 88, signals: ['F0 contour flattening at sentence boundary', 'Unnatural breath cadence (23ms pauses)', 'Spectral smearing in sibilants (S/T)'] },
-      { name: 'Document Forgery — Classified Memo', icon: '📄', suspicion: 95, signals: ['Font mismatch: Calibri vs official Arial', 'Classification block omitted', 'Digital signature block missing'] },
-    ];
-
-    container.innerHTML = `
-      <div class="grid-2" style="margin-bottom:var(--space-5);">
-        <div class="card card-bronze">
-          <div class="card-header">
-            <h3 class="card-title">Forensic Lens Viewport</h3>
-            <span class="badge badge-intel">INSPECTION</span>
-          </div>
-          <p class="body-text" style="margin-bottom:var(--space-3);">Select a preset specimen or run the forensic checklist against a described artifact. Each preset demonstrates observable synthetic manipulation indicators.</p>
-          <div style="display:flex;flex-direction:column;gap:var(--space-2);margin-bottom:var(--space-3);">
-            ${presets.map((p,i) => `
-              <button class="btn btn-outline forensic-preset" data-preset="${i}" style="justify-content:space-between;">
-                <span>${p.icon} ${p.name}</span>
-                <span class="badge ${p.suspicion > 80 ? 'badge-disinfo' : 'badge-suspicion'}">${p.suspicion}% SUSPECT</span>
-              </button>
-            `).join('')}
-          </div>
-          <div id="forensic-viewport" class="card-granite-inset" style="min-height:180px;display:flex;align-items:center;justify-content:center;border:2px dashed var(--border-interactive);flex-direction:column;gap:var(--space-3);">
-            <span style="font-size:2rem;">🔬</span>
-            <p class="body-lead">Select a Preset Specimen Above</p>
-            <span class="status-label text-muted">Forensic analysis will render here</span>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="card-header">
-            <h3 class="card-title">Forensic Artifact Checklist</h3>
-            <span class="badge badge-bronze">${esc(forensicCriteria.length)} CRITERIA</span>
-          </div>
-          <div style="display:flex;flex-direction:column;gap:var(--space-3);" id="forensic-checklist">
-            ${forensicCriteria.map(f => `
-              <div class="forensic-criteria" style="cursor:pointer;" data-criteria-id="${f.id}">
-                <div class="flex-row-gap" style="align-items:flex-start;">
-                  <span class="badge ${f.level}" style="flex-shrink:0;font-size:0.65rem;">${f.severity.toUpperCase()}</span>
-                  <div>
-                    <div style="font-weight:600;font-size:0.85rem;color:var(--parchment-bright);">${f.label}</div>
-                    <div class="body-muted" id="criteria-detail-${f.id}" style="display:none;margin-top:4px;font-size:0.8rem;">${f.detail}</div>
-                  </div>
-                </div>
-              </div>
-            `).join('')}
-          </div>
-        </div>
-      </div>
-    `;
-
-    // Bind preset click
-    container.querySelectorAll('.forensic-preset').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const idx = parseInt(btn.getAttribute('data-preset'));
-        const p = presets[idx];
-        const vp = document.getElementById('forensic-viewport');
-        if (vp) {
-          vp.innerHTML = `
-            <div style="width:100%;padding:var(--space-3);">
-              <div class="status-label text-bronze" style="margin-bottom:var(--space-2);">${esc(p.icon)} ${esc(p.name)}</div>
-              <div class="flex-row-gap" style="margin-bottom:var(--space-3);">
-                <span class="body-muted">Suspicion Score:</span>
-                <span class="font-mono ${esc(p.suspicion > 80 ? 'text-crimson' : 'text-amber')}" style="font-size:1.5rem;font-weight:700;">${esc(p.suspicion)}%</span>
-              </div>
-              <div class="status-label text-muted" style="margin-bottom:var(--space-2);">DETECTED SIGNALS:</div>
-              ${p.signals.map(s => `<div class="flex-row-gap" style="margin-bottom:6px;"><span class="text-crimson">⚠</span><span style="font-size:0.85rem;">${s}</span></div>`).join('')}
-              <div class="card-granite-inset" style="margin-top:var(--space-3);">
-                <div class="status-label text-emerald">VERDICT: ${esc(p.suspicion > 80 ? 'HIGH PROBABILITY SYNTHETIC' : 'ELEVATED SUSPICION — VERIFY')}</div>
-              </div>
-            </div>
-          `;
-        }
-      });
-    });
-
-    // Toggle criteria details
-    container.querySelectorAll('.forensic-criteria').forEach(el => {
-      el.addEventListener('click', () => {
-        const id = el.getAttribute('data-criteria-id');
-        const detail = document.getElementById(`criteria-detail-${id}`);
-        if (detail) {
-          const isOpen = detail.style.display !== 'none';
-          detail.style.display = isOpen ? 'none' : 'block';
-        }
-      });
-    });
   },
 
   // ─────────────────────────────────────────────

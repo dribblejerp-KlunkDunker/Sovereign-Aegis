@@ -40,16 +40,20 @@ competency estimation). Full architecture and feature inventory: `PROJECT.md`.
 
 1. **Phase 4 — demonstrate transfer.** Protocol written
    (`docs/transfer-study-preregistration.md`); the study has not been run.
-2. **Honesty-audit findings on the game surfaces** (2026-09-20 review, unfixed):
-   - "Pattern Recognition" axis (20% of the Resilience Index) reads `arena.stats` —
-     **a key nothing writes**, so the axis is permanently 0 (`js/modules/onboarding.js`).
-   - Fallacy Gauntlet + 60-Second Triage end screens display *points/total* under the
-     label "Accuracy" and mislabel the points stat "Correct".
-   - InfoWar writes two attempts with guaranteed `correct: true` and pinned
-     `confidence: 'sure'` (one on merely *selecting* an AAR diagnostic), polluting
-     the calibration pool; `osint.js` pins `'sure'` the same way in the drill.
-   - `js/modules/cognitive.js` `_renderForensics()` is dead code (no caller) carrying
-     fabricated "72/88/95% SUSPECT" single-number verdicts — delete it.
+2. **Honesty-audit findings on the game surfaces** — FIXED 2026-09-21:
+   - "Pattern Recognition" now measures real arena attempts from the local attempt log
+     (`onboarding.js arenaAccuracyFromAttempts()`, held-out excluded; the dead `arena.stats`
+     read is gone). Resilience Index reweighted to 0.30/0.30/0.15/0.15/0.10 (sums to 1).
+   - Fallacy Gauntlet end screen now tracks a real correct-count: shows Points (game score),
+     Accuracy = correct÷answered, and the denominator. (60-Second Triage end screen was
+     already accurate.)
+   - InfoWar's guaranteed-correct AAR-diagnostic attempt is removed — selecting a diagnostic
+     is reading, not answering. The campaign-completion attempt remains (correct = won/lost).
+   - Dead `_renderForensics()` with its fabricated "72/88/95% SUSPECT" presets is deleted;
+     the forensics subtab is rendered by `mediaForensics.js` as designed.
+   - Bonus (found during live verification, pre-existing): `_answerGauntlet` referenced an
+     undefined `host` — every Gauntlet answer threw before scoring/feedback. Fixed; the
+     click path now works end-to-end (verified live: 4 answered → honest debrief).
 3. **Browser E2E in CI.** Still no CI workflows exist. The headless gate is honest;
    the browser gate has to actually run somewhere.
 4. **§8 hardening leftovers** (`ROADMAP.md` §8): one-click legacy private-JWK
@@ -61,9 +65,9 @@ competency estimation). Full architecture and feature inventory: `PROJECT.md`.
 
 Every displayed number must be measured or estimated from real attempts — never
 simulated to look alive. The host repo enforces this via its check suite
-(`check-fabricated-metrics.js`); AEGIS shares the rule, and the findings in open
-item 3 are exactly this standard being violated by later game-feel additions. Any
-new feature inherits the rule before the first commit.
+(`check-fabricated-metrics.js`); AEGIS shares the rule — the 2026-09-20 game-surface
+violations (open item 2) are now fixed. Any new feature inherits the rule before the
+first commit.
 
 ## How to run
 

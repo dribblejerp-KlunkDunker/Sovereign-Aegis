@@ -354,7 +354,8 @@ harness.describe('5. Operator Profile: 5-Axis Metric Calculation Under Extreme &
       store: {
         get: (k) => {
           if (k === 'sift.stats') return { correct: 50, total: 50 };
-          if (k === 'arena.stats') return { correct: 100, total: 100 };
+          // 'arena.stats' deliberately unmocked: Pattern Recognition is attempt-log
+          // measured and injected (nothing writes the store key).
           if (k === 'sm2.deck') return JSON.stringify([
             { id: '1', repetitions: 3 },
             { id: '2', repetitions: 5 },
@@ -377,7 +378,7 @@ harness.describe('5. Operator Profile: 5-Axis Metric Calculation Under Extreme &
     const mod = Object.create(OnboardingModule);
     mod._app = mockAppFull;
 
-    const scores = mod._computeCompetencyScores();
+    const scores = mod._computeCompetencyScores({ arenaAccuracy: 100 });
     harness.assertEqual(scores.siftVerification, 100, 'siftVerification = 100');
     harness.assertEqual(scores.patternRecognition, 100, 'patternRecognition = 100');
     harness.assertEqual(scores.memoryRetention, 100, 'memoryRetention = 100');
@@ -388,24 +389,24 @@ harness.describe('5. Operator Profile: 5-Axis Metric Calculation Under Extreme &
   });
 
   harness.it('Resilience Index mathematical formula weights verification', () => {
-    // Formula: 0.30*sift + 0.20*pattern + 0.20*memory + 0.15*theory + 0.15*practice
+    // Formula: 0.30*sift + 0.30*pattern + 0.15*memory + 0.15*theory + 0.10*practice
     const testCases = [
       { sift: 100, pat: 0, mem: 0, th: 0, pr: 0, expected: 30 },
-      { sift: 0, pat: 100, mem: 0, th: 0, pr: 0, expected: 20 },
-      { sift: 0, pat: 0, mem: 100, th: 0, pr: 0, expected: 20 },
+      { sift: 0, pat: 100, mem: 0, th: 0, pr: 0, expected: 30 },
+      { sift: 0, pat: 0, mem: 100, th: 0, pr: 0, expected: 15 },
       { sift: 0, pat: 0, mem: 0, th: 100, pr: 0, expected: 15 },
-      { sift: 0, pat: 0, mem: 0, th: 0, pr: 100, expected: 15 },
-      { sift: 80, pat: 70, mem: 90, th: 60, pr: 50, expected: Math.round(80*0.30 + 70*0.20 + 90*0.20 + 60*0.15 + 50*0.15) }, // 24+14+18+9+7.5 = 72.5 -> 73
-      { sift: 33, pat: 44, mem: 55, th: 66, pr: 77, expected: Math.round(33*0.30 + 44*0.20 + 55*0.20 + 66*0.15 + 77*0.15) }  // 9.9+8.8+11+9.9+11.55 = 51.15 -> 51
+      { sift: 0, pat: 0, mem: 0, th: 0, pr: 100, expected: 10 },
+      { sift: 80, pat: 70, mem: 90, th: 60, pr: 50, expected: Math.round(80*0.30 + 70*0.30 + 90*0.15 + 60*0.15 + 50*0.10) }, // 24+21+13.5+9+5 = 72.5 -> 73
+      { sift: 33, pat: 44, mem: 55, th: 66, pr: 77, expected: Math.round(33*0.30 + 44*0.30 + 55*0.15 + 66*0.15 + 77*0.10) }  // 9.9+13.2+8.25+9.9+7.7 = 48.95 -> 49
     ];
 
     for (const tc of testCases) {
       const computed = Math.min(100, Math.round(
         (tc.sift * 0.30) +
-        (tc.pat * 0.20) +
-        (tc.mem * 0.20) +
+        (tc.pat * 0.30) +
+        (tc.mem * 0.15) +
         (tc.th * 0.15) +
-        (tc.pr * 0.15)
+        (tc.pr * 0.10)
       ));
       harness.assertEqual(computed, tc.expected, `Resilience calculation for (${tc.sift}, ${tc.pat}, ${tc.mem}, ${tc.th}, ${tc.pr}) matches ${tc.expected}`);
     }
