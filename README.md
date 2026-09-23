@@ -8,7 +8,7 @@ vanity numbers.
 No framework. No build step. No runtime dependencies. No telemetry. Everything stays on your machine.
 
 [![CI](https://github.com/dribblejerp-KlunkDunker/Sovereign-Aegis/actions/workflows/ci.yml/badge.svg)](https://github.com/dribblejerp-KlunkDunker/Sovereign-Aegis/actions/workflows/ci.yml)
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](#license)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Node](https://img.shields.io/badge/node-%E2%89%A518-blue)](#run-it)
 ![Runtime deps](https://img.shields.io/badge/runtime%20dependencies-0-success)
 ![Telemetry](https://img.shields.io/badge/telemetry-none-success)
@@ -162,4 +162,4 @@ See `STATUS.md`.
 
 ## License
 
-MIT licensed.
+MIT — see [LICENSE](LICENSE).
