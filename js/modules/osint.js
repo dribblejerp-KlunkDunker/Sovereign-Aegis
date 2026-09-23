@@ -222,9 +222,15 @@ export function buildPivotDrillPool(drills, seed = 0x9110) {
  * @param {string} [confidenceLevel] - 'sure' | 'unsure' | 'guess'
  * @returns {{isFullyCorrect: boolean, deductionCorrect: boolean, limitationCorrect: boolean, score: number, feedback: string}}
  */
-export function evaluateCaseAnswer(caseObj, deductionChoice, limitationChoice, confidenceLevel = 'sure') {
+export function evaluateCaseAnswer(caseObj, deductionChoice, limitationChoice, confidenceLevel) {
   if (!caseObj || !caseObj.deductionQuestion || !caseObj.limitationQuestion) {
     return { isFullyCorrect: false, deductionCorrect: false, limitationCorrect: false, score: 0, feedback: 'Invalid case data' };
+  }
+
+  // Fail closed: an unstated level would silently claim certainty on every headless call.
+  // No default, no fabrication — the caller must say what the operator actually claimed.
+  if (confidenceLevel !== 'sure' && confidenceLevel !== 'unsure' && confidenceLevel !== 'guess') {
+    return { isFullyCorrect: false, deductionCorrect: false, limitationCorrect: false, score: 0, feedback: 'Stated confidence is required before a ruling can be scored' };
   }
 
   const deductionCorrect = deductionChoice === caseObj.deductionQuestion.correctIndex;
@@ -271,7 +277,7 @@ export const OsintModule = {
   _activeCaseIdx: 0,
   _selectedDeduction: null,
   _selectedLimitation: null,
-  _selectedConfidence: 'sure',
+  _selectedConfidence: 'unsure',
   _caseSubmitted: false,
   _lastCaseResult: null,
 
@@ -1000,6 +1006,13 @@ export const OsintModule = {
     document.getElementById('osint-drill-summary')?.classList.add('hidden');
     document.getElementById('osint-drill-active')?.classList.remove('hidden');
 
+    // The sticky control recordAttempt() reads when confidence is omitted. mount() is
+    // idempotent, so replays don't duplicate it — and it persists across the run, which is
+    // the shared control's whole design (set it when certainty changes, not every question).
+    Confidence.mount(document.getElementById('drill-confidence-host'), {
+      label: 'BEFORE EACH ANSWER — HOW SURE ARE YOU?'
+    });
+
     this._startDrillTimer();
     this._renderCurrentDrillQuestion();
   },
@@ -1119,13 +1132,14 @@ export const OsintModule = {
       }
     });
 
-    // Record attempt
+    // Record attempt. confidence is deliberately not passed: recordAttempt() reads the
+    // shared sticky control, so each answer carries the operator's actual claim instead of
+    // a fabricated constant (the last hardcoded-'sure' surface in the suite).
     recordAttempt({
       skillIds: q.teaches || ['skill.sift.investigate-source'],
       itemId: q.id,
       correct: isCorrect,
       context: CONTEXTS.OSINT_DRILL || 'osint-drill',
-      confidence: 'sure',
       chosen: q.options[chosenIdx]
     });
 

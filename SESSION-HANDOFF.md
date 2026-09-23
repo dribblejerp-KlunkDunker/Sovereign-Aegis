@@ -110,9 +110,11 @@ that generation is long gone; HEAD `f49988c` (2026-09-20) was clean before this 
    - Found & fixed during live verification (pre-existing): `_answerGauntlet` used an
      undefined `host` — every answer threw ReferenceError before feedback/scoring. The
      full live path now works (verified in-browser: answers, crit hits, honest debrief).
-   - Still open from the same audit: `osint.js` drill defaults `confidence: 'sure'`
-     (default param on `evaluateCaseAnswer`; the UI selector exists — consider
-     requiring an explicit choice).
+   - OSINT confidence fabrication — FIXED 2026-09-23: the pivot drill no longer hardcodes
+     `confidence: 'sure'`; it mounts the shared sticky control (`#drill-confidence-host`)
+     and `recordAttempt` reads the operator's actual claim. `evaluateCaseAnswer` also lost
+     its `='sure'` default — an unstated level now fails closed with score 0. Pinned by
+     Tier 4b of `tests/test-analyst-desk.js`.
 4. **Browser E2E in CI.** Add a workflow; report headless vs browser numbers
    separately (the §8 review's own wording, still open).
 5. **§8 hardening leftovers:** one-click legacy private-JWK rotation; move `index.html`'s

@@ -54,6 +54,10 @@ competency estimation). Full architecture and feature inventory: `PROJECT.md`.
    - Bonus (found during live verification, pre-existing): `_answerGauntlet` referenced an
      undefined `host` — every Gauntlet answer threw before scoring/feedback. Fixed; the
      click path now works end-to-end (verified live: 4 answered → honest debrief).
+   - OSINT confidence fabrication — FIXED 2026-09-23: the Rapid Pivot Gauntlet no longer
+     records `confidence: 'sure'` for every answer; it mounts the shared sticky control and
+     records what the operator actually claimed. `evaluateCaseAnswer` fails closed (score 0)
+     when confidence is not explicitly stated. Pinned by `tests/test-analyst-desk.js` Tier 4b.
 3. **Browser E2E in CI.** Still no CI workflows exist. The headless gate is honest;
    the browser gate has to actually run somewhere.
 4. **§8 hardening leftovers** (`ROADMAP.md` §8): one-click legacy private-JWK

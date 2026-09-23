@@ -7,6 +7,12 @@ vanity numbers.
 
 No framework. No build step. No runtime dependencies. No telemetry. Everything stays on your machine.
 
+[![CI](https://github.com/dribblejerp-KlunkDunker/Sovereign-Aegis/actions/workflows/ci.yml/badge.svg)](https://github.com/dribblejerp-KlunkDunker/Sovereign-Aegis/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](#license)
+[![Node](https://img.shields.io/badge/node-%E2%89%A518-blue)](#run-it)
+![Runtime deps](https://img.shields.io/badge/runtime%20dependencies-0-success)
+![Telemetry](https://img.shields.io/badge/telemetry-none-success)
+
 ---
 
 ## What it is
@@ -25,6 +31,56 @@ recorded to a local, append-only attempt log and routed through a competency spi
 skills — Bayesian mastery estimates, confidence calibration (Brier score), held-out-item
 transfer probing, and adaptive routing to your weakest skills. The suite tracks what it cannot
 conclude as honestly as what it can.
+
+## A tour of the four pillars
+
+Every shot below is the real app running headless at 1280×900 — captured live by
+`node tools/capture-screenshots.mjs` (serve first with `node serve.mjs`).
+
+### The command deck
+
+The overview hub — mission status, per-pillar entry points, and your operator profile with
+the Resilience Index computed from real attempt data (or honestly absent when there isn't
+enough of it yet).
+
+![Overview / command deck](docs/screenshots/overview.png)
+
+### Pillar I — Cognitive Fortification Lab
+
+SIFT Labs, 60-Second Triage, the Fallacy Gauntlet, Rhetorical Sandbox, and the SM-2 Memory
+Vault — argument analysis and memory training with every answer flowing into the competency
+spine.
+
+![Cognitive Fortification Lab](docs/screenshots/pillar-cognitive.png)
+
+### Adaptive inoculation (Pillar I, Prebunking subtab)
+
+The Personal Defense Profile's scenario engine: personalized inoculation runs that show you
+*why* each scenario was served, and write real attempts back to the spine.
+
+![Adaptive inoculation](docs/screenshots/cognitive-inoculation.png)
+
+### Pillar II — VERDAD Verification Engine
+
+Live claim triage: heuristic manipulation analysis, dialectic argument mapping, source
+dossiers, and optional BYOK fact-check lookup — degrading honestly to fully-offline
+heuristics when no key is configured.
+
+![VERDAD Verification Engine](docs/screenshots/pillar-verdad.png)
+
+### Pillar III — OSINT Investigation Suite
+
+Structured intelligence analysis: entity pivots, source assessment, and Heuer's ACH matrix
+for competing-hypothesis work, with every case drill logged as a real attempt.
+
+![OSINT Investigation Suite](docs/screenshots/pillar-osint.png)
+
+### Pillar IV — InfoWar Tactical Simulator
+
+Systems-level resilience: an SEIR wargame over a networked information environment — watch
+narratives propagate, deploy countermeasures, and see the second-order effects.
+
+![InfoWar Tactical Simulator](docs/screenshots/pillar-infowar.png)
 
 ## Privacy model
 
@@ -73,6 +129,7 @@ npm test                 # headless gate: 45 suites, ~17,350 assertions, 0 failu
 npm run test:e2e         # browser E2E (headless Chromium CDP) — separate gate
 npm run test:browser     # Playwright browser suite
 node tools/tag-skills.mjs  # content-tagging gate: fails on untagged/degenerate items
+node tools/capture-screenshots.mjs  # regenerate the README tour (app must be served; needs Playwright)
 ```
 
 The headless gate deliberately reports its own composition (62% dataset/schema validation,
@@ -100,7 +157,9 @@ transfer from held-out items you have never trained on. Where data is absent, th
 
 All four pillars, the competency spine, adaptive routing, retention machinery, and the
 Personal Defense Profile are **built and gated** (2026-09). Open work is tracked, not hidden:
-the Phase 4 transfer study (protocol written, not yet executed), a handful of game-surface
-honesty fixes, and CI for the browser gate. See `STATUS.md`.
+the Phase 4 transfer study (protocol written, not yet executed) and CI for the browser gate.
+See `STATUS.md`.
+
+## License
 
 MIT licensed.

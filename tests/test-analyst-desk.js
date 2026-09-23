@@ -341,6 +341,54 @@ async function runTests() {
   });
 
   // =========================================================================
+  // Tier 4b: Confidence honesty — no surface may fabricate a confidence claim
+  // =========================================================================
+  // The last audit finding on the game surfaces: the pivot drill hardcoded
+  // `confidence: 'sure'` into every attempt and `evaluateCaseAnswer` defaulted its
+  // confidence to 'sure'. Both fabricate a calibration measurement the operator never
+  // made. These pins keep both paths honest.
+  await harness.describe('Tier 4b: Confidence Honesty Invariants', async () => {
+    await harness.it('evaluateCaseAnswer() fails closed when confidence is not stated', () => {
+      const sampleCase = osintData.cases[0];
+      const ci = sampleCase.deductionQuestion.correctIndex;
+      const li = sampleCase.limitationQuestion.correctIndex;
+
+      const unstated = evaluateCaseAnswer(sampleCase, ci, li);
+      harness.assertEqual(unstated.score, 0, 'No confidence stated -> no score');
+      harness.assert(!unstated.isFullyCorrect, 'No confidence stated -> not fully correct');
+      harness.assert(unstated.feedback.includes('confidence'), 'Feedback says a stated confidence is required');
+
+      for (const bad of [undefined, null, '', 'VERY SURE', 'certain', 1]) {
+        const r = evaluateCaseAnswer(sampleCase, ci, li, bad);
+        harness.assertEqual(r.score, 0, `Non-level value ${JSON.stringify(bad)} scores 0`);
+      }
+    });
+
+    await harness.it('evaluateCaseAnswer() still scores all three real levels', () => {
+      const sampleCase = osintData.cases[0];
+      const ci = sampleCase.deductionQuestion.correctIndex;
+      const li = sampleCase.limitationQuestion.correctIndex;
+
+      harness.assert(evaluateCaseAnswer(sampleCase, ci, li, 'sure').score > 0, 'sure + correct scores');
+      harness.assert(evaluateCaseAnswer(sampleCase, ci, li, 'unsure').score > 0, 'unsure + correct scores');
+      harness.assert(evaluateCaseAnswer(sampleCase, ci, li, 'guess').score > 0, 'guess + correct scores');
+    });
+
+    await harness.it('the drill records through the shared control, not a hardcoded claim', () => {
+      const src = readFileSync(new URL('../js/modules/osint.js', import.meta.url), 'utf8');
+      harness.assert(src.includes("Confidence.mount(document.getElementById('drill-confidence-host')"),
+        'the drill mounts the shared confidence control');
+      harness.assert(!/confidence:\s*'sure'/.test(src),
+        'no attempt site in osint.js hardcodes confidence \'sure\'');
+
+      const html = readFileSync(new URL('../index.html', import.meta.url), 'utf8');
+      harness.assert(html.includes('id="drill-confidence-host"'), 'the drill panel has a confidence host');
+      harness.assert(!src.includes("_selectedConfidence: 'sure'"),
+        "the case desk does not preselect the flattering level ('unsure' initial, like the shared control)");
+    });
+  });
+
+  // =========================================================================
   // Tier 5: Calibrated Arena Mode Brier Scoring Verification
   // =========================================================================
   await harness.describe('Tier 5: Calibrated Mode Brier Mathematics Invariants', async () => {
