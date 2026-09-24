@@ -3,116 +3,146 @@
   "seed": "aegis-transfer-study-v1.0-forms",
   "key": [
     {
-      "itemId": "q93",
+      "itemId": "q111",
       "position": 0,
-      "correctIndex": 3,
-      "correctOption": "Loaded / Emotive Language"
+      "correctIndex": 0,
+      "correctOption": "Prebunking (Inoculation)"
     },
     {
-      "itemId": "q94",
+      "itemId": "q147",
       "position": 1,
       "correctIndex": 2,
-      "correctOption": "Equivocation (Semantic Shift)"
+      "correctOption": "Sharing is largely irreversible, and investigation only happens if you haven't already amplified"
     },
     {
-      "itemId": "q9",
+      "itemId": "q104",
       "position": 2,
       "correctIndex": 2,
-      "correctOption": "Gish Gallop"
+      "correctOption": "Narrative Laundering"
     },
     {
-      "itemId": "q68",
+      "itemId": "q196",
       "position": 3,
-      "correctIndex": 2,
-      "correctOption": "Dispositional Over-Attribution"
+      "correctIndex": 3,
+      "correctOption": "Nothing about tampering — a missing manifest is not evidence of manipulation"
     },
     {
-      "itemId": "q110",
+      "itemId": "q16",
       "position": 4,
       "correctIndex": 3,
-      "correctOption": "The countermeasure amplifies what it targets"
-    },
-    {
-      "itemId": "q112",
-      "position": 5,
-      "correctIndex": 0,
-      "correctOption": "The manifest is parsed but not cryptographically verified"
+      "correctOption": "Post Hoc Ergo Propter Hoc"
     },
     {
       "itemId": "q49",
-      "position": 6,
+      "position": 5,
       "correctIndex": 0,
       "correctOption": "Selective Recall"
     },
     {
-      "itemId": "q13",
+      "itemId": "q68",
+      "position": 6,
+      "correctIndex": 2,
+      "correctOption": "Dispositional Over-Attribution"
+    },
+    {
+      "itemId": "q155",
       "position": 7,
-      "correctIndex": 1,
-      "correctOption": "Boundary Smearing & Topology Hallucination"
+      "correctIndex": 3,
+      "correctOption": "Leave the screenshot: search for the story and see how other sources report it"
+    },
+    {
+      "itemId": "q103",
+      "position": 8,
+      "correctIndex": 3,
+      "correctOption": "T0004: Establish Inauthentic Assets / Spoofing"
+    },
+    {
+      "itemId": "q21",
+      "position": 9,
+      "correctIndex": 0,
+      "correctOption": "Affirming the Consequent (Formal Fallacy)"
+    },
+    {
+      "itemId": "q182",
+      "position": 10,
+      "correctIndex": 0,
+      "correctOption": "Flooding the channel with volume"
     },
     {
       "itemId": "q76",
-      "position": 8,
+      "position": 11,
       "correctIndex": 0,
       "correctOption": "Astroturfing (Coordinated Account Creation)"
     },
     {
       "itemId": "q51",
-      "position": 9,
+      "position": 12,
       "correctIndex": 0,
       "correctOption": "Hindsight Bias"
     },
     {
-      "itemId": "q16",
-      "position": 10,
-      "correctIndex": 3,
-      "correctOption": "Post Hoc Ergo Propter Hoc"
-    },
-    {
-      "itemId": "q21",
-      "position": 11,
-      "correctIndex": 0,
-      "correctOption": "Affirming the Consequent (Formal Fallacy)"
+      "itemId": "q13",
+      "position": 13,
+      "correctIndex": 1,
+      "correctOption": "Boundary Smearing & Topology Hallucination"
     },
     {
       "itemId": "q83",
-      "position": 12,
+      "position": 14,
       "correctIndex": 0,
       "correctOption": "False Balance (Bothsidesism)"
     },
     {
-      "itemId": "q62",
-      "position": 13,
+      "itemId": "q156",
+      "position": 15,
       "correctIndex": 1,
-      "correctOption": "Anchoring Effect"
-    },
-    {
-      "itemId": "q103",
-      "position": 14,
-      "correctIndex": 3,
-      "correctOption": "T0004: Establish Inauthentic Assets / Spoofing"
+      "correctOption": "Finding the original speech or transcript and checking what changed between it and the quote"
     },
     {
       "itemId": "q56",
-      "position": 15,
+      "position": 16,
       "correctIndex": 2,
       "correctOption": "Availability Heuristic"
     },
     {
+      "itemId": "q94",
+      "position": 17,
+      "correctIndex": 2,
+      "correctOption": "Equivocation (Semantic Shift)"
+    },
+    {
       "itemId": "q38",
-      "position": 16,
+      "position": 18,
       "correctIndex": 0,
       "correctOption": "Argumentum ad Populum (Bandwagon)"
     },
     {
-      "itemId": "q104",
-      "position": 17,
-      "correctIndex": 2,
-      "correctOption": "Narrative Laundering"
+      "itemId": "q186",
+      "position": 19,
+      "correctIndex": 0,
+      "correctOption": "Loaded language importing opposing conclusions"
+    },
+    {
+      "itemId": "q151",
+      "position": 20,
+      "correctIndex": 0,
+      "correctOption": "The account's history, its funding or affiliation, and its record on past claims"
+    },
+    {
+      "itemId": "q159",
+      "position": 21,
+      "correctIndex": 0,
+      "correctOption": "Begging the question"
+    },
+    {
+      "itemId": "q62",
+      "position": 22,
+      "correctIndex": 1,
+      "correctOption": "Anchoring Effect"
     },
     {
       "itemId": "q8",
-      "position": 18,
+      "position": 23,
       "correctIndex": 1,
       "correctOption": "Whataboutism (Tu Quoque)"
     }

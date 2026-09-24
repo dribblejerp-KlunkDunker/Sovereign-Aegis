@@ -9,8 +9,8 @@ with a built competency spine, adaptive routing, attestations, retention coverag
 (Phase 2) and the adaptive inoculation engine (PDP slice 3) both shipped, live-verified
 in the browser and standalone bundle, and a green 45-suite headless gate; the remaining
 work is running the transfer study (Phase 4), fixing the game-surface honesty findings
-below, and getting browser E2E into CI. **The standalone is FRESH** (rebuilt 2026-09-20
-during live verification; esbuild now available via npx).
+below, and getting browser E2E into CI. **The standalone is FRESH** (rebuilt 2026-09-23
+with the widened arena bank and BYOK model fix; esbuild now available via npx).
 
 ---
 
@@ -94,11 +94,14 @@ that generation is long gone; HEAD `f49988c` (2026-09-20) was clean before this 
    decks), per-section masterclass review cards via `aegis:sift-cards` in `_mcNavigate`,
    generator owns the `card-arena-*` namespace. `test-retention-transfer.js` extended
    for the merge/purge/section-card behavior (280 assertions). Phase 2: DONE.
-2. **Phase 4 transfer study** — protocol written, not run. **FREEZE STATE (2026-09-23):**
-   the kit is frozen at the freeze commit: hashed forms + allocation + power simulation +
-   frozen analysis script, plus the review packet (39-item ground-truth worksheet) and
-   the upload-ready OSF bundle (`docs/transfer-study/osf-bundle/`, 14 files, hash-rooted
-   by its `MANIFEST.sha256`). Next human steps in order: complete + hash the ground-truth
+2. **Phase 4 transfer study** — protocol written, not run. **FREEZE STATE (2026-09-23,
+   revised same day):** the kit is frozen at the freeze commit: hashed forms + allocation +
+   power simulation + frozen analysis script, plus the review packet (48-item ground-truth
+   worksheet) and the upload-ready OSF bundle (`docs/transfer-study/osf-bundle/`, 14 files,
+   hash-rooted by its `MANIFEST.sha256`, root `b632ee84d304b5d5…`). Forms widened from
+   20/19 to **24/24** — one item per skill stratum across all 24 skills — via 40 newly
+   authored items (q146–q185), closing the four SIFT strata that previously had zero
+   eligible items. Next human steps in order: complete + hash the ground-truth
    review → ethics review → upload the bundle to OSF and record the DOI here → enroll by
    drawing `allocation.csv` in order. Both outcomes are worth
    having; the app cannot claim "it trains" until this is measured.

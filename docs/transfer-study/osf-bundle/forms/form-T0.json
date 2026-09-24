@@ -3,83 +3,51 @@
   "seed": "aegis-transfer-study-v1.0-forms",
   "items": [
     {
-      "id": "q79",
-      "domain": "Propaganda Tactics",
-      "difficulty": 1310,
-      "claim": "In a ninety-second answer, a speaker makes nineteen separate factual assertions, four of which are false and none of which the opponent has time to address.",
+      "id": "q74",
+      "domain": "Cognitive Bias",
+      "difficulty": 1280,
+      "claim": "\"Red has come up six times in a row, so black is due.\"",
       "options": [
-        "Gish Gallop",
-        "Whataboutism (Tu Quoque)",
-        "Red Herring",
-        "Straw Man"
+        "Gambler's Fallacy",
+        "Availability Heuristic",
+        "Base-Rate Neglect",
+        "Hindsight Bias"
       ],
-      "explanation": "The asymmetry between assertion cost and refutation cost is the weapon; the individual claims barely matter. A red herring diverts to ONE other topic, which is a different and much cheaper attack to answer.",
+      "explanation": "Independent trials have no memory. Note the mirror-image error is equally common — concluding that red is \"hot\" and will continue — and both come from expecting short runs to look like long-run averages.",
       "tests": [
-        "skill.tactic.flooding"
+        "skill.bias.probability"
       ]
     },
     {
-      "id": "q32",
+      "id": "q46",
       "domain": "Logical Fallacy",
-      "difficulty": 1180,
-      "claim": "\"Both people I know who took that job quit within a year. It is clearly a terrible employer.\"",
+      "difficulty": 1400,
+      "claim": "\"His argument commits a fallacy, so his conclusion is false.\"",
       "options": [
-        "Fallacy of Composition",
-        "Post Hoc Ergo Propter Hoc",
-        "Anecdotal Evidence",
-        "Hasty Generalisation"
-      ],
-      "explanation": "A sample of two is generalised to an employer of unknown size. Anecdotal evidence is the close neighbour and would be the better answer if the anecdote were being used AGAINST statistics; here there are no statistics in play, only an over-broad leap.",
-      "tests": [
-        "skill.fallacy.scope"
-      ]
-    },
-    {
-      "id": "q111",
-      "domain": "DISARM Framework",
-      "difficulty": 1430,
-      "claim": "Before an expected influence operation, an outlet explains the TECHNIQUE likely to be used, without repeating any specific false claim.",
-      "options": [
-        "Prebunking (Inoculation)",
-        "Debunking",
-        "Strategic Silence (Deliberate Non-Amplification)",
-        "Counter-Messaging"
-      ],
-      "explanation": "Teaching the manipulation pattern in advance confers resistance without giving the specific falsehood any airtime. That is its advantage over debunking, which necessarily repeats the claim in order to correct it.",
-      "tests": [
-        "skill.disarm.countermeasures"
-      ]
-    },
-    {
-      "id": "q90",
-      "domain": "Propaganda Tactics",
-      "difficulty": 1240,
-      "claim": "One outlet reports \"the council seized the land\"; another reports \"the council acquired the land\". The legal process described is identical.",
-      "options": [
-        "Equivocation (Semantic Shift)",
-        "Loaded / Emotive Language",
-        "Framing Effect",
-        "Straw Man"
-      ],
-      "explanation": "The verb imports a verdict before any argument is made. It differs from equivocation in that no term shifts meaning WITHIN an argument — the word choice smuggles the conclusion in at the start.",
-      "tests": [
-        "skill.tactic.emotive-framing"
-      ]
-    },
-    {
-      "id": "q97",
-      "domain": "Propaganda Tactics",
-      "difficulty": 1300,
-      "claim": "\"Of course the theory is only a theory — so it is hardly established fact.\"",
-      "options": [
+        "Fallacy Fallacy (Argument from Fallacy)",
         "Appeal to Ignorance (Argumentum ad Ignorantiam)",
-        "Straw Man",
-        "False Dilemma (Bifurcation)",
-        "Equivocation (Semantic Shift)"
+        "Circular Reasoning",
+        "Ad Hominem"
       ],
-      "explanation": "The technical sense of \"theory\" — an explanatory framework supported by evidence — is swapped for the colloquial \"guess\". Note that the sentence contains no false statement, which is why equivocation is so much harder to answer than a lie.",
+      "explanation": "A bad argument for a claim leaves the claim exactly where it was — unsupported, not refuted. This is the failure mode a fallacy taxonomy itself invites, which is why it belongs in one.",
       "tests": [
-        "skill.tactic.equivocation"
+        "skill.fallacy.formal-vs-informal"
+      ]
+    },
+    {
+      "id": "q11",
+      "domain": "AI Media Forensics",
+      "difficulty": 1300,
+      "claim": "\"An image of a politician shows perfectly circular pupils, but the light reflections in the left and right eyes depict completely different room window angles and shapes.\"",
+      "options": [
+        "GAN Border Ringing",
+        "Corneal Specular Reflection Asymmetry",
+        "Frequency Domain Smearing",
+        "Error Level Analysis Inconsistency"
+      ],
+      "explanation": "Diffusion generators render each eye independently, frequently failing physics-based specular ray alignment.",
+      "tests": [
+        "skill.forensics.read-measurements"
       ]
     },
     {
@@ -100,35 +68,19 @@
       ]
     },
     {
-      "id": "q59",
-      "domain": "Cognitive Bias",
-      "difficulty": 1190,
-      "claim": "A negotiator opens with a figure far above any plausible settlement. The final agreement lands well above what either side privately expected.",
+      "id": "q157",
+      "domain": "SIFT Method",
+      "difficulty": 1240,
+      "claim": "A statistic travels with the caption \"crime doubled under the current mayor.\" What is the SIFT Trace move for this number?",
       "options": [
-        "Anchoring Effect",
-        "Sunk Cost Fallacy",
-        "Appeal to Authority",
-        "Framing Effect"
+        "Find a criminologist's general opinion of crime statistics",
+        "Search for other posts using the same caption to see how widely it has already traveled",
+        "Locate the original dataset or report and compare its actual finding to the caption",
+        "Check whether the poster has shared crime stories before"
       ],
-      "explanation": "The opening number does not need to be credible to work; it only needs to be first. Framing is the neighbour — that would require the same value described differently, whereas here a single irrelevant number drags the whole scale.",
+      "explanation": "Tracing means reaching the primary source — the dataset or report — and diffing what it says against what the caption says. Echoes, poster history, and generic expert opinion do not recover the original context.",
       "tests": [
-        "skill.bias.anchoring"
-      ]
-    },
-    {
-      "id": "q74",
-      "domain": "Cognitive Bias",
-      "difficulty": 1280,
-      "claim": "\"Red has come up six times in a row, so black is due.\"",
-      "options": [
-        "Gambler's Fallacy",
-        "Availability Heuristic",
-        "Base-Rate Neglect",
-        "Hindsight Bias"
-      ],
-      "explanation": "Independent trials have no memory. Note the mirror-image error is equally common — concluding that red is \"hot\" and will continue — and both come from expecting short runs to look like long-run averages.",
-      "tests": [
-        "skill.bias.probability"
+        "skill.sift.trace-origin"
       ]
     },
     {
@@ -148,19 +100,19 @@
       ]
     },
     {
-      "id": "q3",
-      "domain": "Logical Fallacy",
-      "difficulty": 1150,
-      "claim": "\"Either you support an immediate 100% military embargo on all trade with our neighboring rival, or you are a traitor who hates our homeland.\"",
+      "id": "q150",
+      "domain": "SIFT Method",
+      "difficulty": 1200,
+      "claim": "Before evaluating an exposé from \"Health Freedom Daily,\" which question belongs to SIFT's Investigate step?",
       "options": [
-        "Begging the Question (Petitio Principii)",
-        "False Dilemma (Bifurcation)",
-        "Post Hoc Ergo Propter Hoc",
-        "No True Scotsman"
+        "How many shares and comments does the exposé have?",
+        "Does the exposé cite an official-sounding agency?",
+        "Who funds this outlet and what has it published that checked out or didn't?",
+        "Is the exposé's central claim emotionally persuasive enough that readers will finish it?"
       ],
-      "explanation": "Artificially reduces a complex foreign policy spectrum to two extreme binaries while ignoring diplomatic nuances.",
+      "explanation": "SIFT's source investigation is about funding and track record — provenance and reliability. Popularity, emotional pull, and official-sounding citations are exactly the cues the step tells you to look past.",
       "tests": [
-        "skill.fallacy.structure"
+        "skill.sift.investigate-source"
       ]
     },
     {
@@ -180,19 +132,51 @@
       ]
     },
     {
-      "id": "q29",
-      "domain": "Logical Fallacy",
-      "difficulty": 1120,
-      "claim": "\"The transport committee proposed a 15 km/h speed reduction outside primary schools. So they think cars are evil and want us all walking to work in the rain.\"",
+      "id": "q153",
+      "domain": "SIFT Method",
+      "difficulty": 1220,
+      "claim": "A video's caption insists a doctor said vaccines cause autism. What is SIFT's Find Better Coverage move here?",
       "options": [
-        "Slippery Slope",
-        "Straw Man",
-        "Hasty Generalisation",
-        "False Dilemma"
+        "Read the video's description for cited papers",
+        "Watch several more videos from the same channel to check whether its claims are internally consistent",
+        "Open new tabs and see what health agencies and independent outlets say about the claim",
+        "Ask the uploader for their sources in the comments"
       ],
-      "explanation": "The actual proposal — a limited speed change near schools — is replaced by an absurd one that is easier to attack. This is not a slippery slope: no chain of consequences is claimed, the position itself has been swapped out.",
+      "explanation": "Find Better Coverage is lateral reading: leave the page, consult better-placed sources on the same claim. Staying within the uploader's ecosystem or their own citations is vertical reading.",
       "tests": [
-        "skill.fallacy.relevance"
+        "skill.sift.find-coverage"
+      ]
+    },
+    {
+      "id": "q59",
+      "domain": "Cognitive Bias",
+      "difficulty": 1190,
+      "claim": "A negotiator opens with a figure far above any plausible settlement. The final agreement lands well above what either side privately expected.",
+      "options": [
+        "Anchoring Effect",
+        "Sunk Cost Fallacy",
+        "Appeal to Authority",
+        "Framing Effect"
+      ],
+      "explanation": "The opening number does not need to be credible to work; it only needs to be first. Framing is the neighbour — that would require the same value described differently, whereas here a single irrelevant number drags the whole scale.",
+      "tests": [
+        "skill.bias.anchoring"
+      ]
+    },
+    {
+      "id": "q90",
+      "domain": "Propaganda Tactics",
+      "difficulty": 1240,
+      "claim": "One outlet reports \"the council seized the land\"; another reports \"the council acquired the land\". The legal process described is identical.",
+      "options": [
+        "Equivocation (Semantic Shift)",
+        "Loaded / Emotive Language",
+        "Framing Effect",
+        "Straw Man"
+      ],
+      "explanation": "The verb imports a verdict before any argument is made. It differs from equivocation in that no term shifts meaning WITHIN an argument — the word choice smuggles the conclusion in at the start.",
+      "tests": [
+        "skill.tactic.emotive-framing"
       ]
     },
     {
@@ -213,51 +197,51 @@
       ]
     },
     {
-      "id": "q11",
-      "domain": "AI Media Forensics",
-      "difficulty": 1300,
-      "claim": "\"An image of a politician shows perfectly circular pupils, but the light reflections in the left and right eyes depict completely different room window angles and shapes.\"",
+      "id": "q3",
+      "domain": "Logical Fallacy",
+      "difficulty": 1150,
+      "claim": "\"Either you support an immediate 100% military embargo on all trade with our neighboring rival, or you are a traitor who hates our homeland.\"",
       "options": [
-        "GAN Border Ringing",
-        "Corneal Specular Reflection Asymmetry",
-        "Frequency Domain Smearing",
-        "Error Level Analysis Inconsistency"
+        "Begging the Question (Petitio Principii)",
+        "False Dilemma (Bifurcation)",
+        "Post Hoc Ergo Propter Hoc",
+        "No True Scotsman"
       ],
-      "explanation": "Diffusion generators render each eye independently, frequently failing physics-based specular ray alignment.",
+      "explanation": "Artificially reduces a complex foreign policy spectrum to two extreme binaries while ignoring diplomatic nuances.",
       "tests": [
-        "skill.forensics.read-measurements"
+        "skill.fallacy.structure"
       ]
     },
     {
-      "id": "q10",
+      "id": "q85",
       "domain": "Propaganda Tactics",
-      "difficulty": 1250,
-      "claim": "\"A commercial PR firm deploys 5,000 bot accounts to coordinate posts praising a new luxury car model, making it appear like a genuine grassroots viral trend.\"",
+      "difficulty": 1280,
+      "claim": "A debate on whether a bridge is structurally sound is staged between a structural engineer and a local columnist, introduced as \"two views\".",
       "options": [
-        "Card Stacking",
-        "Bandwagon Effect",
-        "Loaded Language",
-        "Astroturfing"
+        "Ad Hominem",
+        "False Balance (Bothsidesism)",
+        "Red Herring",
+        "Appeal to False Authority (Ad Verecundiam)"
       ],
-      "explanation": "Orchestrating an artificial marketing campaign masked as spontaneous, grassroots citizen consensus.",
+      "explanation": "The pairing implies comparable standing on a question where it does not exist. Appeal to false authority is the near miss and would apply if the COLUMNIST'S credentials were being cited as support; here the fallacy is committed by the framing, not by either speaker.",
       "tests": [
-        "skill.tactic.astroturfing"
+        "skill.tactic.false-balance"
       ]
     },
     {
-      "id": "q65",
-      "domain": "Cognitive Bias",
-      "difficulty": 1220,
-      "claim": "A driver cut off in traffic mutters \"what a selfish idiot\". When he does the same thing an hour later, it is because he is late for a hospital appointment.",
+      "id": "q192",
+      "domain": "DISARM Framework",
+      "difficulty": 1390,
+      "claim": "A platform deletes 200 coordinated accounts, and the operator's next move is a post claiming \"they're censoring the truth — see for yourself.\" What did the countermeasure risk doing?",
       "options": [
-        "Fundamental Attribution Error / Ingroup Favoritism",
-        "Confirmation Bias",
-        "Hindsight Bias",
-        "Availability Heuristic"
+        "Misclassifying Seed activity as Amplify",
+        "Nothing — takedowns carry no downside",
+        "Failing to measure the campaign's reach before and after the takedown",
+        "Amplifying the narrative by feeding a censorship story"
       ],
-      "explanation": "Others' behaviour is explained by character, one's own by circumstance. The asymmetry is the diagnostic feature — either explanation alone could be reasonable; holding both at once is not.",
+      "explanation": "Visible takedowns can be converted into evidence of suppression, amplifying the very narrative they targeted — the proportionality and blowback awareness the countermeasure skill trains.",
       "tests": [
-        "skill.bias.attribution"
+        "skill.disarm.countermeasures"
       ]
     },
     {
@@ -277,35 +261,115 @@
       ]
     },
     {
-      "id": "q46",
+      "id": "q29",
       "domain": "Logical Fallacy",
-      "difficulty": 1400,
-      "claim": "\"His argument commits a fallacy, so his conclusion is false.\"",
+      "difficulty": 1120,
+      "claim": "\"The transport committee proposed a 15 km/h speed reduction outside primary schools. So they think cars are evil and want us all walking to work in the rain.\"",
       "options": [
-        "Fallacy Fallacy (Argument from Fallacy)",
-        "Appeal to Ignorance (Argumentum ad Ignorantiam)",
-        "Circular Reasoning",
-        "Ad Hominem"
+        "Slippery Slope",
+        "Straw Man",
+        "Hasty Generalisation",
+        "False Dilemma"
       ],
-      "explanation": "A bad argument for a claim leaves the claim exactly where it was — unsupported, not refuted. This is the failure mode a fallacy taxonomy itself invites, which is why it belongs in one.",
+      "explanation": "The actual proposal — a limited speed change near schools — is replaced by an absurd one that is easier to attack. This is not a slippery slope: no chain of consequences is claimed, the position itself has been swapped out.",
       "tests": [
-        "skill.fallacy.formal-vs-informal"
+        "skill.fallacy.relevance"
       ]
     },
     {
-      "id": "q85",
-      "domain": "Propaganda Tactics",
-      "difficulty": 1280,
-      "claim": "A debate on whether a bridge is structurally sound is staged between a structural engineer and a local columnist, introduced as \"two views\".",
+      "id": "q65",
+      "domain": "Cognitive Bias",
+      "difficulty": 1220,
+      "claim": "A driver cut off in traffic mutters \"what a selfish idiot\". When he does the same thing an hour later, it is because he is late for a hospital appointment.",
       "options": [
-        "Ad Hominem",
-        "False Balance (Bothsidesism)",
-        "Red Herring",
-        "Appeal to False Authority (Ad Verecundiam)"
+        "Fundamental Attribution Error / Ingroup Favoritism",
+        "Confirmation Bias",
+        "Hindsight Bias",
+        "Availability Heuristic"
       ],
-      "explanation": "The pairing implies comparable standing on a question where it does not exist. Appeal to false authority is the near miss and would apply if the COLUMNIST'S credentials were being cited as support; here the fallacy is committed by the framing, not by either speaker.",
+      "explanation": "Others' behaviour is explained by character, one's own by circumstance. The asymmetry is the diagnostic feature — either explanation alone could be reasonable; holding both at once is not.",
       "tests": [
-        "skill.tactic.false-balance"
+        "skill.bias.attribution"
+      ]
+    },
+    {
+      "id": "q10",
+      "domain": "Propaganda Tactics",
+      "difficulty": 1250,
+      "claim": "\"A commercial PR firm deploys 5,000 bot accounts to coordinate posts praising a new luxury car model, making it appear like a genuine grassroots viral trend.\"",
+      "options": [
+        "Card Stacking",
+        "Bandwagon Effect",
+        "Loaded Language",
+        "Astroturfing"
+      ],
+      "explanation": "Orchestrating an artificial marketing campaign masked as spontaneous, grassroots citizen consensus.",
+      "tests": [
+        "skill.tactic.astroturfing"
+      ]
+    },
+    {
+      "id": "q79",
+      "domain": "Propaganda Tactics",
+      "difficulty": 1310,
+      "claim": "In a ninety-second answer, a speaker makes nineteen separate factual assertions, four of which are false and none of which the opponent has time to address.",
+      "options": [
+        "Gish Gallop",
+        "Whataboutism (Tu Quoque)",
+        "Red Herring",
+        "Straw Man"
+      ],
+      "explanation": "The asymmetry between assertion cost and refutation cost is the weapon; the individual claims barely matter. A red herring diverts to ONE other topic, which is a different and much cheaper attack to answer.",
+      "tests": [
+        "skill.tactic.flooding"
+      ]
+    },
+    {
+      "id": "q146",
+      "domain": "SIFT Method",
+      "difficulty": 1150,
+      "claim": "A friend sends you a video captioned \"They don't want you to see this!\" Your hands are already typing a reply. What is the SIFT-correct first move?",
+      "options": [
+        "Watch the video again frame by frame for editing artifacts",
+        "Quote-tweet it with a question mark to test the reaction",
+        "Forward it to a group chat and ask whether anyone there thinks it looks fake",
+        "Pause and notice the urgency pull before doing anything else"
+      ],
+      "explanation": "STOP is the first SIFT move: noticing the emotional hook and pausing precedes every investigation step. Sharing to test reactions amplifies the claim; frame analysis skips the pause.",
+      "tests": [
+        "skill.sift.stop"
+      ]
+    },
+    {
+      "id": "q32",
+      "domain": "Logical Fallacy",
+      "difficulty": 1180,
+      "claim": "\"Both people I know who took that job quit within a year. It is clearly a terrible employer.\"",
+      "options": [
+        "Fallacy of Composition",
+        "Post Hoc Ergo Propter Hoc",
+        "Anecdotal Evidence",
+        "Hasty Generalisation"
+      ],
+      "explanation": "A sample of two is generalised to an employer of unknown size. Anecdotal evidence is the close neighbour and would be the better answer if the anecdote were being used AGAINST statistics; here there are no statistics in play, only an over-broad leap.",
+      "tests": [
+        "skill.fallacy.scope"
+      ]
+    },
+    {
+      "id": "q97",
+      "domain": "Propaganda Tactics",
+      "difficulty": 1300,
+      "claim": "\"Of course the theory is only a theory — so it is hardly established fact.\"",
+      "options": [
+        "Appeal to Ignorance (Argumentum ad Ignorantiam)",
+        "Straw Man",
+        "False Dilemma (Bifurcation)",
+        "Equivocation (Semantic Shift)"
+      ],
+      "explanation": "The technical sense of \"theory\" — an explanatory framework supported by evidence — is swapped for the colloquial \"guess\". Note that the sentence contains no false statement, which is why equivocation is so much harder to answer than a lie.",
+      "tests": [
+        "skill.tactic.equivocation"
       ]
     },
     {

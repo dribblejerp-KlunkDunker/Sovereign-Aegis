@@ -2,8 +2,8 @@
   "PLANNING_ARTIFACT": "power simulation — not a result",
   "seed": "aegis-transfer-study-v1.0-power",
   "frozenForms": {
-    "T0": 20,
-    "T1": 19
+    "T0": 24,
+    "T1": 24
   },
   "trialsPerCell": 400,
   "alpha": 0.05,
@@ -14,7 +14,7 @@
       "tau": 15,
       "sigmaP": 0,
       "sigmaS": 0,
-      "logitDelta": 0.649,
+      "logitDelta": 0.653,
       "power": 1,
       "trials": 400
     },
@@ -23,7 +23,7 @@
       "tau": 15,
       "sigmaP": 0,
       "sigmaS": 0.5,
-      "logitDelta": 0.649,
+      "logitDelta": 0.653,
       "power": 1,
       "trials": 400
     },
@@ -32,7 +32,7 @@
       "tau": 15,
       "sigmaP": 0.35,
       "sigmaS": 0,
-      "logitDelta": 0.6658,
+      "logitDelta": 0.6696,
       "power": 1,
       "trials": 400
     },
@@ -41,7 +41,7 @@
       "tau": 15,
       "sigmaP": 0.35,
       "sigmaS": 0.5,
-      "logitDelta": 0.6658,
+      "logitDelta": 0.6696,
       "power": 1,
       "trials": 400
     },
@@ -50,7 +50,7 @@
       "tau": 15,
       "sigmaP": 0.7,
       "sigmaS": 0,
-      "logitDelta": 0.7126,
+      "logitDelta": 0.7161,
       "power": 1,
       "trials": 400
     },
@@ -59,7 +59,7 @@
       "tau": 15,
       "sigmaP": 0.7,
       "sigmaS": 0.5,
-      "logitDelta": 0.7126,
+      "logitDelta": 0.7161,
       "power": 1,
       "trials": 400
     },
@@ -68,7 +68,7 @@
       "tau": 15,
       "sigmaP": 1,
       "sigmaS": 0,
-      "logitDelta": 0.7711,
+      "logitDelta": 0.7743,
       "power": 1,
       "trials": 400
     },
@@ -77,7 +77,7 @@
       "tau": 15,
       "sigmaP": 1,
       "sigmaS": 0.5,
-      "logitDelta": 0.7711,
+      "logitDelta": 0.7743,
       "power": 1,
       "trials": 400
     },
@@ -86,7 +86,7 @@
       "tau": 12,
       "sigmaP": 0,
       "sigmaS": 0,
-      "logitDelta": 0.5094,
+      "logitDelta": 0.5121,
       "power": 1,
       "trials": 400
     },
@@ -95,7 +95,7 @@
       "tau": 12,
       "sigmaP": 0,
       "sigmaS": 0.5,
-      "logitDelta": 0.5094,
+      "logitDelta": 0.5121,
       "power": 1,
       "trials": 400
     },
@@ -104,7 +104,7 @@
       "tau": 12,
       "sigmaP": 0.35,
       "sigmaS": 0,
-      "logitDelta": 0.5229,
+      "logitDelta": 0.5255,
       "power": 1,
       "trials": 400
     },
@@ -113,124 +113,124 @@
       "tau": 12,
       "sigmaP": 0.35,
       "sigmaS": 0.5,
-      "logitDelta": 0.5229,
-      "power": 1,
-      "trials": 400
-    },
-    {
-      "n": 400,
-      "tau": 12,
-      "sigmaP": 0.7,
-      "sigmaS": 0,
-      "logitDelta": 0.5605,
-      "power": 1,
-      "trials": 400
-    },
-    {
-      "n": 400,
-      "tau": 12,
-      "sigmaP": 0.7,
-      "sigmaS": 0.5,
-      "logitDelta": 0.5605,
-      "power": 1,
-      "trials": 400
-    },
-    {
-      "n": 400,
-      "tau": 12,
-      "sigmaP": 1,
-      "sigmaS": 0,
-      "logitDelta": 0.6073,
-      "power": 1,
-      "trials": 400
-    },
-    {
-      "n": 400,
-      "tau": 12,
-      "sigmaP": 1,
-      "sigmaS": 0.5,
-      "logitDelta": 0.6073,
-      "power": 1,
-      "trials": 400
-    },
-    {
-      "n": 400,
-      "tau": 10,
-      "sigmaP": 0,
-      "sigmaS": 0,
-      "logitDelta": 0.4199,
-      "power": 1,
-      "trials": 400
-    },
-    {
-      "n": 400,
-      "tau": 10,
-      "sigmaP": 0,
-      "sigmaS": 0.5,
-      "logitDelta": 0.4199,
-      "power": 0.995,
-      "trials": 400
-    },
-    {
-      "n": 400,
-      "tau": 10,
-      "sigmaP": 0.35,
-      "sigmaS": 0,
-      "logitDelta": 0.4313,
-      "power": 1,
-      "trials": 400
-    },
-    {
-      "n": 400,
-      "tau": 10,
-      "sigmaP": 0.35,
-      "sigmaS": 0.5,
-      "logitDelta": 0.4313,
-      "power": 1,
-      "trials": 400
-    },
-    {
-      "n": 400,
-      "tau": 10,
-      "sigmaP": 0.7,
-      "sigmaS": 0,
-      "logitDelta": 0.4627,
-      "power": 1,
-      "trials": 400
-    },
-    {
-      "n": 400,
-      "tau": 10,
-      "sigmaP": 0.7,
-      "sigmaS": 0.5,
-      "logitDelta": 0.4627,
-      "power": 0.9925,
-      "trials": 400
-    },
-    {
-      "n": 400,
-      "tau": 10,
-      "sigmaP": 1,
-      "sigmaS": 0,
-      "logitDelta": 0.5016,
-      "power": 1,
-      "trials": 400
-    },
-    {
-      "n": 400,
-      "tau": 10,
-      "sigmaP": 1,
-      "sigmaS": 0.5,
-      "logitDelta": 0.5016,
+      "logitDelta": 0.5255,
       "power": 0.9975,
       "trials": 400
     },
     {
       "n": 400,
+      "tau": 12,
+      "sigmaP": 0.7,
+      "sigmaS": 0,
+      "logitDelta": 0.5628,
+      "power": 1,
+      "trials": 400
+    },
+    {
+      "n": 400,
+      "tau": 12,
+      "sigmaP": 0.7,
+      "sigmaS": 0.5,
+      "logitDelta": 0.5628,
+      "power": 1,
+      "trials": 400
+    },
+    {
+      "n": 400,
+      "tau": 12,
+      "sigmaP": 1,
+      "sigmaS": 0,
+      "logitDelta": 0.6094,
+      "power": 1,
+      "trials": 400
+    },
+    {
+      "n": 400,
+      "tau": 12,
+      "sigmaP": 1,
+      "sigmaS": 0.5,
+      "logitDelta": 0.6094,
+      "power": 1,
+      "trials": 400
+    },
+    {
+      "n": 400,
+      "tau": 10,
+      "sigmaP": 0,
+      "sigmaS": 0,
+      "logitDelta": 0.4219,
+      "power": 1,
+      "trials": 400
+    },
+    {
+      "n": 400,
+      "tau": 10,
+      "sigmaP": 0,
+      "sigmaS": 0.5,
+      "logitDelta": 0.4219,
+      "power": 0.99,
+      "trials": 400
+    },
+    {
+      "n": 400,
+      "tau": 10,
+      "sigmaP": 0.35,
+      "sigmaS": 0,
+      "logitDelta": 0.4331,
+      "power": 1,
+      "trials": 400
+    },
+    {
+      "n": 400,
+      "tau": 10,
+      "sigmaP": 0.35,
+      "sigmaS": 0.5,
+      "logitDelta": 0.4331,
+      "power": 0.9975,
+      "trials": 400
+    },
+    {
+      "n": 400,
+      "tau": 10,
+      "sigmaP": 0.7,
+      "sigmaS": 0,
+      "logitDelta": 0.4643,
+      "power": 1,
+      "trials": 400
+    },
+    {
+      "n": 400,
+      "tau": 10,
+      "sigmaP": 0.7,
+      "sigmaS": 0.5,
+      "logitDelta": 0.4643,
+      "power": 1,
+      "trials": 400
+    },
+    {
+      "n": 400,
+      "tau": 10,
+      "sigmaP": 1,
+      "sigmaS": 0,
+      "logitDelta": 0.5031,
+      "power": 1,
+      "trials": 400
+    },
+    {
+      "n": 400,
+      "tau": 10,
+      "sigmaP": 1,
+      "sigmaS": 0.5,
+      "logitDelta": 0.5031,
+      "power": 1,
+      "trials": 400
+    },
+    {
+      "n": 400,
       "tau": 8,
       "sigmaP": 0,
       "sigmaS": 0,
-      "logitDelta": 0.3328,
+      "logitDelta": 0.3342,
       "power": 1,
       "trials": 400
     },
@@ -239,52 +239,52 @@
       "tau": 8,
       "sigmaP": 0,
       "sigmaS": 0.5,
-      "logitDelta": 0.3328,
-      "power": 0.8925,
-      "trials": 400
-    },
-    {
-      "n": 400,
-      "tau": 8,
-      "sigmaP": 0.35,
-      "sigmaS": 0,
-      "logitDelta": 0.3419,
-      "power": 1,
-      "trials": 400
-    },
-    {
-      "n": 400,
-      "tau": 8,
-      "sigmaP": 0.35,
-      "sigmaS": 0.5,
-      "logitDelta": 0.3419,
-      "power": 0.9375,
-      "trials": 400
-    },
-    {
-      "n": 400,
-      "tau": 8,
-      "sigmaP": 0.7,
-      "sigmaS": 0,
-      "logitDelta": 0.3671,
-      "power": 1,
-      "trials": 400
-    },
-    {
-      "n": 400,
-      "tau": 8,
-      "sigmaP": 0.7,
-      "sigmaS": 0.5,
-      "logitDelta": 0.3671,
+      "logitDelta": 0.3342,
       "power": 0.9525,
       "trials": 400
     },
     {
       "n": 400,
       "tau": 8,
+      "sigmaP": 0.35,
+      "sigmaS": 0,
+      "logitDelta": 0.3432,
+      "power": 1,
+      "trials": 400
+    },
+    {
+      "n": 400,
+      "tau": 8,
+      "sigmaP": 0.35,
+      "sigmaS": 0.5,
+      "logitDelta": 0.3432,
+      "power": 0.955,
+      "trials": 400
+    },
+    {
+      "n": 400,
+      "tau": 8,
+      "sigmaP": 0.7,
+      "sigmaS": 0,
+      "logitDelta": 0.3682,
+      "power": 1,
+      "trials": 400
+    },
+    {
+      "n": 400,
+      "tau": 8,
+      "sigmaP": 0.7,
+      "sigmaS": 0.5,
+      "logitDelta": 0.3682,
+      "power": 0.955,
+      "trials": 400
+    },
+    {
+      "n": 400,
+      "tau": 8,
       "sigmaP": 1,
       "sigmaS": 0,
-      "logitDelta": 0.3982,
+      "logitDelta": 0.3993,
       "power": 1,
       "trials": 400
     },
@@ -293,8 +293,8 @@
       "tau": 8,
       "sigmaP": 1,
       "sigmaS": 0.5,
-      "logitDelta": 0.3982,
-      "power": 0.96,
+      "logitDelta": 0.3993,
+      "power": 0.975,
       "trials": 400
     },
     {
@@ -302,8 +302,8 @@
       "tau": 5,
       "sigmaP": 0,
       "sigmaS": 0,
-      "logitDelta": 0.2056,
-      "power": 0.88,
+      "logitDelta": 0.2062,
+      "power": 0.9375,
       "trials": 400
     },
     {
@@ -311,8 +311,8 @@
       "tau": 5,
       "sigmaP": 0,
       "sigmaS": 0.5,
-      "logitDelta": 0.2056,
-      "power": 0.55,
+      "logitDelta": 0.2062,
+      "power": 0.62,
       "trials": 400
     },
     {
@@ -320,8 +320,8 @@
       "tau": 5,
       "sigmaP": 0.35,
       "sigmaS": 0,
-      "logitDelta": 0.2113,
-      "power": 0.9075,
+      "logitDelta": 0.2119,
+      "power": 0.935,
       "trials": 400
     },
     {
@@ -329,8 +329,8 @@
       "tau": 5,
       "sigmaP": 0.35,
       "sigmaS": 0.5,
-      "logitDelta": 0.2113,
-      "power": 0.5925,
+      "logitDelta": 0.2119,
+      "power": 0.6375,
       "trials": 400
     },
     {
@@ -338,8 +338,8 @@
       "tau": 5,
       "sigmaP": 0.7,
       "sigmaS": 0,
-      "logitDelta": 0.2271,
-      "power": 0.895,
+      "logitDelta": 0.2277,
+      "power": 0.9525,
       "trials": 400
     },
     {
@@ -347,8 +347,8 @@
       "tau": 5,
       "sigmaP": 0.7,
       "sigmaS": 0.5,
-      "logitDelta": 0.2271,
-      "power": 0.5725,
+      "logitDelta": 0.2277,
+      "power": 0.6425,
       "trials": 400
     },
     {
@@ -356,8 +356,8 @@
       "tau": 5,
       "sigmaP": 1,
       "sigmaS": 0,
-      "logitDelta": 0.2466,
-      "power": 0.9125,
+      "logitDelta": 0.2471,
+      "power": 0.98,
       "trials": 400
     },
     {
@@ -365,8 +365,8 @@
       "tau": 5,
       "sigmaP": 1,
       "sigmaS": 0.5,
-      "logitDelta": 0.2466,
-      "power": 0.67,
+      "logitDelta": 0.2471,
+      "power": 0.745,
       "trials": 400
     },
     {
@@ -374,7 +374,7 @@
       "tau": 15,
       "sigmaP": 0,
       "sigmaS": 0,
-      "logitDelta": 0.649,
+      "logitDelta": 0.653,
       "power": 1,
       "trials": 400
     },
@@ -383,7 +383,7 @@
       "tau": 15,
       "sigmaP": 0,
       "sigmaS": 0.5,
-      "logitDelta": 0.649,
+      "logitDelta": 0.653,
       "power": 1,
       "trials": 400
     },
@@ -392,7 +392,7 @@
       "tau": 15,
       "sigmaP": 0.35,
       "sigmaS": 0,
-      "logitDelta": 0.6658,
+      "logitDelta": 0.6696,
       "power": 1,
       "trials": 400
     },
@@ -401,7 +401,7 @@
       "tau": 15,
       "sigmaP": 0.35,
       "sigmaS": 0.5,
-      "logitDelta": 0.6658,
+      "logitDelta": 0.6696,
       "power": 1,
       "trials": 400
     },
@@ -410,7 +410,7 @@
       "tau": 15,
       "sigmaP": 0.7,
       "sigmaS": 0,
-      "logitDelta": 0.7126,
+      "logitDelta": 0.7161,
       "power": 1,
       "trials": 400
     },
@@ -419,7 +419,7 @@
       "tau": 15,
       "sigmaP": 0.7,
       "sigmaS": 0.5,
-      "logitDelta": 0.7126,
+      "logitDelta": 0.7161,
       "power": 1,
       "trials": 400
     },
@@ -428,7 +428,7 @@
       "tau": 15,
       "sigmaP": 1,
       "sigmaS": 0,
-      "logitDelta": 0.7711,
+      "logitDelta": 0.7743,
       "power": 1,
       "trials": 400
     },
@@ -437,7 +437,7 @@
       "tau": 15,
       "sigmaP": 1,
       "sigmaS": 0.5,
-      "logitDelta": 0.7711,
+      "logitDelta": 0.7743,
       "power": 1,
       "trials": 400
     },
@@ -446,7 +446,7 @@
       "tau": 12,
       "sigmaP": 0,
       "sigmaS": 0,
-      "logitDelta": 0.5094,
+      "logitDelta": 0.5121,
       "power": 1,
       "trials": 400
     },
@@ -455,7 +455,7 @@
       "tau": 12,
       "sigmaP": 0,
       "sigmaS": 0.5,
-      "logitDelta": 0.5094,
+      "logitDelta": 0.5121,
       "power": 1,
       "trials": 400
     },
@@ -464,7 +464,7 @@
       "tau": 12,
       "sigmaP": 0.35,
       "sigmaS": 0,
-      "logitDelta": 0.5229,
+      "logitDelta": 0.5255,
       "power": 1,
       "trials": 400
     },
@@ -473,7 +473,7 @@
       "tau": 12,
       "sigmaP": 0.35,
       "sigmaS": 0.5,
-      "logitDelta": 0.5229,
+      "logitDelta": 0.5255,
       "power": 1,
       "trials": 400
     },
@@ -482,7 +482,7 @@
       "tau": 12,
       "sigmaP": 0.7,
       "sigmaS": 0,
-      "logitDelta": 0.5605,
+      "logitDelta": 0.5628,
       "power": 1,
       "trials": 400
     },
@@ -491,7 +491,7 @@
       "tau": 12,
       "sigmaP": 0.7,
       "sigmaS": 0.5,
-      "logitDelta": 0.5605,
+      "logitDelta": 0.5628,
       "power": 1,
       "trials": 400
     },
@@ -500,7 +500,7 @@
       "tau": 12,
       "sigmaP": 1,
       "sigmaS": 0,
-      "logitDelta": 0.6073,
+      "logitDelta": 0.6094,
       "power": 1,
       "trials": 400
     },
@@ -509,7 +509,7 @@
       "tau": 12,
       "sigmaP": 1,
       "sigmaS": 0.5,
-      "logitDelta": 0.6073,
+      "logitDelta": 0.6094,
       "power": 1,
       "trials": 400
     },
@@ -518,7 +518,7 @@
       "tau": 10,
       "sigmaP": 0,
       "sigmaS": 0,
-      "logitDelta": 0.4199,
+      "logitDelta": 0.4219,
       "power": 1,
       "trials": 400
     },
@@ -527,143 +527,143 @@
       "tau": 10,
       "sigmaP": 0,
       "sigmaS": 0.5,
-      "logitDelta": 0.4199,
+      "logitDelta": 0.4219,
+      "power": 1,
+      "trials": 400
+    },
+    {
+      "n": 480,
+      "tau": 10,
+      "sigmaP": 0.35,
+      "sigmaS": 0,
+      "logitDelta": 0.4331,
+      "power": 1,
+      "trials": 400
+    },
+    {
+      "n": 480,
+      "tau": 10,
+      "sigmaP": 0.35,
+      "sigmaS": 0.5,
+      "logitDelta": 0.4331,
+      "power": 1,
+      "trials": 400
+    },
+    {
+      "n": 480,
+      "tau": 10,
+      "sigmaP": 0.7,
+      "sigmaS": 0,
+      "logitDelta": 0.4643,
+      "power": 1,
+      "trials": 400
+    },
+    {
+      "n": 480,
+      "tau": 10,
+      "sigmaP": 0.7,
+      "sigmaS": 0.5,
+      "logitDelta": 0.4643,
+      "power": 1,
+      "trials": 400
+    },
+    {
+      "n": 480,
+      "tau": 10,
+      "sigmaP": 1,
+      "sigmaS": 0,
+      "logitDelta": 0.5031,
+      "power": 1,
+      "trials": 400
+    },
+    {
+      "n": 480,
+      "tau": 10,
+      "sigmaP": 1,
+      "sigmaS": 0.5,
+      "logitDelta": 0.5031,
+      "power": 1,
+      "trials": 400
+    },
+    {
+      "n": 480,
+      "tau": 8,
+      "sigmaP": 0,
+      "sigmaS": 0,
+      "logitDelta": 0.3342,
+      "power": 1,
+      "trials": 400
+    },
+    {
+      "n": 480,
+      "tau": 8,
+      "sigmaP": 0,
+      "sigmaS": 0.5,
+      "logitDelta": 0.3342,
+      "power": 0.975,
+      "trials": 400
+    },
+    {
+      "n": 480,
+      "tau": 8,
+      "sigmaP": 0.35,
+      "sigmaS": 0,
+      "logitDelta": 0.3432,
+      "power": 1,
+      "trials": 400
+    },
+    {
+      "n": 480,
+      "tau": 8,
+      "sigmaP": 0.35,
+      "sigmaS": 0.5,
+      "logitDelta": 0.3432,
+      "power": 0.98,
+      "trials": 400
+    },
+    {
+      "n": 480,
+      "tau": 8,
+      "sigmaP": 0.7,
+      "sigmaS": 0,
+      "logitDelta": 0.3682,
+      "power": 1,
+      "trials": 400
+    },
+    {
+      "n": 480,
+      "tau": 8,
+      "sigmaP": 0.7,
+      "sigmaS": 0.5,
+      "logitDelta": 0.3682,
+      "power": 0.97,
+      "trials": 400
+    },
+    {
+      "n": 480,
+      "tau": 8,
+      "sigmaP": 1,
+      "sigmaS": 0,
+      "logitDelta": 0.3993,
+      "power": 1,
+      "trials": 400
+    },
+    {
+      "n": 480,
+      "tau": 8,
+      "sigmaP": 1,
+      "sigmaS": 0.5,
+      "logitDelta": 0.3993,
       "power": 0.995,
       "trials": 400
     },
     {
       "n": 480,
-      "tau": 10,
-      "sigmaP": 0.35,
-      "sigmaS": 0,
-      "logitDelta": 0.4313,
-      "power": 1,
-      "trials": 400
-    },
-    {
-      "n": 480,
-      "tau": 10,
-      "sigmaP": 0.35,
-      "sigmaS": 0.5,
-      "logitDelta": 0.4313,
-      "power": 0.9925,
-      "trials": 400
-    },
-    {
-      "n": 480,
-      "tau": 10,
-      "sigmaP": 0.7,
-      "sigmaS": 0,
-      "logitDelta": 0.4627,
-      "power": 1,
-      "trials": 400
-    },
-    {
-      "n": 480,
-      "tau": 10,
-      "sigmaP": 0.7,
-      "sigmaS": 0.5,
-      "logitDelta": 0.4627,
-      "power": 1,
-      "trials": 400
-    },
-    {
-      "n": 480,
-      "tau": 10,
-      "sigmaP": 1,
-      "sigmaS": 0,
-      "logitDelta": 0.5016,
-      "power": 1,
-      "trials": 400
-    },
-    {
-      "n": 480,
-      "tau": 10,
-      "sigmaP": 1,
-      "sigmaS": 0.5,
-      "logitDelta": 0.5016,
-      "power": 0.9975,
-      "trials": 400
-    },
-    {
-      "n": 480,
-      "tau": 8,
-      "sigmaP": 0,
-      "sigmaS": 0,
-      "logitDelta": 0.3328,
-      "power": 1,
-      "trials": 400
-    },
-    {
-      "n": 480,
-      "tau": 8,
-      "sigmaP": 0,
-      "sigmaS": 0.5,
-      "logitDelta": 0.3328,
-      "power": 0.96,
-      "trials": 400
-    },
-    {
-      "n": 480,
-      "tau": 8,
-      "sigmaP": 0.35,
-      "sigmaS": 0,
-      "logitDelta": 0.3419,
-      "power": 1,
-      "trials": 400
-    },
-    {
-      "n": 480,
-      "tau": 8,
-      "sigmaP": 0.35,
-      "sigmaS": 0.5,
-      "logitDelta": 0.3419,
-      "power": 0.99,
-      "trials": 400
-    },
-    {
-      "n": 480,
-      "tau": 8,
-      "sigmaP": 0.7,
-      "sigmaS": 0,
-      "logitDelta": 0.3671,
-      "power": 1,
-      "trials": 400
-    },
-    {
-      "n": 480,
-      "tau": 8,
-      "sigmaP": 0.7,
-      "sigmaS": 0.5,
-      "logitDelta": 0.3671,
-      "power": 0.9575,
-      "trials": 400
-    },
-    {
-      "n": 480,
-      "tau": 8,
-      "sigmaP": 1,
-      "sigmaS": 0,
-      "logitDelta": 0.3982,
-      "power": 1,
-      "trials": 400
-    },
-    {
-      "n": 480,
-      "tau": 8,
-      "sigmaP": 1,
-      "sigmaS": 0.5,
-      "logitDelta": 0.3982,
-      "power": 0.9825,
-      "trials": 400
-    },
-    {
-      "n": 480,
       "tau": 5,
       "sigmaP": 0,
       "sigmaS": 0,
-      "logitDelta": 0.2056,
-      "power": 0.9225,
+      "logitDelta": 0.2062,
+      "power": 0.9775,
       "trials": 400
     },
     {
@@ -671,8 +671,8 @@
       "tau": 5,
       "sigmaP": 0,
       "sigmaS": 0.5,
-      "logitDelta": 0.2056,
-      "power": 0.56,
+      "logitDelta": 0.2062,
+      "power": 0.68,
       "trials": 400
     },
     {
@@ -680,8 +680,8 @@
       "tau": 5,
       "sigmaP": 0.35,
       "sigmaS": 0,
-      "logitDelta": 0.2113,
-      "power": 0.965,
+      "logitDelta": 0.2119,
+      "power": 0.975,
       "trials": 400
     },
     {
@@ -689,8 +689,8 @@
       "tau": 5,
       "sigmaP": 0.35,
       "sigmaS": 0.5,
-      "logitDelta": 0.2113,
-      "power": 0.6625,
+      "logitDelta": 0.2119,
+      "power": 0.685,
       "trials": 400
     },
     {
@@ -698,8 +698,8 @@
       "tau": 5,
       "sigmaP": 0.7,
       "sigmaS": 0,
-      "logitDelta": 0.2271,
-      "power": 0.965,
+      "logitDelta": 0.2277,
+      "power": 0.9875,
       "trials": 400
     },
     {
@@ -707,7 +707,7 @@
       "tau": 5,
       "sigmaP": 0.7,
       "sigmaS": 0.5,
-      "logitDelta": 0.2271,
+      "logitDelta": 0.2277,
       "power": 0.7075,
       "trials": 400
     },
@@ -716,8 +716,8 @@
       "tau": 5,
       "sigmaP": 1,
       "sigmaS": 0,
-      "logitDelta": 0.2466,
-      "power": 0.96,
+      "logitDelta": 0.2471,
+      "power": 0.9925,
       "trials": 400
     },
     {
@@ -725,8 +725,8 @@
       "tau": 5,
       "sigmaP": 1,
       "sigmaS": 0.5,
-      "logitDelta": 0.2466,
-      "power": 0.735,
+      "logitDelta": 0.2471,
+      "power": 0.7625,
       "trials": 400
     },
     {
@@ -734,7 +734,7 @@
       "tau": 15,
       "sigmaP": 0,
       "sigmaS": 0,
-      "logitDelta": 0.649,
+      "logitDelta": 0.653,
       "power": 1,
       "trials": 400
     },
@@ -743,7 +743,7 @@
       "tau": 15,
       "sigmaP": 0,
       "sigmaS": 0.5,
-      "logitDelta": 0.649,
+      "logitDelta": 0.653,
       "power": 1,
       "trials": 400
     },
@@ -752,7 +752,7 @@
       "tau": 15,
       "sigmaP": 0.35,
       "sigmaS": 0,
-      "logitDelta": 0.6658,
+      "logitDelta": 0.6696,
       "power": 1,
       "trials": 400
     },
@@ -761,7 +761,7 @@
       "tau": 15,
       "sigmaP": 0.35,
       "sigmaS": 0.5,
-      "logitDelta": 0.6658,
+      "logitDelta": 0.6696,
       "power": 1,
       "trials": 400
     },
@@ -770,7 +770,7 @@
       "tau": 15,
       "sigmaP": 0.7,
       "sigmaS": 0,
-      "logitDelta": 0.7126,
+      "logitDelta": 0.7161,
       "power": 1,
       "trials": 400
     },
@@ -779,7 +779,7 @@
       "tau": 15,
       "sigmaP": 0.7,
       "sigmaS": 0.5,
-      "logitDelta": 0.7126,
+      "logitDelta": 0.7161,
       "power": 1,
       "trials": 400
     },
@@ -788,7 +788,7 @@
       "tau": 15,
       "sigmaP": 1,
       "sigmaS": 0,
-      "logitDelta": 0.7711,
+      "logitDelta": 0.7743,
       "power": 1,
       "trials": 400
     },
@@ -797,7 +797,7 @@
       "tau": 15,
       "sigmaP": 1,
       "sigmaS": 0.5,
-      "logitDelta": 0.7711,
+      "logitDelta": 0.7743,
       "power": 1,
       "trials": 400
     },
@@ -806,7 +806,7 @@
       "tau": 12,
       "sigmaP": 0,
       "sigmaS": 0,
-      "logitDelta": 0.5094,
+      "logitDelta": 0.5121,
       "power": 1,
       "trials": 400
     },
@@ -815,7 +815,7 @@
       "tau": 12,
       "sigmaP": 0,
       "sigmaS": 0.5,
-      "logitDelta": 0.5094,
+      "logitDelta": 0.5121,
       "power": 1,
       "trials": 400
     },
@@ -824,7 +824,7 @@
       "tau": 12,
       "sigmaP": 0.35,
       "sigmaS": 0,
-      "logitDelta": 0.5229,
+      "logitDelta": 0.5255,
       "power": 1,
       "trials": 400
     },
@@ -833,7 +833,7 @@
       "tau": 12,
       "sigmaP": 0.35,
       "sigmaS": 0.5,
-      "logitDelta": 0.5229,
+      "logitDelta": 0.5255,
       "power": 1,
       "trials": 400
     },
@@ -842,7 +842,7 @@
       "tau": 12,
       "sigmaP": 0.7,
       "sigmaS": 0,
-      "logitDelta": 0.5605,
+      "logitDelta": 0.5628,
       "power": 1,
       "trials": 400
     },
@@ -851,7 +851,7 @@
       "tau": 12,
       "sigmaP": 0.7,
       "sigmaS": 0.5,
-      "logitDelta": 0.5605,
+      "logitDelta": 0.5628,
       "power": 1,
       "trials": 400
     },
@@ -860,7 +860,7 @@
       "tau": 12,
       "sigmaP": 1,
       "sigmaS": 0,
-      "logitDelta": 0.6073,
+      "logitDelta": 0.6094,
       "power": 1,
       "trials": 400
     },
@@ -869,7 +869,7 @@
       "tau": 12,
       "sigmaP": 1,
       "sigmaS": 0.5,
-      "logitDelta": 0.6073,
+      "logitDelta": 0.6094,
       "power": 1,
       "trials": 400
     },
@@ -878,7 +878,7 @@
       "tau": 10,
       "sigmaP": 0,
       "sigmaS": 0,
-      "logitDelta": 0.4199,
+      "logitDelta": 0.4219,
       "power": 1,
       "trials": 400
     },
@@ -887,7 +887,7 @@
       "tau": 10,
       "sigmaP": 0,
       "sigmaS": 0.5,
-      "logitDelta": 0.4199,
+      "logitDelta": 0.4219,
       "power": 1,
       "trials": 400
     },
@@ -896,7 +896,7 @@
       "tau": 10,
       "sigmaP": 0.35,
       "sigmaS": 0,
-      "logitDelta": 0.4313,
+      "logitDelta": 0.4331,
       "power": 1,
       "trials": 400
     },
@@ -905,8 +905,8 @@
       "tau": 10,
       "sigmaP": 0.35,
       "sigmaS": 0.5,
-      "logitDelta": 0.4313,
-      "power": 0.9975,
+      "logitDelta": 0.4331,
+      "power": 1,
       "trials": 400
     },
     {
@@ -914,7 +914,7 @@
       "tau": 10,
       "sigmaP": 0.7,
       "sigmaS": 0,
-      "logitDelta": 0.4627,
+      "logitDelta": 0.4643,
       "power": 1,
       "trials": 400
     },
@@ -923,8 +923,8 @@
       "tau": 10,
       "sigmaP": 0.7,
       "sigmaS": 0.5,
-      "logitDelta": 0.4627,
-      "power": 0.9975,
+      "logitDelta": 0.4643,
+      "power": 1,
       "trials": 400
     },
     {
@@ -932,7 +932,7 @@
       "tau": 10,
       "sigmaP": 1,
       "sigmaS": 0,
-      "logitDelta": 0.5016,
+      "logitDelta": 0.5031,
       "power": 1,
       "trials": 400
     },
@@ -941,7 +941,7 @@
       "tau": 10,
       "sigmaP": 1,
       "sigmaS": 0.5,
-      "logitDelta": 0.5016,
+      "logitDelta": 0.5031,
       "power": 1,
       "trials": 400
     },
@@ -950,7 +950,7 @@
       "tau": 8,
       "sigmaP": 0,
       "sigmaS": 0,
-      "logitDelta": 0.3328,
+      "logitDelta": 0.3342,
       "power": 1,
       "trials": 400
     },
@@ -959,8 +959,8 @@
       "tau": 8,
       "sigmaP": 0,
       "sigmaS": 0.5,
-      "logitDelta": 0.3328,
-      "power": 0.9875,
+      "logitDelta": 0.3342,
+      "power": 0.99,
       "trials": 400
     },
     {
@@ -968,7 +968,7 @@
       "tau": 8,
       "sigmaP": 0.35,
       "sigmaS": 0,
-      "logitDelta": 0.3419,
+      "logitDelta": 0.3432,
       "power": 1,
       "trials": 400
     },
@@ -977,8 +977,8 @@
       "tau": 8,
       "sigmaP": 0.35,
       "sigmaS": 0.5,
-      "logitDelta": 0.3419,
-      "power": 0.98,
+      "logitDelta": 0.3432,
+      "power": 0.9825,
       "trials": 400
     },
     {
@@ -986,7 +986,7 @@
       "tau": 8,
       "sigmaP": 0.7,
       "sigmaS": 0,
-      "logitDelta": 0.3671,
+      "logitDelta": 0.3682,
       "power": 1,
       "trials": 400
     },
@@ -995,8 +995,8 @@
       "tau": 8,
       "sigmaP": 0.7,
       "sigmaS": 0.5,
-      "logitDelta": 0.3671,
-      "power": 0.9875,
+      "logitDelta": 0.3682,
+      "power": 0.9925,
       "trials": 400
     },
     {
@@ -1004,7 +1004,7 @@
       "tau": 8,
       "sigmaP": 1,
       "sigmaS": 0,
-      "logitDelta": 0.3982,
+      "logitDelta": 0.3993,
       "power": 1,
       "trials": 400
     },
@@ -1013,7 +1013,16 @@
       "tau": 8,
       "sigmaP": 1,
       "sigmaS": 0.5,
-      "logitDelta": 0.3982,
+      "logitDelta": 0.3993,
+      "power": 1,
+      "trials": 400
+    },
+    {
+      "n": 560,
+      "tau": 5,
+      "sigmaP": 0,
+      "sigmaS": 0,
+      "logitDelta": 0.2062,
       "power": 0.99,
       "trials": 400
     },
@@ -1021,18 +1030,9 @@
       "n": 560,
       "tau": 5,
       "sigmaP": 0,
-      "sigmaS": 0,
-      "logitDelta": 0.2056,
-      "power": 0.9625,
-      "trials": 400
-    },
-    {
-      "n": 560,
-      "tau": 5,
-      "sigmaP": 0,
       "sigmaS": 0.5,
-      "logitDelta": 0.2056,
-      "power": 0.675,
+      "logitDelta": 0.2062,
+      "power": 0.74,
       "trials": 400
     },
     {
@@ -1040,8 +1040,8 @@
       "tau": 5,
       "sigmaP": 0.35,
       "sigmaS": 0,
-      "logitDelta": 0.2113,
-      "power": 0.97,
+      "logitDelta": 0.2119,
+      "power": 0.985,
       "trials": 400
     },
     {
@@ -1049,8 +1049,8 @@
       "tau": 5,
       "sigmaP": 0.35,
       "sigmaS": 0.5,
-      "logitDelta": 0.2113,
-      "power": 0.7325,
+      "logitDelta": 0.2119,
+      "power": 0.7625,
       "trials": 400
     },
     {
@@ -1058,8 +1058,8 @@
       "tau": 5,
       "sigmaP": 0.7,
       "sigmaS": 0,
-      "logitDelta": 0.2271,
-      "power": 0.9625,
+      "logitDelta": 0.2277,
+      "power": 0.99,
       "trials": 400
     },
     {
@@ -1067,26 +1067,26 @@
       "tau": 5,
       "sigmaP": 0.7,
       "sigmaS": 0.5,
-      "logitDelta": 0.2271,
-      "power": 0.76,
-      "trials": 400
-    },
-    {
-      "n": 560,
-      "tau": 5,
-      "sigmaP": 1,
-      "sigmaS": 0,
-      "logitDelta": 0.2466,
-      "power": 0.9775,
-      "trials": 400
-    },
-    {
-      "n": 560,
-      "tau": 5,
-      "sigmaP": 1,
-      "sigmaS": 0.5,
-      "logitDelta": 0.2466,
+      "logitDelta": 0.2277,
       "power": 0.8175,
+      "trials": 400
+    },
+    {
+      "n": 560,
+      "tau": 5,
+      "sigmaP": 1,
+      "sigmaS": 0,
+      "logitDelta": 0.2471,
+      "power": 0.9875,
+      "trials": 400
+    },
+    {
+      "n": 560,
+      "tau": 5,
+      "sigmaP": 1,
+      "sigmaS": 0.5,
+      "logitDelta": 0.2471,
+      "power": 0.865,
       "trials": 400
     }
   ],

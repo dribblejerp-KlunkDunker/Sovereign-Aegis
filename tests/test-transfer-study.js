@@ -82,7 +82,7 @@ async function runTests() {
     t.assertClose(probit(0.975), 1.959963984540054, 1e-8, 'probit(0.975) matches z_{0.975} (Acklam bound ~1.15e-9 rel)');
     t.assertClose(probit(0.5), 0, 1e-12, 'probit(0.5) = 0');
 
-    const sizes = { T0: 20, T1: 19 };
+    const sizes = { T0: 24, T1: 24 };
     const delta = calibrateLogitEffect(15, sizes, 0.7);
     t.assert(delta > 0.2 && delta < 4, `calibrated logit effect for 15 pp is sane (${delta.toFixed(3)})`);
     // The calibration contract: expected probability-scale gain ≈ target, over the frozen items.
@@ -109,6 +109,18 @@ async function runTests() {
     const ids1 = new Set(f1.items.map((q) => q.id));
     const overlap = [...ids0].filter((id) => ids1.has(id));
     t.assertEqual(overlap.length, 0, 'T0 and T1 are disjoint');
+
+    // Full-skill coverage: every registered skill must be represented in BOTH forms
+    // (primary tag = first entry of tests, the stratum the builder deals by).
+    const allSkills = JSON.parse(readFileSync(join(ROOT, 'data', 'skills.json'), 'utf8')).map((s) => s.id);
+    const prim0 = new Set(f0.items.map((q) => q.tests[0]));
+    const prim1 = new Set(f1.items.map((q) => q.tests[0]));
+    const missing0 = allSkills.filter((s) => !prim0.has(s));
+    const missing1 = allSkills.filter((s) => !prim1.has(s));
+    t.assertEqual(missing0.length, 0, `T0 covers all 24 skill strata (missing: ${missing0.join(', ') || 'none'})`);
+    t.assertEqual(missing1.length, 0, `T1 covers all 24 skill strata (missing: ${missing1.join(', ') || 'none'})`);
+    t.assertEqual(f0.items.length, allSkills.length, 'T0 has exactly one item per skill stratum');
+    t.assertEqual(f1.items.length, allSkills.length, 'T1 has exactly one item per skill stratum');
 
     const appHeldOut = new Set(bank.filter((q) => q.heldOut === true).map((q) => q.id));
     t.assertEqual([...ids0].filter((id) => appHeldOut.has(id)).length, 0, 'no app transfer-probe items in T0');

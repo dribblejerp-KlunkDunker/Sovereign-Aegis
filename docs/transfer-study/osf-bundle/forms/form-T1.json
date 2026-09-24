@@ -3,99 +3,83 @@
   "seed": "aegis-transfer-study-v1.0-forms",
   "items": [
     {
-      "id": "q93",
-      "domain": "Propaganda Tactics",
-      "difficulty": 1330,
-      "claim": "A campaign describes its own supporters as \"concerned citizens\" and its opponents' identical activity as \"agitators bussed in from outside\".",
-      "options": [
-        "Ingroup Attribution Asymmetry",
-        "Astroturfing",
-        "Whataboutism (Tu Quoque)",
-        "Loaded / Emotive Language"
-      ],
-      "explanation": "The same behaviour receives opposite labels. There is an attribution asymmetry underneath, which makes that a defensible second choice — but what is being asked about is the vocabulary doing the work, and the question is which lever is being pulled on the reader.",
-      "tests": [
-        "skill.tactic.emotive-framing"
-      ]
-    },
-    {
-      "id": "q94",
-      "domain": "Propaganda Tactics",
-      "difficulty": 1350,
-      "claim": "\"The report says the risk is not significant. So there is no meaningful risk to residents.\"",
-      "options": [
-        "Straw Man",
-        "Hasty Generalisation",
-        "Equivocation (Semantic Shift)",
-        "Appeal to Ignorance (Argumentum ad Ignorantiam)"
-      ],
-      "explanation": "\"Significant\" moves from its statistical sense to its everyday one between the two sentences. A statistically non-significant result can describe a large and worrying effect measured imprecisely — the terms are not interchangeable, which is exactly what the argument relies on.",
-      "tests": [
-        "skill.tactic.equivocation"
-      ]
-    },
-    {
-      "id": "q9",
-      "domain": "Propaganda Tactics",
-      "difficulty": 1350,
-      "claim": "\"In a 10-minute televised debate, a candidate unleashes 47 distinct, rapid-fire half-truths and fabricated statistics, making real-time refutation impossible in the remaining time.\"",
-      "options": [
-        "Firehose of Falsehood",
-        "False Balance",
-        "Gish Gallop",
-        "Dead Cat Strategy"
-      ],
-      "explanation": "Overwhelming an opponent with an excessive volume of specious arguments that take far longer to disprove than to utter.",
-      "tests": [
-        "skill.tactic.flooding"
-      ]
-    },
-    {
-      "id": "q68",
-      "domain": "Cognitive Bias",
-      "difficulty": 1290,
-      "claim": "A profile explains a founder's success entirely through her discipline and vision, mentioning in passing that the family funded the first two years.",
-      "options": [
-        "Availability Heuristic (Ease of Recall)",
-        "Survivorship Bias",
-        "Dispositional Over-Attribution",
-        "Appeal to Authority"
-      ],
-      "explanation": "Traits are credited with an outcome that had substantial situational support. Survivorship bias is the tempting alternative and would apply to a claim about founders in general; this is about the causal account of one case.",
-      "tests": [
-        "skill.bias.attribution"
-      ]
-    },
-    {
-      "id": "q110",
+      "id": "q111",
       "domain": "DISARM Framework",
-      "difficulty": 1470,
-      "claim": "A small false claim is circulating in one niche forum. An agency issues a national press release naming and rebutting it.",
+      "difficulty": 1430,
+      "claim": "Before an expected influence operation, an outlet explains the TECHNIQUE likely to be used, without repeating any specific false claim.",
       "options": [
-        "Narrative Laundering",
+        "Prebunking (Inoculation)",
+        "Debunking",
         "Strategic Silence (Deliberate Non-Amplification)",
-        "Prebunking",
-        "The countermeasure amplifies what it targets"
+        "Counter-Messaging"
       ],
-      "explanation": "The rebuttal carries the claim to an audience that had never encountered it, and repetition increases familiarity, which increases believability. Proportionality is the whole skill — the right response to a contained claim is often containment.",
+      "explanation": "Teaching the manipulation pattern in advance confers resistance without giving the specific falsehood any airtime. That is its advantage over debunking, which necessarily repeats the claim in order to correct it.",
       "tests": [
         "skill.disarm.countermeasures"
       ]
     },
     {
-      "id": "q112",
-      "domain": "AI Media Forensics",
-      "difficulty": 1400,
-      "claim": "An image carries a C2PA manifest that parses cleanly. The viewer shows the capture device, edit history and signer.",
+      "id": "q147",
+      "domain": "SIFT Method",
+      "difficulty": 1250,
+      "claim": "A post makes your blood boil and the share button feels urgent. According to SIFT, why is the pause itself the step that most determines what happens next?",
       "options": [
-        "The manifest is parsed but not cryptographically verified",
-        "The image is proven edited",
-        "The image is proven authentic",
-        "The manifest proves the device model"
+        "Posts shared in anger are permanently demoted by algorithms",
+        "Anger impairs your ability to read captions accurately",
+        "Sharing is largely irreversible, and investigation only happens if you haven't already amplified",
+        "Pausing briefly lets the platform's community fact-check label appear on the post before you decide"
       ],
-      "explanation": "Parsing reads what a file claims about itself; verification requires checking the COSE signature against a trusted certificate chain and confirming the asset hashes still match. A well-formed manifest can be copied wholesale onto a different image.",
+      "explanation": "SIFT treats Stop as pivotal because amplification is the harm: once shared, the claim travels regardless of later correction. The other options invent platform behaviors or misread the skill.",
+      "tests": [
+        "skill.sift.stop"
+      ]
+    },
+    {
+      "id": "q104",
+      "domain": "DISARM Framework",
+      "difficulty": 1340,
+      "claim": "A fabricated claim is posted first to a small niche forum, then screenshotted into a mid-size channel as \"people are saying\", then covered by a national outlet as a controversy.",
+      "options": [
+        "Astroturfing",
+        "T0048: Flood the Information Environment / Epistemic Pollution",
+        "Narrative Laundering",
+        "Firehose of Falsehood"
+      ],
+      "explanation": "Each hop strips provenance and adds apparent credibility until the origin is unrecoverable. Flooding is a different mechanism — volume rather than laundering — and the tell here is the deliberate ladder of venues.",
+      "tests": [
+        "skill.disarm.seed-amplify"
+      ]
+    },
+    {
+      "id": "q196",
+      "domain": "AI Media Forensics",
+      "difficulty": 1350,
+      "claim": "A photo has no C2PA manifest. What does that establish?",
+      "options": [
+        "The image was edited after capture, which is exactly why its manifest is missing",
+        "The image was generated by AI",
+        "The image's signature was stripped deliberately",
+        "Nothing about tampering — a missing manifest is not evidence of manipulation"
+      ],
+      "explanation": "Most cameras and tools still emit no manifest, so absence is the norm, not a red flag — the skill's core rule that missing provenance proves nothing about manipulation.",
       "tests": [
         "skill.forensics.provenance"
+      ]
+    },
+    {
+      "id": "q16",
+      "domain": "Logical Fallacy",
+      "difficulty": 1200,
+      "claim": "\"Since the city started spraying organic mosquito repellent in July, local bakery sales have doubled. Clearly, mosquito repellent stimulates carbohydrate appetite.\"",
+      "options": [
+        "Equivocation",
+        "Circular Reasoning (Petitio Principii)",
+        "Genetic Fallacy",
+        "Post Hoc Ergo Propter Hoc"
+      ],
+      "explanation": "Confuses chronological sequence with causal relationship ('after this, therefore because of this').",
+      "tests": [
+        "skill.fallacy.scope"
       ]
     },
     {
@@ -115,19 +99,85 @@
       ]
     },
     {
-      "id": "q13",
-      "domain": "AI Media Forensics",
-      "difficulty": 1350,
-      "claim": "\"Inspecting a crowd photograph reveals that distant spectators' earlobes blend seamlessly into their collars, and glasses frames fade into cheek skin without hinges.\"",
+      "id": "q68",
+      "domain": "Cognitive Bias",
+      "difficulty": 1290,
+      "claim": "A profile explains a founder's success entirely through her discipline and vision, mentioning in passing that the family funded the first two years.",
       "options": [
-        "Sensor Bayer Filter Pattern",
-        "Boundary Smearing & Topology Hallucination",
-        "Chroma Subsampling",
-        "JPEG Block Boundary Artifact"
+        "Availability Heuristic (Ease of Recall)",
+        "Survivorship Bias",
+        "Dispositional Over-Attribution",
+        "Appeal to Authority"
       ],
-      "explanation": "Generative diffusion models struggle with fine semantic topological continuity around complex accessory boundaries.",
+      "explanation": "Traits are credited with an outcome that had substantial situational support. Survivorship bias is the tempting alternative and would apply to a claim about founders in general; this is about the causal account of one case.",
       "tests": [
-        "skill.forensics.read-measurements"
+        "skill.bias.attribution"
+      ]
+    },
+    {
+      "id": "q155",
+      "domain": "SIFT Method",
+      "difficulty": 1260,
+      "claim": "A dramatic screenshot of a news headline is circulating. What does the SIFT Find Better Coverage step say about the screenshot itself?",
+      "options": [
+        "Reply to the sharer asking where they got it",
+        "Reverse-image search the screenshot to find its first posting",
+        "Zoom in closely to check whether the headline font matches the outlet's usual typography",
+        "Leave the screenshot: search for the story and see how other sources report it"
+      ],
+      "explanation": "Find means consulting independent coverage of the underlying story, not forensic work on the artifact. Font inspection and reverse-image search are useful but belong to other verification toolkits, not this step.",
+      "tests": [
+        "skill.sift.find-coverage"
+      ]
+    },
+    {
+      "id": "q103",
+      "domain": "DISARM Framework",
+      "difficulty": 1370,
+      "claim": "Personas are built with two years of backdated ordinary posts — recipes, sport, holiday photographs — before ever mentioning politics.",
+      "options": [
+        "Coordinated Inauthentic Behaviour",
+        "T0001: Target Profiling",
+        "Astroturfing",
+        "T0004: Establish Inauthentic Assets / Spoofing"
+      ],
+      "explanation": "Legend-building is asset preparation; the mundane history exists to defeat exactly the account-age and content-mix checks a reviewer would run. It becomes a deployed astroturf campaign only once those assets are used to simulate a movement.",
+      "tests": [
+        "skill.disarm.plan-prepare",
+        "skill.tactic.astroturfing"
+      ]
+    },
+    {
+      "id": "q21",
+      "domain": "Logical Fallacy",
+      "difficulty": 1450,
+      "claim": "\"If it is raining, the street is wet. The street is wet. Therefore, it is raining.\"",
+      "options": [
+        "Affirming the Consequent (Formal Fallacy)",
+        "Undistributed Middle",
+        "Denying the Antecedent",
+        "Modus Ponens"
+      ],
+      "explanation": "A formal deductive error: the street could be wet from a fire hydrant, street sweeper, or melting snow.",
+      "tests": [
+        "skill.fallacy.formal-vs-informal",
+        "skill.fallacy.structure"
+      ]
+    },
+    {
+      "id": "q182",
+      "domain": "Propaganda Tactics",
+      "difficulty": 1350,
+      "claim": "In a comment thread, one side posts forty links in ten minutes, each with a one-line slogan. Replies citing sources are buried. What tactic is this?",
+      "options": [
+        "Flooding the channel with volume",
+        "Loaded language",
+        "Astroturfing the thread",
+        "False balance between the two sides of the thread"
+      ],
+      "explanation": "The goal is not persuasion by any single argument but overwhelming the channel so refutation cost exceeds assertion cost and signal is buried — flooding, with Gish-gallop rhythm at thread scale.",
+      "tests": [
+        "skill.tactic.flooding"
       ]
     },
     {
@@ -164,36 +214,19 @@
       ]
     },
     {
-      "id": "q16",
-      "domain": "Logical Fallacy",
-      "difficulty": 1200,
-      "claim": "\"Since the city started spraying organic mosquito repellent in July, local bakery sales have doubled. Clearly, mosquito repellent stimulates carbohydrate appetite.\"",
+      "id": "q13",
+      "domain": "AI Media Forensics",
+      "difficulty": 1350,
+      "claim": "\"Inspecting a crowd photograph reveals that distant spectators' earlobes blend seamlessly into their collars, and glasses frames fade into cheek skin without hinges.\"",
       "options": [
-        "Equivocation",
-        "Circular Reasoning (Petitio Principii)",
-        "Genetic Fallacy",
-        "Post Hoc Ergo Propter Hoc"
+        "Sensor Bayer Filter Pattern",
+        "Boundary Smearing & Topology Hallucination",
+        "Chroma Subsampling",
+        "JPEG Block Boundary Artifact"
       ],
-      "explanation": "Confuses chronological sequence with causal relationship ('after this, therefore because of this').",
+      "explanation": "Generative diffusion models struggle with fine semantic topological continuity around complex accessory boundaries.",
       "tests": [
-        "skill.fallacy.scope"
-      ]
-    },
-    {
-      "id": "q21",
-      "domain": "Logical Fallacy",
-      "difficulty": 1450,
-      "claim": "\"If it is raining, the street is wet. The street is wet. Therefore, it is raining.\"",
-      "options": [
-        "Affirming the Consequent (Formal Fallacy)",
-        "Undistributed Middle",
-        "Denying the Antecedent",
-        "Modus Ponens"
-      ],
-      "explanation": "A formal deductive error: the street could be wet from a fire hydrant, street sweeper, or melting snow.",
-      "tests": [
-        "skill.fallacy.formal-vs-informal",
-        "skill.fallacy.structure"
+        "skill.forensics.read-measurements"
       ]
     },
     {
@@ -213,36 +246,19 @@
       ]
     },
     {
-      "id": "q62",
-      "domain": "Cognitive Bias",
-      "difficulty": 1250,
-      "claim": "A menu lists a $180 tasting option at the top. Sales of the $95 option rise sharply, although it did not change.",
+      "id": "q156",
+      "domain": "SIFT Method",
+      "difficulty": 1330,
+      "claim": "A politician is quoted saying something shocking. Before reacting, what does SIFT's Trace step require?",
       "options": [
-        "Appeal to Nature",
-        "Anchoring Effect",
-        "Argumentum ad Populum (Bandwagon)",
-        "Framing Effect"
+        "Finding how many outlets repeated the quote",
+        "Finding the original speech or transcript and checking what changed between it and the quote",
+        "Asking a fact-checker whether the politician is generally trustworthy",
+        "Checking the politician's party affiliation, voting record, and history of controversial statements"
       ],
-      "explanation": "The expensive item may sell rarely and still earn its place by re-scaling every other price. Nothing about the $95 dish changed — only the reference point it is judged against.",
+      "explanation": "Trace follows the claim upstream to its original context and notes mutations en route. Track record and repetition volume are context, not the trace itself.",
       "tests": [
-        "skill.bias.anchoring"
-      ]
-    },
-    {
-      "id": "q103",
-      "domain": "DISARM Framework",
-      "difficulty": 1370,
-      "claim": "Personas are built with two years of backdated ordinary posts — recipes, sport, holiday photographs — before ever mentioning politics.",
-      "options": [
-        "Coordinated Inauthentic Behaviour",
-        "T0001: Target Profiling",
-        "Astroturfing",
-        "T0004: Establish Inauthentic Assets / Spoofing"
-      ],
-      "explanation": "Legend-building is asset preparation; the mundane history exists to defeat exactly the account-age and content-mix checks a reviewer would run. It becomes a deployed astroturf campaign only once those assets are used to simulate a movement.",
-      "tests": [
-        "skill.disarm.plan-prepare",
-        "skill.tactic.astroturfing"
+        "skill.sift.trace-origin"
       ]
     },
     {
@@ -262,6 +278,22 @@
       ]
     },
     {
+      "id": "q94",
+      "domain": "Propaganda Tactics",
+      "difficulty": 1350,
+      "claim": "\"The report says the risk is not significant. So there is no meaningful risk to residents.\"",
+      "options": [
+        "Straw Man",
+        "Hasty Generalisation",
+        "Equivocation (Semantic Shift)",
+        "Appeal to Ignorance (Argumentum ad Ignorantiam)"
+      ],
+      "explanation": "\"Significant\" moves from its statistical sense to its everyday one between the two sentences. A statistically non-significant result can describe a large and worrying effect measured imprecisely — the terms are not interchangeable, which is exactly what the argument relies on.",
+      "tests": [
+        "skill.tactic.equivocation"
+      ]
+    },
+    {
       "id": "q38",
       "domain": "Logical Fallacy",
       "difficulty": 1170,
@@ -278,19 +310,67 @@
       ]
     },
     {
-      "id": "q104",
-      "domain": "DISARM Framework",
-      "difficulty": 1340,
-      "claim": "A fabricated claim is posted first to a small niche forum, then screenshotted into a mid-size channel as \"people are saying\", then covered by a national outlet as a controversy.",
+      "id": "q186",
+      "domain": "Propaganda Tactics",
+      "difficulty": 1330,
+      "claim": "\"The regime's thugs shattered the peaceful protest,\" versus \"Officers responded to the unruly mob.\" Same event. What device is at work?",
       "options": [
-        "Astroturfing",
-        "T0048: Flood the Information Environment / Epistemic Pollution",
-        "Narrative Laundering",
-        "Firehose of Falsehood"
+        "Loaded language importing opposing conclusions",
+        "False balance between the two competing narratives of the event",
+        "Flooding with adjectives",
+        "Equivocation on 'protest'"
       ],
-      "explanation": "Each hop strips provenance and adds apparent credibility until the origin is unrecoverable. Flooding is a different mechanism — volume rather than laundering — and the tell here is the deliberate ladder of venues.",
+      "explanation": "Each description's word choice (thugs/shattered vs unruly/mob) imports a verdict about who is legitimate — emotive framing doing the argument's work before any evidence is offered.",
       "tests": [
-        "skill.disarm.seed-amplify"
+        "skill.tactic.emotive-framing"
+      ]
+    },
+    {
+      "id": "q151",
+      "domain": "SIFT Method",
+      "difficulty": 1280,
+      "claim": "An anonymous account breaks a story about a competitor company. Which combination best completes the SIFT Investigate step?",
+      "options": [
+        "The account's history, its funding or affiliation, and its record on past claims",
+        "Whether the story uses confident, specific language",
+        "Whether the company denies it and how quickly",
+        "The story's plausibility and whether the account has many followers and high engagement"
+      ],
+      "explanation": "SIFT asks what the source is — history, incentives, track record — before the claim is engaged. Follower counts, denial speed, and confident prose are surface cues, not reliability evidence.",
+      "tests": [
+        "skill.sift.investigate-source"
+      ]
+    },
+    {
+      "id": "q159",
+      "domain": "Logical Fallacy",
+      "difficulty": 1400,
+      "claim": "\"The policy must be working — after all, the reason it works is that policies like it always succeed.\"",
+      "options": [
+        "Begging the question",
+        "Post hoc reasoning",
+        "Appeal to Authority (Argumentum ad Verecundiam)",
+        "Red herring"
+      ],
+      "explanation": "The conclusion (it works) is smuggled into the premise (policies like it always succeed) — the argument goes nowhere except in a circle. That is question-begging, a structural defect, not a distraction or a causal error.",
+      "tests": [
+        "skill.fallacy.structure"
+      ]
+    },
+    {
+      "id": "q62",
+      "domain": "Cognitive Bias",
+      "difficulty": 1250,
+      "claim": "A menu lists a $180 tasting option at the top. Sales of the $95 option rise sharply, although it did not change.",
+      "options": [
+        "Appeal to Nature",
+        "Anchoring Effect",
+        "Argumentum ad Populum (Bandwagon)",
+        "Framing Effect"
+      ],
+      "explanation": "The expensive item may sell rarely and still earn its place by re-scaling every other price. Nothing about the $95 dish changed — only the reference point it is judged against.",
+      "tests": [
+        "skill.bias.anchoring"
       ]
     },
     {

@@ -13,8 +13,8 @@ study exists to test.
 
 | Artifact | Tool | Protocol § |
 |---|---|---|
-| Held-out forms `T0` (20 items) / `T1` (19), parallel by skill stratum, answer-stripped, option-permuted | `tools/transfer-study/build-forms.mjs` | §4 |
-| Practice pool (66 items) + `exclude-ids.json` (items that must not be practiced) | same | §4 |
+| Held-out forms `T0` (24 items) / `T1` (24), parallel by skill stratum, answer-stripped, option-permuted | `tools/transfer-study/build-forms.mjs` | §4 |
+| Practice pool (97 items) + `exclude-ids.json` (items that must not be practiced) | same | §4 |
 | SHA-256 manifest of every form artifact | same | §4/§9 |
 | Allocation sequence: 400 rows, 1:1 permuted blocks of 4, hashed | `tools/transfer-study/randomize.mjs` | §2/§3 |
 | Power simulation over τ × clustering × session-noise | `tools/transfer-study/power-sim.mjs` | §3 |

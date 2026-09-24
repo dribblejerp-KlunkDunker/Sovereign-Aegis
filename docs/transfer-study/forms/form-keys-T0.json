@@ -3,122 +3,146 @@
   "seed": "aegis-transfer-study-v1.0-forms",
   "key": [
     {
-      "itemId": "q79",
-      "position": 0,
-      "correctIndex": 0,
-      "correctOption": "Gish Gallop"
-    },
-    {
-      "itemId": "q32",
-      "position": 1,
-      "correctIndex": 3,
-      "correctOption": "Hasty Generalisation"
-    },
-    {
-      "itemId": "q111",
-      "position": 2,
-      "correctIndex": 0,
-      "correctOption": "Prebunking (Inoculation)"
-    },
-    {
-      "itemId": "q90",
-      "position": 3,
-      "correctIndex": 1,
-      "correctOption": "Loaded / Emotive Language"
-    },
-    {
-      "itemId": "q97",
-      "position": 4,
-      "correctIndex": 3,
-      "correctOption": "Equivocation (Semantic Shift)"
-    },
-    {
-      "itemId": "q100",
-      "position": 5,
-      "correctIndex": 1,
-      "correctOption": "T0004: Establish Inauthentic Assets / Spoofing"
-    },
-    {
-      "itemId": "q59",
-      "position": 6,
-      "correctIndex": 0,
-      "correctOption": "Anchoring Effect"
-    },
-    {
       "itemId": "q74",
-      "position": 7,
+      "position": 0,
       "correctIndex": 0,
       "correctOption": "Gambler's Fallacy"
     },
     {
-      "itemId": "q35",
-      "position": 8,
-      "correctIndex": 2,
-      "correctOption": "Appeal to Tradition"
-    },
-    {
-      "itemId": "q3",
-      "position": 9,
-      "correctIndex": 1,
-      "correctOption": "False Dilemma (Bifurcation)"
-    },
-    {
-      "itemId": "q47",
-      "position": 10,
-      "correctIndex": 1,
-      "correctOption": "Confirmation Bias"
-    },
-    {
-      "itemId": "q29",
-      "position": 11,
-      "correctIndex": 1,
-      "correctOption": "Straw Man"
-    },
-    {
-      "itemId": "q108",
-      "position": 12,
-      "correctIndex": 1,
-      "correctOption": "T0048: Flood the Information Environment / Epistemic Pollution"
-    },
-    {
-      "itemId": "q11",
-      "position": 13,
-      "correctIndex": 1,
-      "correctOption": "Corneal Specular Reflection Asymmetry"
-    },
-    {
-      "itemId": "q10",
-      "position": 14,
-      "correctIndex": 3,
-      "correctOption": "Astroturfing"
-    },
-    {
-      "itemId": "q65",
-      "position": 15,
-      "correctIndex": 0,
-      "correctOption": "Fundamental Attribution Error / Ingroup Favoritism"
-    },
-    {
-      "itemId": "q113",
-      "position": 16,
-      "correctIndex": 2,
-      "correctOption": "This is not evidence of tampering"
-    },
-    {
       "itemId": "q46",
-      "position": 17,
+      "position": 1,
       "correctIndex": 0,
       "correctOption": "Fallacy Fallacy (Argument from Fallacy)"
     },
     {
+      "itemId": "q11",
+      "position": 2,
+      "correctIndex": 1,
+      "correctOption": "Corneal Specular Reflection Asymmetry"
+    },
+    {
+      "itemId": "q100",
+      "position": 3,
+      "correctIndex": 1,
+      "correctOption": "T0004: Establish Inauthentic Assets / Spoofing"
+    },
+    {
+      "itemId": "q157",
+      "position": 4,
+      "correctIndex": 2,
+      "correctOption": "Locate the original dataset or report and compare its actual finding to the caption"
+    },
+    {
+      "itemId": "q35",
+      "position": 5,
+      "correctIndex": 2,
+      "correctOption": "Appeal to Tradition"
+    },
+    {
+      "itemId": "q150",
+      "position": 6,
+      "correctIndex": 2,
+      "correctOption": "Who funds this outlet and what has it published that checked out or didn't?"
+    },
+    {
+      "itemId": "q47",
+      "position": 7,
+      "correctIndex": 1,
+      "correctOption": "Confirmation Bias"
+    },
+    {
+      "itemId": "q153",
+      "position": 8,
+      "correctIndex": 2,
+      "correctOption": "Open new tabs and see what health agencies and independent outlets say about the claim"
+    },
+    {
+      "itemId": "q59",
+      "position": 9,
+      "correctIndex": 0,
+      "correctOption": "Anchoring Effect"
+    },
+    {
+      "itemId": "q90",
+      "position": 10,
+      "correctIndex": 1,
+      "correctOption": "Loaded / Emotive Language"
+    },
+    {
+      "itemId": "q108",
+      "position": 11,
+      "correctIndex": 1,
+      "correctOption": "T0048: Flood the Information Environment / Epistemic Pollution"
+    },
+    {
+      "itemId": "q3",
+      "position": 12,
+      "correctIndex": 1,
+      "correctOption": "False Dilemma (Bifurcation)"
+    },
+    {
       "itemId": "q85",
-      "position": 18,
+      "position": 13,
       "correctIndex": 1,
       "correctOption": "False Balance (Bothsidesism)"
     },
     {
-      "itemId": "q53",
+      "itemId": "q192",
+      "position": 14,
+      "correctIndex": 3,
+      "correctOption": "Amplifying the narrative by feeding a censorship story"
+    },
+    {
+      "itemId": "q113",
+      "position": 15,
+      "correctIndex": 2,
+      "correctOption": "This is not evidence of tampering"
+    },
+    {
+      "itemId": "q29",
+      "position": 16,
+      "correctIndex": 1,
+      "correctOption": "Straw Man"
+    },
+    {
+      "itemId": "q65",
+      "position": 17,
+      "correctIndex": 0,
+      "correctOption": "Fundamental Attribution Error / Ingroup Favoritism"
+    },
+    {
+      "itemId": "q10",
+      "position": 18,
+      "correctIndex": 3,
+      "correctOption": "Astroturfing"
+    },
+    {
+      "itemId": "q79",
       "position": 19,
+      "correctIndex": 0,
+      "correctOption": "Gish Gallop"
+    },
+    {
+      "itemId": "q146",
+      "position": 20,
+      "correctIndex": 3,
+      "correctOption": "Pause and notice the urgency pull before doing anything else"
+    },
+    {
+      "itemId": "q32",
+      "position": 21,
+      "correctIndex": 3,
+      "correctOption": "Hasty Generalisation"
+    },
+    {
+      "itemId": "q97",
+      "position": 22,
+      "correctIndex": 3,
+      "correctOption": "Equivocation (Semantic Shift)"
+    },
+    {
+      "itemId": "q53",
+      "position": 23,
       "correctIndex": 1,
       "correctOption": "Availability Heuristic"
     }

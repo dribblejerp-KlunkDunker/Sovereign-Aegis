@@ -2629,5 +2629,725 @@
       "skill.fallacy.structure"
     ],
     "heldOut": true
+  },
+  {
+    "id": "q146",
+    "domain": "SIFT Method",
+    "difficulty": 1150,
+    "claim": "A friend sends you a video captioned \"They don't want you to see this!\" Your hands are already typing a reply. What is the SIFT-correct first move?",
+    "options": [
+      "Pause and notice the urgency pull before doing anything else",
+      "Forward it to a group chat and ask whether anyone there thinks it looks fake",
+      "Watch the video again frame by frame for editing artifacts",
+      "Quote-tweet it with a question mark to test the reaction"
+    ],
+    "correctIndex": 0,
+    "explanation": "STOP is the first SIFT move: noticing the emotional hook and pausing precedes every investigation step. Sharing to test reactions amplifies the claim; frame analysis skips the pause.",
+    "tests": [
+      "skill.sift.stop"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "q147",
+    "domain": "SIFT Method",
+    "difficulty": 1250,
+    "claim": "A post makes your blood boil and the share button feels urgent. According to SIFT, why is the pause itself the step that most determines what happens next?",
+    "options": [
+      "Sharing is largely irreversible, and investigation only happens if you haven't already amplified",
+      "Anger impairs your ability to read captions accurately",
+      "Pausing briefly lets the platform's community fact-check label appear on the post before you decide",
+      "Posts shared in anger are permanently demoted by algorithms"
+    ],
+    "correctIndex": 0,
+    "explanation": "SIFT treats Stop as pivotal because amplification is the harm: once shared, the claim travels regardless of later correction. The other options invent platform behaviors or misread the skill.",
+    "tests": [
+      "skill.sift.stop"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "q148",
+    "domain": "SIFT Method",
+    "difficulty": 1300,
+    "claim": "You feel a strong urge to repost a alarming statistic about crime rising in your city. Which action best fulfills the SIFT Stop step rather than a later step?",
+    "options": [
+      "Naming the emotion the claim triggered and deciding not to act on it yet",
+      "Searching the city's open crime data portal immediately for the statistic being cited",
+      "Checking who first published the statistic",
+      "Looking for a second news outlet reporting the same number"
+    ],
+    "correctIndex": 0,
+    "explanation": "Stop is the metacognitive moment: recognizing the emotional pull and declining to act on it immediately. The other three are Investigate the Source, Find, and Trace — later steps.",
+    "tests": [
+      "skill.sift.stop"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "q149",
+    "domain": "SIFT Method",
+    "difficulty": 1350,
+    "claim": "A claim arrives in a slick newsletter you have never heard of, \"The Civic Ledger.\" Which SIFT step applies, and what does it actually require?",
+    "options": [
+      "Investigate the Source: establish what the outlet is, who funds it, and its track record",
+      "Investigate the Source: read the newsletter's own About page and accept what it says",
+      "Stop: refuse to read any newsletter you have never heard of",
+      "Find Better Coverage: locate two other outlets citing The Civic Ledger, which would show its reach if not its accuracy"
+    ],
+    "correctIndex": 0,
+    "explanation": "Investigate the Source means independent knowledge of the source — funding, track record, reputation — not trusting its self-description. Reading the About page is the classic failure mode.",
+    "tests": [
+      "skill.sift.investigate-source"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "q150",
+    "domain": "SIFT Method",
+    "difficulty": 1200,
+    "claim": "Before evaluating an exposé from \"Health Freedom Daily,\" which question belongs to SIFT's Investigate step?",
+    "options": [
+      "Who funds this outlet and what has it published that checked out or didn't?",
+      "Is the exposé's central claim emotionally persuasive enough that readers will finish it?",
+      "How many shares and comments does the exposé have?",
+      "Does the exposé cite an official-sounding agency?"
+    ],
+    "correctIndex": 0,
+    "explanation": "SIFT's source investigation is about funding and track record — provenance and reliability. Popularity, emotional pull, and official-sounding citations are exactly the cues the step tells you to look past.",
+    "tests": [
+      "skill.sift.investigate-source"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "q151",
+    "domain": "SIFT Method",
+    "difficulty": 1280,
+    "claim": "An anonymous account breaks a story about a competitor company. Which combination best completes the SIFT Investigate step?",
+    "options": [
+      "The account's history, its funding or affiliation, and its record on past claims",
+      "The story's plausibility and whether the account has many followers and high engagement",
+      "Whether the company denies it and how quickly",
+      "Whether the story uses confident, specific language"
+    ],
+    "correctIndex": 0,
+    "explanation": "SIFT asks what the source is — history, incentives, track record — before the claim is engaged. Follower counts, denial speed, and confident prose are surface cues, not reliability evidence.",
+    "tests": [
+      "skill.sift.investigate-source"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "q153",
+    "domain": "SIFT Method",
+    "difficulty": 1220,
+    "claim": "A video's caption insists a doctor said vaccines cause autism. What is SIFT's Find Better Coverage move here?",
+    "options": [
+      "Open new tabs and see what health agencies and independent outlets say about the claim",
+      "Watch several more videos from the same channel to check whether its claims are internally consistent",
+      "Read the video's description for cited papers",
+      "Ask the uploader for their sources in the comments"
+    ],
+    "correctIndex": 0,
+    "explanation": "Find Better Coverage is lateral reading: leave the page, consult better-placed sources on the same claim. Staying within the uploader's ecosystem or their own citations is vertical reading.",
+    "tests": [
+      "skill.sift.find-coverage"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "q154",
+    "domain": "SIFT Method",
+    "difficulty": 1300,
+    "claim": "You find one obscure blog claiming a city banned gasoline cars overnight. Which behavior is the SIFT Find step, correctly done?",
+    "options": [
+      "Searching whether any reliable outlet or the city itself reports such a decision",
+      "Reading the blog's full argument carefully from start to finish before judging it",
+      "Checking whether the blog allows comments",
+      "Searching for other people who shared the blog's claim"
+    ],
+    "correctIndex": 0,
+    "explanation": "The move is toward better-placed coverage: does the city say this, do reliable outlets? Reading deeper into the source, engagement metrics, and echo prevalence are all failures of the step.",
+    "tests": [
+      "skill.sift.find-coverage"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "q155",
+    "domain": "SIFT Method",
+    "difficulty": 1260,
+    "claim": "A dramatic screenshot of a news headline is circulating. What does the SIFT Find Better Coverage step say about the screenshot itself?",
+    "options": [
+      "Leave the screenshot: search for the story and see how other sources report it",
+      "Zoom in closely to check whether the headline font matches the outlet's usual typography",
+      "Reverse-image search the screenshot to find its first posting",
+      "Reply to the sharer asking where they got it"
+    ],
+    "correctIndex": 0,
+    "explanation": "Find means consulting independent coverage of the underlying story, not forensic work on the artifact. Font inspection and reverse-image search are useful but belong to other verification toolkits, not this step.",
+    "tests": [
+      "skill.sift.find-coverage"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "q156",
+    "domain": "SIFT Method",
+    "difficulty": 1330,
+    "claim": "A politician is quoted saying something shocking. Before reacting, what does SIFT's Trace step require?",
+    "options": [
+      "Finding the original speech or transcript and checking what changed between it and the quote",
+      "Checking the politician's party affiliation, voting record, and history of controversial statements",
+      "Finding how many outlets repeated the quote",
+      "Asking a fact-checker whether the politician is generally trustworthy"
+    ],
+    "correctIndex": 0,
+    "explanation": "Trace follows the claim upstream to its original context and notes mutations en route. Track record and repetition volume are context, not the trace itself.",
+    "tests": [
+      "skill.sift.trace-origin"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "q157",
+    "domain": "SIFT Method",
+    "difficulty": 1240,
+    "claim": "A statistic travels with the caption \"crime doubled under the current mayor.\" What is the SIFT Trace move for this number?",
+    "options": [
+      "Locate the original dataset or report and compare its actual finding to the caption",
+      "Search for other posts using the same caption to see how widely it has already traveled",
+      "Check whether the poster has shared crime stories before",
+      "Find a criminologist's general opinion of crime statistics"
+    ],
+    "correctIndex": 0,
+    "explanation": "Tracing means reaching the primary source — the dataset or report — and diffing what it says against what the caption says. Echoes, poster history, and generic expert opinion do not recover the original context.",
+    "tests": [
+      "skill.sift.trace-origin"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "q158",
+    "domain": "SIFT Method",
+    "difficulty": 1350,
+    "claim": "An image of a flooded street is captioned as being from this week's storm. Which sequence is the SIFT Trace step done thoroughly?",
+    "options": [
+      "Reverse-image search to the earliest appearance, then establish the original date, place, and event",
+      "Check the image's resolution and whether it looks like it was shot by a professional photographer on scene",
+      "Look for other flooded-street images from this week to compare",
+      "Ask the original poster when they took the photo"
+    ],
+    "correctIndex": 0,
+    "explanation": "Tracing an image means finding its earliest publication and recovering original context — date, place, event — and noticing what the recaption changed. Image quality and comparison sets are not the trace.",
+    "tests": [
+      "skill.sift.trace-origin"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "q159",
+    "domain": "Logical Fallacy",
+    "difficulty": 1400,
+    "claim": "\"The policy must be working — after all, the reason it works is that policies like it always succeed.\"",
+    "options": [
+      "Begging the question",
+      "Post hoc reasoning",
+      "Appeal to Authority (Argumentum ad Verecundiam)",
+      "Red herring"
+    ],
+    "correctIndex": 0,
+    "explanation": "The conclusion (it works) is smuggled into the premise (policies like it always succeed) — the argument goes nowhere except in a circle. That is question-begging, a structural defect, not a distraction or a causal error.",
+    "tests": [
+      "skill.fallacy.structure"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "q160",
+    "domain": "Logical Fallacy",
+    "difficulty": 1450,
+    "claim": "Survey: \"Have you stopped ignoring the safety reports your department filed?\" — an inspector demands an answer as proof of negligence.",
+    "options": [
+      "Complex question",
+      "Hasty generalisation",
+      "Straw man",
+      "Appeal to tradition"
+    ],
+    "correctIndex": 0,
+    "explanation": "The question presupposes the conclusion (that reports were ignored) inside its phrasing, so any direct answer concedes it. This loaded structure is the classic complex question.",
+    "tests": [
+      "skill.fallacy.structure"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "q161",
+    "domain": "Logical Fallacy",
+    "difficulty": 1500,
+    "claim": "\"If the new thermostat is installed, energy bills will drop. Bills dropped last quarter, so the new thermostat must be installed.\"",
+    "options": [
+      "Affirming the consequent",
+      "Denying the Antecedent (Inverse Error)",
+      "Slippery slope",
+      "Texas sharpshooter"
+    ],
+    "correctIndex": 0,
+    "explanation": "The form is: if P then Q; Q; therefore P. Observing the consequent (bills dropped) does not license the antecedent (thermostat installed) — warm weather could also lower bills. This is affirming the consequent, a formal fallacy.",
+    "tests": [
+      "skill.fallacy.structure"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "q163",
+    "domain": "Logical Fallacy",
+    "difficulty": 1250,
+    "claim": "\"Of course Senator Ortega's tax study is wrong — she wrote it while under investigation, so nothing she touches can be trusted.\"",
+    "options": [
+      "Ad hominem (circumstantial)",
+      "Genetic fallacy only in origin, not circumstantial",
+      "Tu quoque",
+      "False balance"
+    ],
+    "correctIndex": 0,
+    "explanation": "The study is dismissed via the author's situation rather than its data or method — the circumstantial ad hominem. Tu quoque would require pointing at her own hypocrisy; the genetic fallacy label alone misses the circumstantial mechanism the skill targets.",
+    "tests": [
+      "skill.fallacy.relevance"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "q164",
+    "domain": "Logical Fallacy",
+    "difficulty": 1300,
+    "claim": "\"How can you lecture anyone about recycling when you flew to a conference last year?\"",
+    "options": [
+      "Tu quoque",
+      "Straw man",
+      "Red herring",
+      "Composition"
+    ],
+    "correctIndex": 0,
+    "explanation": "The argument dismisses the recycling case by pointing at the arguer's own inconsistent behavior — you do it too. That is tu quoque: a relevance fallacy that substitutes the arguer's conduct for the argument.",
+    "tests": [
+      "skill.fallacy.relevance"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "q165",
+    "domain": "Logical Fallacy",
+    "difficulty": 1270,
+    "claim": "\"My grandfather smoked a pack a day and lived to 94, so the scare studies are overblown.\"",
+    "options": [
+      "Anecdotal evidence",
+      "Survivorship bias as a separate mechanism from anecdote",
+      "Base-rate neglect",
+      "Appeal to tradition"
+    ],
+    "correctIndex": 0,
+    "explanation": "A single personal case is offered against aggregate evidence — the anecdotal-evidence fallacy, a scope error. Survivorship and base-rate are related biases, but the argument's surface move is the one-case-against-many substitution.",
+    "tests": [
+      "skill.fallacy.scope"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "q166",
+    "domain": "Logical Fallacy",
+    "difficulty": 1330,
+    "claim": "\"Every park in the city that installed new lights saw fewer complaints afterwards — so new lights cut complaints.\"",
+    "options": [
+      "Post hoc reasoning",
+      "Hasty generalisation",
+      "Texas sharpshooter",
+      "Division"
+    ],
+    "correctIndex": 0,
+    "explanation": "Sequence is read as causation: lights first, fewer complaints after, therefore lights caused it. With no control for other changes, this is post hoc. The sample is citywide, so it is neither small nor cherry-picked from a larger pool.",
+    "tests": [
+      "skill.fallacy.scope"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "q167",
+    "domain": "Logical Fallacy",
+    "difficulty": 1360,
+    "claim": "\"Dr. Lin, who led the WHO's air-quality panel, says the standard is outdated. But Dr. Boone, a sports physiologist, disagrees — so the evidence is split.\"",
+    "options": [
+      "False authority",
+      "False balance",
+      "Hasty generalisation",
+      "Genetic fallacy"
+    ],
+    "correctIndex": 0,
+    "explanation": "The weight is manufactured by parading a speaker without relevant expertise as a counterweight — false authority. False balance describes news framing of a two-sided debate; here the specific defect is the substituted credential.",
+    "tests": [
+      "skill.fallacy.appeals"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "q169",
+    "domain": "Logical Fallacy",
+    "difficulty": 1310,
+    "claim": "\"No one has ever proved these supplements are harmful, so I'll keep recommending them to patients.\"",
+    "options": [
+      "Appeal to ignorance",
+      "Appeal to authority",
+      "Base-rate neglect",
+      "Begging the question"
+    ],
+    "correctIndex": 0,
+    "explanation": "Absence of disproof is treated as proof of safety — the appeal to ignorance. The claim's advocate even wears an authority role, but the inferential defect is the absence-to-conclusion move.",
+    "tests": [
+      "skill.fallacy.appeals"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "q170",
+    "domain": "Cognitive Bias",
+    "difficulty": 1380,
+    "claim": "After reading three articles about shark attacks, a swimmer rates shark attacks as a top-five cause of accidental death. What bias does this illustrate?",
+    "options": [
+      "Availability — judging frequency by ease of recall",
+      "Anchoring — clinging to the first number seen and under-adjusting from it afterwards",
+      "Confirmation bias — seeking supportive evidence",
+      "Hindsight bias — rewriting what was knowable"
+    ],
+    "correctIndex": 0,
+    "explanation": "Recent, vivid coverage makes shark attacks easy to bring to mind, and ease of recall is mistaken for frequency — the availability mechanism that high-volume coverage exploits.",
+    "tests": [
+      "skill.bias.availability"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "q172",
+    "domain": "Cognitive Bias",
+    "difficulty": 1360,
+    "claim": "A negotiator opens at $1,000 for a used laptop worth about $600, and the buyer feels $780 is a win. What bias shaped the buyer's judgment?",
+    "options": [
+      "Anchoring on the opening figure",
+      "Availability of cheap laptops",
+      "Confirmation bias about laptop value",
+      "Sunk-cost fallacy"
+    ],
+    "correctIndex": 0,
+    "explanation": "The first number in the negotiation disproportionally constrains the range the buyer considers reasonable — the anchoring effect, including how a stated frame constrains the answers considered.",
+    "tests": [
+      "skill.bias.anchoring"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "q174",
+    "domain": "Cognitive Bias",
+    "difficulty": 1390,
+    "claim": "A manager reads a study that vitamin D helps sleep, then bookmarks only the supportive studies and skims past two rigorous null results. What is this pattern?",
+    "options": [
+      "Confirmation bias in evidence selection and interpretation",
+      "Availability bias from recent reading",
+      "Attribution error — explaining the study authors' null results by their carelessness",
+      "Base-rate neglect"
+    ],
+    "correctIndex": 0,
+    "explanation": "Selective search and selective interpretation of evidence to fit a prior belief is confirmation bias — here operating in the manager's own research behavior, which the skill explicitly covers.",
+    "tests": [
+      "skill.bias.confirmation"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "q176",
+    "domain": "Cognitive Bias",
+    "difficulty": 1470,
+    "claim": "A colleague misses a deadline and you call him careless; you miss one the same week and explain the client kept changing the brief. What is this asymmetry?",
+    "options": [
+      "The fundamental attribution error",
+      "Self-serving attribution as a distinct mechanism",
+      "Ingroup favouritism",
+      "Hindsight bias"
+    ],
+    "correctIndex": 0,
+    "explanation": "Others' behavior is explained by disposition (careless), your own by circumstance (client changes) — the classic fundamental attribution error the skill names. The skill covers both halves; the pairing is its signature pattern.",
+    "tests": [
+      "skill.bias.attribution"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "q178",
+    "domain": "Cognitive Bias",
+    "difficulty": 1460,
+    "claim": "A startup has spent $2M building a product the market rejected. The board votes to spend $1M more to \"finish what we started\" rather than pivot. What error drives the vote?",
+    "options": [
+      "Sunk-cost reasoning",
+      "Anchoring on the $2M figure",
+      "Base-rate neglect",
+      "Overconfidence bias"
+    ],
+    "correctIndex": 0,
+    "explanation": "Past expenditure, unrecoverable either way, is used to justify further investment — the sunk-cost error the skill names. Anchoring would require the $2M to distort a numeric judgment; here it is the commitment logic that is defective.",
+    "tests": [
+      "skill.bias.probability"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "q180",
+    "domain": "Propaganda Tactics",
+    "difficulty": 1400,
+    "claim": "400 accounts created in the same week, all posting near-identical praise for a mayoral candidate, all listing the same out-of-state gym. What is this?",
+    "options": [
+      "Astroturfing with account-creation clustering",
+      "Organic grassroots support",
+      "Flooding the thread with copypasta and repeated slogans",
+      "Seed-stage information operation, pre-viral"
+    ],
+    "correctIndex": 0,
+    "explanation": "Manufactured grassroots appearance — creation clustering, near-identical phrasing, shared off-topic identity markers — is the astroturfing signature the skill trains. The campaign is already visible, so 'pre-viral' misreads it.",
+    "tests": [
+      "skill.tactic.astroturfing"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "q181",
+    "domain": "Propaganda Tactics",
+    "difficulty": 1470,
+    "claim": "A product's reviews surge overnight: dozens of five-star posts, each thanking \"the team at Driftwell\" in the same sentence structure, several from accounts whose only other activity is a different brand's review posted minutes earlier. What tactic is most strongly indicated?",
+    "options": [
+      "Astroturfing via synchronised inauthentic assets",
+      "Genuine word-of-mouth after a marketing push",
+      "Flooding of the review channel to bury the few critical reviews",
+      "Equivocation in the product's claims"
+    ],
+    "correctIndex": 0,
+    "explanation": "Creation and posting synchrony plus templated phrasing plus reused accounts across brands is the manufactured-grassroots pattern — inauthentic coordination dressed as customers. Flooding targets channels with volume; no semantic shift is present.",
+    "tests": [
+      "skill.tactic.astroturfing"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "q182",
+    "domain": "Propaganda Tactics",
+    "difficulty": 1350,
+    "claim": "In a comment thread, one side posts forty links in ten minutes, each with a one-line slogan. Replies citing sources are buried. What tactic is this?",
+    "options": [
+      "Flooding the channel with volume",
+      "Astroturfing the thread",
+      "False balance between the two sides of the thread",
+      "Loaded language"
+    ],
+    "correctIndex": 0,
+    "explanation": "The goal is not persuasion by any single argument but overwhelming the channel so refutation cost exceeds assertion cost and signal is buried — flooding, with Gish-gallop rhythm at thread scale.",
+    "tests": [
+      "skill.tactic.flooding"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "q184",
+    "domain": "Propaganda Tactics",
+    "difficulty": 1390,
+    "claim": "A segment on vaccine safety gives a virologist two minutes and a wellness influencer two minutes, framing the science as \"the debate continues.\" What tactic is this?",
+    "options": [
+      "False balance — presenting asymmetric evidence as a two-sided debate",
+      "Flooding the segment with voices",
+      "Astroturfing the audience with planted questioners and paid on-air reactions",
+      "Equivocation on 'science'"
+    ],
+    "correctIndex": 0,
+    "explanation": "Equal airtime for unequal expertise manufactures doubt by making consensus look contested — false balance, exactly the 'both sides' misrepresentation the skill targets. The segment is not flooding (few voices) nor semantic shift.",
+    "tests": [
+      "skill.tactic.false-balance"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "q186",
+    "domain": "Propaganda Tactics",
+    "difficulty": 1330,
+    "claim": "\"The regime's thugs shattered the peaceful protest,\" versus \"Officers responded to the unruly mob.\" Same event. What device is at work?",
+    "options": [
+      "Loaded language importing opposing conclusions",
+      "False balance between the two competing narratives of the event",
+      "Equivocation on 'protest'",
+      "Flooding with adjectives"
+    ],
+    "correctIndex": 0,
+    "explanation": "Each description's word choice (thugs/shattered vs unruly/mob) imports a verdict about who is legitimate — emotive framing doing the argument's work before any evidence is offered.",
+    "tests": [
+      "skill.tactic.emotive-framing"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "q187",
+    "domain": "Propaganda Tactics",
+    "difficulty": 1400,
+    "claim": "A fundraiser's page reads: \"Every hour you hesitate, another family loses their home. Will you stand with families — or look away?\" What is the framing doing?",
+    "options": [
+      "Constraining the choice set so declining feels like harming families",
+      "False balance between the option of donating and the option of not donating",
+      "Astroturfing urgency",
+      "Equivocation on 'family'"
+    ],
+    "correctIndex": 0,
+    "explanation": "The question's wording makes one response feel like the only decent one — framing that fuses donating with decency and anything else with looking away. That is the loaded-frame mechanism, not balance, coordination, or semantic shift.",
+    "tests": [
+      "skill.tactic.emotive-framing"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "q188",
+    "domain": "Propaganda Tactics",
+    "difficulty": 1450,
+    "claim": "\"Expensive energy is bad for families. This subsidy keeps energy cheap. Therefore the subsidy is good for families.\" Midway, 'cheap' shifts from low prices to low-quality supply. What is this failure?",
+    "options": [
+      "Equivocation — a term changing meaning across the argument",
+      "Begging the Question (Petitio Principii) on the subsidy's value",
+      "False balance",
+      "Composition"
+    ],
+    "correctIndex": 0,
+    "explanation": "The conclusion trades on 'cheap' meaning low-price in the premises and degraded-quality in the conclusion — a semantic shift the argument depends on, the definition of equivocation.",
+    "tests": [
+      "skill.tactic.equivocation"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "q190",
+    "domain": "DISARM Framework",
+    "difficulty": 1420,
+    "claim": "Analysts notice a new network of social accounts researching local election officials, building follower bases with benign pet content, and registering near-identical domain names. No influence content has been posted. Which DISARM stage fits?",
+    "options": [
+      "Plan and Prepare — target profiling and asset establishment",
+      "Seed — the accounts are seeding benign content",
+      "Amplify — the benign pet content is already being amplified across platforms",
+      "Measure Effectiveness — the follower count is the effect"
+    ],
+    "correctIndex": 0,
+    "explanation": "Target profiling, narrative development, and asset establishment before visible influence content are Plan/Prepare activity. Benign pet content is asset-building, not seeding of the influence narrative; nothing has been amplified yet.",
+    "tests": [
+      "skill.disarm.plan-prepare"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "q191",
+    "domain": "DISARM Framework",
+    "difficulty": 1480,
+    "claim": "A dormant network of 60 accounts suddenly publishes a shared narrative document across four platforms within two hours, each account posting a customized variant. Which DISARM TTPs are most directly indicated?",
+    "options": [
+      "Seed and Amplify — cross-platform seeding with synchronised variants",
+      "Plan and Prepare — document drafting is preparation",
+      "Countermeasure — the customized variants show adaptive response to earlier takedowns",
+      "Measure — the two-hour window is the measured effect"
+    ],
+    "correctIndex": 0,
+    "explanation": "Placing the narrative into the environment through inauthentic assets and spreading it across platforms is Seed plus Amplify. Preparation happened earlier; the variants are deployment, not adaptation to response.",
+    "tests": [
+      "skill.disarm.seed-amplify"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "q192",
+    "domain": "DISARM Framework",
+    "difficulty": 1390,
+    "claim": "A platform deletes 200 coordinated accounts, and the operator's next move is a post claiming \"they're censoring the truth — see for yourself.\" What did the countermeasure risk doing?",
+    "options": [
+      "Amplifying the narrative by feeding a censorship story",
+      "Failing to measure the campaign's reach before and after the takedown",
+      "Misclassifying Seed activity as Amplify",
+      "Nothing — takedowns carry no downside"
+    ],
+    "correctIndex": 0,
+    "explanation": "Visible takedowns can be converted into evidence of suppression, amplifying the very narrative they targeted — the proportionality and blowback awareness the countermeasure skill trains.",
+    "tests": [
+      "skill.disarm.countermeasures"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "q193",
+    "domain": "DISARM Framework",
+    "difficulty": 1440,
+    "claim": "A hoax about water contamination is circulating in one town, still small and local. Officials are deciding between a loud public rebuttal, quiet correction via local trusted channels, and platform reporting. Which choice is most proportionate to the stage?",
+    "options": [
+      "Quiet correction through local trusted channels, monitoring for spread",
+      "A press conference — early volume maximizes reach",
+      "National media appearances to get ahead of it",
+      "Ignore it entirely; small claims always die on their own without any response"
+    ],
+    "correctIndex": 0,
+    "explanation": "Match the response to the observed stage: a small, local claim is best met with local, proportionate correction while monitoring growth. Loud national response amplifies the claim; ignoring forfeits the window.",
+    "tests": [
+      "skill.disarm.countermeasures"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "q194",
+    "domain": "AI Media Forensics",
+    "difficulty": 1380,
+    "claim": "An ELA map shows bright patches across a photo's background. What is the correct reading?",
+    "options": [
+      "An indicator with innocent explanations that cannot by itself establish tampering",
+      "Proof that the background was digitally inserted in an editing program like Photoshop",
+      "Proof the image is a deepfake",
+      "A cryptographic attestation of the image's edits"
+    ],
+    "correctIndex": 0,
+    "explanation": "ELA highlights areas of differing recompression response, which arise innocently from texture and saturation as well as from edits. It is an indicator that raises questions, never a verdict — exactly what the skill trains.",
+    "tests": [
+      "skill.forensics.read-measurements"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "q196",
+    "domain": "AI Media Forensics",
+    "difficulty": 1350,
+    "claim": "A photo has no C2PA manifest. What does that establish?",
+    "options": [
+      "Nothing about tampering — a missing manifest is not evidence of manipulation",
+      "The image was edited after capture, which is exactly why its manifest is missing",
+      "The image was generated by AI",
+      "The image's signature was stripped deliberately"
+    ],
+    "correctIndex": 0,
+    "explanation": "Most cameras and tools still emit no manifest, so absence is the norm, not a red flag — the skill's core rule that missing provenance proves nothing about manipulation.",
+    "tests": [
+      "skill.forensics.provenance"
+    ],
+    "heldOut": false
+  },
+  {
+    "id": "q197",
+    "domain": "AI Media Forensics",
+    "difficulty": 1520,
+    "claim": "A viewer parses a photo's C2PA manifest successfully: it lists an editor application and a capture device. The viewer declares the image \"verified authentic.\" What is the correct assessment?",
+    "options": [
+      "Wrong — parsing a manifest is not verifying it; signatures must validate",
+      "Right — a readable manifest is sufficient proof of the capture device listed",
+      "Right — editor presence proves only innocent edits",
+      "Wrong — C2PA manifests never cover edited images"
+    ],
+    "correctIndex": 0,
+    "explanation": "The skill's central distinction: parsing a manifest only reads its claims; verification requires validating the cryptographic signatures across the credential chain. A readable manifest alone establishes nothing about authenticity.",
+    "tests": [
+      "skill.forensics.provenance"
+    ],
+    "heldOut": false
   }
 ]

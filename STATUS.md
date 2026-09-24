@@ -41,16 +41,19 @@ competency estimation). Full architecture and feature inventory: `PROJECT.md`.
 1. **Phase 4 — demonstrate transfer.** Protocol written
    (`docs/transfer-study-preregistration.md`); the study has not been run. The entire
    pre-enrollment machinery is now BUILT AND PINNED (2026-09-23, see
-   `docs/transfer-study/README.md`): hashed held-out forms (T0=20/T1=19, parallel
-   strata, app transfer-probes excluded), the 400-row hashed allocation sequence, the
-   §3-mandated power simulation (n=400 stands: ≥99.3% power at 15 pp in the pessimistic
-   corner; 5 pp honestly underpowered), and the frozen primary-analysis script
-   (participant cluster bootstrap, Wilson/Newcombe secondaries).
-   **FROZEN 2026-09-23**: review packet generated (39-item ground-truth worksheet,
-   hash recorded in `form-manifest.json → reviewPacket`) and the upload-ready OSF
-   bundle assembled (`docs/transfer-study/osf-bundle/`, 14 files, top-level
-   `MANIFEST.sha256` rooted at `8df2056506e1c336…`). The freeze commit anchors the
-   hashes; the remaining work is human-only: complete the ground-truth review, ethics
+   `docs/transfer-study/README.md`): hashed held-out forms (T0=24/T1=24, one item
+   per skill stratum across all 24 skills, app transfer-probes excluded), the 400-row
+   hashed allocation sequence, the §3-mandated power simulation (n=400 stands: ≥99%
+   power at 15 pp across the whole clustering range; 5 pp honestly underpowered at
+   ~74–87%), and the frozen primary-analysis script (participant cluster bootstrap,
+   Wilson/Newcombe secondaries).
+   **FROZEN 2026-09-23, REVISED SAME DAY**: the original 20/19 forms covered only 20
+   of 24 skill strata — the four SIFT strata had zero eligible items. 40 new held-out-
+   eligible items (q146–q185) were authored to widen coverage: forms are now 24/24
+   with every skill represented in both, the review packet is a 48-item worksheet,
+   and the OSF bundle was re-frozen under `MANIFEST.sha256` rooted at
+   `b632ee84d304b5d5…` (superseding `8df2056506e1c336…`). All hashes re-anchored; the
+   remaining work is human-only: complete the ground-truth review, ethics
    review, OSF registration, recruitment, sessions, and the real export → analyze run.
 2. **Honesty-audit findings on the game surfaces** — FIXED 2026-09-21:
    - "Pattern Recognition" now measures real arena attempts from the local attempt log

@@ -27,5 +27,5 @@ never patched in place — before preregistration and enrollment.
 have access to at least one external reference per domain stratum (the item's skillTags
 column names them).
 
-Forms covered: T0 (20 items), T1 (19 items) —
-39 rows in the worksheet.
+Forms covered: T0 (24 items), T1 (24 items) —
+48 rows in the worksheet.
