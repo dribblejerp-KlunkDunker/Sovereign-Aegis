@@ -94,7 +94,13 @@ that generation is long gone; HEAD `f49988c` (2026-09-20) was clean before this 
    decks), per-section masterclass review cards via `aegis:sift-cards` in `_mcNavigate`,
    generator owns the `card-arena-*` namespace. `test-retention-transfer.js` extended
    for the merge/purge/section-card behavior (280 assertions). Phase 2: DONE.
-2. **Phase 4 transfer study** — protocol written, not run. Both outcomes are worth
+2. **Phase 4 transfer study** — protocol written, not run. **FREEZE STATE (2026-09-23):**
+   the kit is frozen at the freeze commit: hashed forms + allocation + power simulation +
+   frozen analysis script, plus the review packet (39-item ground-truth worksheet) and
+   the upload-ready OSF bundle (`docs/transfer-study/osf-bundle/`, 14 files, hash-rooted
+   by its `MANIFEST.sha256`). Next human steps in order: complete + hash the ground-truth
+   review → ethics review → upload the bundle to OSF and record the DOI here → enroll by
+   drawing `allocation.csv` in order. Both outcomes are worth
    having; the app cannot claim "it trains" until this is measured.
 3. **Game-surface honesty findings** (audit of 2026-09-20) — **FIXED 2026-09-21**:
    - Pattern Recognition axis: now measured from the attempt log (`context: 'arena'`,
@@ -115,6 +121,16 @@ that generation is long gone; HEAD `f49988c` (2026-09-20) was clean before this 
      and `recordAttempt` reads the operator's actual claim. `evaluateCaseAnswer` also lost
      its `='sure'` default — an unstated level now fails closed with score 0. Pinned by
      Tier 4b of `tests/test-analyst-desk.js`.
+   - Phase 4 transfer study — PRE-ENROLLMENT KIT BUILT 2026-09-23 (the study itself
+     remains human-only: ethics, OSF registration, recruitment, sessions). New
+     `tools/transfer-study/`: deterministic form builder (hashed T0/T1/practice
+     partition from the arena bank, app heldOut probes excluded), permuted-block
+     allocation sequence (400 rows, hashed), §3 power simulation (calibrated
+     probability-scale effects; n=400 stands at ≥99.3% power for 15 pp), and the frozen
+     `analyze.mjs` (τ + seeded 10k participant cluster bootstrap; Wilson/Newcombe
+     verified against closed forms; CLI guarded for import). All pinned by the new
+     `tests/test-transfer-study.js` (40 assertions, in the gate; suite count now 46).
+     Operator workflow: `docs/transfer-study/README.md`.
 4. **Browser E2E in CI.** Add a workflow; report headless vs browser numbers
    separately (the §8 review's own wording, still open).
 5. **§8 hardening leftovers:** one-click legacy private-JWK rotation; move `index.html`'s

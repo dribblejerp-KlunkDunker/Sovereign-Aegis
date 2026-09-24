@@ -308,6 +308,24 @@ async function runTests() {
       }
     });
 
+    await harness.it('Requests the operator-selected model from settings, not a hardcoded one', async () => {
+      let capturedUrl = null;
+      VerdadEngine.fetchImpl = async (url) => {
+        capturedUrl = url;
+        return { ok: true, json: async () => ({ candidates: [{ content: { parts: [{ text: JSON.stringify({ veracityScore: 60 }) }] } }] }) };
+      };
+      try {
+        await VerdadEngine.analyzeClaim(claim, { apiKey: 'AIzaSy-test-key', mode: 'auto', model: 'gemini-1.5-pro' });
+        harness.assert(capturedUrl.includes('/models/gemini-1.5-pro:'), 'Selected model reaches the endpoint path');
+        await VerdadEngine.analyzeClaim(claim, { apiKey: 'AIzaSy-test-key', mode: 'auto', model: 'not-a-real-model' });
+        harness.assert(capturedUrl.includes('/models/gemini-2.0-flash:'), 'Unknown model falls back to the default, never interpolated raw');
+        await VerdadEngine.analyzeClaim(claim, { apiKey: 'AIzaSy-test-key', mode: 'auto' });
+        harness.assert(capturedUrl.includes('/models/gemini-2.0-flash:'), 'Missing model defaults to gemini-2.0-flash');
+      } finally {
+        VerdadEngine.fetchImpl = null;
+      }
+    });
+
     await harness.it('Neutralises markup smuggled through the live API response (prompt injection)', async () => {
       VerdadEngine.fetchImpl = async () => ({
         ok: true,

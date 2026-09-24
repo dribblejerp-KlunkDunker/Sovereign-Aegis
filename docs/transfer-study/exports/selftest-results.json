@@ -1,0 +1,60 @@
+{
+  "SYNTHETIC": "SELFTEST — NOT A STUDY RESULT",
+  "plantedTauPercentagePoints": 15,
+  "sizes": {
+    "T0": 20,
+    "T1": 19
+  },
+  "counts": {
+    "randomized": 400,
+    "primary": 400,
+    "byArm": {
+      "AEGIS": 200,
+      "CONTROL": 200
+    },
+    "attrition": {
+      "both": 400,
+      "baselineOnly": 0,
+      "postOnly": 0,
+      "neither": 0
+    },
+    "followUpRowsIgnored": 0
+  },
+  "primary": {
+    "meanChange": {
+      "AEGIS": 0.12789473684210517,
+      "CONTROL": 0.0029999999999999866
+    },
+    "tauPercentagePoints": 12.489473684210518,
+    "ci95PercentagePoints": [
+      9.70394736842106,
+      15.313157894736843
+    ],
+    "method": "participant cluster bootstrap, 10000 replicates, seed \"aegis-transfer-study-v1.0-analysis\""
+  },
+  "secondaryExploratory": {
+    "pooledWilson": {
+      "AEGIS.T0": {
+        "point": 0.585,
+        "lo": 0.5696562228594119,
+        "hi": 0.6001806717813388
+      },
+      "AEGIS.T1": {
+        "point": 0.7128947368421052,
+        "lo": 0.6983010664608614,
+        "hi": 0.7270584069861808
+      },
+      "CONTROL.T0": {
+        "point": 0.597,
+        "lo": 0.5817134458631222,
+        "hi": 0.6121004221386755
+      },
+      "CONTROL.T1": {
+        "point": 0.6,
+        "lo": 0.5843303363401607,
+        "hi": 0.6154676857981286
+      }
+    }
+  },
+  "missingData": "no imputation of the primary endpoint (§7); attrition reported above"
+}

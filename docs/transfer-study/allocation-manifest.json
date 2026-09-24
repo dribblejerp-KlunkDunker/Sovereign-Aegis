@@ -1,0 +1,13 @@
+{
+  "seed": "aegis-transfer-study-v1.0-allocation",
+  "blockSize": 4,
+  "enrollmentTarget": 400,
+  "arms": {
+    "AEGIS": 200,
+    "CONTROL": 200
+  },
+  "procedure": "permuted blocks of 4 (2 AEGIS / 2 CONTROL), block and within-block order from the predeclared seeded stream",
+  "sha256": "f7b2da6abf01ade2b5aed699ab54a549c9db6c7254a16a462aa44650d4bb5066",
+  "generatedAt": "2026-09-23T22:45:29.673Z",
+  "note": "Draw rows strictly in seq order at enrollment. Do not regenerate or reorder after outcome data are inspected."
+}

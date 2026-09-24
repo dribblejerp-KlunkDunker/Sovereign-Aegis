@@ -1,0 +1,151 @@
+{
+  "seed": "aegis-transfer-study-v1.0-forms",
+  "source": "data/arena_questions.json",
+  "eligibility": {
+    "considered": 145,
+    "eligible": 105,
+    "excluded": {
+      "appHeldOut": 40,
+      "malformed": 0
+    }
+  },
+  "counts": {
+    "T0": 20,
+    "T1": 19,
+    "practice": 66
+  },
+  "strata": [
+    {
+      "stratum": "skill.bias.anchoring",
+      "total": 6,
+      "t0": 1,
+      "t1": 1
+    },
+    {
+      "stratum": "skill.bias.attribution",
+      "total": 7,
+      "t0": 1,
+      "t1": 1
+    },
+    {
+      "stratum": "skill.bias.availability",
+      "total": 6,
+      "t0": 1,
+      "t1": 1
+    },
+    {
+      "stratum": "skill.bias.confirmation",
+      "total": 6,
+      "t0": 1,
+      "t1": 1
+    },
+    {
+      "stratum": "skill.bias.probability",
+      "total": 7,
+      "t0": 1,
+      "t1": 1
+    },
+    {
+      "stratum": "skill.disarm.countermeasures",
+      "total": 2,
+      "t0": 1,
+      "t1": 1
+    },
+    {
+      "stratum": "skill.disarm.plan-prepare",
+      "total": 5,
+      "t0": 1,
+      "t1": 1
+    },
+    {
+      "stratum": "skill.disarm.seed-amplify",
+      "total": 5,
+      "t0": 1,
+      "t1": 1
+    },
+    {
+      "stratum": "skill.fallacy.appeals",
+      "total": 6,
+      "t0": 1,
+      "t1": 1
+    },
+    {
+      "stratum": "skill.fallacy.formal-vs-informal",
+      "total": 8,
+      "t0": 1,
+      "t1": 1
+    },
+    {
+      "stratum": "skill.fallacy.relevance",
+      "total": 4,
+      "t0": 1,
+      "t1": 1
+    },
+    {
+      "stratum": "skill.fallacy.scope",
+      "total": 4,
+      "t0": 1,
+      "t1": 1
+    },
+    {
+      "stratum": "skill.fallacy.structure",
+      "total": 1,
+      "t0": 1,
+      "t1": 0
+    },
+    {
+      "stratum": "skill.forensics.provenance",
+      "total": 5,
+      "t0": 1,
+      "t1": 1
+    },
+    {
+      "stratum": "skill.forensics.read-measurements",
+      "total": 5,
+      "t0": 1,
+      "t1": 1
+    },
+    {
+      "stratum": "skill.tactic.astroturfing",
+      "total": 4,
+      "t0": 1,
+      "t1": 1
+    },
+    {
+      "stratum": "skill.tactic.emotive-framing",
+      "total": 5,
+      "t0": 1,
+      "t1": 1
+    },
+    {
+      "stratum": "skill.tactic.equivocation",
+      "total": 7,
+      "t0": 1,
+      "t1": 1
+    },
+    {
+      "stratum": "skill.tactic.false-balance",
+      "total": 7,
+      "t0": 1,
+      "t1": 1
+    },
+    {
+      "stratum": "skill.tactic.flooding",
+      "total": 5,
+      "t0": 1,
+      "t1": 1
+    }
+  ],
+  "sha256": {
+    "form-T0.json": "e9f07bcce92a6cbf7a2a8ee272cb9b28c1d259927e59cde12fee7da8adc5b384",
+    "form-T1.json": "57e21a80474920ddfb9388acf14cf1d1f16228c7830b7dcc89b7805e67253cf1",
+    "form-keys-T0.json": "38f949f8a0846d885173104ad5c24773d045c113938a4402c1d57657474ed8f3",
+    "form-keys-T1.json": "97517537fd760bce38fd39c2727997e9fd962ab23c43bd753e6714431b318ebc",
+    "practice-manifest.json": "03793aee06cd5c9d1fc8932ef067964aaec31728204ac2af64c3594c6ee6d9f3",
+    "exclude-ids.json": "aac2a0cba3e8970e7d317300e2a0806b23b9f945de635218489545e13a4cbd93"
+  },
+  "reviewPacket": {
+    "ground-truth-worksheet.csv": "07442e9222b905c4cf3f4c55e1faf786982e62b7d84826c416834334f6490b54",
+    "note": "hash of the EMPTy review packet generated from the frozen forms; the completed packet is hashed again at freeze time"
+  }
+}

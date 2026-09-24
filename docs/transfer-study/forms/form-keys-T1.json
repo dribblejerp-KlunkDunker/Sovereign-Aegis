@@ -1,0 +1,120 @@
+{
+  "form": "T1",
+  "seed": "aegis-transfer-study-v1.0-forms",
+  "key": [
+    {
+      "itemId": "q93",
+      "position": 0,
+      "correctIndex": 3,
+      "correctOption": "Loaded / Emotive Language"
+    },
+    {
+      "itemId": "q94",
+      "position": 1,
+      "correctIndex": 2,
+      "correctOption": "Equivocation (Semantic Shift)"
+    },
+    {
+      "itemId": "q9",
+      "position": 2,
+      "correctIndex": 2,
+      "correctOption": "Gish Gallop"
+    },
+    {
+      "itemId": "q68",
+      "position": 3,
+      "correctIndex": 2,
+      "correctOption": "Dispositional Over-Attribution"
+    },
+    {
+      "itemId": "q110",
+      "position": 4,
+      "correctIndex": 3,
+      "correctOption": "The countermeasure amplifies what it targets"
+    },
+    {
+      "itemId": "q112",
+      "position": 5,
+      "correctIndex": 0,
+      "correctOption": "The manifest is parsed but not cryptographically verified"
+    },
+    {
+      "itemId": "q49",
+      "position": 6,
+      "correctIndex": 0,
+      "correctOption": "Selective Recall"
+    },
+    {
+      "itemId": "q13",
+      "position": 7,
+      "correctIndex": 1,
+      "correctOption": "Boundary Smearing & Topology Hallucination"
+    },
+    {
+      "itemId": "q76",
+      "position": 8,
+      "correctIndex": 0,
+      "correctOption": "Astroturfing (Coordinated Account Creation)"
+    },
+    {
+      "itemId": "q51",
+      "position": 9,
+      "correctIndex": 0,
+      "correctOption": "Hindsight Bias"
+    },
+    {
+      "itemId": "q16",
+      "position": 10,
+      "correctIndex": 3,
+      "correctOption": "Post Hoc Ergo Propter Hoc"
+    },
+    {
+      "itemId": "q21",
+      "position": 11,
+      "correctIndex": 0,
+      "correctOption": "Affirming the Consequent (Formal Fallacy)"
+    },
+    {
+      "itemId": "q83",
+      "position": 12,
+      "correctIndex": 0,
+      "correctOption": "False Balance (Bothsidesism)"
+    },
+    {
+      "itemId": "q62",
+      "position": 13,
+      "correctIndex": 1,
+      "correctOption": "Anchoring Effect"
+    },
+    {
+      "itemId": "q103",
+      "position": 14,
+      "correctIndex": 3,
+      "correctOption": "T0004: Establish Inauthentic Assets / Spoofing"
+    },
+    {
+      "itemId": "q56",
+      "position": 15,
+      "correctIndex": 2,
+      "correctOption": "Availability Heuristic"
+    },
+    {
+      "itemId": "q38",
+      "position": 16,
+      "correctIndex": 0,
+      "correctOption": "Argumentum ad Populum (Bandwagon)"
+    },
+    {
+      "itemId": "q104",
+      "position": 17,
+      "correctIndex": 2,
+      "correctOption": "Narrative Laundering"
+    },
+    {
+      "itemId": "q8",
+      "position": 18,
+      "correctIndex": 1,
+      "correctOption": "Whataboutism (Tu Quoque)"
+    }
+  ]
+}

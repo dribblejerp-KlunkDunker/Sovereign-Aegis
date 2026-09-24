@@ -2749,6 +2749,25 @@
             <button class="modal-close" data-close-modal aria-label="Close modal">✕</button>
           </div>
           <div class="modal-body">
+            <div class="card card-granite-inset" style="padding: 12px 16px; margin-bottom: 16px; font-size: 0.85rem; line-height: 1.5; color: var(--parchment-muted);">
+              <div class="status-label text-bronze" style="margin-bottom: 6px;">WHERE THESE KEYS COME FROM</div>
+              <p style="margin: 0 0 8px 0;">
+                <strong class="text-bronze">Gemini key</strong> — free from Google AI Studio:
+                aistudio.google.com → “Get API key” → “Create API key”. Powers VERDAD's deep
+                claim analysis (the model dropdown below picks which Gemini model).
+              </p>
+              <p style="margin: 0 0 8px 0;">
+                <strong class="text-bronze">Fact Check key</strong> — separate free key from Google Cloud
+                Console: console.cloud.google.com → enable “Fact Check Tools API” → Credentials →
+                API key (restrict it to that one API). Powers the published fact-check lookup.
+              </p>
+              <p style="margin: 0;">
+                <strong class="text-crimson">Session-only, by design:</strong> both keys live in this
+                tab's memory only and are wiped whenever the app reloads — they are never written
+                to disk, so nothing on your machine can steal them. The price is that you re-paste
+                them each session. Without them, every feature still works on fully-offline heuristics.
+              </p>
+            </div>
             <div class="form-group">
               <label class="form-label">Google Gemini API Key (BYOK):</label>
               <input type="password" class="form-input" id="input-byok-api-key" placeholder="AIzaSy...">

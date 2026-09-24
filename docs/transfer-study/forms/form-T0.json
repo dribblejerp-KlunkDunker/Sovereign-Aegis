@@ -1,0 +1,328 @@
+{
+  "form": "T0",
+  "seed": "aegis-transfer-study-v1.0-forms",
+  "items": [
+    {
+      "id": "q79",
+      "domain": "Propaganda Tactics",
+      "difficulty": 1310,
+      "claim": "In a ninety-second answer, a speaker makes nineteen separate factual assertions, four of which are false and none of which the opponent has time to address.",
+      "options": [
+        "Gish Gallop",
+        "Whataboutism (Tu Quoque)",
+        "Red Herring",
+        "Straw Man"
+      ],
+      "explanation": "The asymmetry between assertion cost and refutation cost is the weapon; the individual claims barely matter. A red herring diverts to ONE other topic, which is a different and much cheaper attack to answer.",
+      "tests": [
+        "skill.tactic.flooding"
+      ]
+    },
+    {
+      "id": "q32",
+      "domain": "Logical Fallacy",
+      "difficulty": 1180,
+      "claim": "\"Both people I know who took that job quit within a year. It is clearly a terrible employer.\"",
+      "options": [
+        "Fallacy of Composition",
+        "Post Hoc Ergo Propter Hoc",
+        "Anecdotal Evidence",
+        "Hasty Generalisation"
+      ],
+      "explanation": "A sample of two is generalised to an employer of unknown size. Anecdotal evidence is the close neighbour and would be the better answer if the anecdote were being used AGAINST statistics; here there are no statistics in play, only an over-broad leap.",
+      "tests": [
+        "skill.fallacy.scope"
+      ]
+    },
+    {
+      "id": "q111",
+      "domain": "DISARM Framework",
+      "difficulty": 1430,
+      "claim": "Before an expected influence operation, an outlet explains the TECHNIQUE likely to be used, without repeating any specific false claim.",
+      "options": [
+        "Prebunking (Inoculation)",
+        "Debunking",
+        "Strategic Silence (Deliberate Non-Amplification)",
+        "Counter-Messaging"
+      ],
+      "explanation": "Teaching the manipulation pattern in advance confers resistance without giving the specific falsehood any airtime. That is its advantage over debunking, which necessarily repeats the claim in order to correct it.",
+      "tests": [
+        "skill.disarm.countermeasures"
+      ]
+    },
+    {
+      "id": "q90",
+      "domain": "Propaganda Tactics",
+      "difficulty": 1240,
+      "claim": "One outlet reports \"the council seized the land\"; another reports \"the council acquired the land\". The legal process described is identical.",
+      "options": [
+        "Equivocation (Semantic Shift)",
+        "Loaded / Emotive Language",
+        "Framing Effect",
+        "Straw Man"
+      ],
+      "explanation": "The verb imports a verdict before any argument is made. It differs from equivocation in that no term shifts meaning WITHIN an argument — the word choice smuggles the conclusion in at the start.",
+      "tests": [
+        "skill.tactic.emotive-framing"
+      ]
+    },
+    {
+      "id": "q97",
+      "domain": "Propaganda Tactics",
+      "difficulty": 1300,
+      "claim": "\"Of course the theory is only a theory — so it is hardly established fact.\"",
+      "options": [
+        "Appeal to Ignorance (Argumentum ad Ignorantiam)",
+        "Straw Man",
+        "False Dilemma (Bifurcation)",
+        "Equivocation (Semantic Shift)"
+      ],
+      "explanation": "The technical sense of \"theory\" — an explanatory framework supported by evidence — is swapped for the colloquial \"guess\". Note that the sentence contains no false statement, which is why equivocation is so much harder to answer than a lie.",
+      "tests": [
+        "skill.tactic.equivocation"
+      ]
+    },
+    {
+      "id": "q100",
+      "domain": "DISARM Framework",
+      "difficulty": 1330,
+      "claim": "Six months before any content appears, an operator buys expired domains whose names resemble regional newspapers and lets them sit dormant.",
+      "options": [
+        "T0001: Target Profiling",
+        "T0004: Establish Inauthentic Assets / Spoofing",
+        "T0048: Flood the Information Environment / Epistemic Pollution",
+        "Brigading"
+      ],
+      "explanation": "Asset creation and ageing happen in the Prepare phase, long before anything is seeded — dormancy is the point, since domain age is a trust signal. Target profiling is the neighbouring Plan-phase activity and would involve studying an audience rather than building infrastructure.",
+      "tests": [
+        "skill.disarm.plan-prepare",
+        "skill.tactic.astroturfing"
+      ]
+    },
+    {
+      "id": "q59",
+      "domain": "Cognitive Bias",
+      "difficulty": 1190,
+      "claim": "A negotiator opens with a figure far above any plausible settlement. The final agreement lands well above what either side privately expected.",
+      "options": [
+        "Anchoring Effect",
+        "Sunk Cost Fallacy",
+        "Appeal to Authority",
+        "Framing Effect"
+      ],
+      "explanation": "The opening number does not need to be credible to work; it only needs to be first. Framing is the neighbour — that would require the same value described differently, whereas here a single irrelevant number drags the whole scale.",
+      "tests": [
+        "skill.bias.anchoring"
+      ]
+    },
+    {
+      "id": "q74",
+      "domain": "Cognitive Bias",
+      "difficulty": 1280,
+      "claim": "\"Red has come up six times in a row, so black is due.\"",
+      "options": [
+        "Gambler's Fallacy",
+        "Availability Heuristic",
+        "Base-Rate Neglect",
+        "Hindsight Bias"
+      ],
+      "explanation": "Independent trials have no memory. Note the mirror-image error is equally common — concluding that red is \"hot\" and will continue — and both come from expecting short runs to look like long-run averages.",
+      "tests": [
+        "skill.bias.probability"
+      ]
+    },
+    {
+      "id": "q35",
+      "domain": "Logical Fallacy",
+      "difficulty": 1150,
+      "claim": "\"This procedure has been standard practice in the guild for two hundred years. That is reason enough to keep it.\"",
+      "options": [
+        "Appeal to Popularity",
+        "Begging the Question",
+        "Appeal to Tradition",
+        "Appeal to Authority"
+      ],
+      "explanation": "Age is offered in place of evidence of effectiveness. Note that longevity is weak evidence rather than none — a practice that survived two centuries of use may work — but \"it is old\" is not the same claim as \"it works\", and only the second is being defended.",
+      "tests": [
+        "skill.fallacy.appeals"
+      ]
+    },
+    {
+      "id": "q3",
+      "domain": "Logical Fallacy",
+      "difficulty": 1150,
+      "claim": "\"Either you support an immediate 100% military embargo on all trade with our neighboring rival, or you are a traitor who hates our homeland.\"",
+      "options": [
+        "Begging the Question (Petitio Principii)",
+        "False Dilemma (Bifurcation)",
+        "Post Hoc Ergo Propter Hoc",
+        "No True Scotsman"
+      ],
+      "explanation": "Artificially reduces a complex foreign policy spectrum to two extreme binaries while ignoring diplomatic nuances.",
+      "tests": [
+        "skill.fallacy.structure"
+      ]
+    },
+    {
+      "id": "q47",
+      "domain": "Cognitive Bias",
+      "difficulty": 1230,
+      "claim": "An investigator convinced the fire was arson spends the afternoon interviewing neighbours who reported seeing someone near the building, and never contacts the electrician who serviced the panel that week.",
+      "options": [
+        "Anchoring Effect",
+        "Confirmation Bias",
+        "Availability Heuristic",
+        "Fundamental Attribution Error"
+      ],
+      "explanation": "The search itself is shaped by the hypothesis — disconfirming evidence is not rejected, it is never gathered. That selective-search step is what separates it from the availability heuristic, where evidence comes to mind unbidden rather than being sought out.",
+      "tests": [
+        "skill.bias.confirmation"
+      ]
+    },
+    {
+      "id": "q29",
+      "domain": "Logical Fallacy",
+      "difficulty": 1120,
+      "claim": "\"The transport committee proposed a 15 km/h speed reduction outside primary schools. So they think cars are evil and want us all walking to work in the rain.\"",
+      "options": [
+        "Slippery Slope",
+        "Straw Man",
+        "Hasty Generalisation",
+        "False Dilemma"
+      ],
+      "explanation": "The actual proposal — a limited speed change near schools — is replaced by an absurd one that is easier to attack. This is not a slippery slope: no chain of consequences is claimed, the position itself has been swapped out.",
+      "tests": [
+        "skill.fallacy.relevance"
+      ]
+    },
+    {
+      "id": "q108",
+      "domain": "DISARM Framework",
+      "difficulty": 1310,
+      "claim": "Thousands of low-quality posts on an unrelated topic bury a damaging story in every relevant feed within hours.",
+      "options": [
+        "Narrative Laundering",
+        "T0048: Flood the Information Environment / Epistemic Pollution",
+        "Brigading",
+        "Gish Gallop"
+      ],
+      "explanation": "Nothing is argued and nothing is denied — attention is simply displaced. A Gish gallop floods a DEBATE with claims; this floods a channel with noise, and needs no engagement with the story at all.",
+      "tests": [
+        "skill.disarm.seed-amplify",
+        "skill.tactic.flooding"
+      ]
+    },
+    {
+      "id": "q11",
+      "domain": "AI Media Forensics",
+      "difficulty": 1300,
+      "claim": "\"An image of a politician shows perfectly circular pupils, but the light reflections in the left and right eyes depict completely different room window angles and shapes.\"",
+      "options": [
+        "GAN Border Ringing",
+        "Corneal Specular Reflection Asymmetry",
+        "Frequency Domain Smearing",
+        "Error Level Analysis Inconsistency"
+      ],
+      "explanation": "Diffusion generators render each eye independently, frequently failing physics-based specular ray alignment.",
+      "tests": [
+        "skill.forensics.read-measurements"
+      ]
+    },
+    {
+      "id": "q10",
+      "domain": "Propaganda Tactics",
+      "difficulty": 1250,
+      "claim": "\"A commercial PR firm deploys 5,000 bot accounts to coordinate posts praising a new luxury car model, making it appear like a genuine grassroots viral trend.\"",
+      "options": [
+        "Card Stacking",
+        "Bandwagon Effect",
+        "Loaded Language",
+        "Astroturfing"
+      ],
+      "explanation": "Orchestrating an artificial marketing campaign masked as spontaneous, grassroots citizen consensus.",
+      "tests": [
+        "skill.tactic.astroturfing"
+      ]
+    },
+    {
+      "id": "q65",
+      "domain": "Cognitive Bias",
+      "difficulty": 1220,
+      "claim": "A driver cut off in traffic mutters \"what a selfish idiot\". When he does the same thing an hour later, it is because he is late for a hospital appointment.",
+      "options": [
+        "Fundamental Attribution Error / Ingroup Favoritism",
+        "Confirmation Bias",
+        "Hindsight Bias",
+        "Availability Heuristic"
+      ],
+      "explanation": "Others' behaviour is explained by character, one's own by circumstance. The asymmetry is the diagnostic feature — either explanation alone could be reasonable; holding both at once is not.",
+      "tests": [
+        "skill.bias.attribution"
+      ]
+    },
+    {
+      "id": "q113",
+      "domain": "AI Media Forensics",
+      "difficulty": 1330,
+      "claim": "A photograph has no C2PA manifest at all.",
+      "options": [
+        "This indicates the image is synthetic",
+        "This proves the metadata was stripped deliberately",
+        "This is not evidence of tampering",
+        "This indicates the image was manipulated"
+      ],
+      "explanation": "The overwhelming majority of images ever made carry no manifest, and ordinary pipelines — screenshots, messaging apps, re-encodes — strip them routinely. Treating absence as suspicion would flag almost every real photograph in existence.",
+      "tests": [
+        "skill.forensics.provenance"
+      ]
+    },
+    {
+      "id": "q46",
+      "domain": "Logical Fallacy",
+      "difficulty": 1400,
+      "claim": "\"His argument commits a fallacy, so his conclusion is false.\"",
+      "options": [
+        "Fallacy Fallacy (Argument from Fallacy)",
+        "Appeal to Ignorance (Argumentum ad Ignorantiam)",
+        "Circular Reasoning",
+        "Ad Hominem"
+      ],
+      "explanation": "A bad argument for a claim leaves the claim exactly where it was — unsupported, not refuted. This is the failure mode a fallacy taxonomy itself invites, which is why it belongs in one.",
+      "tests": [
+        "skill.fallacy.formal-vs-informal"
+      ]
+    },
+    {
+      "id": "q85",
+      "domain": "Propaganda Tactics",
+      "difficulty": 1280,
+      "claim": "A debate on whether a bridge is structurally sound is staged between a structural engineer and a local columnist, introduced as \"two views\".",
+      "options": [
+        "Ad Hominem",
+        "False Balance (Bothsidesism)",
+        "Red Herring",
+        "Appeal to False Authority (Ad Verecundiam)"
+      ],
+      "explanation": "The pairing implies comparable standing on a question where it does not exist. Appeal to false authority is the near miss and would apply if the COLUMNIST'S credentials were being cited as support; here the fallacy is committed by the framing, not by either speaker.",
+      "tests": [
+        "skill.tactic.false-balance"
+      ]
+    },
+    {
+      "id": "q53",
+      "domain": "Cognitive Bias",
+      "difficulty": 1200,
+      "claim": "After a week of coverage of a shark attack, beach visitors rate swimming as more dangerous than the drive to the coast.",
+      "options": [
+        "Confirmation Bias",
+        "Availability Heuristic",
+        "Base-Rate Neglect (Prior Insensitivity)",
+        "Anchoring Effect"
+      ],
+      "explanation": "Ease of recall stands in for frequency, and coverage drives recall. Base-rate neglect is arguably also present, but the ENGINE is vividness and repetition — which is precisely what makes this exploitable by whoever controls the volume.",
+      "tests": [
+        "skill.bias.availability"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1094 @@
+{
+  "PLANNING_ARTIFACT": "power simulation — not a result",
+  "seed": "aegis-transfer-study-v1.0-power",
+  "frozenForms": {
+    "T0": 20,
+    "T1": 19
+  },
+  "trialsPerCell": 400,
+  "alpha": 0.05,
+  "effectModel": "additive logit delta calibrated so the expected probability-scale gain equals the scenario tau (see lib.mjs calibrateLogitEffect)",
+  "cells": [
+    {
+      "n": 400,
+      "tau": 15,
+      "sigmaP": 0,
+      "sigmaS": 0,
+      "logitDelta": 0.649,
+      "power": 1,
+      "trials": 400
+    },
+    {
+      "n": 400,
+      "tau": 15,
+      "sigmaP": 0,
+      "sigmaS": 0.5,
+      "logitDelta": 0.649,
+      "power": 1,
+      "trials": 400
+    },
+    {
+      "n": 400,
+      "tau": 15,
+      "sigmaP": 0.35,
+      "sigmaS": 0,
+      "logitDelta": 0.6658,
+      "power": 1,
+      "trials": 400
+    },
+    {
+      "n": 400,
+      "tau": 15,
+      "sigmaP": 0.35,
+      "sigmaS": 0.5,
+      "logitDelta": 0.6658,
+      "power": 1,
+      "trials": 400
+    },
+    {
+      "n": 400,
+      "tau": 15,
+      "sigmaP": 0.7,
+      "sigmaS": 0,
+      "logitDelta": 0.7126,
+      "power": 1,
+      "trials": 400
+    },
+    {
+      "n": 400,
+      "tau": 15,
+      "sigmaP": 0.7,
+      "sigmaS": 0.5,
+      "logitDelta": 0.7126,
+      "power": 1,
+      "trials": 400
+    },
+    {
+      "n": 400,
+      "tau": 15,
+      "sigmaP": 1,
+      "sigmaS": 0,
+      "logitDelta": 0.7711,
+      "power": 1,
+      "trials": 400
+    },
+    {
+      "n": 400,
+      "tau": 15,
+      "sigmaP": 1,
+      "sigmaS": 0.5,
+      "logitDelta": 0.7711,
+      "power": 1,
+      "trials": 400
+    },
+    {
+      "n": 400,
+      "tau": 12,
+      "sigmaP": 0,
+      "sigmaS": 0,
+      "logitDelta": 0.5094,
+      "power": 1,
+      "trials": 400
+    },
+    {
+      "n": 400,
+      "tau": 12,
+      "sigmaP": 0,
+      "sigmaS": 0.5,
+      "logitDelta": 0.5094,
+      "power": 1,
+      "trials": 400
+    },
+    {
+      "n": 400,
+      "tau": 12,
+      "sigmaP": 0.35,
+      "sigmaS": 0,
+      "logitDelta": 0.5229,
+      "power": 1,
+      "trials": 400
+    },
+    {
+      "n": 400,
+      "tau": 12,
+      "sigmaP": 0.35,
+      "sigmaS": 0.5,
+      "logitDelta": 0.5229,
+      "power": 1,
+      "trials": 400
+    },
+    {
+      "n": 400,
+      "tau": 12,
+      "sigmaP": 0.7,
+      "sigmaS": 0,
+      "logitDelta": 0.5605,
+      "power": 1,
+      "trials": 400
+    },
+    {
+      "n": 400,
+      "tau": 12,
+      "sigmaP": 0.7,
+      "sigmaS": 0.5,
+      "logitDelta": 0.5605,
+      "power": 1,
+      "trials": 400
+    },
+    {
+      "n": 400,
+      "tau": 12,
+      "sigmaP": 1,
+      "sigmaS": 0,
+      "logitDelta": 0.6073,
+      "power": 1,
+      "trials": 400
+    },
+    {
+      "n": 400,
+      "tau": 12,
+      "sigmaP": 1,
+      "sigmaS": 0.5,
+      "logitDelta": 0.6073,
+      "power": 1,
+      "trials": 400
+    },
+    {
+      "n": 400,
+      "tau": 10,
+      "sigmaP": 0,
+      "sigmaS": 0,
+      "logitDelta": 0.4199,
+      "power": 1,
+      "trials": 400
+    },
+    {
+      "n": 400,
+      "tau": 10,
+      "sigmaP": 0,
+      "sigmaS": 0.5,
+      "logitDelta": 0.4199,
+      "power": 0.995,
+      "trials": 400
+    },
+    {
+      "n": 400,
+      "tau": 10,
+      "sigmaP": 0.35,
+      "sigmaS": 0,
+      "logitDelta": 0.4313,
+      "power": 1,
+      "trials": 400
+    },
+    {
+      "n": 400,
+      "tau": 10,
+      "sigmaP": 0.35,
+      "sigmaS": 0.5,
+      "logitDelta": 0.4313,
+      "power": 1,
+      "trials": 400
+    },
+    {
+      "n": 400,
+      "tau": 10,
+      "sigmaP": 0.7,
+      "sigmaS": 0,
+      "logitDelta": 0.4627,
+      "power": 1,
+      "trials": 400
+    },
+    {
+      "n": 400,
+      "tau": 10,
+      "sigmaP": 0.7,
+      "sigmaS": 0.5,
+      "logitDelta": 0.4627,
+      "power": 0.9925,
+      "trials": 400
+    },
+    {
+      "n": 400,
+      "tau": 10,
+      "sigmaP": 1,
+      "sigmaS": 0,
+      "logitDelta": 0.5016,
+      "power": 1,
+      "trials": 400
+    },
+    {
+      "n": 400,
+      "tau": 10,
+      "sigmaP": 1,
+      "sigmaS": 0.5,
+      "logitDelta": 0.5016,
+      "power": 0.9975,
+      "trials": 400
+    },
+    {
+      "n": 400,
+      "tau": 8,
+      "sigmaP": 0,
+      "sigmaS": 0,
+      "logitDelta": 0.3328,
+      "power": 1,
+      "trials": 400
+    },
+    {
+      "n": 400,
+      "tau": 8,
+      "sigmaP": 0,
+      "sigmaS": 0.5,
+      "logitDelta": 0.3328,
+      "power": 0.8925,
+      "trials": 400
+    },
+    {
+      "n": 400,
+      "tau": 8,
+      "sigmaP": 0.35,
+      "sigmaS": 0,
+      "logitDelta": 0.3419,
+      "power": 1,
+      "trials": 400
+    },
+    {
+      "n": 400,
+      "tau": 8,
+      "sigmaP": 0.35,
+      "sigmaS": 0.5,
+      "logitDelta": 0.3419,
+      "power": 0.9375,
+      "trials": 400
+    },
+    {
+      "n": 400,
+      "tau": 8,
+      "sigmaP": 0.7,
+      "sigmaS": 0,
+      "logitDelta": 0.3671,
+      "power": 1,
+      "trials": 400
+    },
+    {
+      "n": 400,
+      "tau": 8,
+      "sigmaP": 0.7,
+      "sigmaS": 0.5,
+      "logitDelta": 0.3671,
+      "power": 0.9525,
+      "trials": 400
+    },
+    {
+      "n": 400,
+      "tau": 8,
+      "sigmaP": 1,
+      "sigmaS": 0,
+      "logitDelta": 0.3982,
+      "power": 1,
+      "trials": 400
+    },
+    {
+      "n": 400,
+      "tau": 8,
+      "sigmaP": 1,
+      "sigmaS": 0.5,
+      "logitDelta": 0.3982,
+      "power": 0.96,
+      "trials": 400
+    },
+    {
+      "n": 400,
+      "tau": 5,
+      "sigmaP": 0,
+      "sigmaS": 0,
+      "logitDelta": 0.2056,
+      "power": 0.88,
+      "trials": 400
+    },
+    {
+      "n": 400,
+      "tau": 5,
+      "sigmaP": 0,
+      "sigmaS": 0.5,
+      "logitDelta": 0.2056,
+      "power": 0.55,
+      "trials": 400
+    },
+    {
+      "n": 400,
+      "tau": 5,
+      "sigmaP": 0.35,
+      "sigmaS": 0,
+      "logitDelta": 0.2113,
+      "power": 0.9075,
+      "trials": 400
+    },
+    {
+      "n": 400,
+      "tau": 5,
+      "sigmaP": 0.35,
+      "sigmaS": 0.5,
+      "logitDelta": 0.2113,
+      "power": 0.5925,
+      "trials": 400
+    },
+    {
+      "n": 400,
+      "tau": 5,
+      "sigmaP": 0.7,
+      "sigmaS": 0,
+      "logitDelta": 0.2271,
+      "power": 0.895,
+      "trials": 400
+    },
+    {
+      "n": 400,
+      "tau": 5,
+      "sigmaP": 0.7,
+      "sigmaS": 0.5,
+      "logitDelta": 0.2271,
+      "power": 0.5725,
+      "trials": 400
+    },
+    {
+      "n": 400,
+      "tau": 5,
+      "sigmaP": 1,
+      "sigmaS": 0,
+      "logitDelta": 0.2466,
+      "power": 0.9125,
+      "trials": 400
+    },
+    {
+      "n": 400,
+      "tau": 5,
+      "sigmaP": 1,
+      "sigmaS": 0.5,
+      "logitDelta": 0.2466,
+      "power": 0.67,
+      "trials": 400
+    },
+    {
+      "n": 480,
+      "tau": 15,
+      "sigmaP": 0,
+      "sigmaS": 0,
+      "logitDelta": 0.649,
+      "power": 1,
+      "trials": 400
+    },
+    {
+      "n": 480,
+      "tau": 15,
+      "sigmaP": 0,
+      "sigmaS": 0.5,
+      "logitDelta": 0.649,
+      "power": 1,
+      "trials": 400
+    },
+    {
+      "n": 480,
+      "tau": 15,
+      "sigmaP": 0.35,
+      "sigmaS": 0,
+      "logitDelta": 0.6658,
+      "power": 1,
+      "trials": 400
+    },
+    {
+      "n": 480,
+      "tau": 15,
+      "sigmaP": 0.35,
+      "sigmaS": 0.5,
+      "logitDelta": 0.6658,
+      "power": 1,
+      "trials": 400
+    },
+    {
+      "n": 480,
+      "tau": 15,
+      "sigmaP": 0.7,
+      "sigmaS": 0,
+      "logitDelta": 0.7126,
+      "power": 1,
+      "trials": 400
+    },
+    {
+      "n": 480,
+      "tau": 15,
+      "sigmaP": 0.7,
+      "sigmaS": 0.5,
+      "logitDelta": 0.7126,
+      "power": 1,
+      "trials": 400
+    },
+    {
+      "n": 480,
+      "tau": 15,
+      "sigmaP": 1,
+      "sigmaS": 0,
+      "logitDelta": 0.7711,
+      "power": 1,
+      "trials": 400
+    },
+    {
+      "n": 480,
+      "tau": 15,
+      "sigmaP": 1,
+      "sigmaS": 0.5,
+      "logitDelta": 0.7711,
+      "power": 1,
+      "trials": 400
+    },
+    {
+      "n": 480,
+      "tau": 12,
+      "sigmaP": 0,
+      "sigmaS": 0,
+      "logitDelta": 0.5094,
+      "power": 1,
+      "trials": 400
+    },
+    {
+      "n": 480,
+      "tau": 12,
+      "sigmaP": 0,
+      "sigmaS": 0.5,
+      "logitDelta": 0.5094,
+      "power": 1,
+      "trials": 400
+    },
+    {
+      "n": 480,
+      "tau": 12,
+      "sigmaP": 0.35,
+      "sigmaS": 0,
+      "logitDelta": 0.5229,
+      "power": 1,
+      "trials": 400
+    },
+    {
+      "n": 480,
+      "tau": 12,
+      "sigmaP": 0.35,
+      "sigmaS": 0.5,
+      "logitDelta": 0.5229,
+      "power": 1,
+      "trials": 400
+    },
+    {
+      "n": 480,
+      "tau": 12,
+      "sigmaP": 0.7,
+      "sigmaS": 0,
+      "logitDelta": 0.5605,
+      "power": 1,
+      "trials": 400
+    },
+    {
+      "n": 480,
+      "tau": 12,
+      "sigmaP": 0.7,
+      "sigmaS": 0.5,
+      "logitDelta": 0.5605,
+      "power": 1,
+      "trials": 400
+    },
+    {
+      "n": 480,
+      "tau": 12,
+      "sigmaP": 1,
+      "sigmaS": 0,
+      "logitDelta": 0.6073,
+      "power": 1,
+      "trials": 400
+    },
+    {
+      "n": 480,
+      "tau": 12,
+      "sigmaP": 1,
+      "sigmaS": 0.5,
+      "logitDelta": 0.6073,
+      "power": 1,
+      "trials": 400
+    },
+    {
+      "n": 480,
+      "tau": 10,
+      "sigmaP": 0,
+      "sigmaS": 0,
+      "logitDelta": 0.4199,
+      "power": 1,
+      "trials": 400
+    },
+    {
+      "n": 480,
+      "tau": 10,
+      "sigmaP": 0,
+      "sigmaS": 0.5,
+      "logitDelta": 0.4199,
+      "power": 0.995,
+      "trials": 400
+    },
+    {
+      "n": 480,
+      "tau": 10,
+      "sigmaP": 0.35,
+      "sigmaS": 0,
+      "logitDelta": 0.4313,
+      "power": 1,
+      "trials": 400
+    },
+    {
+      "n": 480,
+      "tau": 10,
+      "sigmaP": 0.35,
+      "sigmaS": 0.5,
+      "logitDelta": 0.4313,
+      "power": 0.9925,
+      "trials": 400
+    },
+    {
+      "n": 480,
+      "tau": 10,
+      "sigmaP": 0.7,
+      "sigmaS": 0,
+      "logitDelta": 0.4627,
+      "power": 1,
+      "trials": 400
+    },
+    {
+      "n": 480,
+      "tau": 10,
+      "sigmaP": 0.7,
+      "sigmaS": 0.5,
+      "logitDelta": 0.4627,
+      "power": 1,
+      "trials": 400
+    },
+    {
+      "n": 480,
+      "tau": 10,
+      "sigmaP": 1,
+      "sigmaS": 0,
+      "logitDelta": 0.5016,
+      "power": 1,
+      "trials": 400
+    },
+    {
+      "n": 480,
+      "tau": 10,
+      "sigmaP": 1,
+      "sigmaS": 0.5,
+      "logitDelta": 0.5016,
+      "power": 0.9975,
+      "trials": 400
+    },
+    {
+      "n": 480,
+      "tau": 8,
+      "sigmaP": 0,
+      "sigmaS": 0,
+      "logitDelta": 0.3328,
+      "power": 1,
+      "trials": 400
+    },
+    {
+      "n": 480,
+      "tau": 8,
+      "sigmaP": 0,
+      "sigmaS": 0.5,
+      "logitDelta": 0.3328,
+      "power": 0.96,
+      "trials": 400
+    },
+    {
+      "n": 480,
+      "tau": 8,
+      "sigmaP": 0.35,
+      "sigmaS": 0,
+      "logitDelta": 0.3419,
+      "power": 1,
+      "trials": 400
+    },
+    {
+      "n": 480,
+      "tau": 8,
+      "sigmaP": 0.35,
+      "sigmaS": 0.5,
+      "logitDelta": 0.3419,
+      "power": 0.99,
+      "trials": 400
+    },
+    {
+      "n": 480,
+      "tau": 8,
+      "sigmaP": 0.7,
+      "sigmaS": 0,
+      "logitDelta": 0.3671,
+      "power": 1,
+      "trials": 400
+    },
+    {
+      "n": 480,
+      "tau": 8,
+      "sigmaP": 0.7,
+      "sigmaS": 0.5,
+      "logitDelta": 0.3671,
+      "power": 0.9575,
+      "trials": 400
+    },
+    {
+      "n": 480,
+      "tau": 8,
+      "sigmaP": 1,
+      "sigmaS": 0,
+      "logitDelta": 0.3982,
+      "power": 1,
+      "trials": 400
+    },
+    {
+      "n": 480,
+      "tau": 8,
+      "sigmaP": 1,
+      "sigmaS": 0.5,
+      "logitDelta": 0.3982,
+      "power": 0.9825,
+      "trials": 400
+    },
+    {
+      "n": 480,
+      "tau": 5,
+      "sigmaP": 0,
+      "sigmaS": 0,
+      "logitDelta": 0.2056,
+      "power": 0.9225,
+      "trials": 400
+    },
+    {
+      "n": 480,
+      "tau": 5,
+      "sigmaP": 0,
+      "sigmaS": 0.5,
+      "logitDelta": 0.2056,
+      "power": 0.56,
+      "trials": 400
+    },
+    {
+      "n": 480,
+      "tau": 5,
+      "sigmaP": 0.35,
+      "sigmaS": 0,
+      "logitDelta": 0.2113,
+      "power": 0.965,
+      "trials": 400
+    },
+    {
+      "n": 480,
+      "tau": 5,
+      "sigmaP": 0.35,
+      "sigmaS": 0.5,
+      "logitDelta": 0.2113,
+      "power": 0.6625,
+      "trials": 400
+    },
+    {
+      "n": 480,
+      "tau": 5,
+      "sigmaP": 0.7,
+      "sigmaS": 0,
+      "logitDelta": 0.2271,
+      "power": 0.965,
+      "trials": 400
+    },
+    {
+      "n": 480,
+      "tau": 5,
+      "sigmaP": 0.7,
+      "sigmaS": 0.5,
+      "logitDelta": 0.2271,
+      "power": 0.7075,
+      "trials": 400
+    },
+    {
+      "n": 480,
+      "tau": 5,
+      "sigmaP": 1,
+      "sigmaS": 0,
+      "logitDelta": 0.2466,
+      "power": 0.96,
+      "trials": 400
+    },
+    {
+      "n": 480,
+      "tau": 5,
+      "sigmaP": 1,
+      "sigmaS": 0.5,
+      "logitDelta": 0.2466,
+      "power": 0.735,
+      "trials": 400
+    },
+    {
+      "n": 560,
+      "tau": 15,
+      "sigmaP": 0,
+      "sigmaS": 0,
+      "logitDelta": 0.649,
+      "power": 1,
+      "trials": 400
+    },
+    {
+      "n": 560,
+      "tau": 15,
+      "sigmaP": 0,
+      "sigmaS": 0.5,
+      "logitDelta": 0.649,
+      "power": 1,
+      "trials": 400
+    },
+    {
+      "n": 560,
+      "tau": 15,
+      "sigmaP": 0.35,
+      "sigmaS": 0,
+      "logitDelta": 0.6658,
+      "power": 1,
+      "trials": 400
+    },
+    {
+      "n": 560,
+      "tau": 15,
+      "sigmaP": 0.35,
+      "sigmaS": 0.5,
+      "logitDelta": 0.6658,
+      "power": 1,
+      "trials": 400
+    },
+    {
+      "n": 560,
+      "tau": 15,
+      "sigmaP": 0.7,
+      "sigmaS": 0,
+      "logitDelta": 0.7126,
+      "power": 1,
+      "trials": 400
+    },
+    {
+      "n": 560,
+      "tau": 15,
+      "sigmaP": 0.7,
+      "sigmaS": 0.5,
+      "logitDelta": 0.7126,
+      "power": 1,
+      "trials": 400
+    },
+    {
+      "n": 560,
+      "tau": 15,
+      "sigmaP": 1,
+      "sigmaS": 0,
+      "logitDelta": 0.7711,
+      "power": 1,
+      "trials": 400
+    },
+    {
+      "n": 560,
+      "tau": 15,
+      "sigmaP": 1,
+      "sigmaS": 0.5,
+      "logitDelta": 0.7711,
+      "power": 1,
+      "trials": 400
+    },
+    {
+      "n": 560,
+      "tau": 12,
+      "sigmaP": 0,
+      "sigmaS": 0,
+      "logitDelta": 0.5094,
+      "power": 1,
+      "trials": 400
+    },
+    {
+      "n": 560,
+      "tau": 12,
+      "sigmaP": 0,
+      "sigmaS": 0.5,
+      "logitDelta": 0.5094,
+      "power": 1,
+      "trials": 400
+    },
+    {
+      "n": 560,
+      "tau": 12,
+      "sigmaP": 0.35,
+      "sigmaS": 0,
+      "logitDelta": 0.5229,
+      "power": 1,
+      "trials": 400
+    },
+    {
+      "n": 560,
+      "tau": 12,
+      "sigmaP": 0.35,
+      "sigmaS": 0.5,
+      "logitDelta": 0.5229,
+      "power": 1,
+      "trials": 400
+    },
+    {
+      "n": 560,
+      "tau": 12,
+      "sigmaP": 0.7,
+      "sigmaS": 0,
+      "logitDelta": 0.5605,
+      "power": 1,
+      "trials": 400
+    },
+    {
+      "n": 560,
+      "tau": 12,
+      "sigmaP": 0.7,
+      "sigmaS": 0.5,
+      "logitDelta": 0.5605,
+      "power": 1,
+      "trials": 400
+    },
+    {
+      "n": 560,
+      "tau": 12,
+      "sigmaP": 1,
+      "sigmaS": 0,
+      "logitDelta": 0.6073,
+      "power": 1,
+      "trials": 400
+    },
+    {
+      "n": 560,
+      "tau": 12,
+      "sigmaP": 1,
+      "sigmaS": 0.5,
+      "logitDelta": 0.6073,
+      "power": 1,
+      "trials": 400
+    },
+    {
+      "n": 560,
+      "tau": 10,
+      "sigmaP": 0,
+      "sigmaS": 0,
+      "logitDelta": 0.4199,
+      "power": 1,
+      "trials": 400
+    },
+    {
+      "n": 560,
+      "tau": 10,
+      "sigmaP": 0,
+      "sigmaS": 0.5,
+      "logitDelta": 0.4199,
+      "power": 1,
+      "trials": 400
+    },
+    {
+      "n": 560,
+      "tau": 10,
+      "sigmaP": 0.35,
+      "sigmaS": 0,
+      "logitDelta": 0.4313,
+      "power": 1,
+      "trials": 400
+    },
+    {
+      "n": 560,
+      "tau": 10,
+      "sigmaP": 0.35,
+      "sigmaS": 0.5,
+      "logitDelta": 0.4313,
+      "power": 0.9975,
+      "trials": 400
+    },
+    {
+      "n": 560,
+      "tau": 10,
+      "sigmaP": 0.7,
+      "sigmaS": 0,
+      "logitDelta": 0.4627,
+      "power": 1,
+      "trials": 400
+    },
+    {
+      "n": 560,
+      "tau": 10,
+      "sigmaP": 0.7,
+      "sigmaS": 0.5,
+      "logitDelta": 0.4627,
+      "power": 0.9975,
+      "trials": 400
+    },
+    {
+      "n": 560,
+      "tau": 10,
+      "sigmaP": 1,
+      "sigmaS": 0,
+      "logitDelta": 0.5016,
+      "power": 1,
+      "trials": 400
+    },
+    {
+      "n": 560,
+      "tau": 10,
+      "sigmaP": 1,
+      "sigmaS": 0.5,
+      "logitDelta": 0.5016,
+      "power": 1,
+      "trials": 400
+    },
+    {
+      "n": 560,
+      "tau": 8,
+      "sigmaP": 0,
+      "sigmaS": 0,
+      "logitDelta": 0.3328,
+      "power": 1,
+      "trials": 400
+    },
+    {
+      "n": 560,
+      "tau": 8,
+      "sigmaP": 0,
+      "sigmaS": 0.5,
+      "logitDelta": 0.3328,
+      "power": 0.9875,
+      "trials": 400
+    },
+    {
+      "n": 560,
+      "tau": 8,
+      "sigmaP": 0.35,
+      "sigmaS": 0,
+      "logitDelta": 0.3419,
+      "power": 1,
+      "trials": 400
+    },
+    {
+      "n": 560,
+      "tau": 8,
+      "sigmaP": 0.35,
+      "sigmaS": 0.5,
+      "logitDelta": 0.3419,
+      "power": 0.98,
+      "trials": 400
+    },
+    {
+      "n": 560,
+      "tau": 8,
+      "sigmaP": 0.7,
+      "sigmaS": 0,
+      "logitDelta": 0.3671,
+      "power": 1,
+      "trials": 400
+    },
+    {
+      "n": 560,
+      "tau": 8,
+      "sigmaP": 0.7,
+      "sigmaS": 0.5,
+      "logitDelta": 0.3671,
+      "power": 0.9875,
+      "trials": 400
+    },
+    {
+      "n": 560,
+      "tau": 8,
+      "sigmaP": 1,
+      "sigmaS": 0,
+      "logitDelta": 0.3982,
+      "power": 1,
+      "trials": 400
+    },
+    {
+      "n": 560,
+      "tau": 8,
+      "sigmaP": 1,
+      "sigmaS": 0.5,
+      "logitDelta": 0.3982,
+      "power": 0.99,
+      "trials": 400
+    },
+    {
+      "n": 560,
+      "tau": 5,
+      "sigmaP": 0,
+      "sigmaS": 0,
+      "logitDelta": 0.2056,
+      "power": 0.9625,
+      "trials": 400
+    },
+    {
+      "n": 560,
+      "tau": 5,
+      "sigmaP": 0,
+      "sigmaS": 0.5,
+      "logitDelta": 0.2056,
+      "power": 0.675,
+      "trials": 400
+    },
+    {
+      "n": 560,
+      "tau": 5,
+      "sigmaP": 0.35,
+      "sigmaS": 0,
+      "logitDelta": 0.2113,
+      "power": 0.97,
+      "trials": 400
+    },
+    {
+      "n": 560,
+      "tau": 5,
+      "sigmaP": 0.35,
+      "sigmaS": 0.5,
+      "logitDelta": 0.2113,
+      "power": 0.7325,
+      "trials": 400
+    },
+    {
+      "n": 560,
+      "tau": 5,
+      "sigmaP": 0.7,
+      "sigmaS": 0,
+      "logitDelta": 0.2271,
+      "power": 0.9625,
+      "trials": 400
+    },
+    {
+      "n": 560,
+      "tau": 5,
+      "sigmaP": 0.7,
+      "sigmaS": 0.5,
+      "logitDelta": 0.2271,
+      "power": 0.76,
+      "trials": 400
+    },
+    {
+      "n": 560,
+      "tau": 5,
+      "sigmaP": 1,
+      "sigmaS": 0,
+      "logitDelta": 0.2466,
+      "power": 0.9775,
+      "trials": 400
+    },
+    {
+      "n": 560,
+      "tau": 5,
+      "sigmaP": 1,
+      "sigmaS": 0.5,
+      "logitDelta": 0.2466,
+      "power": 0.8175,
+      "trials": 400
+    }
+  ],
+  "verdict": "n=400 MEETS the 80% power requirement at the protocol's 15 pp target across the whole clustering range (min 100.0%). Enrollment target stands."
+}

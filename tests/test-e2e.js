@@ -750,6 +750,69 @@ async function runE2ETests() {
         }
       });
 
+      await harness.it('Drives the Rapid Pivot Gauntlet: confidence control present, records the clicked level', async () => {
+        if (hasCdp) {
+          // Full answer path against the real app: open the drill, verify the shared
+          // confidence control is mounted, click a deliberate (non-default) level, answer,
+          // then read the attempt back out of the real IndexedDB log and assert the
+          // recorded confidence is the clicked one — not a hardcoded 'sure'.
+          await browser.evaluate('AegisApp.switchTab("osint", "drills")');
+          await browser.click('#btn-start-pivot-drill');
+
+          const ctl = await browser.evaluate(`(() => {
+            const host = document.getElementById('drill-confidence-host');
+            const btns = host ? Array.from(host.querySelectorAll('.aegis-conf-btn')) : [];
+            return { mounted: Boolean(host) && btns.length === 3, levels: btns.map((b) => b.dataset.confidence) };
+          })()`);
+          harness.assert(ctl.mounted, 'the shared confidence control is mounted in the drill panel');
+          harness.assert(ctl.levels.join(',') === 'sure,unsure,guess', 'control offers sure/unsure/guess');
+
+          // Pre-state: how many drill attempts exist before this answer.
+          const before = await browser.evaluate(`(async () => {
+            const db = await new Promise((res, rej) => { const rq = indexedDB.open('sovereign-aegis-attempts', 1); rq.onsuccess = () => res(rq.result); rq.onerror = () => rej(rq.error); });
+            const rows = await new Promise((res, rej) => { const tx = db.transaction('attempts', 'readonly'); const rq = tx.objectStore('attempts').getAll(); rq.onsuccess = () => res(rq.result); rq.onerror = () => rej(rq.error); });
+            return rows.map((r) => r.record || r).filter((r) => r.context === 'osint-drill').length;
+          })()`);
+
+          // Deliberately claim 'guess' (the non-flattering, non-default-feeling level).
+          await browser.click('.aegis-conf-btn[data-confidence="guess"]');
+          const checked = await browser.evaluate('document.querySelector("#drill-confidence-host .aegis-conf-btn[aria-checked=\'true\']")?.dataset.confidence || null');
+          harness.assertEqual(checked, 'guess', 'control selection reflects the clicked level before answering');
+
+          const optText = await browser.evaluate('document.querySelector(".drill-opt-btn")?.textContent.trim() || null');
+          harness.assert(optText && optText.length > 0, 'a drill option is rendered to answer');
+          await browser.click('.drill-opt-btn');
+
+          // Feedback + advance take 1–1.8s; the attempt write lands inside that window.
+          await new Promise((r) => setTimeout(r, 2200));
+
+          const rec = await browser.evaluate(`(async () => {
+            const db = await new Promise((res, rej) => { const rq = indexedDB.open('sovereign-aegis-attempts', 1); rq.onsuccess = () => res(rq.result); rq.onerror = () => rej(rq.error); });
+            const rows = await new Promise((res, rej) => { const tx = db.transaction('attempts', 'readonly'); const rq = tx.objectStore('attempts').getAll(); rq.onsuccess = () => res(rq.result); rq.onerror = () => rej(rq.error); });
+            const drill = rows.map((r) => r.record || r).filter((r) => r.context === 'osint-drill').sort((a, b) => a.ts - b.ts);
+            return { count: drill.length, rows: drill };
+          })()`);
+
+          // recordAttempt writes one row per taught skill (an item can teach 1–2), so the
+          // delta equals the taught-skill count of the answered item — assert >= 1 and that
+          // EVERY new row carries the operator's clicked level.
+          const delta = rec.count - before;
+          harness.assert(delta >= 1 && delta <= 2, `attempt rows recorded for the taught skills (delta ${delta})`);
+          const newRows = rec.rows.slice(rec.count - delta);
+          harness.assert(newRows.every((r) => typeof r.correct === 'boolean'), 'every recorded attempt carries a boolean correctness');
+          harness.assert(newRows.every((r) => r.confidence === 'guess'), 'every recorded attempt carries the clicked level, not a fabricated default');
+          harness.assert(newRows.every((r) => typeof r.itemId === 'string' && r.itemId.length > 0), 'every recorded attempt references a stable item id');
+          harness.assert(newRows.every((r) => optText.endsWith(r.chosen || '')), 'recorded chosen text matches the option that was clicked');
+          harness.assertEqual(new Set(newRows.map((r) => r.itemId)).size, 1, 'all new rows reference the same answered item');
+        } else {
+          const html = fs.readFileSync(path.join(ROOT_DIR, 'index.html'), 'utf8');
+          const src = fs.readFileSync(path.join(ROOT_DIR, 'js', 'modules', 'osint.js'), 'utf8');
+          harness.assert(html.includes('id="drill-confidence-host"'), 'drill panel has a confidence host (static)');
+          harness.assert(src.includes("Confidence.mount(document.getElementById('drill-confidence-host')"), 'drill mounts the shared control (static)');
+          harness.assert(!/confidence:\s*'sure'/.test(src), 'no hardcoded confidence claim in osint.js (static)');
+        }
+      });
+
       await harness.it('Verifies Interactive SVG Relationship Network Graph & Zoom Controls', async () => {
         if (hasCdp) {
           await browser.evaluate('AegisApp.switchSubTab("osint", "graph")');

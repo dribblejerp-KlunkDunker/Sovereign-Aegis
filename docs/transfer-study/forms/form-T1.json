@@ -1,0 +1,313 @@
+{
+  "form": "T1",
+  "seed": "aegis-transfer-study-v1.0-forms",
+  "items": [
+    {
+      "id": "q93",
+      "domain": "Propaganda Tactics",
+      "difficulty": 1330,
+      "claim": "A campaign describes its own supporters as \"concerned citizens\" and its opponents' identical activity as \"agitators bussed in from outside\".",
+      "options": [
+        "Ingroup Attribution Asymmetry",
+        "Astroturfing",
+        "Whataboutism (Tu Quoque)",
+        "Loaded / Emotive Language"
+      ],
+      "explanation": "The same behaviour receives opposite labels. There is an attribution asymmetry underneath, which makes that a defensible second choice — but what is being asked about is the vocabulary doing the work, and the question is which lever is being pulled on the reader.",
+      "tests": [
+        "skill.tactic.emotive-framing"
+      ]
+    },
+    {
+      "id": "q94",
+      "domain": "Propaganda Tactics",
+      "difficulty": 1350,
+      "claim": "\"The report says the risk is not significant. So there is no meaningful risk to residents.\"",
+      "options": [
+        "Straw Man",
+        "Hasty Generalisation",
+        "Equivocation (Semantic Shift)",
+        "Appeal to Ignorance (Argumentum ad Ignorantiam)"
+      ],
+      "explanation": "\"Significant\" moves from its statistical sense to its everyday one between the two sentences. A statistically non-significant result can describe a large and worrying effect measured imprecisely — the terms are not interchangeable, which is exactly what the argument relies on.",
+      "tests": [
+        "skill.tactic.equivocation"
+      ]
+    },
+    {
+      "id": "q9",
+      "domain": "Propaganda Tactics",
+      "difficulty": 1350,
+      "claim": "\"In a 10-minute televised debate, a candidate unleashes 47 distinct, rapid-fire half-truths and fabricated statistics, making real-time refutation impossible in the remaining time.\"",
+      "options": [
+        "Firehose of Falsehood",
+        "False Balance",
+        "Gish Gallop",
+        "Dead Cat Strategy"
+      ],
+      "explanation": "Overwhelming an opponent with an excessive volume of specious arguments that take far longer to disprove than to utter.",
+      "tests": [
+        "skill.tactic.flooding"
+      ]
+    },
+    {
+      "id": "q68",
+      "domain": "Cognitive Bias",
+      "difficulty": 1290,
+      "claim": "A profile explains a founder's success entirely through her discipline and vision, mentioning in passing that the family funded the first two years.",
+      "options": [
+        "Availability Heuristic (Ease of Recall)",
+        "Survivorship Bias",
+        "Dispositional Over-Attribution",
+        "Appeal to Authority"
+      ],
+      "explanation": "Traits are credited with an outcome that had substantial situational support. Survivorship bias is the tempting alternative and would apply to a claim about founders in general; this is about the causal account of one case.",
+      "tests": [
+        "skill.bias.attribution"
+      ]
+    },
+    {
+      "id": "q110",
+      "domain": "DISARM Framework",
+      "difficulty": 1470,
+      "claim": "A small false claim is circulating in one niche forum. An agency issues a national press release naming and rebutting it.",
+      "options": [
+        "Narrative Laundering",
+        "Strategic Silence (Deliberate Non-Amplification)",
+        "Prebunking",
+        "The countermeasure amplifies what it targets"
+      ],
+      "explanation": "The rebuttal carries the claim to an audience that had never encountered it, and repetition increases familiarity, which increases believability. Proportionality is the whole skill — the right response to a contained claim is often containment.",
+      "tests": [
+        "skill.disarm.countermeasures"
+      ]
+    },
+    {
+      "id": "q112",
+      "domain": "AI Media Forensics",
+      "difficulty": 1400,
+      "claim": "An image carries a C2PA manifest that parses cleanly. The viewer shows the capture device, edit history and signer.",
+      "options": [
+        "The manifest is parsed but not cryptographically verified",
+        "The image is proven edited",
+        "The image is proven authentic",
+        "The manifest proves the device model"
+      ],
+      "explanation": "Parsing reads what a file claims about itself; verification requires checking the COSE signature against a trusted certificate chain and confirming the asset hashes still match. A well-formed manifest can be copied wholesale onto a different image.",
+      "tests": [
+        "skill.forensics.provenance"
+      ]
+    },
+    {
+      "id": "q49",
+      "domain": "Cognitive Bias",
+      "difficulty": 1310,
+      "claim": "A trader keeps a journal of every prediction that came true and remembers the losing calls as \"the market being irrational that week\".",
+      "options": [
+        "Selective Recall",
+        "Survivorship Bias",
+        "Sunk Cost Fallacy",
+        "Hindsight Bias"
+      ],
+      "explanation": "The record and the memory are curated after the fact. Hindsight bias is the neighbour — that would be misremembering how confident he WAS beforehand, whereas here the question is which events he retains at all.",
+      "tests": [
+        "skill.bias.confirmation"
+      ]
+    },
+    {
+      "id": "q13",
+      "domain": "AI Media Forensics",
+      "difficulty": 1350,
+      "claim": "\"Inspecting a crowd photograph reveals that distant spectators' earlobes blend seamlessly into their collars, and glasses frames fade into cheek skin without hinges.\"",
+      "options": [
+        "Sensor Bayer Filter Pattern",
+        "Boundary Smearing & Topology Hallucination",
+        "Chroma Subsampling",
+        "JPEG Block Boundary Artifact"
+      ],
+      "explanation": "Generative diffusion models struggle with fine semantic topological continuity around complex accessory boundaries.",
+      "tests": [
+        "skill.forensics.read-measurements"
+      ]
+    },
+    {
+      "id": "q76",
+      "domain": "Propaganda Tactics",
+      "difficulty": 1350,
+      "claim": "Four hundred accounts supporting a zoning proposal were created within the same eleven-day window last year, and share a posting-time distribution unlike the platform baseline.",
+      "options": [
+        "Astroturfing (Coordinated Account Creation)",
+        "Brigading",
+        "Availability Heuristic",
+        "Argumentum ad Populum (Bandwagon)"
+      ],
+      "explanation": "Creation-date clustering plus an anomalous activity rhythm is coordination evidence, which is what separates this from bandwagon — bandwagon is a fallacy about crowd size being offered as a reason, astroturfing is a claim that the crowd is manufactured.",
+      "tests": [
+        "skill.tactic.astroturfing",
+        "skill.disarm.seed-amplify"
+      ]
+    },
+    {
+      "id": "q51",
+      "domain": "Cognitive Bias",
+      "difficulty": 1350,
+      "claim": "A team reviewing a failed launch reads the pre-launch risk memo and finds that it \"obviously flagged the problem\", though at the time nobody acted on it.",
+      "options": [
+        "Hindsight Bias",
+        "Confirmation Bias",
+        "Fundamental Attribution Error / Ingroup Favoritism",
+        "Selective Recall"
+      ],
+      "explanation": "Knowing the outcome makes the warning legible in a way it was not beforehand. This is why post-incident reviews asking \"who missed this\" produce worse findings than ones asking \"what was visible at the time\".",
+      "tests": [
+        "skill.bias.probability"
+      ]
+    },
+    {
+      "id": "q16",
+      "domain": "Logical Fallacy",
+      "difficulty": 1200,
+      "claim": "\"Since the city started spraying organic mosquito repellent in July, local bakery sales have doubled. Clearly, mosquito repellent stimulates carbohydrate appetite.\"",
+      "options": [
+        "Equivocation",
+        "Circular Reasoning (Petitio Principii)",
+        "Genetic Fallacy",
+        "Post Hoc Ergo Propter Hoc"
+      ],
+      "explanation": "Confuses chronological sequence with causal relationship ('after this, therefore because of this').",
+      "tests": [
+        "skill.fallacy.scope"
+      ]
+    },
+    {
+      "id": "q21",
+      "domain": "Logical Fallacy",
+      "difficulty": 1450,
+      "claim": "\"If it is raining, the street is wet. The street is wet. Therefore, it is raining.\"",
+      "options": [
+        "Affirming the Consequent (Formal Fallacy)",
+        "Undistributed Middle",
+        "Denying the Antecedent",
+        "Modus Ponens"
+      ],
+      "explanation": "A formal deductive error: the street could be wet from a fire hydrant, street sweeper, or melting snow.",
+      "tests": [
+        "skill.fallacy.formal-vs-informal",
+        "skill.fallacy.structure"
+      ]
+    },
+    {
+      "id": "q83",
+      "domain": "Propaganda Tactics",
+      "difficulty": 1360,
+      "claim": "A segment on a well-replicated finding gives equal airtime to the one researcher who disputes it and to the consensus position, without saying how many hold each.",
+      "options": [
+        "False Balance (Bothsidesism)",
+        "Manufactured Doubt",
+        "Appeal to False Authority",
+        "Argumentum ad Populum (Bandwagon)"
+      ],
+      "explanation": "Equal time misrepresents the state of the evidence as an even split. Manufactured doubt is the strategy this often serves, but that names a deliberate campaign; false balance is the editorial artefact, which frequently occurs without one.",
+      "tests": [
+        "skill.tactic.false-balance"
+      ]
+    },
+    {
+      "id": "q62",
+      "domain": "Cognitive Bias",
+      "difficulty": 1250,
+      "claim": "A menu lists a $180 tasting option at the top. Sales of the $95 option rise sharply, although it did not change.",
+      "options": [
+        "Appeal to Nature",
+        "Anchoring Effect",
+        "Argumentum ad Populum (Bandwagon)",
+        "Framing Effect"
+      ],
+      "explanation": "The expensive item may sell rarely and still earn its place by re-scaling every other price. Nothing about the $95 dish changed — only the reference point it is judged against.",
+      "tests": [
+        "skill.bias.anchoring"
+      ]
+    },
+    {
+      "id": "q103",
+      "domain": "DISARM Framework",
+      "difficulty": 1370,
+      "claim": "Personas are built with two years of backdated ordinary posts — recipes, sport, holiday photographs — before ever mentioning politics.",
+      "options": [
+        "Coordinated Inauthentic Behaviour",
+        "T0001: Target Profiling",
+        "Astroturfing",
+        "T0004: Establish Inauthentic Assets / Spoofing"
+      ],
+      "explanation": "Legend-building is asset preparation; the mundane history exists to defeat exactly the account-age and content-mix checks a reviewer would run. It becomes a deployed astroturf campaign only once those assets are used to simulate a movement.",
+      "tests": [
+        "skill.disarm.plan-prepare",
+        "skill.tactic.astroturfing"
+      ]
+    },
+    {
+      "id": "q56",
+      "domain": "Cognitive Bias",
+      "difficulty": 1270,
+      "claim": "A local paper runs six stories in a month about assaults in one park. Reported crime there does not change, but residents petition to close it.",
+      "options": [
+        "Hasty Generalisation",
+        "Loaded / Emotive Language",
+        "Availability Heuristic",
+        "Astroturfing"
+      ],
+      "explanation": "The frequency of COVERAGE changed, not the frequency of events, and the two are being read as one signal. Note that this requires no bad actor at all — ordinary editorial choices produce it.",
+      "tests": [
+        "skill.bias.availability"
+      ]
+    },
+    {
+      "id": "q38",
+      "domain": "Logical Fallacy",
+      "difficulty": 1170,
+      "claim": "\"Four million subscribers cannot be wrong about this trading strategy.\"",
+      "options": [
+        "Argumentum ad Populum (Bandwagon)",
+        "Astroturfing",
+        "Appeal to False Authority (Ad Verecundiam)",
+        "Availability Heuristic"
+      ],
+      "explanation": "Headcount is offered as proof. Astroturfing is the distractor worth pausing on: that would require the crowd to be MANUFACTURED, and nothing here suggests the subscribers are inauthentic — only that their number is irrelevant to whether the strategy works.",
+      "tests": [
+        "skill.fallacy.appeals"
+      ]
+    },
+    {
+      "id": "q104",
+      "domain": "DISARM Framework",
+      "difficulty": 1340,
+      "claim": "A fabricated claim is posted first to a small niche forum, then screenshotted into a mid-size channel as \"people are saying\", then covered by a national outlet as a controversy.",
+      "options": [
+        "Astroturfing",
+        "T0048: Flood the Information Environment / Epistemic Pollution",
+        "Narrative Laundering",
+        "Firehose of Falsehood"
+      ],
+      "explanation": "Each hop strips provenance and adds apparent credibility until the origin is unrecoverable. Flooding is a different mechanism — volume rather than laundering — and the tell here is the deliberate ladder of venues.",
+      "tests": [
+        "skill.disarm.seed-amplify"
+      ]
+    },
+    {
+      "id": "q8",
+      "domain": "Propaganda Tactics",
+      "difficulty": 1200,
+      "claim": "\"When confronted about human rights abuses in prison facilities, the minister replies: 'What about your country's mass surveillance programs in 2013?'\"",
+      "options": [
+        "Gaslighting",
+        "Whataboutism (Tu Quoque)",
+        "Gish Gallop",
+        "Astroturfing (Manufactured Grassroots)"
+      ],
+      "explanation": "Deflects criticism by raising a counter-accusation of hypocrisy without addressing the underlying offense.",
+      "tests": [
+        "skill.fallacy.relevance"
+      ]
+    }
+  ]
+}

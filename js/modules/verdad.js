@@ -687,7 +687,7 @@ export class VerdadEngine {
     }
 
     try {
-      return await this.queryGeminiApi(text, apiKey);
+      return await this.queryGeminiApi(text, apiKey, options.model);
     } catch {
       const fallbackResult = this.runOfflineHeuristics(text);
       return {
@@ -706,8 +706,12 @@ export class VerdadEngine {
    * `VerdadEngine.fetchImpl` rather than relying on a magic API key that the
    * production code would have to recognise.
    */
-  static async queryGeminiApi(text, apiKey) {
-    const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${encodeURIComponent(apiKey)}`;
+  static async queryGeminiApi(text, apiKey, model = 'gemini-2.0-flash') {
+    // Allowlist: the model is interpolated into the URL path, so only values the
+    // settings modal itself offers may pass through.
+    const ALLOWED_MODELS = ['gemini-2.0-flash', 'gemini-1.5-pro', 'gemini-1.5-flash'];
+    const chosen = ALLOWED_MODELS.includes(model) ? model : 'gemini-2.0-flash';
+    const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(chosen)}:generateContent?key=${encodeURIComponent(apiKey)}`;
     const prompt = `You are VERDAD, an epistemic defense AI engine. Analyze the following assertion for truthfulness, manipulation risk, emotional triggers, logical fallacies, and factual basis.
 Claim: "${text}"
 
@@ -945,7 +949,11 @@ export const VerdadModule = {
 
     try {
       this._lastClaimText = text;
-      const result = await VerdadEngine.analyzeClaim(text, { apiKey, mode });
+      const result = await VerdadEngine.analyzeClaim(text, {
+        apiKey,
+        mode,
+        model: this._app?.store?.get('verdad.preferredModel', 'gemini-2.0-flash')
+      });
       this._lastResult = result;
       this._renderResults(result);
 
