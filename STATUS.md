@@ -206,6 +206,14 @@ competency estimation). Full architecture and feature inventory: `PROJECT.md`.
    carry their own `notifier-drill` label, so a drill can never create, append to, or
    close the real `nightly-failure` tracker. Guard suite grew to 35 pins (drill
    reachability, label isolation, drill-scoped gate skipping); gate **18,662/18,662**.
+   **Drill FIRED 2026-09-25 23:30 UTC** (run #10, `workflow_dispatch`, drill_notifier):
+   completed `success` in ~31 s with the gates correctly skipped; it created issue #1
+   (`[DRILL] Notifier exercise — 2026-09-25`, labeled `notifier-drill`, assigned to the
+   owner, cc @mention in the body) and the same run's auto-close step closed it with a
+   bot comment — create, assign, append-plumbing and close all proven live before the
+   first real scheduled failure. Remaining unproven: actual email delivery of the cc
+   (run a drill with `drill_leave_open` to check the inbox), and the nightly path's
+   log-scraping body (it needs a real red run's logs).
 5. **§8 hardening leftovers** (`ROADMAP.md` §8): one-click legacy private-JWK
    rotation, and moving `index.html`'s 486 inline `style=""` occurrences off inline
    styles so CSP `style-src` can drop `'unsafe-inline'`. (The "2,507 lines" figure   in the old §8 is stale — the file is 2,956 lines now; the *finding* stands.)
