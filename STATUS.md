@@ -195,6 +195,17 @@ competency estimation). Full architecture and feature inventory: `PROJECT.md`.
    re-validated with pyyaml; both step scripts pass `bash -n`. Caveat: the nightly only
    runs from the pushed default branch, so the first real notification exercise happens
    on the first scheduled run after the next publish.
+   **AMENDED 2026-09-25 (same day) — notifier drill.** Waiting for a real red nightly to
+   learn whether the notifier works is the wrong test. `ci.yml` now takes two manual
+   `workflow_dispatch` inputs: `drill_notifier` (skip the gates, exercise the EXACT
+   notifier plumbing — label bootstrap, create-or-append, assignment — against a real
+   GitHub context) and `drill_leave_open` (leave the drill issue open to verify the cc
+   @mention email actually arrives, instead of closing it in the same run and exercising
+   the auto-close mechanics too). Safety: the drill steps are reachable ONLY via an
+   explicit manual dispatch — schedule and push can never reach them — and drill issues
+   carry their own `notifier-drill` label, so a drill can never create, append to, or
+   close the real `nightly-failure` tracker. Guard suite grew to 35 pins (drill
+   reachability, label isolation, drill-scoped gate skipping); gate **18,662/18,662**.
 5. **§8 hardening leftovers** (`ROADMAP.md` §8): one-click legacy private-JWK
    rotation, and moving `index.html`'s 486 inline `style=""` occurrences off inline
    styles so CSP `style-src` can drop `'unsafe-inline'`. (The "2,507 lines" figure   in the old §8 is stale — the file is 2,956 lines now; the *finding* stands.)

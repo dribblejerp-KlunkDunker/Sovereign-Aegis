@@ -20,6 +20,17 @@ name: CI
 on:
   push:
   workflow_dispatch:
+    inputs:
+      drill_notifier:
+        description: 'Drill only: skip the gates and exercise the nightly-failure notifier plumbing end-to-end.'
+        type: boolean
+        required: false
+        default: false
+      drill_leave_open:
+        description: 'Drill only: leave the drill issue open to verify email delivery, instead of closing it in the same run.'
+        type: boolean
+        required: false
+        default: false
   schedule:
     # 03:30 UTC daily — off the top-of-hour congestion GitHub warns about.
     - cron: '30 3 * * *'
@@ -44,20 +55,23 @@ jobs:
           cache: npm
 
       - name: Install dependencies
+        if: inputs.drill_notifier != true
         run: npm ci
 
       # npm test includes the reverse-face-search Playwright suite, and the E2E
       # suite below drives real Chromium — both need the browser present.
       - name: Install Chromium
+        if: inputs.drill_notifier != true
         run: npx playwright install --with-deps chromium
 
       - name: Headless gate
+        if: inputs.drill_notifier != true
         run: |
           node tests/run-all.js 2>&1 | tee headless-gate.log
           node tests/test-reverse-face-search-upload.js 2>&1 | tee reverse-face.log
 
       - name: Summarize headless results
-        if: always()
+        if: always() && inputs.drill_notifier != true
         run: |
           {
             echo "## Headless gate"
@@ -72,11 +86,11 @@ jobs:
 
       # On demand (workflow_dispatch) and nightly (schedule) only — not on pushes.
       - name: Browser E2E suite (on demand & nightly)
-        if: github.event_name == 'workflow_dispatch' || github.event_name == 'schedule'
+        if: (github.event_name == 'workflow_dispatch' || github.event_name == 'schedule') && inputs.drill_notifier != true
         run: node tests/test-e2e.js 2>&1 | tee e2e.log
 
       - name: Summarize E2E results
-        if: always() && (github.event_name == 'workflow_dispatch' || github.event_name == 'schedule')
+        if: always() && (github.event_name == 'workflow_dispatch' || github.event_name == 'schedule') && inputs.drill_notifier != true
         run: |
           {
             echo "## Browser E2E"
@@ -142,5 +156,61 @@ jobs:
           fi
           for n in $open; do
             gh issue close "$n" --comment "Nightly scheduled run PASSED: $RUN_URL — auto-closing."
+            echo "Closed #$n"
+          done
+
+      # --- Notifier drill (manual, gated) ------------------------------------------
+      # Exercises the EXACT plumbing a red nightly uses — label bootstrap, issue
+      # create-or-append, assignment — against a real GitHub context, without waiting
+      # for a real failure. It runs ONLY on a manual dispatch that explicitly sets
+      # drill_notifier; schedule and push can never reach it. Drill issues carry their
+      # own `notifier-drill` label so a drill can never create, append to, or close the
+      # real `nightly-failure` tracker. With drill_leave_open left false, the second
+      # step closes the drill issue in the same run — exercising the auto-close path
+      # too. Leave it true once to verify the cc @mention email actually arrives.
+      - name: Nightly notifier drill (create or append)
+        if: github.event_name == 'workflow_dispatch' && inputs.drill_notifier == true
+        env:
+          GH_TOKEN: ${{ github.token }}
+          OWNER: ${{ github.repository_owner }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          {
+            echo "**DRILL** — a manual exercise of the nightly-failure notifier plumbing. This is NOT a real failure."
+            echo "- Run: $RUN_URL"
+            echo "- Commit: $GITHUB_SHA"
+            echo "- Date (UTC): $(date -u +%Y-%m-%d)"
+            echo
+            echo "The label bootstrap, create-or-append and assignment commands below are byte-identical to the red-nightly path."
+            echo
+            echo "cc @${OWNER}"
+            echo
+            echo "_Drill issue. A real tracker reads: an open issue means the latest nightly was red. Safe to close or delete._"
+          } > failure-issue.md
+          gh label create notifier-drill --color 1D76DB --description "Manual notifier drill" --force
+          existing=$(gh issue list --label notifier-drill --state open --json number --jq '.[0].number')
+          if [ -n "$existing" ]; then
+            gh issue comment "$existing" --body-file failure-issue.md
+            echo "Appended drill to open drill issue #$existing"
+            issue="$existing"
+          else
+            issue=$(gh issue create --title "[DRILL] Notifier exercise — $(date -u +%Y-%m-%d)" --body-file failure-issue.md --label notifier-drill)
+            echo "Created drill issue: $issue"
+          fi
+          gh issue edit "$issue" --add-assignee "$OWNER" || echo "(could not assign $OWNER — the cc mention still notifies)"
+
+      - name: Auto-close drill issue (drill end)
+        if: github.event_name == 'workflow_dispatch' && inputs.drill_notifier == true && inputs.drill_leave_open != true
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          open=$(gh issue list --label notifier-drill --state open --json number --jq '.[].number')
+          if [ -z "$open" ]; then
+            echo "No open drill issues — nothing to close."
+            exit 0
+          fi
+          for n in $open; do
+            gh issue close "$n" --comment "Drill complete — notifier and auto-close both exercised. Real green nightlies close via the schedule-gated step: $RUN_URL"
             echo "Closed #$n"
           done

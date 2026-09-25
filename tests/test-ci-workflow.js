@@ -50,9 +50,11 @@ function hasScheduledCron() {
   return /schedule:/.test(onBlock[1]) && /cron:\s*'30 3 \* \* \*'/.test(onBlock[1]);
 }
 
-/** Extract a named step's `if:` condition and run body from the workflow text. */
+/** Extract a named STEP's text (6-space `- name:` entries; falls back to any
+ *  `name:` match so job-level lookups keep working). */
 function step(name) {
-  const idx = workflow.indexOf(`name: ${name}`);
+  const stepAnchored = workflow.indexOf(`      - name: ${name}`);
+  const idx = stepAnchored !== -1 ? stepAnchored : workflow.indexOf(`name: ${name}`);
   if (idx === -1) return null;
   const rest = workflow.slice(idx);
   const nextStep = rest.slice(1).search(/\n      - name: /);
@@ -99,7 +101,9 @@ assertIncludes('issues: write', 'workflow grants issues:write (issue creation/co
 }
 
 // The E2E job must still be schedule-gated (regression guard for the 2026-09-24 change).
-assert(/if:\s*github\.event_name == 'workflow_dispatch' \|\| github\.event_name == 'schedule'/.test(workflow),
+// The condition may carry a drill-skip suffix, so the event check is matched loosely —
+// what must exist is the dispatch-or-schedule gate itself.
+assert(/github\.event_name == 'workflow_dispatch' \|\| github\.event_name == 'schedule'/.test(workflow),
   'browser E2E remains gated to workflow_dispatch and schedule');
 
 // The notification must be silence-proof by construction: no `continue-on-error` on
@@ -109,6 +113,55 @@ assert(/if:\s*github\.event_name == 'workflow_dispatch' \|\| github\.event_name 
   if (notify) {
     assert(!notify.includes('continue-on-error'), 'notification step has no continue-on-error — a broken notify FAILS the run loudly');
   }
+}
+
+// ------------------------------------------------------------------ notifier drill
+// The drill (added 2026-09-25) exercises the notifier plumbing on demand. Its pins
+// guard the two ways it could cause harm: running without an explicit human request,
+// or touching the real nightly-failure tracker.
+
+assertIncludes('drill_notifier:', 'a drill_notifier dispatch input exists');
+assertIncludes('drill_leave_open:', 'a drill_leave_open dispatch input exists (verify-email-delivery mode)');
+
+{
+  const drill = step('Nightly notifier drill (create or append)');
+  assert(drill !== null, 'the drill create-or-append step exists');
+  if (drill) {
+    assert(/if:\s*github\.event_name == 'workflow_dispatch' && inputs\.drill_notifier == true/.test(drill),
+      'the drill runs ONLY on a manual dispatch with drill_notifier set — schedule and push can never reach it');
+    assert(!/--label nightly-failure/.test(drill) && !drill.includes('label create nightly-failure'),
+      'the drill never creates, lists, labels, or closes the real nightly-failure tracker');
+    assert(drill.includes('gh label create notifier-drill'), 'the drill bootstraps its own notifier-drill label');
+    assert(drill.includes('gh issue create') && drill.includes('gh issue comment'),
+      'the drill exercises the same create-or-append plumbing as a real red nightly');
+    assert(drill.includes('--add-assignee'), 'the drill exercises assignment exactly like the real path');
+    assert(/\[DRILL\]/.test(drill), 'the drill issue title is visibly marked [DRILL]');
+    assert(drill.includes('DRILL') && drill.includes('NOT a real failure'), 'the drill issue body says it is not a real failure');
+  }
+}
+
+{
+  const drillClose = step('Auto-close drill issue (drill end)');
+  assert(drillClose !== null, 'the drill auto-close step exists');
+  if (drillClose) {
+    assert(/inputs\.drill_notifier == true && inputs\.drill_leave_open != true/.test(drillClose),
+      'drill auto-close runs in the same drill unless drill_leave_open is set (email-verification mode)');
+    assert(drillClose.includes('--label notifier-drill'), 'drill auto-close is scoped to the drill label only');
+    assert(drillClose.includes('gh issue close'), 'the drill exercises the real auto-close mechanics');
+  }
+}
+
+// Drill runs must not pay for gates they skip — and the skip must be drill-scoped so
+// a push or scheduled run (empty inputs) still runs every gate.
+for (const gate of ['Install dependencies', 'Install Chromium', 'Headless gate']) {
+  const s = step(gate);
+  assert(s !== null && /if:\s*inputs\.drill_notifier != true/.test(s),
+    `"${gate}" is skipped only during a drill (drill_notifier != true)`);
+}
+{
+  const e2e = step('Browser E2E suite (on demand & nightly)');
+  assert(e2e !== null && /inputs\.drill_notifier != true/.test(e2e),
+    'the browser E2E is also skipped during a drill');
 }
 
 console.log('====================================================');
