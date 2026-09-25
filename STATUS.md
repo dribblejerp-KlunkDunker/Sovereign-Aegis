@@ -214,6 +214,15 @@ competency estimation). Full architecture and feature inventory: `PROJECT.md`.
    first real scheduled failure. Remaining unproven: actual email delivery of the cc
    (run a drill with `drill_leave_open` to check the inbox), and the nightly path's
    log-scraping body (it needs a real red run's logs).
+   **EMAIL DELIVERY CONFIRMED 2026-09-25 ~23:50 UTC.** A leave-open drill (run #12,
+   `drill_notifier` + `drill_leave_open`; create step succeeded, auto-close correctly
+   skipped, a NEW issue #2 created rather than appending to the closed #1 — label
+   isolation behaving as pinned) produced a notification email the operator actually
+   received. The notifier's full chain is therefore proven end-to-end: issue creation,
+   assignment, cc @mention, and email delivery to the owner's inbox. What remains
+   nightly-only: the red-run log-scraping body, which still needs a real failing
+   scheduled run to exercise. Both drill issues (#1, #2) were closed after the
+   confirmation; the delivery proof lives in this record.
 5. **§8 hardening leftovers** (`ROADMAP.md` §8): one-click legacy private-JWK
    rotation, and moving `index.html`'s 486 inline `style=""` occurrences off inline
    styles so CSP `style-src` can drop `'unsafe-inline'`. (The "2,507 lines" figure   in the old §8 is stale — the file is 2,956 lines now; the *finding* stands.)
