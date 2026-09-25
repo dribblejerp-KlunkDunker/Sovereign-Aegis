@@ -114,9 +114,9 @@
           <span class="pulse-dot dot-emerald"></span>
           <span class="status-label">SENTINEL: ARMED</span>
         </div>
-        <div class="status-pill status-pill-threat cs-pill" id="topbar-threat-badge" title="Global Cognitive Threat Level">
+        <div class="status-pill status-pill-threat cs-pill" id="topbar-threat-badge" title="Threat level derived from your last completed VERDAD audit. Nothing is audited yet — this is not a measurement.">
           <span class="threat-icon text-amber">⚡</span>
-          <span class="status-label" id="threat-index-val">THREAT: ELEVATED (42%)</span>
+          <span class="status-label aegis-threat-unaudited" id="threat-index-val">THREAT: UNAUDITED</span>
         </div>
         <div class="status-pill status-pill-byok cs-pill" id="topbar-byok-badge" title="Click to Configure BYOK Gemini API">
           <span class="byok-mode-dot" id="byok-status-indicator"></span>
@@ -137,8 +137,8 @@
     <aside id="telemetry-bar" class="telemetry-bar" aria-label="System Telemetry Ticker">
       <div class="telemetry-inner">
         <div class="telemetry-item">
-          <span class="telemetry-label">EPOCH:</span>
-          <span class="telemetry-value" id="telemetry-epoch">T+2026.08.16</span>
+          <span class="telemetry-label">PRACTICE EPOCH:</span>
+          <span class="telemetry-value" id="telemetry-epoch" title="Days since your first recorded practice attempt (from the local attempt log). Before any attempts, this shows the current session time instead.">SESSION 00:00:00</span>
         </div>
         <div class="telemetry-separator">|</div>
         <div class="telemetry-item">
@@ -148,7 +148,7 @@
         <div class="telemetry-separator">|</div>
         <div class="telemetry-item">
           <span class="telemetry-label">IMMUNITY INDEX:</span>
-          <span class="telemetry-value text-emerald" id="telemetry-immunity-val">94.8% RESILIENT</span>
+          <span class="telemetry-value text-emerald" id="telemetry-immunity-val" title="Mean estimated mastery across the skills you have actually attempted, recomputed from the local attempt log. No attempts → UNMEASURED.">UNMEASURED</span>
         </div>
         <div class="telemetry-separator">|</div>
         <div class="telemetry-item">
@@ -1636,6 +1636,30 @@
                 <span>🛡️ Execute Epistemic Audit</span>
               </button>
             </div>
+          </div>
+
+          <div class="card card-granite-inset" style="padding: 12px 16px; margin-bottom: var(--space-6); font-size: 0.85rem; line-height: 1.5; color: var(--parchment-muted);">
+            <div class="status-label text-bronze" style="margin-bottom: 6px;">WHAT A KEY CHANGES HERE</div>
+            <p style="margin: 0 0 8px 0;">
+              <strong class="text-bronze">With a Gemini key</strong> — “Execute Epistemic Audit” also sends the
+              claim text to Google's Gemini (the model picked in Settings) for deep adversarial analysis layered
+              on the local heuristics; the completion toast says <em>GEMINI AUDIT COMPLETE</em> when it ran.
+              <strong class="text-bronze">Without one</strong>, the same button runs the fully-offline regex +
+              fallacy-lexicon engine and nothing leaves your device. Either way the result tells you which ran,
+              and a failed API call degrades to the offline engine and says so — never a live answer posing as one.
+            </p>
+            <p style="margin: 0 0 8px 0;">
+              <strong class="text-bronze">With a Fact Check key</strong> — every audit also searches published
+              ClaimReview records from IFCN-signatory fact-checkers in the PUBLISHED FACT-CHECKS panel below.
+              Without one, the panel says so plainly; a failed lookup is reported as a failure and is never
+              treated as evidence about the claim.
+            </p>
+            <p style="margin: 0;">
+              <strong class="text-crimson">The tradeoff:</strong> a key means data leaves the device — the claim
+              text goes to Google's model, or the claim's keywords go to Google's fact-check lookup. That is the
+              only outbound traffic in this view. Keys live in tab memory only (see Settings) and are wiped on
+              reload; with no key configured, nothing leaves the device.
+            </p>
           </div>
 
           <!-- Zero-click capture surfaces: clipboard read, verify bookmarklet, drop-anywhere. -->

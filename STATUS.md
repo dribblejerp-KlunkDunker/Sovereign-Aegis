@@ -1,6 +1,6 @@
 # SOVEREIGN // AEGIS — Status Snapshot
 
-**Date:** 2026-09-20
+**Date:** 2026-09-25 (amended; original snapshot 2026-09-20, previously amended 2026-09-24)
 **Purpose:** a dated, point-in-time record of where the project stands. The living
 handoff remains `SESSION-HANDOFF.md`; this file captures what changed since it was
 written and what is true right now, so future sessions can verify rather than assume.
@@ -26,11 +26,17 @@ competency estimation). Full architecture and feature inventory: `PROJECT.md`.
 - **Verification gate, measured 2026-09-20:** `node tests/run-all.js` →
   **45 suites, 17,350 assertions, 0 failures** (~9.1 s). Composition: 10,809 (62%)
   static dataset/schema validation, 6,541 logic/crypto/fuzz/static-HTML checks.
+  (Amended 2026-09-24: **46 suites, 18,527 assertions, 0 failures** — the transfer-study
+  suite joined the gate and the verifier fix added 19 pins. Amended twice on 2026-09-25:
+  **47 suites, 18,627** — the honesty-chrome work in item 3 added 48 pins and two legacy
+  M1 seeds were de-theatricalized; then **48 suites, 18,644** — the CI notification
+  guards in item 4 added 17 pins.)
   Browser E2E is a separate gate (`npm run test:e2e`) and is **not included** in
-  that number — and still has no CI job to run it (see open items).
+  that number — CI triggers it only on demand via workflow_dispatch (see open items).
 - **The standalone single-file build is FRESH** — rebuilt 2026-09-20 with the retention
   wiring and the adaptive inoculation engine (esbuild resolved via npx during live
-  verification).
+  verification), again 2026-09-24 carrying the signature-verifier fix, and again
+  2026-09-25 carrying the honesty-chrome replacements.
 - **Milestones 1–5 complete.** Historical chapter closed; the four original
   milestones plus the Phase 1–3 / Phase 5 / Phase 7 work and the retention part-1
   tracks are all DONE. Phase 4 (transfer study) has a written protocol and has not
@@ -73,12 +79,125 @@ competency estimation). Full architecture and feature inventory: `PROJECT.md`.
      records `confidence: 'sure'` for every answer; it mounts the shared sticky control and
      records what the operator actually claimed. `evaluateCaseAnswer` fails closed (score 0)
      when confidence is not explicitly stated. Pinned by `tests/test-analyst-desk.js` Tier 4b.
-3. **Browser E2E in CI.** Still no CI workflows exist. The headless gate is honest;
-   the browser gate has to actually run somewhere.
-4. **§8 hardening leftovers** (`ROADMAP.md` §8): one-click legacy private-JWK
+3. **Dead-control audit (2026-09-24) — ALL FIVE FINDINGS FIXED 2026-09-24.**
+   Every `store.set`/`get`/`subscribe` key and every DOM control id was inventoried and
+   traced to the code that should act on it; a control counts as dead only when nothing
+   that reads it changes feature behavior (pill labels and modal-echo reads don't).
+   Findings, each with a fail-loud pin in `tests/test-dead-controls.js` (52 assertions,
+   registered in the gate):
+   - **FIXED 2026-09-24** — Signature Verifier ignored the pasted public key
+     (`#input-verify-pubkey`): the handler verified everything against the operator's
+     own key while the UI advertised independent verification. `AegisCrypto.parsePublicKey()`
+     and the new `didKeyToJwk()` (multicodec parse + P-256 point decompression via
+     Tonelli–Shanks) accept a pasted `did:key:z…` or JWK JSON; the result toast names the
+     trust anchor used; an empty field falls back to the own key. The pre-existing
+     signer/verifier asymmetry (a self-asserted `timestamp` in the signed statement) is
+     also fixed — the panel's sign→verify round-trip now succeeds. 19 new pins in
+     `tests/test-crypto.js`; gate 18,527/18,527; verified live through the real UI
+     (foreign signature verifies, wrong key fails, garbage rejected, fallback works).
+     **Strengthened 2026-09-25 (E2E assertion):** the browser E2E check for this control
+     no longer accepts any feedback toast as pass evidence. It now mints a genuinely
+     foreign P-256 keypair in-page with the app's own `AegisCrypto`, signs a fresh claim
+     with it, and requires the exact `SIGNATURE VALID` toast against the PASTED foreign
+     key — plus `SIGNATURE INVALID` for that same signature against the operator's own
+     key, the exact false-pass this fix removed. Proven to bite via a mutation drill:
+     with the own-key bug temporarily reintroduced on a scratch copy, exactly the
+     foreign-key assertion failed ("valid" expected, "invalid" got) until the real code
+     was restored byte-identically. E2E suite is now **128/128** (was 126).
+   - **FIXED 2026-09-24** — Arena TRANSFER PROBE badge never shown: `#arena-active-probe`
+     was hardcoded `hidden` and no JS toggled it, so the operator could never see when a
+     held-out probe was measuring them. `InfiniteArena._updateProbeBadge()` now toggles
+     the badge from `q.heldOut` on every question render. Verified live: badge appears on
+     a probe draw, hides on practice draws.
+   - **FIXED 2026-09-24** — `#check-include-custom-cards` was a no-op: the Epistemic
+     Commons pack builder read only the dossier checkbox, so custom Memory Vault cards
+     were never included either way. Pack assembly is extracted to a testable
+     `_assemblePack()`; checked, it maps every `card-custom-*` Vault card into the pack
+     and the declared `stats.cards` always matches the pack body. Verified live against
+     the real store and a real Vault-shaped card.
+   - **FIXED 2026-09-24** — "Calibrated Mode" card was unbound: `#btn-mode-calibrated`
+     had no click handler while the other three mode cards each wired `startRound`.
+     It now starts a real mode under an explicit-calibration contract: an answer (pointer
+     OR keyboard) is refused until the shared confidence control is tapped THIS question,
+     the tapped level rides both the attempt log and the round history (never defaulted),
+     and each new question re-locks until a fresh statement. This also feeds the
+     previously-orphaned `arena-confidence-host` control with real consequence.
+     Verified live: locked → tap `unsure` → unlocked → answer → attempt logged with
+     `confidence: 'unsure'`.
+   - **FIXED 2026-09-24** — DID-export modal was a static prop: `#modal-did-export`
+     rendered a hardcoded example credential (`did:key:z6MkuA9vR7q…`) and
+     `#btn-copy-jsonld` had no handler. The opener now populates the modal from the
+     operator's LIVE identity via `IdentityModule._buildDidExport()` — a W3C DID Document
+     (public coordinates only) plus a self-signed Verifiable Credential whose signed
+     material IS the credentialSubject, matching the app's own verifier contract, so the
+     displayed credential verifies with the app's verify path (proven in the pin suite);
+     copy exports exactly what is displayed; no identity → the modal says so; a missing
+     signing key still exports the DID Document with the credential visibly absent.
+     Verified live: modal opens carrying the real DID and a credential that verifies.
+   - **No action** (recorded so a future auditor doesn't re-flag them): state keys
+     written but read by nothing (`identity.keyStorage`, `identity.created`,
+     `app.initialized`, `app.drawerOpen`, `app.activeModal` — bookkeeping or natural
+     future display surfaces); the ticker statics (THREAT pill, EPOCH, IMMUNITY INDEX)
+     are deliberate theatrical chrome; the `telemetry.*` suspects are alive via
+     `store.subscribe`; the `identity.privateKeyJwk` write is the deliberate null-scrub.
+   - **AMENDED 2026-09-25 — the ticker statics are no longer theatrical chrome.** The
+     "No action" verdict above stands only for the 2026-09-24 snapshot. On 2026-09-25
+     the three statics were replaced with honest derivations (owner-approved):
+     - **THREAT pill** (`#threat-index-val`): renders `THREAT: UNAUDITED` (amber) until a
+       completed, operator-submitted VERDAD audit exists, then `THREAT: <LEVEL> (<risk>%)`
+       from `VerdadEngine.deriveThreat()` — pure, using Verdad's own credibility bands
+       (≥70 CRITICAL / ≥40 HIGH / ≥25 MODERATE, else LOW; clamps, fails closed to null).
+       `executeAudit` publishes to `verdad.lastAudit`; the shell subscribes the pill to it
+       and the hover tooltip names the audited claim. The mount-time preset analysis is
+       deliberately excluded — the operator never submitted that claim.
+     - **IMMUNITY INDEX** (`#telemetry-immunity-val`): `UNMEASURED` until attempts exist,
+       then the mean decay-weighted mastery over ATTEMPTED skills only
+       (`competency.estimateAggregate()` — new, pure, held-out probes excluded, cold-start
+       prior never scored) with n and skill count attached, e.g. `52% RESILIENT (n=35,
+       10 skills)`. Recomputed from the raw log on boot, tab entry, log import, and arena
+       round end — never cached, never seeded.
+     - **EPOCH** (`#telemetry-epoch`): relabeled `PRACTICE EPOCH`; `D+<days>` since the
+       first logged attempt via `competency.practiceDaySpan()` (new, pure), ticking on the
+       1 s clock; before any history it renders the labeled session age `SESSION hh:mm:ss`
+       so it cannot masquerade as a project epoch.
+     - The fictional seed values (`telemetry.threatLevel`, `epistemicHealth`,
+       `blockHeight`, `syncStatus`, `sentinelMode`, `uptimeSeconds`) are deleted from
+       `state.js` — no code path can resurrect them; the telemetry heartbeat keeps only
+       measured keys. Two legacy M1 pins that enshrined the old seeds were updated.
+     - Evidence: 48 new pins in `tests/test-dead-controls.js` (52→100; statics-regression,
+       boundary math, and shell-wiring pins against the real `AegisApp` object); gate
+       **18,627/18,627** (47 suites); browser E2E **126/126**; verified live — a real
+       audit moved the pill to `THREAT: CRITICAL (94%)` with the claim in the tooltip, and
+       the derived values restored from the persisted record after a cold reload; the
+       standalone was rebuilt carrying all of it.
+   - Audit trail: full gate after all fixes **18,579/18,579** (46 suites + the new
+     Dead-Control Regression Suite); every fix also exercised through the running app.
+     Bonus finding folded into the Calibrated Mode fix: `arena-confidence-host` existed
+     in the markup but nothing mounted into it.
+4. **Browser E2E in CI — DONE 2026-09-24.** `.github/workflows/ci.yml` (added 2026-09-23
+   with the honesty-fix commit `1679630`) runs the headless gate on every push, and the
+   browser E2E suite on demand via workflow_dispatch **and nightly via schedule**
+   (`cron '30 3 * * *'`; GitHub runs scheduled workflows from the default branch only),
+   so E2E regressions surface without a manual run. Note: the nightly job only
+   exercises commits that are pushed to GitHub — local uncommitted work needs the
+   usual local `npm run test:e2e` first.
+   **AMENDED 2026-09-25 — nightly failures now notify.** A red scheduled run previously
+   failed silently in the Actions tab. The workflow (needs `issues: write`) now:
+   on `failure() && schedule`, opens or appends to a `nightly-failure` issue carrying
+   the run link, the head, and the failure lines from both logs, assigned to and
+   cc-ing the repo owner — GitHub's own notification email is the delivery channel,
+   no external alerting service; on `success() && schedule`, any open tracking issues
+   are auto-closed with the green run link, so an open issue always means "the last
+   nightly was red" rather than accumulated cruft. The notify step deliberately has no
+   `continue-on-error` — a broken notification fails the run loudly. Guarded by 17
+   structural pins in `tests/test-ci-workflow.js` (registered as the 48th suite):
+   removing the schedule, the permission, or either step fails the gate. YAML
+   re-validated with pyyaml; both step scripts pass `bash -n`. Caveat: the nightly only
+   runs from the pushed default branch, so the first real notification exercise happens
+   on the first scheduled run after the next publish.
+5. **§8 hardening leftovers** (`ROADMAP.md` §8): one-click legacy private-JWK
    rotation, and moving `index.html`'s 486 inline `style=""` occurrences off inline
-   styles so CSP `style-src` can drop `'unsafe-inline'`. (The "2,507 lines" figure
-   in the old §8 is stale — the file is 2,956 lines now; the *finding* stands.)
+   styles so CSP `style-src` can drop `'unsafe-inline'`. (The "2,507 lines" figure   in the old §8 is stale — the file is 2,956 lines now; the *finding* stands.)
 
 ## Standards that stay in force
 
@@ -91,7 +210,7 @@ first commit.
 ## How to run
 
 ```bash
-npm test                 # headless gate (45 suites) + reverse-face-search Playwright suite
+npm test                 # headless gate (48 suites) + reverse-face-search Playwright suite
 npm run test:e2e         # browser E2E — separate gate, no CI yet
 node tools/tag-skills.mjs  # content-tagging gate
 node build-standalone.mjs  # single-file build (needs esbuild; npx spawn is broken on Windows — spawn npx.cmd or set shell:true)

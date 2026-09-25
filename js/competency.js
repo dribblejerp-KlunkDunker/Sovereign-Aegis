@@ -526,6 +526,82 @@ export function confusionMatrix(attempts, opts = {}) {
 }
 
 /**
+ * One honest number for the whole practice history.
+ *
+ * The mean of estimate() across the skills the operator has actually attempted —
+ * never across all skills, because an unattempted skill is UNKNOWN, not bad: folding the
+ * cold-start prior (0.5) into an average would let the suite "score" the operator on
+ * material they have never touched, which is exactly the fabricated-metrics failure this
+ * application exists to end. Every other consumer of estimateAll() already scopes to
+ * attempted skills; this is the same rule applied to the headline number.
+ *
+ * The result is measured, not simulated — but it is an ESTIMATE over a decay-weighted
+ * sample of self-graded practice, so it travels with its caveats: the skill count and
+ * attempt count ride along as data, and the UI renders them next to the percentage
+ * (e.g. "61% RESILIENT (n=214, 12 skills)"). No attempts at all is a distinct, stated
+ * state: { available: false, value: null, reason: 'no attempts recorded' } — callers
+ * render "UNMEASURED", never 0.5 and never 50.
+ *
+ * Held-out attempts are excluded by default, matching estimate(): the transfer probes
+ * measure the operator, they do not inflate the headline.
+ *
+ * @param {object[]} attempts
+ * @param {{id: string}[]} skills - the skill catalogue; attempts on unlisted skillIds are ignored
+ * @param {{now?: number, includeHeldOut?: boolean}} [opts]
+ * @returns {{available: boolean, value: number|null, n: number, skills: number,
+ *            skillsAttempted: number, reason: string}}
+ */
+export function estimateAggregate(attempts, skills, opts = {}) {
+  const known = new Set((skills || []).map((s) => s.id));
+  const relevant = (attempts || []).filter(
+    (a) => a && known.has(a.skillId) && (opts.includeHeldOut === true || a.heldOut !== true)
+  );
+
+  if (!relevant.length) {
+    return { available: false, value: null, n: 0, skills: (skills || []).length, skillsAttempted: 0, reason: 'no attempts recorded' };
+  }
+
+  const touched = new Set(relevant.map((a) => a.skillId));
+  const bySkill = estimateAll(relevant, [...touched].map((id) => ({ id })), opts);
+
+  let sum = 0;
+  for (const id of touched) sum += bySkill.get(id).mastery;
+
+  return {
+    available: true,
+    value: sum / touched.size,
+    n: relevant.length,
+    skills: (skills || []).length,
+    skillsAttempted: touched.size,
+    reason: 'mean mastery over attempted skills, held-out probes excluded'
+  };
+}
+
+/**
+ * The span of the operator's real practice history, in whole days.
+ *
+ * "Day 0" is the first recorded attempt — the operator's actual epoch, not a hardcoded
+ * project date. Attempts on skills absent from the catalogue are ignored, matching
+ * estimateAggregate(). No history is a distinct state: { available: false, days: null }.
+ *
+ * @param {object[]} attempts
+ * @param {{id: string}[]} skills - catalogue; unknown skillIds are excluded
+ * @param {{now?: number}} [opts]
+ * @returns {{available: boolean, days: number|null, firstAttemptAt: number|null, n: number}}
+ */
+export function practiceDaySpan(attempts, skills, opts = {}) {
+  const known = new Set((skills || []).map((s) => s.id));
+  const relevant = (attempts || []).filter((a) => a && known.has(a.skillId));
+  if (!relevant.length) {
+    return { available: false, days: null, firstAttemptAt: null, n: 0 };
+  }
+  const now = Number.isFinite(opts.now) ? opts.now : Date.now();
+  const firstAttemptAt = relevant.reduce((min, a) => Math.min(min, a.ts), Infinity);
+  const days = Math.max(0, Math.floor((now - firstAttemptAt) / DAY_MS));
+  return { available: true, days, firstAttemptAt, n: relevant.length };
+}
+
+/**
  * Which skills are unlocked, given prerequisites and a mastery threshold.
  * Used by Phase 3's progressive disclosure. Locks are advisory, never enforced.
  *
@@ -552,5 +628,6 @@ export function gates(skills, masteryMap, opts = {}) {
 
 export default {
   estimate, estimateAll, rank, transfer, calibration, miscalibrated, confusionMatrix, gates,
+  estimateAggregate, practiceDaySpan,
   DECAY, CONFIDENCE_K, CONFIDENCE_LEVELS, MISCALIBRATION_BOOST, TRANSFER_CLUSTERS
 };

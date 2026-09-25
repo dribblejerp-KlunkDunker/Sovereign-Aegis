@@ -45,7 +45,7 @@ export const InfiniteArena = {
   _app: null,
   _questions: [],
   _activeQuestion: null,
-  _mode: 'blitz', // 'blitz' | 'suddendeath' | 'zen'
+  _mode: 'blitz', // 'blitz' | 'suddendeath' | 'zen' | 'calibrated'
   _score: 0,
   _streak: 0,
   _maxStreak: 0,
@@ -180,6 +180,10 @@ export const InfiniteArena = {
     document.getElementById('btn-mode-blitz')?.addEventListener('click', () => this.startRound('blitz'));
     document.getElementById('btn-mode-suddendeath')?.addEventListener('click', () => this.startRound('suddendeath'));
     document.getElementById('btn-mode-zen')?.addEventListener('click', () => this.startRound('zen'));
+    // Calibrated Mode: the same drill under an explicit-calibration contract — an answer
+    // cannot be submitted until the confidence control has been tapped THIS question, and
+    // the tapped level rides the attempt (confidence: null otherwise, never a default).
+    document.getElementById('btn-mode-calibrated')?.addEventListener('click', () => this.startRound('calibrated'));
 
     // AAR Replay & Lobby Buttons
     document.getElementById('btn-arena-replay')?.addEventListener('click', () => this.startRound(this._mode));
@@ -192,6 +196,9 @@ export const InfiniteArena = {
       if (!activeView || activeView.classList.contains('hidden') || this._isAnswerLocked) return;
 
       if (['1', '2', '3', '4'].includes(e.key)) {
+        // Calibrated Mode gates keyboard answers exactly like pointer answers — key 1
+        // must never become a cheat code around the confidence requirement.
+        if (this._mode === 'calibrated' && !this._calibratedTap) return;
         const idx = parseInt(e.key, 10) - 1;
         this.submitAnswer(idx);
       }
@@ -217,6 +224,10 @@ export const InfiniteArena = {
     this._sinceProbe = 0;
     this._rankedCursor = 0;
     this._timeLeft = mode === 'blitz' ? 60 : mode === 'suddendeath' ? 999 : 999;
+    // A fresh question must be earned with a fresh tap — an answer carried over from the
+    // previous question would be a default in disguise.
+    if (mode === 'calibrated') this._beginCalibration();
+    else this._endCalibration();
 
     document.getElementById('arena-lobby-view')?.classList.add('hidden');
     document.getElementById('arena-aar-view')?.classList.add('hidden');
@@ -238,7 +249,7 @@ export const InfiniteArena = {
 
   _startTimer() {
     this._stopTimer();
-    if (this._mode === 'zen' || this._mode === 'suddendeath') return;
+    if (this._mode === 'zen' || this._mode === 'suddendeath' || this._mode === 'calibrated') return;
 
     this._timerInterval = setInterval(() => {
       this._timeLeft--;
@@ -326,6 +337,9 @@ export const InfiniteArena = {
     if (domainBadge) domainBadge.textContent = q.domain.toUpperCase();
     if (diffBadge) diffBadge.textContent = `DIFFICULTY: ${q.difficulty}`;
     if (claimEl) claimEl.textContent = q.claim;
+    // The probe badge tells the operator WHEN a held-out item is measuring them — the
+    // measurement itself is unchanged, only its visibility.
+    this._updateProbeBadge(q);
 
     // Enhanced combo multiplier & dynamic tactical titles
     const mult = this._streak >= 8 ? 4.0 : this._streak >= 5 ? 3.0 : this._streak >= 3 ? 2.0 : this._streak >= 1 ? 1.5 : 1.0;
@@ -365,8 +379,21 @@ export const InfiniteArena = {
     // in the app where speed is the point. mount() is idempotent, so this costs nothing after the
     // first question.
     Confidence.mount(document.getElementById('arena-confidence-host'), {
-      label: 'HOW SURE ARE YOU? — STAYS SET UNTIL YOU CHANGE IT'
+      label: this._mode === 'calibrated'
+        ? 'DECLARE HOW SURE YOU ARE — AN ANSWER REQUIRES A CONFIDENCE TAP'
+        : 'HOW SURE ARE YOU? — STAYS SET UNTIL YOU CHANGE IT'
     });
+
+    // Calibrated Mode: an answer is only submittable after an explicit confidence tap THIS
+    // question. In all other modes the grid is never gated.
+    const optionsGrid = document.getElementById('arena-options-grid');
+    if (this._mode === 'calibrated') {
+      this._renderCalibrationGate(optionsGrid);
+    } else if (optionsGrid) {
+      optionsGrid.classList.remove('arena-calibrated-locked');
+      const gate = document.getElementById('arena-calibration-gate');
+      gate?.remove();
+    }
 
     // Presentation order, NOT storage order — see _presentationOrder().
     this._displayOrder = this._presentationOrder(q);
@@ -382,6 +409,81 @@ export const InfiniteArena = {
       btn.addEventListener('click', () => this.submitAnswer(displayIdx));
       grid.appendChild(btn);
     });
+  },
+
+  /**
+   * Shows the TRANSFER PROBE badge exactly when the active question is a held-out probe.
+   * Extracted so the badge contract is pinned without a full render pass.
+   * @private
+   * @param {{heldOut?: boolean}} q
+   */
+  _updateProbeBadge(q) {
+    const probeBadge = document.getElementById('arena-active-probe');
+    if (probeBadge) probeBadge.classList.toggle('hidden', q.heldOut !== true);
+  },
+
+  /**
+   * Arms Calibrated Mode: clears any prior statement and listens for the next explicit
+   * confidence tap, unlocking the options grid the moment it lands. Split out of
+   * startRound so the calibration contract is testable without the DOM.
+   * @private
+   */
+  _beginCalibration() {
+    this._calibratedTap = null;
+    if (this._calibrationUnsub) { this._calibrationUnsub(); this._calibrationUnsub = null; }
+    this._calibrationUnsub = Confidence.subscribe((level) => {
+      this._calibratedTap = level;
+      this._unlockCalibrationGate();
+    });
+  },
+
+  /**
+   * Disarms Calibrated Mode: drops the subscription and any held statement.
+   * @private
+   */
+  _endCalibration() {
+    if (this._calibrationUnsub) { this._calibrationUnsub(); this._calibrationUnsub = null; }
+    this._calibratedTap = null;
+  },
+
+  /**
+   * Renders the Calibrated Mode lock over the options grid: buttons render disabled and a
+   * notice stands in place of the grid until the confidence control is tapped. The grid
+   * itself stays in the DOM (hidden via class) so unlocking needs no re-render — removing
+   * the gate and the lock class restores the options exactly as built.
+   * @private
+   * @param {HTMLElement|null} grid
+   */
+  _renderCalibrationGate(grid) {
+    document.getElementById('arena-calibration-gate')?.remove();
+    if (!grid) return;
+    // A tap made during the feedback window (before the next question renders) counts —
+    // arrive unlocked rather than locking a grid whose answer is already submittable.
+    if (this._calibratedTap) {
+      grid.classList.remove('arena-calibrated-locked');
+      return;
+    }
+    grid.classList.add('arena-calibrated-locked');
+    const host = document.getElementById('arena-confidence-host');
+    if (host) {
+      const gate = document.createElement('div');
+      gate.id = 'arena-calibration-gate';
+      gate.className = 'status-label text-muted';
+      gate.style.marginTop = '8px';
+      gate.textContent = '⬦ ANSWER LOCKED — DECLARE YOUR CONFIDENCE ABOVE TO UNLOCK.';
+      host.appendChild(gate);
+    }
+  },
+
+  /**
+   * Lifts the Calibrated Mode lock once the confidence control is tapped. A no-op unless a
+   * statement actually exists, so stale unlocks can never precede a statement.
+   * @private
+   */
+  _unlockCalibrationGate() {
+    if (this._mode !== 'calibrated' || !this._calibratedTap) return;
+    document.getElementById('arena-calibration-gate')?.remove();
+    document.getElementById('arena-options-grid')?.classList.remove('arena-calibrated-locked');
   },
 
   /**
@@ -428,6 +530,10 @@ export const InfiniteArena = {
 
   submitAnswer(selectedIndex) {
     if (this._isAnswerLocked || !this._activeQuestion) return;
+    // Calibrated Mode enforcement, at the single funnel both the pointer and keyboard paths
+    // pass through: no confidence statement this question, no answer — and therefore no
+    // attempt, no score, no mastery evidence.
+    if (this._mode === 'calibrated' && !this._calibratedTap) return;
     this._isAnswerLocked = true;
 
     const q = this._activeQuestion;
@@ -441,7 +547,12 @@ export const InfiniteArena = {
     const isCorrect = answeredIndex === q.correctIndex;
     // `chosen` is the option TEXT (stable across the presentation shuffle), not the display
     // index — the index is presentation state and would corrupt the confusion matrix.
-    this._recordAttempt(q, isCorrect, q.options[answeredIndex]);
+    // Calibrated Mode: capture the tapped level at the submit boundary, record it on the
+    // attempt, then clear it so the NEXT question demands a fresh tap. A null means no
+    // statement was made — it is never defaulted to a confidence value.
+    const tappedConfidence = this._mode === 'calibrated' ? (this._calibratedTap || null) : undefined;
+    this._recordAttempt(q, isCorrect, q.options[answeredIndex], tappedConfidence);
+    if (this._mode === 'calibrated') this._calibratedTap = null;
     const feedback = document.getElementById('arena-live-feedback');
     const optionBtns = document.querySelectorAll('.arena-option-btn');
 
@@ -462,6 +573,9 @@ export const InfiniteArena = {
       isCorrect,
       domain: q.domain
     });
+    if (this._mode === 'calibrated') {
+      this._roundHistory[this._roundHistory.length - 1].confidence = tappedConfidence || null;
+    }
 
     if (isCorrect) {
       this._streak++;
@@ -514,7 +628,7 @@ export const InfiniteArena = {
    * fan-out to one record per tested skill and the fire-and-forget contract.
    * @private
    */
-  _recordAttempt(q, isCorrect, chosenText) {
+  _recordAttempt(q, isCorrect, chosenText, confidence) {
     return recordAttempt({
       skillIds: q.tests,
       itemId: q.id,
@@ -522,7 +636,11 @@ export const InfiniteArena = {
       context: CONTEXTS.ARENA,
       latencyMs: this._questionShownAt ? Math.max(0, Date.now() - this._questionShownAt) : null,
       heldOut: q.heldOut === true,
-      chosen: chosenText
+      chosen: chosenText,
+      // Calibrated Mode passes the tapped level explicitly — the record carries THIS
+      // question's statement, never the ambient sticky value. undefined (every other
+      // mode) keeps the shared default: recordAttempt reads the live control.
+      confidence
     });
   },
 
@@ -602,6 +720,11 @@ export const InfiniteArena = {
     }
 
     this._updateHUD();
+
+    // The topbar chrome (IMMUNITY INDEX / PRACTICE EPOCH) derives from the raw attempt
+    // log — a finished round just added to it, so re-derive now rather than at the next
+    // tab switch.
+    this._app?._refreshChromeHonesty?.();
   },
 
   _pinAARToDossier() {

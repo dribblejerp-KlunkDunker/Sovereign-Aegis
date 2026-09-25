@@ -124,10 +124,11 @@ export const IdentityModule = {
         }
 
         try {
+          // Statement is exactly what the verifier reconstructs from the assertion text —
+          // a self-asserted timestamp would make the panel's own output unverifiable.
           const statementObj = {
             assertion: text,
-            issuer: this._app.store.get('identity.did'),
-            timestamp: new Date().toISOString()
+            issuer: this._app.store.get('identity.did')
           };
 
           const signature = await AegisCrypto.signStatement(resolved.key, statementObj);
@@ -147,18 +148,61 @@ export const IdentityModule = {
     }
 
     // 3. Verify Signature
+    // Honors the pasted public key (did:key or JWK JSON) — that is what makes this verifier
+    // independent: a third party's statement is checked against THEIR key without importing
+    // or trusting it. With the field left empty it falls back to the operator's own key.
+    // The payload may be the full statement as JSON (verbatim signed material — the only way
+    // to check statements that embed fields like timestamps) or plain assertion text (the
+    // statement is reconstructed as { assertion, issuer: <DID of the key used> }).
     const btnVerify = document.getElementById('btn-verify-signature-now');
     if (btnVerify) {
       btnVerify.addEventListener('click', async () => {
         const payload = document.getElementById('textarea-verify-payload')?.value?.trim() || '';
         const sig = document.getElementById('input-verify-sig')?.value?.trim() || '';
-        const pubKeyJwk = this._app.store.get('identity.publicKeyJwk');
-        const statementObj = { assertion: payload, issuer: this._app.store.get('identity.did') };
+        const pastedKey = document.getElementById('input-verify-pubkey')?.value?.trim() || '';
+
+        let pubKeyJwk;
+        let keySource = 'your published key';
+        if (pastedKey) {
+          try {
+            pubKeyJwk = AegisCrypto.parsePublicKey(pastedKey);
+            keySource = pastedKey.startsWith('did:key:') ? 'the pasted did:key' : 'the pasted JWK';
+          } catch (err) {
+            this._app?.showToast({
+              type: 'danger',
+              title: 'UNREADABLE PUBLIC KEY',
+              message: `${err.message} Paste a did:key:z... identifier or an EC P-256 JWK as JSON.`
+            });
+            return;
+          }
+        } else {
+          pubKeyJwk = this._app.store.get('identity.publicKeyJwk');
+        }
+        if (!pubKeyJwk) {
+          this._app?.showToast({
+            type: 'warning',
+            title: 'NO KEY TO VERIFY AGAINST',
+            message: 'Paste a public key, or generate an identity first.'
+          });
+          return;
+        }
+
+        let statementObj = null;
+        try {
+          const parsed = JSON.parse(payload);
+          if (parsed && typeof parsed === 'object' && !Array.isArray(parsed)) statementObj = parsed;
+        } catch (err) { /* plain text — reconstruct below */ }
+        if (!statementObj) {
+          statementObj = { assertion: payload, issuer: AegisCrypto.jwkToDidKey(pubKeyJwk) };
+        }
+
         const isValid = await AegisCrypto.verifyStatement(pubKeyJwk, statementObj, sig);
         this._app?.showToast({
           type: isValid ? 'success' : 'danger',
           title: isValid ? 'SIGNATURE VALID' : 'SIGNATURE INVALID',
-          message: isValid ? 'Cryptographic integrity confirmed.' : 'Payload or signature mismatch.'
+          message: isValid
+            ? `Cryptographic integrity confirmed against ${keySource}.`
+            : `Payload or signature mismatch against ${keySource}.`
         });
       });
     }
@@ -276,6 +320,30 @@ export const IdentityModule = {
       btnModalDownload.addEventListener('click', () => {
         if (this._inspectedCredential) {
           this._exportCredential(this._inspectedCredential);
+        }
+      });
+    }
+
+    // F. DID-export modal: populate it with the operator's LIVE identity when the opener is
+    // clicked, and bind its copy button. The open/close action itself is the app's
+    // data-aegis-action delegation; this only fills the body — which previously showed a
+    // hardcoded example credential that had nothing to do with the operator's keys.
+    const btnOpenDidExport = document.querySelector('button[data-aegis-modal="modal-did-export"]');
+    const didExportView = document.getElementById('did-export-json-view');
+    const btnCopyJsonLd = document.getElementById('btn-copy-jsonld');
+    if (btnOpenDidExport && didExportView) {
+      btnOpenDidExport.addEventListener('click', async () => {
+        didExportView.textContent = 'Building export from the live identity…';
+        this._didExportDoc = await this._buildDidExport();
+        didExportView.textContent = this._didExportDoc
+          ? JSON.stringify(this._didExportDoc, null, 2)
+          : 'No identity found in this browser. Generate a keypair first.';
+      });
+    }
+    if (btnCopyJsonLd) {
+      btnCopyJsonLd.addEventListener('click', async () => {
+        if (this._didExportDoc) {
+          await this._copyCredential(this._didExportDoc);
         }
       });
     }
@@ -568,6 +636,60 @@ export const IdentityModule = {
     a.click();
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
+  },
+
+  /**
+   * Builds the DID-export payload from the operator's live identity: a W3C DID Document
+   * for the published key plus a freshly self-signed Verifiable Credential proving the
+   * private key is still held. No identity → null. A missing signing key still yields the
+   * DID Document, minus the proof — the absence is visible, never faked.
+   * @returns {Promise<object|null>}
+   * @private
+   */
+  async _buildDidExport() {
+    const did = this._app?.store?.get('identity.did');
+    const publicKeyJwk = this._app?.store?.get('identity.publicKeyJwk');
+    if (!did || !publicKeyJwk) return null;
+
+    const keyId = `${did}#${did.slice(-8)}`;
+    const didDocument = {
+      '@context': [
+        'https://www.w3.org/ns/did/v1',
+        'https://w3id.org/security/suites/jws-2020/v1'
+      ],
+      id: did,
+      verificationMethod: [{
+        id: keyId,
+        type: 'JsonWebKey2020',
+        controller: did,
+        // Public coordinates only — the vaulted key never leaves as a private JWK.
+        publicKeyJwk: { kty: publicKeyJwk.kty, crv: publicKeyJwk.crv, x: publicKeyJwk.x, y: publicKeyJwk.y }
+      }],
+      authentication: [keyId],
+      assertionMethod: [keyId]
+    };
+
+    let selfSignedCredential = null;
+    const resolved = await this._resolveSigningKey();
+    if (resolved) {
+      // The signed material IS the credentialSubject — the same contract the app's own
+      // credential verifiers apply (attestation.js, keybinding.js: proof.jws is checked
+      // against the subject, not against a separate statement), so the exported
+      // credential verifies with the exact verify path the app already trusts.
+      const statement = {
+        id: did,
+        assertion: 'Sovereign AEGIS identity attestation: this DID controls the signing key published alongside it.',
+        issuer: did
+      };
+      const signature = await AegisCrypto.signStatement(resolved.key, statement);
+      selfSignedCredential = AegisCrypto.exportVerifiableCredential(did, publicKeyJwk, statement, signature);
+    }
+
+    return {
+      didDocument,
+      selfSignedCredential,
+      exportedAt: new Date().toISOString()
+    };
   },
 
   /**

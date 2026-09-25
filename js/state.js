@@ -30,16 +30,18 @@ export const SEED_STATE = {
     drawerOpen: false,
     initialized: false
   },
+  // Telemetry keys the UI genuinely derives from: latency and node counts are measured
+  // live by app.js, lastTick is the real loop heartbeat. Everything theatrical was
+  // removed 2026-09-25 — blockHeight/syncStatus/threatLevel/sentinelMode/epistemicHealth/
+  // uptimeSeconds were fiction (a fake chain, a default 'ELEVATED' read by nothing, a
+  // health score that was never computed). Honest replacements now DERIVE their values:
+  // the THREAT pill from the last VERDAD audit, IMMUNITY INDEX from the attempt log via
+  // competency.estimateAggregate(), EPOCH via practiceDaySpan(). Keep it that way: any
+  // new telemetry key must be measured or estimated from real events, never seeded.
   telemetry: {
-    blockHeight: 1489201,
-    syncStatus: 'SYNCED', // 'SYNCING' | 'SYNCED' | 'OFFLINE' | 'VERIFIED'
-    activeNodes: 2847,
+    activeNodes: 0,
     networkLatencyMs: 24,
-    threatLevel: 'ELEVATED', // 'NOMINAL' | 'ELEVATED' | 'CRITICAL' | 'SEVERE'
-    sentinelMode: 'ARMED', // 'STANDBY' | 'ARMED' | 'ISOLATED'
-    epistemicHealth: 88, // 0 - 100
-    lastTick: '2026-08-16T00:00:00.000Z',
-    uptimeSeconds: 84320
+    lastTick: null
   },
   identity: {
     did: null, // e.g. 'did:key:zDnae...'

@@ -430,7 +430,6 @@ export const EpistemicCommons = {
     openBtn?.addEventListener('click', () => toggleModal(true));
     closeBtn?.addEventListener('click', () => toggleModal(false));
     cancelBtn?.addEventListener('click', () => toggleModal(false));
-
     exportBtn?.addEventListener('click', () => {
       const title = document.getElementById('input-builder-title')?.value?.trim();
       const author = document.getElementById('input-builder-author')?.value?.trim() || 'Anonymous Sovereign Analyst';
@@ -442,9 +441,35 @@ export const EpistemicCommons = {
         return;
       }
 
+      const includeDossier = document.getElementById('check-include-dossier')?.checked;
+      const includeCustom = document.getElementById('check-include-custom-cards')?.checked;
+      const customPack = this._assemblePack({ title, author, domain, desc, includeDossier, includeCustom });
+
+      // Trigger download
+      const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(customPack, null, 2));
+      const dlAnchorElem = document.createElement('a');
+      dlAnchorElem.setAttribute("href", dataStr);
+      dlAnchorElem.setAttribute("download", `${customPack.id}.aegis`);
+      dlAnchorElem.click();
+
+      toggleModal(false);
+      this._app?.showToast({ type: 'success', title: 'CUSTOM PACK EXPORTED', message: `Saved ${customPack.id}.aegis` });
+    });
+  },
+
+  /**
+   * Assembles the custom pack from the builder inputs and the operator's stores.
+   *
+   * Extracted from the click handler so the inclusion logic is testable without a DOM:
+   * the handler reads the controls, this method decides what a pack contains.
+   *
+   * @param {{title: string, author: string, domain: string, desc: string,
+   *          includeDossier: boolean, includeCustom: boolean}} inputs
+   * @returns {object} the pack, ready to serialise
+   */
+  _assemblePack({ title, author, domain, desc, includeDossier, includeCustom }) {
       // Collect pinned dossier items
       let dossierCards = [];
-      const includeDossier = document.getElementById('check-include-dossier')?.checked;
       if (includeDossier) {
         try {
           const rawPins = this._app.store.get('dossier.pins');
@@ -463,14 +488,37 @@ export const EpistemicCommons = {
         } catch (e) {}
       }
 
-      const customPack = {
+      // Collect the operator's own Memory Vault cards. The checkbox is the only switch for
+      // this: unchecked means the pack carries none, checked means every custom card the
+      // operator authored (ids namespaced `card-custom-*` by the Vault's save handler).
+      let customCards = [];
+      if (includeCustom) {
+        try {
+          const deck = JSON.parse(this._app.store.get('sm2.deck') || '[]');
+          customCards = (Array.isArray(deck) ? deck : [])
+            .filter(c => c && typeof c.id === 'string' && c.id.startsWith('card-custom-'))
+            .map(c => ({
+              id: c.id,
+              domain: c.domain || domain,
+              prompt: c.prompt,
+              diagnosis: c.diagnosis,
+              latin: c.latin || '',
+              mechanism: c.mechanism,
+              countermeasure: c.countermeasure
+            }));
+        } catch (e) {
+          this._app?.showToast({ type: 'warning', title: 'VAULT UNREADABLE', message: 'Custom cards could not be loaded and were left out of the pack.' });
+        }
+      }
+
+      return {
         id: 'pack-custom-' + Date.now(),
         title: title,
         author: author,
         version: '1.0.0',
         domain: domain,
         description: desc,
-        stats: { scenarios: 1, cards: dossierCards.length, arguments: 1 },
+        stats: { scenarios: 1, cards: dossierCards.length + customCards.length, arguments: 1 },
         scenarios: [
           {
             id: 'sc-custom-1',
@@ -481,19 +529,9 @@ export const EpistemicCommons = {
             playbook: "DISARM M0042 (Prebunking)"
           }
         ],
-        cards: dossierCards,
+        cards: [...dossierCards, ...customCards],
+
         arguments: []
       };
-
-      // Trigger download
-      const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(customPack, null, 2));
-      const dlAnchorElem = document.createElement('a');
-      dlAnchorElem.setAttribute("href", dataStr);
-      dlAnchorElem.setAttribute("download", `${customPack.id}.aegis`);
-      dlAnchorElem.click();
-
-      toggleModal(false);
-      this._app?.showToast({ type: 'success', title: 'CUSTOM PACK EXPORTED', message: `Saved ${customPack.id}.aegis` });
-    });
   }
 };

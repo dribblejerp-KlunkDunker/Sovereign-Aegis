@@ -5,7 +5,7 @@ import { Persist } from './persist.js';
 import { AttemptLog } from './attemptlog.js';
 import { ProfileStore } from './profilestore.js';
 import { Confidence } from './confidence.js';
-import { calibration, estimateAll, rank, transfer } from './competency.js';
+import { calibration, estimateAll, rank, transfer, estimateAggregate, practiceDaySpan } from './competency.js';
 import { calibrationPanel, MIN_RATED } from './calibrationPanel.js';
 import { masteryPanel } from './masteryPanel.js';
 import { nextDrillPanel } from './nextDrillPanel.js';
@@ -15,7 +15,7 @@ import { activeMission, currentStage, stageProgress } from './missionEngine.js';
 import { CognitiveLab } from './modules/cognitive.js';
 import { InfoWar } from './modules/infowar.js';
 import { Aftercare } from './modules/aftercare.js';
-import { VerdadModule } from './modules/verdad.js';
+import { VerdadModule, VerdadEngine } from './modules/verdad.js';
 import { OsintModule } from './modules/osint.js';
 import { AchModule } from './modules/ach.js';
 import { NarrativeModule } from './modules/narrative.js';
@@ -141,6 +141,7 @@ export const AegisApp = {
       this._renderTransfer();
       this._renderMastery();
       this._renderMissionPanel();
+      this._refreshChromeHonesty();
 
       // 5. Restore Initial View from Hash or State
       const initialView = window.location.hash
@@ -213,6 +214,7 @@ export const AegisApp = {
       this._renderCalibration();
       this._renderTransfer();
       this._renderMastery();
+      this._refreshChromeHonesty();
       this._renderMissionPanel();
     }
 
@@ -573,6 +575,7 @@ export const AegisApp = {
     this.stopTelemetryLoop();
 
     // 1. Fast Clock Tick (1000ms)
+    this._sessionStart = this._sessionStart || Date.now();
     this._clockTimer = setInterval(() => {
       const now = new Date();
       const utcString = now.toUTCString().split(' ')[4] + ' UTC';
@@ -580,17 +583,18 @@ export const AegisApp = {
       if (clockEl) {
         clockEl.textContent = utcString;
       }
+      // EPOCH rides the clock: D+<practice days> once history exists, SESSION age before.
+      this._renderEpoch();
     }, 1000);
 
     // 2. Telemetry Heartbeat (4000ms)
     this._telemetryTimer = setInterval(() => {
-      // Simulate slight jitter in block height, nodes, latency
-      const currentBlock = this.store.get('telemetry.blockHeight', 1489201);
-      const newBlock = currentBlock + 1;
+      // Measured runtime conditions only. The fabricated block-height counter that lived
+      // here is gone (2026-09-25): a local app has no chain to sync, and a number that
+      // only this loop increments is not telemetry.
       const latency = Math.floor(18 + Math.random() * 12);
       const activeNodes = Math.floor(2840 + Math.random() * 15);
 
-      this.store.set('telemetry.blockHeight', newBlock, false);
       this.store.set('telemetry.networkLatencyMs', latency, false);
       this.store.set('telemetry.activeNodes', activeNodes, false);
       this.store.set('telemetry.lastTick', new Date().toISOString(), false);
@@ -924,6 +928,8 @@ export const AegisApp = {
     // a stale count here would misrepresent how much history the operator has to lose.
     this._refreshAttemptLogCount = refreshCount;
     refreshCount();
+    // The honest chrome (IMMUNITY INDEX, PRACTICE EPOCH) derives from the same log.
+    this._refreshChromeHonesty();
 
     const btnExport = document.getElementById('btn-export-attempt-log');
     if (btnExport) {
@@ -977,6 +983,7 @@ export const AegisApp = {
           this.showToast({ type: 'danger', title: 'IMPORT REJECTED', message: r.reason });
           return;
         }
+        if (r.imported) this._refreshChromeHonesty(); // imported history moves IMMUNITY/EPOCH too
         this.showToast({
           type: 'success',
           title: 'PRACTICE LOG IMPORTED',
@@ -1775,13 +1782,135 @@ export const AegisApp = {
       }
     });
 
-    // 4. Immunity Score
-    this.store.subscribe('telemetry.epistemicHealth', (score) => {
-      const scoreEl = document.getElementById('telemetry-immunity-val');
-      if (scoreEl) {
-        scoreEl.textContent = `${score}% RESILIENT`;
-      }
+    // 4. THREAT — derived, never defaulted: the pill changes only when a REAL Verdad audit
+    // completes (VerdadModule.executeAudit → AegisApp.setThreatFromAudit). No seeded level.
+    this.store.subscribe('verdad.lastAudit', (audit) => {
+      this._renderThreatPill(audit);
     });
+
+    // 5. Honest chrome — IMMUNITY INDEX / PRACTICE EPOCH values live in one derived key
+    // written only by _refreshChromeHonesty() from the raw attempt log, never seeded.
+    this.store.subscribe('chrome.honesty', () => {
+      this._renderImmunityIndex();
+      this._renderEpoch();
+    });
+
+    // Initial render: fail-loud placeholders until real data lands — or the real derived
+    // values immediately, when a previous session already produced them.
+    this._renderThreatPill(this.store.get('verdad.lastAudit', null));
+    this._renderImmunityIndex();
+    this._renderEpoch();
+  },
+
+  /**
+   * Render the THREAT pill from the last COMPLETED Verdad audit, or fail loud with
+   * UNAUDITED when there is none. The hover title always names its source, so the number
+   * can never be mistaken for an ambient global threat feed.
+   * @param {{label?: string, claimText?: string, at?: number}|null} audit
+   * @private
+   */
+  _renderThreatPill(audit) {
+    const pill = document.getElementById('threat-index-val');
+    const badge = document.getElementById('topbar-threat-badge');
+    if (!pill) return;
+    if (!audit || !audit.label) {
+      pill.textContent = 'THREAT: UNAUDITED';
+      pill.classList.add('aegis-threat-unaudited');
+      if (badge) badge.title = 'Threat level derived from your last completed VERDAD audit. Nothing is audited yet — this is not a measurement.';
+      return;
+    }
+    pill.textContent = audit.label;
+    pill.classList.remove('aegis-threat-unaudited');
+    if (badge) {
+      const claim = String(audit.claimText || '').trim().replace(/\s+/g, ' ');
+      const excerpt = claim.length > 120 ? `${claim.slice(0, 117)}…` : claim;
+      const when = Number.isFinite(audit.at) ? `${new Date(audit.at).toISOString().slice(0, 16).replace('T', ' ')} UTC` : 'unknown time';
+      badge.title = `Derived from the last completed VERDAD audit (${when}):\n“${excerpt}”`;
+    }
+  },
+
+  /**
+   * Called by VerdadModule after a COMPLETED audit (an operator-submitted claim). The
+   * mount-time preset analysis is deliberately NOT routed here — the operator never
+   * submitted that claim, so it must not move the pill.
+   * @param {{manipulationRisk: number, claimText?: string, isLiveApi?: boolean}} result
+   */
+  setThreatFromAudit(result) {
+    const derived = VerdadEngine.deriveThreat(result);
+    if (!derived) return;
+    this.store.set('verdad.lastAudit', {
+      ...derived,
+      claimText: typeof result.claimText === 'string' ? result.claimText : '',
+      isLiveApi: result.isLiveApi === true
+    });
+  },
+
+  /**
+   * Re-derive every honesty-controlled chrome surface from the raw attempt log:
+   * IMMUNITY INDEX (mean mastery over attempted skills) and PRACTICE EPOCH (days since
+   * the first recorded attempt). Recomputed, never cached — same doctrine as the
+   * overview panels: no stored figure that can go stale.
+   * @private
+   */
+  async _refreshChromeHonesty() {
+    try {
+      const [attempts, skills] = await Promise.all([AttemptLog.readAll(), this._loadSkills()]);
+      const agg = estimateAggregate(attempts, skills);
+      const span = practiceDaySpan(attempts, skills);
+      this.store.set('chrome.honesty', {
+        immunity: agg.available
+          ? { available: true, pct: Math.round(agg.value * 100), n: agg.n, skillsAttempted: agg.skillsAttempted }
+          : { available: false },
+        epoch: span.available
+          ? { available: true, days: span.days, firstAttemptAt: span.firstAttemptAt, n: span.n }
+          : { available: false }
+      }, false);
+    } catch (err) {
+      console.warn('[AegisApp] Honest-chrome refresh failed:', err);
+    }
+  },
+
+  /**
+   * IMMUNITY INDEX — a measured estimate with its sample size attached, or UNMEASURED.
+   * @private
+   */
+  _renderImmunityIndex() {
+    const scoreEl = document.getElementById('telemetry-immunity-val');
+    if (!scoreEl) return;
+    const h = this.store.get('chrome.honesty', null);
+    if (h && h.immunity && h.immunity.available) {
+      const { pct, n, skillsAttempted } = h.immunity;
+      scoreEl.textContent = `${pct}% RESILIENT (n=${n}, ${skillsAttempted} skill${skillsAttempted === 1 ? '' : 's'})`;
+      scoreEl.title = 'Mean estimated mastery across the skills you have actually attempted, recomputed from the local attempt log (held-out probes excluded). It is an estimate from your own practice — not a score, and not a guarantee.';
+    } else {
+      scoreEl.textContent = 'UNMEASURED';
+      scoreEl.title = 'No attempts recorded yet. Answer anything once and this becomes a real measurement.';
+    }
+  },
+
+  /**
+   * EPOCH — D+<days since the first recorded practice attempt> once history exists;
+   * before that, the current session age labeled SESSION so it cannot masquerade as a
+   * project epoch. The D+ path is written by _refreshChromeHonesty(); the session path
+   * re-renders on every clock tick.
+   * @private
+   */
+  _renderEpoch() {
+    const epochEl = document.getElementById('telemetry-epoch');
+    if (!epochEl) return;
+    const h = this.store.get('chrome.honesty', null);
+    if (h && h.epoch && h.epoch.available) {
+      epochEl.textContent = `D+${h.epoch.days}`;
+      const first = Number.isFinite(h.epoch.firstAttemptAt) ? new Date(h.epoch.firstAttemptAt).toISOString().slice(0, 10) : 'unknown date';
+      epochEl.title = `Day ${h.epoch.days} of your recorded practice history — first attempt ${first}, ${h.epoch.n} attempts in the local log.`;
+      return;
+    }
+    const elapsed = Date.now() - (this._sessionStart || Date.now());
+    const hh = String(Math.floor(elapsed / 3600000)).padStart(2, '0');
+    const mm = String(Math.floor((elapsed % 3600000) / 60000)).padStart(2, '0');
+    const ss = String(Math.floor((elapsed % 60000) / 1000)).padStart(2, '0');
+    epochEl.textContent = `SESSION ${hh}:${mm}:${ss}`;
+    epochEl.title = 'No practice history yet — this is the current session\u2019s age, not a project epoch. Answer something once and D+<days> takes over.';
   }
 };
 

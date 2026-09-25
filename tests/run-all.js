@@ -20,6 +20,8 @@ const SUITES = [
   { name: 'Syntax & Compilation Suite', script: 'test-syntax.js' },
   { name: 'Datasets & Schemas Validation Suite', script: 'test-datasets.js' },
   { name: 'WebCrypto ECDSA P-256 & DID Suite', script: 'test-crypto.js' },
+  { name: 'Dead-Control Regression Suite', script: 'test-dead-controls.js' },
+  { name: 'CI Workflow Guard Suite', script: 'test-ci-workflow.js' },
   { name: 'Richards Heuer ACH & Confidence Suite', script: 'test-ach.js' },
   { name: 'Richards Heuer ACH Adversarial Suite', script: 'test-ach-adversarial.js' },
   { name: 'VERDAD Real-Time NLP Heuristic Suite', script: 'test-verdad.js' },

@@ -4,8 +4,9 @@
  * Serves the app with the project's own zero-dependency `serve.js`, then drives a
  * headless Chromium-family browser through boot, navigation and view-switching
  * checks. It is a fast, honest complement to the heavy 116-assertion `test-e2e.js`:
- * it proves the app boots and every view activates in a real browser, without a
- * hand-rolled CDP client.
+ * it proves the app boots and every view activates in a real browser, without the
+ * heavy full-app assertions of `test-e2e.js` (which also drives every pillar through
+ * real Chromium, including the strict verifier toast checks).
  *
  * Browser auto-discovery, in order:
  *   1. `AEGIS_BROWSER_PATH` env var (explicit override)

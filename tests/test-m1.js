@@ -133,7 +133,7 @@ async function runTests() {
   const store = new StateStore();
 
   assert(store.get('app.name') === 'SOVEREIGN // AEGIS', 'StateStore initial app name matches seed');
-  assert(store.get('telemetry.sentinelMode') === 'ARMED', 'StateStore initial sentinel mode is ARMED');
+  assert(store.get('telemetry.networkLatencyMs') === SEED_STATE.telemetry.networkLatencyMs, 'StateStore initial telemetry matches seed (measured keys only — the theatrical sentinel/threat seeds were removed 2026-09-25)');
   assert(store.get('nonexistent.deep.path', 'fallback') === 'fallback', 'StateStore returns fallback on missing path');
 
   // Deep set
@@ -165,7 +165,7 @@ async function runTests() {
   const unsubWildcard = store.subscribe('telemetry.*', (val, old, path) => {
     wildcardCount++;
   });
-  store.set('telemetry.threatLevel', 'CRITICAL');
+  store.set('telemetry.lastTick', 'CRITICAL');
   store.set('telemetry.activeNodes', 3000);
   assert(wildcardCount === 2, 'Wildcard subscriber matches all children in branch');
   unsubWildcard();
@@ -181,7 +181,7 @@ async function runTests() {
 
   // Reset
   store.reset(false);
-  assert(store.get('telemetry.blockHeight') === SEED_STATE.telemetry.blockHeight, 'StateStore reset restores seed defaults');
+  assert(store.get('telemetry.networkLatencyMs') === SEED_STATE.telemetry.networkLatencyMs, 'StateStore reset restores seed defaults');
   assert(typeof store.get('sift.stats') === 'object', 'StateStore includes sift stats tree in seed');
   assert(typeof store.get('rhetoric.stats') === 'object', 'StateStore includes rhetoric stats tree in seed');
 

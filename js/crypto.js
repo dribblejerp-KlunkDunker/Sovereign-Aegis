@@ -294,6 +294,155 @@ export class AegisCrypto {
   }
 
   /**
+   * Inverse of jwkToDidKey: decodes a did:key string (multicodec 0x1200, compressed P-256)
+   * back into an EC P-256 JWK suitable for verifyStatement(). The compressed point carries
+   * only the x coordinate plus the parity of y, so y is reconstructed as the even root and
+   * verified against the curve equation — a corrupted or truncated payload is rejected here
+   * rather than surfacing as an opaque import failure later.
+   * @param {string} did - e.g. 'did:key:zDnae...'
+   * @returns {JsonWebKey}
+   */
+  static didKeyToJwk(did) {
+    if (typeof did !== 'string' || !did.startsWith('did:key:z')) {
+      throw new Error('[AegisCrypto] Not a did:key string.');
+    }
+
+    const didBytes = this.base58Decode(did.slice('did:key:z'.length));
+    // Multicodec varint for P-256 public key (0x1200): 0x80, 0x24
+    const MULTICODEC = [0x80, 0x24];
+    if (didBytes.length !== MULTICODEC.length + 33
+      || MULTICODEC.some((byte, i) => didBytes[i] !== byte)
+      || (didBytes[MULTICODEC.length] !== 0x02 && didBytes[MULTICODEC.length] !== 0x03)) {
+      throw new Error('[AegisCrypto] did:key payload is not a compressed P-256 public key.');
+    }
+
+    const xBytes = didBytes.slice(MULTICODEC.length + 1);
+    const x = this.bytesToBigInt(xBytes);
+    const p = 2n ** 256n - 2n ** 224n + 2n ** 192n + 2n ** 96n - 1n; // P-256 field prime
+    const a = p - 3n;
+    const b = 0x5ac635d8aa3a93e7b3ebbd55769886bc651d06b0cc53b0f63bce3c3e27d2604bn;
+
+    const rhs = (x ** 3n + a * x + b) % p; // y² = x³ + ax + b (mod p)
+    let y = this.modularSqrt(rhs, p);
+    if (y === null) throw new Error('[AegisCrypto] did:key payload is not a point on P-256.');
+    // The prefix pins y's parity; of the two roots keep the one that matches.
+    const prefix = didBytes[MULTICODEC.length];
+    if ((y % 2n) !== BigInt(prefix & 1)) y = p - y;
+
+    return {
+      kty: 'EC',
+      crv: 'P-256',
+      x: this.base64UrlEncode(xBytes),
+      y: this.base64UrlEncode(this.bigIntToBytes(y, 32))
+    };
+  }
+
+  /**
+   * Parses a pasted public key into a JWK: accepts an EC P-256 JWK as JSON text, or a
+   * 'did:key:z...' identifier. Anything else throws — callers decide the fallback.
+   * @param {string} text
+   * @returns {JsonWebKey}
+   */
+  static parsePublicKey(text) {
+    const trimmed = (text || '').trim();
+    if (!trimmed) throw new Error('[AegisCrypto] Empty public key.');
+    if (trimmed.startsWith('did:key:')) return this.didKeyToJwk(trimmed);
+
+    let jwk;
+    try {
+      jwk = JSON.parse(trimmed);
+    } catch (err) {
+      throw new Error('[AegisCrypto] Public key is neither a did:key nor valid JWK JSON.');
+    }
+    if (!jwk || jwk.kty !== 'EC' || jwk.crv !== 'P-256' || !jwk.x || !jwk.y) {
+      throw new Error('[AegisCrypto] Public key JWK is not an EC P-256 key.');
+    }
+    // Normalize to the minimal public JWK: drops a pasted private 'd', 'key_ops', 'ext'.
+    return { kty: 'EC', crv: 'P-256', x: jwk.x, y: jwk.y };
+  }
+
+  /**
+   * x mod m for BigInt operands (m > 0), handling negative x correctly.
+   * @private
+   */
+  static mod(x, m) { return ((x % m) + m) % m; }
+
+  /**
+   * Modular square root via the Tonelli–Shanks algorithm. Returns null when rhs is a
+   * quadratic non-residue mod p.
+   * @private
+   */
+  static modularSqrt(rhs, p) {
+    rhs = this.mod(rhs, p);
+    if (rhs === 0n) return 0n;
+
+    // Euler's criterion: a^((p-1)/2) ≡ 1 iff a is a square.
+    if (this.modPow(rhs, (p - 1n) / 2n, p) !== 1n) return null;
+
+    // Write p - 1 = q · 2^s with q odd.
+    let q = p - 1n;
+    let s = 0n;
+    while (q % 2n === 0n) { q /= 2n; s += 1n; }
+
+    // P-256 ≡ 3 (mod 4) always hits s = 1; the general branch covers any modulus.
+    if (s === 1n) return this.modPow(rhs, (p + 1n) / 4n, p);
+
+    let z = 2n;
+    while (this.modPow(z, (p - 1n) / 2n, p) !== p - 1n) z += 1n;
+    let m = s;
+    let c = this.modPow(z, q, p);
+    let t = this.modPow(rhs, q, p);
+    let r = this.modPow(rhs, (q + 1n) / 2n, p);
+    while (t !== 1n) {
+      let i = 0n;
+      let t2 = t;
+      while (t2 !== 1n) { t2 = t2 * t2 % p; i += 1n; }
+      let b = this.modPow(c, 1n << (m - i - 1n), p);
+      m = i; c = b * b % p; t = t * c % p; r = r * b % p;
+    }
+    return r;
+  }
+
+  /**
+   * base^exp mod m for BigInt operands.
+   * @private
+   */
+  static modPow(base, exp, m) {
+    if (m === 1n) return 0n;
+    let result = 1n;
+    base = this.mod(base, m);
+    while (exp > 0n) {
+      if (exp & 1n) result = result * base % m;
+      base = base * base % m;
+      exp >>= 1n;
+    }
+    return result;
+  }
+
+  /**
+   * Unsigned big-endian BigInt → exactly byteLength bytes.
+   * @private
+   */
+  static bigIntToBytes(n, byteLength) {
+    const bytes = new Uint8Array(byteLength);
+    for (let i = byteLength - 1; i >= 0; i--) {
+      bytes[i] = Number(n & 0xffn);
+      n >>= 8n;
+    }
+    return bytes;
+  }
+
+  /**
+   * Unsigned big-endian bytes → BigInt.
+   * @private
+   */
+  static bytesToBigInt(bytes) {
+    let n = 0n;
+    for (const byte of bytes) n = (n << 8n) | BigInt(byte);
+    return n;
+  }
+
+  /**
    * Canonicalizes an object into a deterministic JSON string with recursively sorted keys.
    * @param {*} obj 
    * @returns {string}

@@ -434,7 +434,9 @@ async function runE2ETests() {
           harness.assertIncludes(sentinelText, 'SENTINEL: ARMED', 'Sentinel defense engine armed badge present');
 
           const threatBadge = await browser.getText('#threat-index-val');
-          harness.assertIncludes(threatBadge, 'THREAT:', 'Global threat level meter displayed');
+          // Derived, never defaulted: UNAUDITED before any completed VERDAD audit, then
+          // THREAT: <LEVEL> (<risk>%) from the last real audit result.
+          harness.assertIncludes(threatBadge, 'THREAT:', 'Threat pill present (UNAUDITED until a real VERDAD audit completes)');
 
           const telemetryDid = await browser.getText('#telemetry-did-key');
           harness.assert(telemetryDid.startsWith('did:key:z'), 'Active DID displayed in telemetry ribbon');
@@ -947,6 +949,73 @@ async function runE2ETests() {
 
           const toastHubText = await browser.getText('#toast-hub');
           harness.assert(Boolean(toastHubText), 'Verification action produces telemetry feedback');
+
+          // STRENGTHENED 2026-09-25: the shallow check above accepts ANY feedback toast.
+          // The verifier must actually verify. A genuinely FOREIGN key is minted in-page
+          // with the app's own AegisCrypto — fresh P-256 keypair, real ECDSA signature
+          // over the claim — and the verifier must raise the exact SIGNATURE VALID toast
+          // for that signature against the PASTED foreign key, and SIGNATURE INVALID for
+          // the same signature against the operator's own key (the exact false-pass the
+          // 2026-09-24 dead-control fix removed: verifying everything against own key).
+          const verifyFlow = await browser.evaluate(`(async () => {
+            const { AegisCrypto } = await import('./js/crypto.js');
+            const wait = (ms) => new Promise(r => setTimeout(r, ms));
+            const toastTitles = () =>
+              [...document.querySelectorAll('#toast-hub .toast-title')].map(t => t.textContent);
+            const clickVerify = () => document.getElementById('btn-verify-signature-now').click();
+            const claim = ${JSON.stringify(testClaim)};
+
+            const foreign = await AegisCrypto.generateKeyPair();
+            const foreignSig = await AegisCrypto.signStatement(
+              foreign.keyPair.privateKey,
+              { assertion: claim, issuer: foreign.did }
+            );
+
+            const payloadEl = document.getElementById('textarea-verify-payload');
+            const sigEl = document.getElementById('input-verify-sig');
+            const keyEl = document.getElementById('input-verify-pubkey');
+            const set = (el, v) => { el.value = v; el.dispatchEvent(new Event('input', { bubbles: true })); };
+
+            set(payloadEl, claim);
+            set(sigEl, foreignSig);
+
+            // 1. Empty key field = own-key fallback: the FOREIGN signature must be rejected.
+            set(keyEl, '');
+            const beforeOwn = toastTitles().length;
+            clickVerify();
+            let ownKeyResult = null;
+            for (let i = 0; i < 40; i++) {
+              await wait(50);
+              const titles = toastTitles().slice(beforeOwn);
+              if (titles.includes('SIGNATURE INVALID') || titles.includes('SIGNATURE VALID')) {
+                ownKeyResult = titles.includes('SIGNATURE INVALID') ? 'invalid' : 'valid';
+                break;
+              }
+            }
+
+            // 2. Paste the foreign public key: the SAME signature must now VERIFY.
+            set(keyEl, foreign.did);
+            const beforeForeign = toastTitles().length;
+            clickVerify();
+            let foreignKeyResult = null;
+            for (let i = 0; i < 40; i++) {
+              await wait(50);
+              const titles = toastTitles().slice(beforeForeign);
+              if (titles.includes('SIGNATURE INVALID') || titles.includes('SIGNATURE VALID')) {
+                foreignKeyResult = titles.includes('SIGNATURE VALID') ? 'valid' : 'invalid';
+                break;
+              }
+            }
+
+            // Cleanup: never leave the verifier pinned to the test key.
+            set(keyEl, '');
+
+            return { ownKeyResult, foreignKeyResult };
+          })()`);
+          harness.assertEqual(verifyFlow.foreignKeyResult, 'valid',
+            'a foreign-key signature verified against the PASTED foreign key raises the exact SIGNATURE VALID toast');
+          harness.assertEqual(verifyFlow.ownKeyResult, 'invalid',
+            'the same foreign signature against the operator key raises SIGNATURE INVALID — no own-key false pass');
         } else {
           const html = fs.readFileSync(path.join(ROOT_DIR, 'index.html'), 'utf8');
           harness.assert(html.includes('id="textarea-sign-statement"'), 'Signer textarea present in DOM');

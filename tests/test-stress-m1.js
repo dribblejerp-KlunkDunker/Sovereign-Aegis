@@ -165,13 +165,13 @@ async function runAdversarialStressSuite() {
 
   // 1.6 State Reset & SEED_STATE Isolation
   console.log('\n[1.6] State Reset & Seed Isolation:');
-  const initialSeedSentinel = SEED_STATE.telemetry.sentinelMode;
-  store.set('telemetry.sentinelMode', 'ISOLATED_MUTATED');
-  assert(store.get('telemetry.sentinelMode') === 'ISOLATED_MUTATED', 'State mutated before reset');
+  const initialSeedNodes = SEED_STATE.telemetry.activeNodes;
+  store.set('telemetry.activeNodes', -1);
+  assert(store.get('telemetry.activeNodes') === -1, 'State mutated before reset');
   
   store.reset(false);
-  assert(store.get('telemetry.sentinelMode') === initialSeedSentinel, 'State reset restores SEED_STATE default');
-  assert(SEED_STATE.telemetry.sentinelMode === 'ARMED', 'SEED_STATE object remains unpolluted (immutability preserved)');
+  assert(store.get('telemetry.activeNodes') === initialSeedNodes, 'State reset restores SEED_STATE default');
+  assert(SEED_STATE.telemetry.activeNodes === 0, 'SEED_STATE object remains unpolluted (immutability preserved)');
 
   // Hard reset test
   store.set('custom.volatileKey', 'temporary');

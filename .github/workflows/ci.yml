@@ -1,9 +1,17 @@
 # SOVEREIGN // AEGIS — CI
 #
-# Headless gate (45 suites + the Playwright reverse-face-search suite) runs on every
-# push. The full browser E2E suite runs on demand via workflow_dispatch
-# (Actions tab → "Run workflow"), because it drives every pillar through real
-# Chromium and is slower than the push gate needs to be.
+# Headless gate (all registered suites + the Playwright reverse-face-search suite)
+# runs on every push. The full browser E2E suite drives every pillar through real
+# Chromium and is slower than the push gate needs to be, so it runs two ways:
+#   - on demand via workflow_dispatch (Actions tab → "Run workflow"), and
+#   - nightly via schedule, so E2E regressions surface without anyone remembering
+#     to click. (GitHub runs scheduled workflows from the default branch only.)
+#
+# A red nightly must reach a human, not die in the Actions tab: on a failed scheduled
+# run the job opens (or appends to) a `nightly-failure` tracking issue assigned to and
+# cc-ing the repo owner — GitHub's own notification email is the delivery channel, so
+# no external alerting service is involved. A green scheduled run auto-closes any open
+# tracking issue, so an open issue always means "the last nightly was red".
 #
 # Runs from the repository root, where package.json, tests/ and index.html live.
 
@@ -12,13 +20,17 @@ name: CI
 on:
   push:
   workflow_dispatch:
+  schedule:
+    # 03:30 UTC daily — off the top-of-hour congestion GitHub warns about.
+    - cron: '30 3 * * *'
 
 permissions:
   contents: read
+  issues: write # the nightly-failure tracker (create/comment/close)
 
 jobs:
   verify:
-    name: Headless gate (+ browser E2E on demand)
+    name: Headless gate (+ browser E2E on demand & nightly)
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
@@ -39,7 +51,7 @@ jobs:
       - name: Install Chromium
         run: npx playwright install --with-deps chromium
 
-      - name: Headless gate (45 suites)
+      - name: Headless gate
         run: |
           node tests/run-all.js 2>&1 | tee headless-gate.log
           node tests/test-reverse-face-search-upload.js 2>&1 | tee reverse-face.log
@@ -58,13 +70,13 @@ jobs:
             echo '```'
           } >> "$GITHUB_STEP_SUMMARY"
 
-      # On-demand only: run from the Actions tab → Run workflow.
-      - name: Browser E2E suite (on demand)
-        if: github.event_name == 'workflow_dispatch'
+      # On demand (workflow_dispatch) and nightly (schedule) only — not on pushes.
+      - name: Browser E2E suite (on demand & nightly)
+        if: github.event_name == 'workflow_dispatch' || github.event_name == 'schedule'
         run: node tests/test-e2e.js 2>&1 | tee e2e.log
 
       - name: Summarize E2E results
-        if: always() && github.event_name == 'workflow_dispatch'
+        if: always() && (github.event_name == 'workflow_dispatch' || github.event_name == 'schedule')
         run: |
           {
             echo "## Browser E2E"
@@ -72,3 +84,63 @@ jobs:
             tail -15 e2e.log || true
             echo '```'
           } >> "$GITHUB_STEP_SUMMARY"
+
+      # --- Nightly failure notification (scheduled runs only) ---------------------
+      # Pushes already notify the pusher through the commit status; workflow_dispatch
+      # is always a human watching the run. The silent case is the schedule.
+      - name: Open or update nightly-failure issue
+        if: failure() && github.event_name == 'schedule'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          OWNER: ${{ github.repository_owner }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          {
+            echo "The nightly scheduled CI run FAILED."
+            echo "- Run: $RUN_URL"
+            echo "- Commit: $GITHUB_SHA"
+            echo "- Date (UTC): $(date -u +%Y-%m-%d)"
+            echo
+            echo "### Headless gate (failure lines)"
+            echo '```'
+            grep -E "\[FAIL\]|FAILURES|FAILED" headless-gate.log | head -20
+            tail -5 headless-gate.log
+            echo '```'
+            echo "### Browser E2E (tail)"
+            echo '```'
+            tail -20 e2e.log 2>/dev/null || echo "(e2e did not run — the headless gate failed first)"
+            echo '```'
+            echo "cc @${OWNER}"
+            echo
+            echo "_Automated by CI. A green nightly auto-closes this issue, so an open issue means the latest nightly was red._"
+          } > failure-issue.md
+          # Idempotent label bootstrap (--force updates it if it already exists).
+          gh label create nightly-failure --color D93F0B --description "Nightly scheduled CI failure" --force
+          existing=$(gh issue list --label nightly-failure --state open --json number --jq '.[0].number')
+          if [ -n "$existing" ]; then
+            gh issue comment "$existing" --body-file failure-issue.md
+            echo "Appended this failure to open tracking issue #$existing"
+            issue="$existing"
+          else
+            issue=$(gh issue create --title "Nightly CI failed — $(date -u +%Y-%m-%d)" --body-file failure-issue.md --label nightly-failure)
+            echo "Created tracking issue: $issue"
+          fi
+          # Assignment is best-effort: the cc @mention in the body notifies even where
+          # assignment is refused, and must never be the reason an issue goes missing.
+          gh issue edit "$issue" --add-assignee "$OWNER" || echo "(could not assign $OWNER — the cc mention still notifies)"
+
+      - name: Auto-close nightly-failure issue on green
+        if: success() && github.event_name == 'schedule'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          open=$(gh issue list --label nightly-failure --state open --json number --jq '.[].number')
+          if [ -z "$open" ]; then
+            echo "No open nightly-failure issues — nothing to close."
+            exit 0
+          fi
+          for n in $open; do
+            gh issue close "$n" --comment "Nightly scheduled run PASSED: $RUN_URL — auto-closing."
+            echo "Closed #$n"
+          done

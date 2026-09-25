@@ -676,6 +676,29 @@ export class VerdadEngine {
   }
 
   /**
+   * Derive the topbar THREAT state from a REAL audit result.
+   *
+   * The thresholds are Verdad's own credibility-tier bands — manipulationRisk ≥70 is
+   * 'Critical Epistemic Threat', ≥50 'High Manipulation Risk', ≥25 'Moderate Caution' —
+   * so the pill and the analysis card can never disagree about the same claim.
+   *
+   * Returns null for anything that is not a completed analysis ({@link VerdadModule} never
+   * calls it with anything else). Pure: no store writes, no DOM, trivially pinnable.
+   *
+   * @param {{manipulationRisk?: number}} result - a Verdad analysis result
+   * @returns {{level: 'CRITICAL'|'HIGH'|'MODERATE'|'LOW', pct: number, label: string, at: number}|null}
+   */
+  static deriveThreat(result) {
+    const risk = result && Number.isFinite(result.manipulationRisk)
+      ? Math.max(0, Math.min(100, Math.round(result.manipulationRisk)))
+      : null;
+    if (risk === null) return null;
+
+    const level = risk >= 70 ? 'CRITICAL' : risk >= 40 ? 'HIGH' : risk >= 25 ? 'MODERATE' : 'LOW';
+    return { level, pct: risk, label: `THREAT: ${level} (${risk}%)`, at: Date.now() };
+  }
+
+  /**
    * Public analyzeClaim method supporting BYOK Gemini API with offline fallback.
    */
   static async analyzeClaim(text, options = { apiKey: null, mode: 'auto' }) {
@@ -956,6 +979,9 @@ export const VerdadModule = {
       });
       this._lastResult = result;
       this._renderResults(result);
+      // The topbar THREAT pill is driven by COMPLETED, operator-submitted audits only —
+      // never by the mount-time preset analysis, which the operator did not request.
+      this._app?.setThreatFromAudit?.(result);
 
       const factKey = this._app?.store?.get('verdad.factCheckApiKey', null);
       this._renderFactChecks({ status: 'pending', reviews: [], message: 'Searching published fact-checks…' });

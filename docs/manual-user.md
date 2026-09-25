@@ -51,7 +51,7 @@ when you can?).
 - **Topbar** — status pills: **Sentinel**, **Threat level**, **BYOK** (offline heuristics vs.
   your own Gemini key), a UTC clock, **📋 Clipboard** (route clipboard text to VERDAD), and
   **Quick Calm** (a 4-7-8 breathing pause).
-- **Telemetry ribbon** — EPOCH, your **DID**, **Immunity Index**, **AP**, storage size, and
+- **Telemetry ribbon** — Practice EPOCH (days since your first recorded attempt), your **DID**, **Immunity Index** (mean estimated mastery over the skills you have actually attempted, recomputed from the attempt log — `UNMEASURED` until you answer something), **AP**, storage size, and
   latency.
 - **Sidebar** — the ten numbered views plus footer actions (Quick Calm, Quick Sign Claim).
 

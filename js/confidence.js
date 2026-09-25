@@ -57,6 +57,10 @@ export const Confidence = {
   _app: null,
   /** In-memory fallback so this works before the store exists and in tests. */
   _level: DEFAULT_LEVEL,
+  /** Listeners fired (with the new level) whenever set() accepts a value. No immediate
+   * call on subscribe: callers gate on "the operator tapped since X", and a replay of the
+   * current level at subscribe time would fake exactly that. */
+  _subscribers: [],
 
   /**
    * @param {object} app
@@ -82,7 +86,28 @@ export const Confidence = {
     this._level = clean;
     if (this._app && this._app.store) this._app.store.set(STORE_KEY, clean);
     this._syncAll();
+    this._notify();
     return true;
+  },
+
+  /**
+   * Listen for explicit confidence statements. The listener runs on every accepted
+   * set() — including a re-tap of the already-selected level, which is itself a
+   * statement — and never on subscribe. Returns an unsubscribe function.
+   * @param {(level: 'sure'|'unsure'|'guess') => void} fn
+   * @returns {() => void}
+   */
+  subscribe(fn) {
+    if (typeof fn !== 'function') return () => {};
+    this._subscribers.push(fn);
+    return () => { this._subscribers = this._subscribers.filter((f) => f !== fn); };
+  },
+
+  /** @private */
+  _notify() {
+    for (const fn of this._subscribers) {
+      try { fn(this._level); } catch (err) { console.warn('[Confidence] subscriber failed:', err); }
+    }
   },
 
   /**
@@ -178,6 +203,7 @@ export const Confidence = {
   _reset() {
     this._app = null;
     this._level = DEFAULT_LEVEL;
+    this._subscribers = [];
   }
 };
 

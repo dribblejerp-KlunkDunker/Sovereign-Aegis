@@ -341,6 +341,78 @@ async function runTests() {
       harness.assertEqual(kp.keyPair.privateKey.extractable, true, 'extractable: true is honoured when explicitly requested');
       harness.assert(kp.privateKeyJwk && typeof kp.privateKeyJwk.d === 'string', 'Private JWK with d parameter returned on request');
     });
+
+    await harness.it('didKeyToJwk inverts jwkToDidKey exactly (lossless P-256 point recovery)', async () => {
+      const kp = await AegisCrypto.generateKeyPair();
+      const did = AegisCrypto.jwkToDidKey(kp.publicKeyJwk);
+      const back = AegisCrypto.didKeyToJwk(did);
+      harness.assertEqual(back.kty, 'EC', 'decoded key is EC');
+      harness.assertEqual(back.crv, 'P-256', 'decoded key is P-256');
+      harness.assertEqual(back.x, kp.publicKeyJwk.x, 'x coordinate survives the round-trip');
+      harness.assertEqual(back.y, kp.publicKeyJwk.y, 'y coordinate survives the round-trip (parity pinned by prefix)');
+      harness.assertEqual(AegisCrypto.jwkToDidKey(back), did, 're-encoded did:key is identical');
+    });
+
+    await harness.it('parsePublicKey accepts did:key and JWK JSON, rejects everything else', async () => {
+      const kp = await AegisCrypto.generateKeyPair();
+      const did = AegisCrypto.jwkToDidKey(kp.publicKeyJwk);
+      const fromDid = AegisCrypto.parsePublicKey(did);
+      const fromJwk = AegisCrypto.parsePublicKey(JSON.stringify(kp.publicKeyJwk));
+      harness.assertEqual(fromDid.x, kp.publicKeyJwk.x, 'did:key parses to the same x');
+      harness.assertEqual(fromJwk.y, kp.publicKeyJwk.y, 'JWK JSON parses to the same y');
+      const cleaned = AegisCrypto.parsePublicKey(JSON.stringify({ ...kp.publicKeyJwk, d: 'cHJpdmF0ZS1tYXRlcmlhbA' }));
+      harness.assert(!('d' in cleaned), 'private d parameter is stripped from a pasted JWK');
+      for (const bad of ['', 'not a key', '{"kty":"RSA","n":"x","e":"AQAB"}', '{"kty":"EC","crv":"P-384","x":"AA","y":"AA"}', 'did:key:notbase58!!']) {
+        let threw = false;
+        try { AegisCrypto.parsePublicKey(bad); } catch (err) { threw = true; }
+        harness.assert(threw, `parsePublicKey rejects: ${bad.slice(0, 28) || '(empty)'}`);
+      }
+    });
+
+    await harness.it('A foreign statement verifies against the PASTED key alone (independent-verifier contract)', async () => {
+      const issuer = await AegisCrypto.generateKeyPair();
+      const verifier = await AegisCrypto.generateKeyPair();
+      harness.assert(issuer.did !== verifier.did, 'issuer and verifier hold distinct identities');
+      const stmt = { assertion: 'Issued on another device entirely.', issuer: issuer.did };
+      const sig = await AegisCrypto.signStatement(issuer.keyPair.privateKey, stmt);
+      const pastedDid = AegisCrypto.jwkToDidKey(issuer.publicKeyJwk);
+      const okDid = await AegisCrypto.verifyStatement(AegisCrypto.parsePublicKey(pastedDid), stmt, sig);
+      harness.assertEqual(okDid, true, 'foreign signature verifies with only the pasted did:key');
+      const okJwk = await AegisCrypto.verifyStatement(AegisCrypto.parsePublicKey(JSON.stringify(issuer.publicKeyJwk)), stmt, sig);
+      harness.assertEqual(okJwk, true, 'foreign signature verifies with only the pasted JWK JSON');
+    });
+
+    await harness.it('A wrong or corrupted pasted key FAILS verification (no false positives)', async () => {
+      const issuer = await AegisCrypto.generateKeyPair();
+      const stmt = { assertion: 'wrong-key probe', issuer: issuer.did };
+      const sig = await AegisCrypto.signStatement(issuer.keyPair.privateKey, stmt);
+      const other = await AegisCrypto.generateKeyPair();
+      const wrongDid = await AegisCrypto.verifyStatement(AegisCrypto.parsePublicKey(AegisCrypto.jwkToDidKey(other.publicKeyJwk)), stmt, sig);
+      harness.assertEqual(wrongDid, false, 'verification against the wrong did:key fails');
+      const wrongJwk = await AegisCrypto.verifyStatement(other.publicKeyJwk, stmt, sig);
+      harness.assertEqual(wrongJwk, false, 'verification against the wrong JWK fails');
+      const did = AegisCrypto.jwkToDidKey(issuer.publicKeyJwk);
+      for (let i = 0; i < 6; i++) {
+        const corrupt = did.slice(0, did.length - 6) + 'kzMtQpXy'.slice(i, i + 6);
+        let safe = true; // safe = throws or returns false; a false positive is the only failure
+        try {
+          safe = (await AegisCrypto.verifyStatement(AegisCrypto.parsePublicKey(corrupt), stmt, sig)) === false;
+        } catch (err) { safe = true; }
+        harness.assert(safe, `corrupted did:key #${i + 1} never verifies`);
+      }
+    });
+
+    await harness.it('Panel symmetry: the signer statement reconstructs verbatim from pasted assertion text', async () => {
+      const kp = await AegisCrypto.generateKeyPair();
+      const assertion = 'Symmetry probe for the Independent Signature Verifier.';
+      const signed = { assertion, issuer: kp.did };
+      const sig = await AegisCrypto.signStatement(kp.keyPair.privateKey, signed);
+      const reconstructed = { assertion, issuer: AegisCrypto.jwkToDidKey(kp.publicKeyJwk) };
+      const ok = await AegisCrypto.verifyStatement(kp.publicKeyJwk, reconstructed, sig);
+      harness.assertEqual(ok, true, 'text-paste round-trip verifies (statement carries no unverifiable fields)');
+      const bad = await AegisCrypto.verifyStatement(kp.publicKeyJwk, { ...reconstructed, assertion: assertion + ' x' }, sig);
+      harness.assertEqual(bad, false, 'a mutated assertion fails verification');
+    });
   });
 
   return harness.summary();

@@ -1,0 +1,856 @@
+/**
+ * SOVEREIGN // AEGIS — Dead-Control Regression Suite
+ *
+ * Every finding from the 2026-09-24 dead-control audit (STATUS.md, open item 3) is pinned
+ * here BY BEHAVIOR, not by grep. A control is dead when nothing that reads it changes what
+ * the app does; therefore each pin drives the real module and asserts the state change the
+ * control is supposed to cause — attempts written, badges shown, packs assembled, docs
+ * exported. If a fix regresses, this suite names the control and fails the gate.
+ *
+ * Infrastructure: the in-memory IndexedDB stub is the same design as test-attemptlog.js
+ * (real IndexedDB behaviour is covered by the Playwright browser suite), plus a minimal
+ * document stub — just enough DOM for the modules under test: ids, classes, listeners.
+ *
+ * Zero external runtime dependencies.
+ */
+
+/* ------------------------------------------------------ in-memory IndexedDB stub */
+
+function installIndexedDbStub() {
+  const databases = new Map();
+
+  class FakeRequest {
+    constructor() { this.result = undefined; this.error = null; }
+  }
+
+  class FakeStore {
+    constructor(map, tx) { this._map = map; this._tx = tx; }
+    _req(value) { const r = new FakeRequest(); r.result = value; return r; }
+    put(value, key) {
+      if (this._tx.mode !== 'readwrite') throw new Error('read-only transaction');
+      this._map.set(key, JSON.parse(JSON.stringify(value)));
+      return this._req(key);
+    }
+    getAll(range) {
+      let entries = [...this._map.entries()];
+      if (range) entries = entries.filter(([k]) => range.includes(k));
+      return this._req(entries.map(([, v]) => v));
+    }
+    getAllKeys() { return this._req([...this._map.keys()]); }
+    count() { return this._req(this._map.size); }
+    clear() {
+      if (this._tx.mode !== 'readwrite') throw new Error('read-only transaction');
+      this._map.clear();
+      return this._req(undefined);
+    }
+  }
+
+  class FakeTransaction {
+    constructor(db, storeName, mode) {
+      this.mode = mode;
+      this._db = db;
+      this._storeName = storeName;
+      this.oncomplete = null;
+      this.onerror = null;
+      this.onabort = null;
+      this.error = null;
+      queueMicrotask(() => { if (this.oncomplete) this.oncomplete(); });
+    }
+    objectStore(name) {
+      const store = this._db._stores.get(name);
+      if (!store) throw new Error(`no such store: ${name}`);
+      return new FakeStore(store, this);
+    }
+  }
+
+  class FakeDb {
+    constructor(rec) {
+      this._stores = rec.stores;
+      this.closed = false;
+      this.objectStoreNames = { contains: (n) => rec.stores.has(n) };
+    }
+    createObjectStore(name) { this._stores.set(name, new Map()); return {}; }
+    transaction(storeName, mode = 'readonly') {
+      if (this.closed) throw new Error('database is closed');
+      return new FakeTransaction(this, storeName, mode);
+    }
+    close() { this.closed = true; }
+  }
+
+  globalThis.indexedDB = {
+    open(name, version) {
+      const req = new FakeRequest();
+      req.onupgradeneeded = null;
+      req.onsuccess = null;
+      req.onerror = null;
+      queueMicrotask(() => {
+        let rec = databases.get(name);
+        const isNew = !rec || rec.version < version;
+        if (!rec) { rec = { version, stores: new Map() }; databases.set(name, rec); }
+        req.result = new FakeDb(rec);
+        if (isNew) { rec.version = version; if (req.onupgradeneeded) req.onupgradeneeded(); }
+        if (req.onsuccess) req.onsuccess();
+      });
+      return req;
+    },
+    _databases: databases
+  };
+
+  globalThis.IDBKeyRange = {
+    lowerBound(bound) { return { includes: (k) => String(k) >= String(bound) }; }
+  };
+}
+
+installIndexedDbStub();
+
+/* ---------------------------------------------------------- minimal document stub */
+
+class FakeElement {
+  constructor(tag = 'div') {
+    this.tagName = String(tag).toUpperCase();
+    this.id = '';
+    this._classes = new Set();
+    this._listeners = new Map();
+    this.textContent = '';
+    this.innerHTML = '';
+    this.children = [];
+    this.parentElement = null;
+    this.attributes = new Map();
+    this.style = {};
+  }
+  get classList() {
+    const self = this;
+    return {
+      add: (...cs) => cs.forEach((c) => self._classes.add(c)),
+      remove: (...cs) => cs.forEach((c) => self._classes.delete(c)),
+      toggle: (c, force) => {
+        const on = force === undefined ? !self._classes.has(c) : Boolean(force);
+        if (on) self._classes.add(c); else self._classes.delete(c);
+        return on;
+      },
+      contains: (c) => self._classes.has(c)
+    };
+  }
+  get className() { return [...this._classes].join(' '); }
+  set className(v) { this._classes = new Set(String(v).split(/\s+/).filter(Boolean)); }
+  appendChild(child) {
+    if (child && child.parentElement) {
+      const siblings = child.parentElement.children;
+      const at = siblings.indexOf(child);
+      if (at !== -1) siblings.splice(at, 1);
+    }
+    this.children.push(child);
+    child.parentElement = this;
+    return child;
+  }
+  remove() {
+    if (this.parentElement) {
+      const siblings = this.parentElement.children;
+      const at = siblings.indexOf(this);
+      if (at !== -1) siblings.splice(at, 1);
+      this.parentElement = null;
+    }
+  }
+  get firstChild() { return this.children.length ? this.children[0] : null; }
+  insertBefore(node, reference) {
+    if (node && node.parentElement) {
+      const siblings = node.parentElement.children;
+      const at = siblings.indexOf(node);
+      if (at !== -1) siblings.splice(at, 1);
+    }
+    if (!reference) {
+      this.children.push(node);
+    } else {
+      const at = this.children.indexOf(reference);
+      this.children.splice(at === -1 ? this.children.length : at, 0, node);
+    }
+    node.parentElement = this;
+    return node;
+  }
+  setAttribute(name, value) { this.attributes.set(name, String(value)); }
+  getAttribute(name) { return this.attributes.has(name) ? this.attributes.get(name) : null; }
+
+  get dataset() {
+    const self = this;
+    const toAttr = (key) => 'data-' + String(key).replace(/[A-Z]/g, (m) => '-' + m.toLowerCase());
+    return new Proxy({}, {
+      get(_, key) {
+        const v = self.attributes.get(toAttr(key));
+        return v === undefined ? undefined : v;
+      },
+      set(_, key, value) { self.attributes.set(toAttr(key), String(value)); return true; }
+    });
+  }
+
+  /**
+   * Minimal selector support, only what the modules under test use:
+   * `:scope > .class` (Confidence.mount), `.class` and `[attr]` (Confidence._sync),
+   * plus `#id` / `[attr="value"]` at document level.
+   */
+  querySelector(selector) {
+    const scopeChild = selector.match(/^:scope\s*>\s*\.([\w-]+)$/);
+    if (scopeChild) return this.children.find((c) => c._classes.has(scopeChild[1])) || null;
+    return this.querySelectorAll(selector)[0] || null;
+  }
+
+  querySelectorAll(selector) {
+    const cls = selector.match(/^\.([\w-]+)$/);
+    const attr = selector.match(/^\[([\w-]+)(?:="([^"]*)")?\]$/);
+    if (!cls && !attr) return [];
+    const out = [];
+    const walk = (el) => {
+      for (const child of el.children) {
+        const ok = cls
+          ? child._classes.has(cls[1])
+          : child.attributes.has(attr[1]) && (attr[2] === undefined || child.attributes.get(attr[1]) === attr[2]);
+        if (ok) out.push(child);
+        walk(child);
+      }
+    };
+    walk(this);
+    return out;
+  }
+
+  addEventListener(type, fn) {
+    if (!this._listeners.has(type)) this._listeners.set(type, []);
+    this._listeners.get(type).push(fn);
+  }
+  _fire(type, event = { preventDefault() {}, stopPropagation() {} }) {
+    for (const fn of this._listeners.get(type) || []) fn.call(this, event);
+  }
+}
+
+function installDocumentStub() {
+  const byId = new Map();          // id -> FakeElement
+  const byAttr = new Map();        // 'attr="value"' -> FakeElement
+
+  globalThis.document = {
+    body: new FakeElement('body'),
+    _registerById(el) { if (el.id) byId.set(el.id, el); return el; },
+    _registerByAttr(el, attr, value) { byAttr.set(`${attr}="${value}"`, el); return el; },
+    createElement: (tag) => new FakeElement(tag),
+    createTextNode: (text) => ({ nodeType: 3, textContent: String(text) }),
+    getElementById: (id) => {
+      const direct = byId.get(id);
+      // A cached node only counts while it is still attached — .remove() must make it
+      // unfindable, exactly like the real DOM.
+      const attached = (el) => {
+        let cur = el;
+        while (cur) { if (cur === globalThis.document.body) return true; cur = cur.parentElement; }
+        return false;
+      };
+      if (direct && attached(direct)) return direct;
+      if (direct && !attached(direct)) byId.delete(id);
+      // Dynamically created nodes get ids but are only reachable through the tree.
+      const scan = (el) => {
+        for (const child of el.children) {
+          if (child.id === id) { byId.set(id, child); return child; }
+          const hit = scan(child);
+          if (hit) return hit;
+        }
+        return null;
+      };
+      return scan(globalThis.document.body);
+    },
+    querySelector: (sel) => {
+      const idMatch = sel.match(/^#([\w-]+)$/);
+      if (idMatch) return byId.get(idMatch[1]) || null;
+      const attrMatch = sel.match(/^(?:[\w-]+)?\[([\w-]+)="([^"]*)"\]$/);
+      if (attrMatch) return byAttr.get(`${attrMatch[1]}="${attrMatch[2]}"`) || null;
+      return null;
+    },
+    querySelectorAll: (sel) => {
+      const clsMatch = sel.match(/^\.([\w-]+)$/);
+      if (!clsMatch) return [];
+      const found = [];
+      const walk = (el) => {
+        for (const child of el.children) {
+          if (child._classes.has(clsMatch[1])) found.push(child);
+          walk(child);
+        }
+      };
+      walk(globalThis.document.body);
+      return found;
+    },
+    addEventListener() {},
+    _byId: byId
+  };
+
+  globalThis.Element = FakeElement;
+  globalThis.window = globalThis;
+  const windowListeners = new Map();
+  globalThis.window.addEventListener = (type, fn) => {
+    if (!windowListeners.has(type)) windowListeners.set(type, []);
+    windowListeners.get(type).push(fn);
+  };
+  globalThis.window._fire = (type, event = {}) => {
+    for (const fn of windowListeners.get(type) || []) fn({ preventDefault() {}, ...event });
+  };
+  globalThis.window.dispatchEvent = () => true;
+}
+
+installDocumentStub();
+
+/* ------------------------------------------------------------------ harness */
+
+class TestHarness {
+  constructor(suiteName) {
+    this.suiteName = suiteName;
+    this.totalAssertions = 0;
+    this.passed = 0;
+    this.failed = 0;
+    this.failures = [];
+    this.currentSuite = '';
+  }
+
+  describe(name, fn) {
+    this.currentSuite = name;
+    console.log(`\n  --- ${name} ---`);
+    return fn();
+  }
+
+  async it(name, fn) {
+    try {
+      await fn();
+    } catch (err) {
+      this.failed++;
+      this.totalAssertions++;
+      this.failures.push({ suite: this.currentSuite, test: name, error: err.message });
+      console.error(`  ✗ [FAIL] ${name} (${err.message})`);
+    }
+  }
+
+  assert(condition, message) {
+    this.totalAssertions++;
+    if (condition) {
+      this.passed++;
+      console.log(`    ✓ ${message}`);
+    } else {
+      this.failed++;
+      this.failures.push({ suite: this.currentSuite, test: message, error: 'Assertion failed' });
+      console.error(`    ✗ [FAIL] ${message}`);
+    }
+  }
+
+  assertEqual(actual, expected, message) {
+    this.assert(actual === expected, `${message} | Expected: ${JSON.stringify(expected)}, Got: ${JSON.stringify(actual)}`);
+  }
+
+  summary() {
+    console.log('\n====================================================');
+    console.log(`[${this.suiteName}] Summary: ${this.passed}/${this.totalAssertions} Passed (${this.failed} Failed)`);
+    console.log('====================================================');
+    if (this.failed > 0) {
+      console.error('\nFailure Details:');
+      this.failures.forEach(f => console.error(` - [${f.suite}] ${f.test}: ${f.error}`));
+      if (process.exitCode === undefined || process.exitCode === 0) {
+        process.exitCode = 1;
+      }
+    }
+    return { passed: this.passed, failed: this.failed, total: this.totalAssertions };
+  }
+}
+
+const harness = new TestHarness('Dead-Control Regression Suite');
+const t = harness;
+const drain = () => new Promise((r) => setTimeout(r, 20));
+
+function el(id, cls = '') {
+  const e = new FakeElement('div');
+  e.id = id;
+  if (cls) e.className = cls;
+  globalThis.document._registerById(e);
+  globalThis.document.body.appendChild(e);
+  return e;
+}
+
+async function runTests() {
+  const { AegisCrypto } = await import('../js/crypto.js');
+
+  /* ---------------------------------------------------------- Arena controls */
+
+  await t.describe('Dead control 1+2 — Arena probe badge & Calibrated Mode', async () => {
+    const { InfiniteArena } = await import('../js/modules/infiniteArena.js');
+    const { Confidence } = await import('../js/confidence.js');
+    const { AttemptLog } = await import('../js/attemptlog.js');
+    const makeArena = (questions) => Object.assign(Object.create(Object.getPrototypeOf(InfiniteArena)), InfiniteArena, {
+      _questions: questions, _skills: [], _sinceProbe: 0, _questionShownAt: 0,
+      _rankedPool: null, _mode: 'blitz', _score: 0, _streak: 0, _roundHistory: [],
+      _app: { store: { get: () => null, set: () => {} } }
+    });
+    const QS = [
+      { id: 'p1', domain: 'Test Domain', difficulty: 1200, claim: 'c1', options: ['a0', 'a1', 'a2', 'a3'], correctIndex: 0, tests: ['skill.a'], heldOut: false, explanation: 'x' },
+      { id: 'h1', domain: 'Test Domain', difficulty: 1300, claim: 'c2', options: ['b0', 'b1', 'b2', 'b3'], correctIndex: 0, tests: ['skill.a'], heldOut: true, explanation: 'x' }
+    ];
+    const fixtureEls = () => {
+      el('arena-options-grid');
+      el('arena-confidence-host');
+      el('arena-active-probe', 'badge hidden');
+      el('arena-live-feedback');
+      el('arena-active-view');
+      el('arena-timer-display');
+    };
+
+    await t.it('the TRANSFER PROBE badge shows exactly while a held-out probe is active', async () => {
+      fixtureEls();
+      const arena = makeArena(QS);
+      const badge = globalThis.document.getElementById('arena-active-probe');
+      arena._updateProbeBadge(QS[0]); // practice item
+      t.assertEqual(badge.classList.contains('hidden'), true, 'practice question keeps the badge hidden');
+      arena._updateProbeBadge(QS[1]); // held-out probe
+      t.assertEqual(badge.classList.contains('hidden'), false, 'probe question reveals the badge');
+      arena._updateProbeBadge({});
+      t.assertEqual(badge.classList.contains('hidden'), true, 'an unflagged question never shows the badge');
+    });
+
+    await t.it('the probe badge element exists in the shipped markup (a deleted badge fails loudly here)', async () => {
+      const fsMod = await import('node:fs');
+      const urlMod = await import('node:url');
+      const html = fsMod.readFileSync(urlMod.fileURLToPath(new URL('../index.html', import.meta.url)), 'utf8');
+      t.assert(html.includes('id="arena-active-probe"'), 'index.html still carries the probe badge element');
+      t.assert(html.includes('id="btn-mode-calibrated"'), 'index.html still carries the Calibrated Mode card');
+      t.assert(html.includes('id="check-include-custom-cards"'), 'index.html still carries the custom-cards checkbox');
+      t.assert(html.includes('data-aegis-modal="modal-did-export"'), 'the DID-export trigger is still wired to the modal');
+    });
+
+    await t.it('Calibrated Mode gates answers until a confidence tap, then records THAT tap', async () => {
+      fixtureEls();
+      Confidence._reset();
+      Confidence.init(null);
+      await AttemptLog.clear();
+      const arena = makeArena(QS);
+      await arena.startRound('calibrated');
+      await drain();
+
+      t.assertEqual(arena._mode, 'calibrated', 'the mode is armed');
+      t.assert(arena._activeQuestion, 'a question is on the floor');
+      const grid = globalThis.document.getElementById('arena-options-grid');
+      t.assertEqual(grid.classList.contains('arena-calibrated-locked'), true, 'options start locked');
+      t.assert(globalThis.document.getElementById('arena-calibration-gate'), 'the lock notice is rendered');
+
+      arena.submitAnswer(0);
+      await drain();
+      t.assertEqual(arena._roundHistory.length, 0, 'no tap → no answer, no attempt, no score');
+      t.assertEqual(await AttemptLog.count(), 0, 'the attempt log is untouched before the tap');
+
+      Confidence.set('unsure');
+      t.assertEqual(grid.classList.contains('arena-calibrated-locked'), false, 'a tap unlocks the grid');
+      t.assertEqual(globalThis.document.getElementById('arena-calibration-gate'), null, 'the lock notice is removed');
+
+      arena.submitAnswer(0);
+      await drain();
+      t.assertEqual(arena._roundHistory.length, 1, 'the answer is recorded after the tap');
+      t.assertEqual(arena._roundHistory[0].confidence, 'unsure', 'the round history carries the tapped level');
+      const all = await AttemptLog.readAll();
+      t.assertEqual(all.length, 1, 'one attempt written');
+      t.assertEqual(all[0].confidence, 'unsure', 'the ATTEMPT LOG carries the tapped level, not a default');
+
+      arena.nextQuestion();
+      await drain();
+      t.assertEqual(grid.classList.contains('arena-calibrated-locked'), true, 'the next question is locked again — every answer needs a fresh statement');
+      t.assertEqual(arena._calibratedTap, null, 'no stale tap survives into the next question');
+
+      Confidence.set('guess');
+      arena.submitAnswer(1);
+      await drain();
+      t.assertEqual(arena._roundHistory[1].confidence, 'guess', 'the second answer carries its own statement');
+
+      arena.endRound('Regression test finished');
+      await drain();
+      const attempts = await AttemptLog.readAll();
+      t.assertEqual(attempts.length, 2, 'both calibrated answers reached the log');
+      t.assertEqual(JSON.stringify(attempts.map((a) => a.confidence)), '["unsure","guess"]', 'no default confidence anywhere in the round');
+    });
+
+    await t.it('keyboard answers obey the same gate — key 1 is not a cheat code', async () => {
+      fixtureEls();
+      Confidence._reset();
+      Confidence.init(null);
+      await AttemptLog.clear();
+      const arena = makeArena(QS);
+      await arena.startRound('calibrated');
+      arena._bindEvents(); // registers the window keydown path under test
+      await drain();
+
+      globalThis.window._fire('keydown', { key: '1' });
+      await drain();
+      t.assertEqual(arena._roundHistory.length, 0, 'keyboard submit is refused without a tap');
+
+      Confidence.set('sure');
+      globalThis.window._fire('keydown', { key: '1' });
+      await drain();
+      t.assertEqual(arena._roundHistory.length, 1, 'keyboard submit works after the tap');
+      t.assertEqual(arena._roundHistory[0].confidence, 'sure', 'the keyboard path records the tapped level too');
+
+      arena.endRound('Regression test finished');
+      await drain();
+    });
+
+    await t.it('non-calibrated modes never gate and keep the shared default', async () => {
+      fixtureEls();
+      Confidence._reset();
+      Confidence.init(null);
+      await AttemptLog.clear();
+      const arena = makeArena(QS);
+      await arena.startRound('blitz');
+      await drain();
+      const grid = globalThis.document.getElementById('arena-options-grid');
+      t.assertEqual(grid.classList.contains('arena-calibrated-locked'), false, 'blitz is never locked');
+      arena.submitAnswer(0);
+      await drain();
+      t.assertEqual(arena._roundHistory.length, 1, 'blitz answers without any tap ceremony');
+      arena.endRound('Regression test finished');
+      await drain();
+      const attempts = await AttemptLog.readAll();
+      t.assertEqual(attempts.length, 1, 'blitz still writes its attempt');
+      t.assertEqual(attempts[0].confidence === undefined || typeof attempts[0].confidence === 'string', true, 'blitz confidence comes from the shared control, unchanged');
+    });
+
+    await t.it('Confidence.subscribe fires on statements, never on subscribe, and unsubscribes', async () => {
+      Confidence._reset();
+      Confidence.init(null);
+      const seen = [];
+      const unsub = Confidence.subscribe((level) => seen.push(level));
+      t.assertEqual(seen.length, 0, 'subscribing does not replay the current level');
+      Confidence.set('sure');
+      Confidence.set('sure'); // a re-tap is still a statement
+      unsub();
+      Confidence.set('guess');
+      t.assertEqual(JSON.stringify(seen), '["sure","sure"]', 'both statements delivered; nothing after unsubscribe');
+    });
+  });
+
+  /* ------------------------------------------------------- Commons pack builder */
+
+  await t.describe('Dead control 3 — custom-cards checkbox assembles real packs', async () => {
+    const { EpistemicCommons } = await import('../js/modules/epistemicCommons.js');
+    const makeCommons = (storeMap) => {
+      const store = { get: (k) => (storeMap.has(k) ? storeMap.get(k) : null), set: (k, v) => storeMap.set(k, v) };
+      const toasts = [];
+      return Object.assign(Object.create(Object.getPrototypeOf(EpistemicCommons)), EpistemicCommons, {
+        _app: { store, showToast: (x) => toasts.push(x) }
+      });
+    };
+    const DECK = JSON.stringify([
+      { id: 'card-custom-1', domain: 'Logical Fallacy', prompt: 'P1', diagnosis: 'D1', latin: '', mechanism: 'M1', countermeasure: 'C1' },
+      { id: 'card-legacy-99', domain: 'Curated', prompt: 'P2', diagnosis: 'D2', latin: '', mechanism: 'M2', countermeasure: 'C2' }
+    ]);
+    const PINS = JSON.stringify([{ id: 'pin1', title: 'Pinned Title', content: 'Pinned content body' }]);
+    const INPUTS = { title: 'Operator Pack', author: 'Tester', domain: 'AI Forensics & Statecraft', desc: 'A pack description' };
+
+    await t.it('unchecked, the checkbox contributes nothing — exactly the old behavior', async () => {
+      const commons = makeCommons(new Map([['sm2.deck', DECK], ['dossier.pins', PINS]]));
+      const pack = commons._assemblePack({ ...INPUTS, includeDossier: false, includeCustom: false });
+      t.assertEqual(pack.cards.length, 0, 'no cards without either switch');
+      t.assertEqual(pack.stats.cards, 0, 'the declared card count matches the pack body');
+    });
+
+    await t.it('checked, every card-custom-* Memory Vault card ships in the pack', async () => {
+      const commons = makeCommons(new Map([['sm2.deck', DECK], ['dossier.pins', PINS]]));
+      const pack = commons._assemblePack({ ...INPUTS, includeDossier: false, includeCustom: true });
+      t.assertEqual(pack.cards.length, 1, 'exactly the operator-authored card is included');
+      t.assertEqual(pack.cards[0].id, 'card-custom-1', 'the custom card is present verbatim');
+      t.assert(!pack.cards.some((c) => c.id === 'card-legacy-99'), 'curated deck items are never swept in');
+      t.assertEqual(pack.stats.cards, 1, 'the declared count matches');
+    });
+
+    await t.it('both switches compose; the count never lies', async () => {
+      const commons = makeCommons(new Map([['sm2.deck', DECK], ['dossier.pins', PINS]]));
+      const pack = commons._assemblePack({ ...INPUTS, includeDossier: true, includeCustom: true });
+      t.assertEqual(pack.cards.length, 2, 'one dossier pin + one custom card');
+      t.assert(pack.cards.some((c) => c.id === 'card-pin1'), 'the dossier card is present');
+      t.assert(pack.cards.some((c) => c.id === 'card-custom-1'), 'the custom card is present');
+      t.assertEqual(pack.stats.cards, 2, 'the declared count matches the body');
+    });
+  });
+
+  /* ------------------------------------------------------------ DID-export modal */
+
+  await t.describe('Dead control 5 — DID-export modal shows and copies the live identity', async () => {
+    const { IdentityModule } = await import('../js/modules/identity.js');
+    const makeIdentity = (storeMap) => {
+      const store = { get: (k) => (storeMap.has(k) ? storeMap.get(k) : null), set: (k, v) => storeMap.set(k, v) };
+      return Object.assign(Object.create(Object.getPrototypeOf(IdentityModule)), IdentityModule, {
+        _app: { store, showToast: () => {} }
+      });
+    };
+    const fixtureEls = () => {
+      el('did-export-json-view');
+      el('btn-copy-jsonld');
+      const opener = new FakeElement('button');
+      opener.setAttribute('data-aegis-modal', 'modal-did-export');
+      globalThis.document._registerByAttr(opener, 'data-aegis-modal', 'modal-did-export');
+      globalThis.document.body.appendChild(opener);
+      return opener;
+    };
+
+    await t.it('opening the modal populates it with a REAL, verifiable export of THIS identity', async () => {
+      const kp = await AegisCrypto.generateKeyPair();
+      const opener = fixtureEls();
+      const identity = makeIdentity(new Map([
+        ['identity.did', kp.did],
+        ['identity.publicKeyJwk', kp.publicKeyJwk]
+      ]));
+      // The browser vault holds a non-extractable CryptoKey; here the freshly generated
+      // private key stands in for it, so the displayed credential is signed for real.
+      identity._resolveSigningKey = async () => ({ key: kp.keyPair.privateKey, hardened: true });
+      // Bind the module's listeners to the stub DOM (same wiring the browser boot runs).
+      identity._bindAttestationEvents();
+
+      const view = globalThis.document.getElementById('did-export-json-view');
+      opener._fire('click');
+      await new Promise((r) => setTimeout(r, 50));
+
+      t.assert(!view.textContent.includes('z6MkuA9vR7q'), 'the hardcoded example DID is gone');
+      const exported = JSON.parse(view.textContent);
+      t.assertEqual(exported.didDocument.id, kp.did, 'the DID Document carries the operator DID');
+      t.assertEqual(exported.didDocument.verificationMethod[0].publicKeyJwk.x, kp.publicKeyJwk.x, 'the published key is the operator key (public coordinates only)');
+      t.assert(exported.selfSignedCredential && exported.selfSignedCredential.proof.jws, 'a self-signed credential is present with its proof');
+
+      // The modal must not just SHOW crypto — it must show VALID crypto.
+      const ok = await AegisCrypto.verifyStatement(
+        kp.publicKeyJwk,
+        exported.selfSignedCredential.credentialSubject,
+        exported.selfSignedCredential.proof.jws
+      );
+      t.assertEqual(ok, true, 'the displayed credential verifies against the displayed key');
+
+      // The copy button must copy exactly what is displayed.
+      let copied = null;
+      Object.defineProperty(globalThis, 'navigator', {
+        configurable: true,
+        value: { clipboard: { writeText: async (text) => { copied = text; } } }
+      });
+      globalThis.document.getElementById('btn-copy-jsonld')._fire('click');
+      await new Promise((r) => setTimeout(r, 20));
+      t.assert(copied && JSON.parse(copied).didDocument.id === kp.did, 'copy exports the live document, not the old static prop');
+    });
+
+    await t.it('with no identity, the modal says so instead of showing a fake', async () => {
+      const opener = fixtureEls();
+      const identity = makeIdentity(new Map());
+      identity._bindAttestationEvents();
+      const view = globalThis.document.getElementById('did-export-json-view');
+      opener._fire('click');
+      await new Promise((r) => setTimeout(r, 20));
+      t.assert(/No identity found/.test(view.textContent), 'the empty case is stated plainly');
+    });
+
+    await t.it('a missing signing key still exports the DID Document, visibly without the proof', async () => {
+      const kp = await AegisCrypto.generateKeyPair();
+      const opener = fixtureEls();
+      const identity = makeIdentity(new Map([
+        ['identity.did', kp.did],
+        ['identity.publicKeyJwk', kp.publicKeyJwk]
+      ]));
+      identity._resolveSigningKey = async () => null; // vault unavailable
+      identity._bindAttestationEvents();
+      const view = globalThis.document.getElementById('did-export-json-view');
+      opener._fire('click');
+      await new Promise((r) => setTimeout(r, 50));
+      const exported = JSON.parse(view.textContent);
+      t.assertEqual(exported.didDocument.id, kp.did, 'the DID Document still exports');
+      t.assertEqual(exported.selfSignedCredential, null, 'the credential is absent — the absence is visible, never faked');
+    });
+  });
+
+  /* ------------------------------------------------- Honest chrome (2026-09-25) */
+
+  await t.describe('Honest chrome — theatrical statics replaced by derived state (2026-09-25)', async () => {
+    const { VerdadEngine } = await import('../js/modules/verdad.js');
+    const { StateStore, SEED_STATE } = await import('../js/state.js');
+    const { estimateAggregate, practiceDaySpan } = await import('../js/competency.js');
+    const fsMod = await import('node:fs');
+    const urlMod = await import('node:url');
+    const html = fsMod.readFileSync(urlMod.fileURLToPath(new URL('../index.html', import.meta.url)), 'utf8');
+    const stateSrc = fsMod.readFileSync(urlMod.fileURLToPath(new URL('../js/state.js', import.meta.url)), 'utf8');
+    const SKILLS = [{ id: 'skill.a' }, { id: 'skill.b' }];
+
+    await t.it('the theatrical strings are gone from markup and seed, placeholders fail loud', async () => {
+      t.assert(!html.includes('THREAT: ELEVATED'), 'index.html no longer hardcodes THREAT: ELEVATED (42%)');
+      t.assert(!html.includes('94.8% RESILIENT'), 'index.html no longer hardcodes 94.8% RESILIENT');
+      t.assert(!html.includes('T+2026.08.16'), 'index.html no longer hardcodes the invented epoch');
+      t.assert(html.includes('THREAT: UNAUDITED'), 'the pill ships with the fail-loud UNAUDITED placeholder');
+      t.assert(html.includes('id="telemetry-immunity-val" title='), 'the immunity placeholder names its measurement rule in markup');
+      t.assert(!SEED_STATE.telemetry.threatLevel, 'no seeded threatLevel');
+      t.assert(!SEED_STATE.telemetry.epistemicHealth, 'no seeded epistemicHealth');
+      t.assert(!SEED_STATE.telemetry.blockHeight, 'no fake blockHeight');
+      t.assert(!SEED_STATE.telemetry.uptimeSeconds, 'no fake uptime');
+      t.assert(!stateSrc.includes("threatLevel: 'ELEVATED'"), 'the ELEVATED seed string is gone from state.js');
+    });
+
+    await t.it('deriveThreat maps Verdad risk bands to pill labels and fails closed', async () => {
+      t.assertEqual(VerdadEngine.deriveThreat({ manipulationRisk: 58 }).label, 'THREAT: HIGH (58%)', 'a mid-band audit maps to HIGH with the measured pct');
+      t.assertEqual(VerdadEngine.deriveThreat({ manipulationRisk: 70 }).level, 'CRITICAL', '70 is Critical in Verdad\u2019s own tiering');
+      t.assertEqual(VerdadEngine.deriveThreat({ manipulationRisk: 40 }).level, 'HIGH', '40 is the HIGH boundary');
+      t.assertEqual(VerdadEngine.deriveThreat({ manipulationRisk: 25 }).level, 'MODERATE', '25 is the MODERATE boundary');
+      t.assertEqual(VerdadEngine.deriveThreat({ manipulationRisk: 5 }).level, 'LOW', 'a low-risk claim reads LOW');
+      t.assertEqual(VerdadEngine.deriveThreat({ manipulationRisk: 140 }).pct, 100, 'out-of-range risk clamps, never propagates garbage');
+      t.assertEqual(VerdadEngine.deriveThreat(null), null, 'no result, no level');
+      t.assertEqual(VerdadEngine.deriveThreat({}), null, 'an audit without a measured risk produces no level, never a default');
+    });
+
+    await t.it('estimateAggregate means mastery over ATTEMPTED skills only, probes excluded', async () => {
+      const now = 1_800_000_000_000;
+      const attempts = [
+        { ts: now, skillId: 'skill.a', itemId: 'i1', correct: true },
+        { ts: now, skillId: 'skill.a', itemId: 'i2', correct: true },
+        { ts: now, skillId: 'skill.b', itemId: 'i3', correct: false },
+        { ts: now, skillId: 'skill.a', itemId: 'i4', correct: true, heldOut: true }
+      ];
+      const agg = estimateAggregate(attempts, SKILLS, { now });
+      t.assertEqual(agg.available, true, 'attempts produce a real measurement');
+      t.assertEqual(agg.skillsAttempted, 2, 'only attempted skills enter the mean');
+      t.assertEqual(agg.n, 3, 'held-out probes are excluded from the headline');
+      t.assert(agg.value > 0.5, 'two of three correct sits above the cold-start prior');
+      const empty = estimateAggregate([], SKILLS);
+      t.assertEqual(empty.available, false, 'no attempts is a distinct stated state');
+      t.assertEqual(empty.value, null, 'it never masquerades as 0.5 or 50%');
+    });
+
+    await t.it('practiceDaySpan measures from the first real attempt, unknown skills excluded', async () => {
+      const now = 1_800_000_000_000;
+      const day = 86_400_000;
+      const attempts = [
+        { ts: now - 3 * day, skillId: 'skill.a', itemId: 'i1', correct: true },
+        { ts: now, skillId: 'skill.b', itemId: 'i2', correct: false },
+        { ts: now - 30 * day, skillId: 'skill.unknown', itemId: 'ghost', correct: true }
+      ];
+      const span = practiceDaySpan(attempts, SKILLS, { now });
+      t.assertEqual(span.available, true, 'history exists');
+      t.assertEqual(span.days, 3, 'the epoch is the first catalogue-tagged attempt, three days back');
+      t.assertEqual(span.firstAttemptAt, now - 3 * day, 'the first-attempt timestamp rides along for the tooltip');
+      t.assertEqual(practiceDaySpan([], SKILLS).available, false, 'no history is stated, never rendered as D+0');
+    });
+  });
+
+  await t.describe('Honest chrome — the app shell renders derived state into the ticker', async () => {
+    // App.js auto-inits one microtask after import when document.readyState is undefined;
+    // pin readyState so the boot path never runs against the stub DOM.
+    globalThis.document.readyState = 'loading';
+    const appMod = await import('../js/app.js');
+    const { AttemptLog } = await import('../js/attemptlog.js');
+    const { StateStore } = await import('../js/state.js');
+
+    const buildApp = () => {
+      const store = new StateStore({}, { storageKey: 'honesty-test' });
+      const app = Object.assign(Object.create(Object.getPrototypeOf(appMod.AegisApp)), appMod.AegisApp, {
+        store,
+        _sessionStart: Date.now() - 90_000, // 90s into this session, so the SESSION clock reads 00:01:30
+        _loadSkills: async () => [{ id: 'skill.a' }, { id: 'skill.b' }]
+      });
+      return app;
+    };
+    const fixtureEls = () => {
+      el('threat-index-val');
+      el('topbar-threat-badge');
+      el('telemetry-immunity-val');
+      el('telemetry-epoch');
+    };
+
+    await t.it('the THREAT pill renders UNAUDITED until a real audit, then the derived label', async () => {
+      fixtureEls();
+      await AttemptLog.clear();
+      const app = buildApp();
+      app._renderThreatPill(app.store.get('verdad.lastAudit', null));
+      const pill = globalThis.document.getElementById('threat-index-val');
+      t.assertEqual(pill.textContent, 'THREAT: UNAUDITED', 'no audit, no level — the placeholder says so');
+      t.assert(pill.classList.contains('aegis-threat-unaudited'), 'the placeholder is styled as unaudited');
+
+      app.setThreatFromAudit({ manipulationRisk: 58, claimText: 'A claim the operator actually submitted.', at: 123 });
+      const audit = app.store.get('verdad.lastAudit', null);
+      t.assertEqual(audit.label, 'THREAT: HIGH (58%)', 'the completed audit is stored as the pill source');
+      app._renderThreatPill(audit);
+      t.assertEqual(pill.textContent, 'THREAT: HIGH (58%)', 'the pill shows the derived label, not a seeded level');
+      t.assert(!pill.classList.contains('aegis-threat-unaudited'), 'the unaudited styling is cleared');
+      t.assert(globalThis.document.getElementById('topbar-threat-badge').title.includes('A claim the operator'), 'the hover title names the audited claim');
+
+      app.setThreatFromAudit({});
+      t.assertEqual(app.store.get('verdad.lastAudit', null).pct, 58, 'a result without a measurement cannot clobber the last real one');
+    });
+
+    await t.it('the subscribe path repaints the pill from verdad.lastAudit changes', async () => {
+      fixtureEls();
+      const app = buildApp();
+      app._subscribeTelemetryUI();
+      app.setThreatFromAudit({ manipulationRisk: 80, claimText: 'Critical claim.' });
+      await drain();
+      t.assertEqual(globalThis.document.getElementById('threat-index-val').textContent, 'THREAT: CRITICAL (80%)', 'a new audit repaints the pill through the store subscription');
+    });
+
+    await t.it('IMMUNITY INDEX derives from the attempt log and says UNMEASURED when empty', async () => {
+      fixtureEls();
+      await AttemptLog.clear();
+      const app = buildApp();
+      await app._refreshChromeHonesty();
+      app._renderImmunityIndex();
+      const scoreEl = globalThis.document.getElementById('telemetry-immunity-val');
+      t.assertEqual(scoreEl.textContent, 'UNMEASURED', 'cold start is stated, never faked');
+
+      const now = Date.now();
+      await AttemptLog.append({ skillId: 'skill.a', itemId: 'i1', correct: true, ts: now - 1000, context: 'arena' });
+      await AttemptLog.append({ skillId: 'skill.b', itemId: 'i2', correct: true, ts: now - 2000, context: 'arena' });
+      await app._refreshChromeHonesty();
+      app._renderImmunityIndex();
+      t.assertEqual(scoreEl.textContent, '67% RESILIENT (n=2, 2 skills)', 'the headline carries the measured value AND its sample size (the Beta prior keeps one attempt per skill honest, below 100%)');
+      t.assert(scoreEl.title.includes('held-out'), 'the tooltip discloses that it is an estimate from the log');
+    });
+
+    await t.it('EPOCH shows D+<practice days> with history, SESSION age without', async () => {
+      fixtureEls();
+      await AttemptLog.clear();
+      const app = buildApp();
+      await app._refreshChromeHonesty();
+      app._renderEpoch();
+      const epochEl = globalThis.document.getElementById('telemetry-epoch');
+      t.assert(/^SESSION \d\d:\d\d:\d\d$/.test(epochEl.textContent), `no history renders the labeled session age, got: ${epochEl.textContent}`);
+
+      const day = 86_400_000;
+      await AttemptLog.append({ skillId: 'skill.a', itemId: 'i1', correct: true, ts: Date.now() - 3 * day, context: 'arena' });
+      await app._refreshChromeHonesty();
+      app._renderEpoch();
+      t.assertEqual(epochEl.textContent, 'D+3', 'the epoch is days since the first recorded attempt');
+      t.assert(epochEl.title.includes('first attempt'), 'the tooltip names the real first-attempt date');
+    });
+
+    await t.it('the tick loop updates EPOCH every second from the same derived state', async () => {
+      fixtureEls();
+      await AttemptLog.clear();
+      const app = buildApp();
+      app.startTelemetryLoop();
+      try {
+        const epochEl = globalThis.document.getElementById('telemetry-epoch');
+        await new Promise((r) => setTimeout(r, 1100)); // first clock tick (1000ms) fires _renderEpoch
+        t.assert(/^SESSION \d\d:\d\d:\d\d$/.test(epochEl.textContent), `the tick renders the labeled session age (${epochEl.textContent})`);
+        const before = epochEl.textContent;
+        await new Promise((r) => setTimeout(r, 1100)); // second tick advances it
+        t.assert(epochEl.textContent !== before, `the session clock advances on the tick (${before} → ${epochEl.textContent})`);
+      } finally {
+        app.stopTelemetryLoop(); // never leak intervals into the rest of the gate
+      }
+    });
+
+    await t.it('the shell wires the audit hook, the derived keys, and no ghost telemetry keys', async () => {
+      const fsMod = await import('node:fs');
+      const urlMod = await import('node:url');
+      const appSrc = fsMod.readFileSync(urlMod.fileURLToPath(new URL('../js/app.js', import.meta.url)), 'utf8');
+      const verdadSrc = fsMod.readFileSync(urlMod.fileURLToPath(new URL('../js/modules/verdad.js', import.meta.url)), 'utf8');
+      t.assert(verdadSrc.includes('setThreatFromAudit?.(result)'), 'executeAudit publishes the completed audit to the shell');
+      t.assert(appSrc.includes("subscribe('verdad.lastAudit'"), 'the shell subscribes the pill to the audit record');
+      t.assert(appSrc.includes("subscribe('chrome.honesty'"), 'the shell subscribes immunity/epoch to the derived snapshot');
+      t.assert(!appSrc.includes("store.set('telemetry.blockHeight'"), 'nothing writes the removed fake blockHeight anymore');
+    });
+  });
+
+  return harness.summary();
+}
+
+// Standalone execution support
+runTests().then(result => {
+  if (result.failed > 0) {
+    process.exit(1);
+  }
+}).catch(err => {
+  console.error('Fatal error running dead-controls suite:', err);
+  process.exit(1);
+});
