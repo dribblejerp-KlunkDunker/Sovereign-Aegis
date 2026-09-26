@@ -59,14 +59,22 @@ export const ReputationModule = {
    */
   refreshNavBadge() {
     const badge = document.getElementById('nav-badge-reputation');
-    if (!badge) return;
-    if (!this._sources.length) {
-      badge.textContent = 'DOSSIERS: N/A';
-      badge.title = 'sources.json unavailable — no dossier count can be honestly displayed.';
-      return;
+    if (badge) {
+      if (!this._sources.length) {
+        badge.textContent = 'DOSSIERS: N/A';
+        badge.title = 'sources.json unavailable — no dossier count can be honestly displayed.';
+      } else {
+        badge.textContent = `${this._sources.length} DOSSIERS`;
+        badge.title = `Loaded from data/sources.json: ${this._sources.length} source dossier(s). A real count of the local dataset.`;
+      }
     }
-    badge.textContent = `${this._sources.length} DOSSIERS`;
-    badge.title = `Loaded from data/sources.json: ${this._sources.length} source dossier(s). A real count of the local dataset.`;
+    // View header mirrors the nav badge — same real count, same fail-loud rule.
+    const header = document.getElementById('reputation-header-badge');
+    if (header) {
+      header.textContent = this._sources.length
+        ? `${this._sources.length} SOURCE DOSSIERS`
+        : 'SOURCE DOSSIERS: UNAVAILABLE';
+    }
   },
 
   _bindEvents() {

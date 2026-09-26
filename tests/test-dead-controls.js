@@ -1029,6 +1029,15 @@ async function runTests() {
       t.assert(!html.includes('Real-time threat monitoring'), 'the live-monitoring claim is gone');
       t.assert(html.includes('id="ew-dataset-badge"'), 'the dataset badge replaces it');
     });
+
+    await t.it('no inflated count claims survive in view headers', async () => {
+      t.assert(!html.includes('22+ FALLACIES'), 'the "22+ FALLACIES" claim is gone (the dataset has 24, derived at runtime)');
+      t.assert(!html.includes('50+ PLATFORMS') && !html.includes('50+ Sites') && !html.includes('(50+ Sites)'), 'the "50+ platforms/sites" claims are gone');
+      t.assert(!html.includes('60+ SOURCE DOSSIERS'), 'the "60+ SOURCE DOSSIERS" claim is gone (dataset ships 55)');
+      t.assert(html.includes('id="cognitive-header-badge"'), 'the cognitive header badge is derived');
+      t.assert(html.includes('id="reputation-header-badge"'), 'the reputation header badge is derived');
+      t.assert(!osintSrc.includes('SCANNING 50+ NODES'), 'no scanning copy cites an invented node count');
+    });
   });
 
   return harness.summary();

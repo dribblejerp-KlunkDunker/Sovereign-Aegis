@@ -274,6 +274,17 @@ competency estimation). Full architecture and feature inventory: `PROJECT.md`.
        **18,732/18,732** (48 suites); browser E2E **129/129**; verified live — all six
        badges derived, radar renders 6 data-plotted blips, dossier shows a real
        incident with its 4-action checklist, pivot grid shows the honest plan.
+   - **AMENDED 2026-09-26 (same audit, follow-up sweep) — inflated view-header counts.**
+     A second pass over visible copy caught three more count claims: the cognitive
+     header's "4 MASTERCLASSES • 22+ FALLACIES" (the dataset actually ships 24 — "22+"
+     was stale), the OSINT header's "50+ PLATFORMS • INTERACTIVE GRAPH" and the
+     Sherlock card title's "(50+ Sites)" (the toolkit ships 8 templates), and the
+     reputation header's "60+ SOURCE DOSSIERS" (the dataset ships 55). The two
+     count-bearing headers are now derived live from the loaded datasets
+     (`#cognitive-header-badge`, `#reputation-header-badge` — fail-loud on load
+     failure); the OSINT header and Sherlock title no longer cite invented reach.
+     Live-verified: `4 MASTERCLASSES • 24 FALLACIES`, `55 SOURCE DOSSIERS`. Gate
+     **18,738/18,738**; browser E2E **129/129**.
 4. **Browser E2E in CI — DONE 2026-09-24.** `.github/workflows/ci.yml` (added 2026-09-23
    with the honesty-fix commit `1679630`) runs the headless gate on every push, and the
    browser E2E suite on demand via workflow_dispatch **and nightly via schedule**

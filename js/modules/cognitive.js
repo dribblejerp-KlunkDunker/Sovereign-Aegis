@@ -341,13 +341,26 @@ export const CognitiveLab = {
    */
   refreshNavBadge() {
     const badge = document.getElementById('nav-badge-cognitive');
-    if (!badge) return;
-    if (this._masterclasses.length) {
-      badge.textContent = `${this._masterclasses.length} COURSES`;
-      badge.title = this._masterclasses.map((mc) => mc.title || mc.id).join(' · ');
-    } else {
-      badge.textContent = 'COURSES: N/A';
-      badge.title = 'masterclass.json unavailable — no course count can be honestly displayed.';
+    if (badge) {
+      if (this._masterclasses.length) {
+        badge.textContent = `${this._masterclasses.length} COURSES`;
+        badge.title = this._masterclasses.map((mc) => mc.title || mc.id).join(' · ');
+      } else {
+        badge.textContent = 'COURSES: N/A';
+        badge.title = 'masterclass.json unavailable — no course count can be honestly displayed.';
+      }
+    }
+    // The view header carries the same honesty rule: real counts, or no counts.
+    const header = document.getElementById('cognitive-header-badge');
+    if (header) {
+      if (this._masterclasses.length) {
+        const fallacyCount = Array.isArray(this._fallacies) ? this._fallacies.length : 0;
+        header.textContent = fallacyCount
+          ? `${this._masterclasses.length} MASTERCLASSES • ${fallacyCount} FALLACIES`
+          : `${this._masterclasses.length} MASTERCLASSES`;
+      } else {
+        header.textContent = 'SYLLABUS UNAVAILABLE';
+      }
     }
   },
 
