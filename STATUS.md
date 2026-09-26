@@ -289,6 +289,20 @@ competency estimation). Full architecture and feature inventory: `PROJECT.md`.
      SVG length) that logged a console error on every boot — removed (viewBox +
      `width="100%"` already give the correct responsive height), pinned in the
      attempt-log suite, boot console verified clean. Gate **18,740/18,740**.
+   - **AMENDED 2026-09-26 (evening) — honesty map published.** `docs/HONESTY-DASHBOARD.md`
+     now lists every display surface and the real source behind each number (topbar
+     tickers, nav badges, view headers, module bodies, declared game-fiction surfaces,
+     and the full removed-fiction inventory); the doc is itself pinned — the
+     Dead-Control Regression Suite asserts the doc's claims still match the app.
+     Building the map exposed two last statics: the topbar shipped a fabricated
+     "48.2 KB" storage paint (now measured at boot and per tick via
+     `_renderStorageFootprint()`) and a fake-looking `did:key:z6Mku...` placeholder that
+     persisted on screen whenever identity creation failed (now `DID: — (NONE YET)` in
+     the ticker, the view-10 profile display, and the export modal — the code-level
+     fake default in `identity.renderProfile` and its sample JWK are gone too). The
+     verify-input's format hint now uses the generic `did:key:…`. Gate
+     **18,745/18,745** (48 suites); browser E2E **129/129**; live-verified: real DID,
+     measured storage, real JWK, labeled empty states on every no-identity path.
 4. **Browser E2E in CI — DONE 2026-09-24.** `.github/workflows/ci.yml` (added 2026-09-23
    with the honesty-fix commit `1679630`) runs the headless gate on every push, and the
    browser E2E suite on demand via workflow_dispatch **and nightly via schedule**
