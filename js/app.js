@@ -158,6 +158,11 @@ export const AegisApp = {
       this._renderMastery();
       this._renderMissionPanel();
       this._refreshChromeHonesty();
+      // Nav badges are derived from loaded datasets by their owning modules
+      // (cognitive/infowar/osint/early-warning/reputation/defense). The boot pass
+      // covers any module whose data landed after the operator could see the
+      // placeholder — "…" never outlives the module that resolves it.
+      this._deriveNavBadges();
 
       // 5. Restore Initial View from Hash or State
       const initialView = window.location.hash
@@ -1937,6 +1942,38 @@ export const AegisApp = {
       claimText: typeof result.claimText === 'string' ? result.claimText : '',
       isLiveApi: result.isLiveApi === true
     });
+  },
+
+  /**
+   * Boot-time backstop for the nav-rail dataset badges: every owning module
+   * derives its own badge after loading data; this pass re-derives any badge
+   * that is still showing the markup placeholder ("…") once modules have had a
+   * chance to load. Modules keep ownership — this never invents a value.
+   * @private
+   */
+  _deriveNavBadges() {
+    if (typeof document === 'undefined') return;
+    setTimeout(() => {
+      const badgeIds = [
+        'nav-badge-cognitive', 'nav-badge-infowar', 'nav-badge-osint',
+        'nav-badge-early-warning', 'nav-badge-reputation', 'nav-badge-defense'
+      ];
+      const deriveFns = [
+        () => this.modules['cognitive']?.refreshNavBadge?.(),
+        () => this.modules['infowar']?.refreshNavBadge?.(),
+        () => this.modules['osint']?.refreshNavBadge?.(),
+        () => this.modules['early-warning']?.refreshNavBadge?.(),
+        () => this.modules['reputation']?.refreshNavBadge?.(),
+        () => this.modules['defense']?._refreshNavBadge?.({ due: false, text: '' })
+      ];
+      deriveFns.forEach((fn) => {
+        try { fn(); } catch { /* module not ready — badge stays a labeled placeholder */ }
+      });
+      const stillPending = badgeIds.filter((id) => document.getElementById(id)?.textContent.includes('…'));
+      if (stillPending.length) {
+        console.warn(`[AegisApp] Nav badges still unresolved after boot: ${stillPending.join(', ')}`);
+      }
+    }, 250);
   },
 
   /**

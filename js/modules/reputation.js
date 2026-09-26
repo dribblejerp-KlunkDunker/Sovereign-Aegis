@@ -24,29 +24,49 @@ export const ReputationModule = {
       const res = await fetch('./data/sources.json').catch(() => fetch('data/sources.json'));
       if (res && res.ok) {
         const raw = await res.json();
+        // Every field renders what the dataset actually says — a missing rating
+        // shows UNRATED/UNRECORDED, never a invented default like the old `|| 90`.
         this._sources = raw.map(s => ({
           name: s.name,
           domain: s.domain,
-          factual: `${(s.factualityRating || 'High').toUpperCase()} (${s.credibilityScore || 90}%)`,
-          bias: (s.biasRating || 'Center').toUpperCase(),
-          biasType: (s.biasRating || 'CENTER').toUpperCase().includes('LEFT') ? 'LEFT' : (s.biasRating || '').toUpperCase().includes('RIGHT') ? 'RIGHT' : (s.biasRating || '').toUpperCase().includes('STATE') ? 'STATE' : 'CENTER',
-          history: s.retractionHistory?.notes || `${s.retractionHistory?.totalRetractions || 0} Retractions (${s.retractionHistory?.protocolAdherence || 'Standard'})`,
-          badge: (s.credibilityScore || 90) >= 90 ? 'badge-veracity' : (s.credibilityScore || 90) >= 60 ? 'badge-suspicion' : 'badge-disinfo'
+          factual: s.factualityRating
+            ? `${String(s.factualityRating).toUpperCase()}${s.credibilityScore != null ? ` (${s.credibilityScore}%)` : ''}`
+            : (s.credibilityScore != null ? `${s.credibilityScore}%` : 'UNRATED'),
+          bias: (s.biasRating || 'UNRATED').toUpperCase(),
+          biasType: (s.biasRating || '').toUpperCase().includes('LEFT') ? 'LEFT' : (s.biasRating || '').toUpperCase().includes('RIGHT') ? 'RIGHT' : (s.biasRating || '').toUpperCase().includes('STATE') ? 'STATE' : 'CENTER',
+          history: s.retractionHistory?.notes || (s.retractionHistory ? `${s.retractionHistory.totalRetractions || 0} Retractions (${s.retractionHistory.protocolAdherence || 'protocol unrecorded'})` : 'RETRACTION HISTORY UNRECORDED'),
+          badge: s.credibilityScore != null
+            ? (s.credibilityScore >= 90 ? 'badge-veracity' : s.credibilityScore >= 60 ? 'badge-suspicion' : 'badge-disinfo')
+            : 'badge-neutral'
         }));
       }
     } catch {
-      this._sources = [
-        { name: 'Reuters', domain: 'reuters.com', factual: 'VERY HIGH (98%)', bias: 'CENTER', biasType: 'CENTER', history: '0 Failed Checks (Past 5 Years)', badge: 'badge-veracity' },
-        { name: 'Associated Press', domain: 'apnews.com', factual: 'VERY HIGH (98%)', bias: 'CENTER', biasType: 'CENTER', history: '0 Failed Checks (Past 5 Years)', badge: 'badge-veracity' },
-        { name: 'BBC News', domain: 'bbc.com', factual: 'HIGH (92%)', bias: 'LEFT-CENTER', biasType: 'LEFT', history: '2 Corrected Reports', badge: 'badge-veracity' },
-        { name: 'Wall Street Journal', domain: 'wsj.com', factual: 'HIGH (93%)', bias: 'RIGHT-CENTER', biasType: 'RIGHT', history: '1 Corrected Report', badge: 'badge-veracity' },
-        { name: 'RT (Russia Today)', domain: 'rt.com', factual: 'VERY LOW (12%)', bias: 'STATE CONTROLLED', biasType: 'STATE', history: '142 Verified False Narratives', badge: 'badge-disinfo' },
-        { name: 'Sputnik News', domain: 'sputnikglobe.com', factual: 'VERY LOW (14%)', bias: 'STATE CONTROLLED', biasType: 'STATE', history: '118 Verified False Narratives', badge: 'badge-disinfo' },
-        { name: 'ProPublica', domain: 'propublica.org', factual: 'VERY HIGH (96%)', bias: 'LEFT-CENTER', biasType: 'LEFT', history: '0 Failed Checks (Investigative)', badge: 'badge-veracity' },
-        { name: 'Financial Times', domain: 'ft.com', factual: 'HIGH (94%)', bias: 'CENTER', biasType: 'CENTER', history: '0 Failed Checks', badge: 'badge-veracity' }
-      ];
+      // Fail loud (honesty audit 2026-09-26): a load failure now renders an EMPTY
+      // directory plus a console warning — never a hardcoded substitute source list.
+      // The fictional Reuters/AP/BBC/RT/etc. fallback rows that lived here were
+      // invented ratings for real outlets, which is worse than no data.
+      this._sources = [];
+      console.warn('[ReputationModule] sources.json unavailable — directory renders empty rather than showing substitute data.');
     }
     this.renderTable();
+    this.refreshNavBadge();
+  },
+
+  /**
+   * Nav badge derives from the LOADED source directory (honesty audit
+   * 2026-09-26): the old hardcoded "60+ DOSSIERS" was numerically wrong — the
+   * dataset ships 55 — and the OSINT subtab's separate table rendered 8.
+   */
+  refreshNavBadge() {
+    const badge = document.getElementById('nav-badge-reputation');
+    if (!badge) return;
+    if (!this._sources.length) {
+      badge.textContent = 'DOSSIERS: N/A';
+      badge.title = 'sources.json unavailable — no dossier count can be honestly displayed.';
+      return;
+    }
+    badge.textContent = `${this._sources.length} DOSSIERS`;
+    badge.title = `Loaded from data/sources.json: ${this._sources.length} source dossier(s). A real count of the local dataset.`;
   },
 
   _bindEvents() {
@@ -76,10 +96,14 @@ export const ReputationModule = {
     });
 
     if (filtered.length === 0) {
+      // Distinguish "the dataset failed to load" from "your filter matched nothing".
+      const unavailable = !this._sources.length;
       tbody.innerHTML = `
         <tr>
           <td colspan="5" style="text-align: center; color: var(--parchment-muted); padding: var(--space-6);">
-            No media outlets matching search criteria.
+            ${unavailable
+              ? 'SOURCE DIRECTORY UNAVAILABLE — data/sources.json could not be loaded. No substitute records are shown.'
+              : 'No media outlets matching search criteria.'}
           </td>
         </tr>
       `;

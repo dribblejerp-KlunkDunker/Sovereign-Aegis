@@ -328,8 +328,26 @@ export const CognitiveLab = {
       this._disarm = Array.isArray(di) ? di : [];
       this._forensics = fo;
       this._inoculation = Array.isArray(in_) ? in_ : [];
+      this.refreshNavBadge();
     } catch (err) {
       console.error('[CognitiveLab] Data load error:', err);
+    }
+  },
+
+  /**
+   * Nav badge derives from the LOADED curriculum, not copy (honesty audit
+   * 2026-09-26): the old hardcoded "4 COURSES" string matched the dataset size
+   * by coincidence and would have gone stale the day the syllabus changed.
+   */
+  refreshNavBadge() {
+    const badge = document.getElementById('nav-badge-cognitive');
+    if (!badge) return;
+    if (this._masterclasses.length) {
+      badge.textContent = `${this._masterclasses.length} COURSES`;
+      badge.title = this._masterclasses.map((mc) => mc.title || mc.id).join(' · ');
+    } else {
+      badge.textContent = 'COURSES: N/A';
+      badge.title = 'masterclass.json unavailable — no course count can be honestly displayed.';
     }
   },
 

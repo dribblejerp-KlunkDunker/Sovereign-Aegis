@@ -111,6 +111,7 @@ export const InfoWar = {
     try {
       const data = await fetch('./data/scenarios.json').catch(() => fetch('data/scenarios.json')).then(r => r.json()).catch(() => ({}));
       this._campaigns = data.infowarCampaigns || [];
+      this.refreshNavBadge();
 
       // DISARM Blue countermeasure framework — genuine C-codes, keyed by tactic stage, so the AAR
       // can grade against the real framework rather than a hand-written match.
@@ -125,6 +126,25 @@ export const InfoWar = {
     } catch (err) {
       console.error('[InfoWar] Data load error:', err);
     }
+  },
+
+  /**
+   * Nav badge derives from the LOADED scenario ruleset (honesty audit
+   * 2026-09-26): "N SCEN · M AP MAX" is the real campaign count and the real
+   * maximum AP-per-turn budget in data/scenarios.json — not a hardcoded
+   * "10 AP" that silently claimed game state before any campaign existed.
+   */
+  refreshNavBadge() {
+    const badge = document.getElementById('nav-badge-infowar');
+    if (!badge) return;
+    if (!this._campaigns.length) {
+      badge.textContent = 'SCENARIOS: N/A';
+      badge.title = 'scenarios.json unavailable — no scenario count or AP budget can be honestly displayed.';
+      return;
+    }
+    const maxAp = Math.max(...this._campaigns.map((c) => c.apPerTurn || 0));
+    badge.textContent = `${this._campaigns.length} SCEN · ${maxAp} AP MAX`;
+    badge.title = `Loaded from data/scenarios.json: ${this._campaigns.length} InfoWar scenario(s); the largest per-turn Action-Point budget is ${maxAp}. Real ruleset values, not live game state.`;
   },
 
   // ─────────────────────────────────────────────

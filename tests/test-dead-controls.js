@@ -942,6 +942,95 @@ async function runTests() {
     });
   });
 
+  await t.describe('Honest chrome III — nav-rail badges & offline recon truth (2026-09-26 audit)', async () => {
+    const fsMod = await import('node:fs');
+    const urlMod = await import('node:url');
+    const readSrc = (p) => fsMod.readFileSync(urlMod.fileURLToPath(new URL(p, import.meta.url)), 'utf8');
+    const ewSrc = readSrc('../js/modules/earlyWarning.js');
+    const osintSrc = readSrc('../js/modules/osint.js');
+    const repSrc = readSrc('../js/modules/reputation.js');
+    const infowarSrc = readSrc('../js/modules/infowar.js');
+    const cognitiveSrc = readSrc('../js/modules/cognitive.js');
+    const profileSrc = readSrc('../js/modules/profile.js');
+    const appSrc2 = readSrc('../js/app.js');
+    const html = readSrc('../index.html');
+    const ewData = JSON.parse(readSrc('../data/early_warning.json'));
+    const sourcesData = JSON.parse(readSrc('../data/sources.json'));
+
+    const fakeBadge = (id) => {
+      const b = el(id);
+      b.textContent = '';
+      return b;
+    };
+
+    await t.it('no static stat copy remains in the nav rail — every badge is a derived placeholder', async () => {
+      t.assert(!/>\s*4 COURSES\s*</.test(html), 'markup no longer hardcodes "4 COURSES"');
+      t.assert(!/>\s*10 AP\s*</.test(html), 'markup no longer hardcodes "10 AP" (the in-game AP badge is real game state)');
+      t.assert(!/>\s*50\+ SITES\s*</.test(html), 'markup no longer hardcodes "50+ SITES"');
+      t.assert(!/>\s*5 ACTIVE\s*</.test(html), 'markup no longer hardcodes "5 ACTIVE"');
+      t.assert(!/>\s*60\+ DOSSIERS\s*</.test(html), 'markup no longer hardcodes "60+ DOSSIERS"');
+      t.assert(!/>\s*38 ITEMS\s*</.test(html), 'markup no longer hardcodes "38 ITEMS"');
+      for (const id of ['nav-badge-cognitive', 'nav-badge-infowar', 'nav-badge-osint', 'nav-badge-early-warning', 'nav-badge-reputation', 'nav-badge-defense']) {
+        t.assert(html.includes(`id="${id}"`), `badge ${id} exists in markup with a derived id`);
+      }
+      t.assert((html.match(/COURSES: …|AP: …|SITES: …|RADAR: …|DOSSIERS: …|ITEMS: …/g) || []).length >= 6, 'every dataset badge ships with a labeled "…" placeholder');
+    });
+
+    await t.it('each module derives its badge from the real loaded dataset, with fail-loud N/A', async () => {
+      t.assert(ewSrc.includes("document.getElementById('nav-badge-early-warning')") && ewSrc.includes('early_warning.json unavailable'), 'early-warning badge derives from its dataset and fails loud');
+      t.assert(infowarSrc.includes("document.getElementById('nav-badge-infowar')") && infowarSrc.includes('scenarios.json unavailable'), 'infowar badge derives from its ruleset and fails loud');
+      t.assert(cognitiveSrc.includes("document.getElementById('nav-badge-cognitive')") && cognitiveSrc.includes('masterclass.json unavailable'), 'cognitive badge derives from its curriculum and fails loud');
+      t.assert(osintSrc.includes("document.getElementById('nav-badge-osint')"), 'osint badge derives from its toolkit count');
+      t.assert(repSrc.includes("document.getElementById('nav-badge-reputation')"), 'reputation badge derives from its dataset count');
+      t.assert(profileSrc.includes('profile-items.json unavailable'), 'defense badge derives from the loaded inventory and fails loud');
+      t.assert(appSrc2.includes('_deriveNavBadges'), 'app.js boot re-derives unresolved badges as a backstop');
+    });
+
+    await t.it('the early-warning radar renders REAL dataset geometry, never hardcoded blips', async () => {
+      t.assert(!html.includes('Active Threat Blips -->\n                  <circle'), 'markup no longer hardcodes radar blips');
+      t.assert(html.includes('<g id="radar-blips"></g>'), 'blips render into a data-driven container');
+      t.assert(ewSrc.includes('radarAngle') && ewSrc.includes('radarDistance'), 'blips are plotted from the dataset polar fields');
+      t.assert(!ewSrc.includes('Astroturfed Liquidity Panic'), 'the hardcoded incident-name fallback is gone from code');
+      t.assert(!ewSrc.includes('DEFCON 2'), 'the fictional DEFCON fallback is gone from code');
+      // The fictional fallback data block is gone — a failed fetch yields NO domains.
+      t.assert(!/this\._alerts\s*=\s*\[\s*\{\s*id:\s*'EW-01'/.test(ewSrc), 'the fictional three-alert fallback array is deleted');
+      t.assert(ewData.length === 6 && ewData.every((d) => Array.isArray(d.activeIncidents)), 'the dataset itself carries 6 domains with active incidents');
+    });
+
+    await t.it('the incident dossier renders dataset incidents — no hardcoded incident card', async () => {
+      t.assert(!html.includes('Threat Incident: Astroturfed Liquidity Panic'), 'markup no longer hardcodes the incident card');
+      t.assert(html.includes('id="ew-incident-title"') && html.includes('id="ew-playbook-checklist"'), 'the dossier is a data-driven container');
+      t.assert(html.includes('id="btn-ew-countermeasure"'), 'the countermeasure button is wired via its id');
+      t.assert(ewSrc.includes("getElementById('btn-ew-countermeasure')"), 'earlyWarning binds the countermeasure acknowledgment');
+      t.assert(ewSrc.includes("getElementById('ew-incident-title')"), 'earlyWarning populates the dossier from data');
+    });
+
+    await t.it('the OSINT recon flow no longer fabricates results', async () => {
+      t.assert(!osintSrc.includes("status: 'FOUND'"), 'no simulated FOUND statuses in the platform table');
+      t.assert(!osintSrc.includes('RECON COMPLETE (5 FOUND)'), 'the fake "RECON COMPLETE (5 FOUND)" status is gone');
+      t.assert(!osintSrc.includes('2 active infrastructure ties'), 'the fabricated infrastructure-ties toast is gone');
+      t.assert(!osintSrc.includes('SCANNING 50+ NODES'), 'the theatrical scanning status is gone');
+      t.assert(osintSrc.includes('NO LIVE SCAN PERFORMED'), 'the grid declares that no live scan is performed');
+      t.assert(osintSrc.includes('NOT CHECKED'), 'platform rows carry the honest NOT-CHECKED state');
+      t.assert(!html.includes('>FOUND</span>'), 'markup no longer ships the FOUND-result skeleton');
+      t.assert(!/>VERIFIED PGP</.test(html), 'markup no longer ships the fake PGP-verified result');
+      t.assert(osintSrc.includes("if (activeSubtab === 'search') this.renderPlatforms('target_user')"), 'onMount renders the honest plan at boot');
+    });
+
+    await t.it('the reputation directory never substitutes fictional source ratings', async () => {
+      t.assert(!/catch \{\s*\n\s*this\._sources = \[\s*\n\s*\{ name: 'Reuters'/.test(repSrc), 'the hardcoded Reuters/AP/RT fallback list is deleted');
+      t.assert(repSrc.includes('SOURCE DIRECTORY UNAVAILABLE'), 'a failed dataset load renders a labeled unavailable state');
+      t.assert(!repSrc.includes("credibilityScore || 90"), 'no invented default credibility score');
+      t.assert(sourcesData.length === 55, 'the real dataset ships 55 source dossiers (the badge derives this)');
+    });
+
+    await t.it('view-08 copy states the data source instead of claiming a live sweep', async () => {
+      t.assert(!html.includes('360° POLAR SWEEP ACTIVE'), 'the theatrical sweep badge is gone');
+      t.assert(!html.includes('Real-time threat monitoring'), 'the live-monitoring claim is gone');
+      t.assert(html.includes('id="ew-dataset-badge"'), 'the dataset badge replaces it');
+    });
+  });
+
   return harness.summary();
 }
 

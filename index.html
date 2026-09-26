@@ -184,12 +184,12 @@
         <button class="nav-item" data-view="cognitive" role="tab" aria-selected="false" aria-controls="view-cognitive" id="nav-cognitive">
           <span class="nav-icon">🧠</span>
           <span class="nav-text">01 // Cognitive Lab</span>
-          <span class="nav-badge badge-bronze">4 COURSES</span>
+          <span class="nav-badge badge-bronze" id="nav-badge-cognitive" title="Course count derived from the loaded curriculum dataset at boot — a real count, not copy.">COURSES: …</span>
         </button>
         <button class="nav-item" data-view="infowar" role="tab" aria-selected="false" aria-controls="view-infowar" id="nav-infowar">
           <span class="nav-icon">🎮</span>
           <span class="nav-text">02 // InfoWar Simulator</span>
-          <span class="nav-badge badge-ap">10 AP</span>
+          <span class="nav-badge badge-ap" id="nav-badge-infowar" title="Maximum AP per turn across the loaded scenario ruleset — a real ruleset value, not copy.">AP: …</span>
         </button>
         <button class="nav-item" data-view="aftercare" role="tab" aria-selected="false" aria-controls="view-aftercare" id="nav-aftercare">
           <span class="nav-icon">🧘</span>
@@ -208,7 +208,7 @@
         <button class="nav-item" data-view="osint" role="tab" aria-selected="false" aria-controls="view-osint" id="nav-osint">
           <span class="nav-icon">🔍</span>
           <span class="nav-text">05 // OSINT Suite</span>
-          <span class="nav-badge badge-intel">50+ SITES</span>
+          <span class="nav-badge badge-intel" id="nav-badge-osint" title="Platform templates shipped in the local pivot dataset — this offline build performs no network lookups.">SITES: …</span>
         </button>
         <button class="nav-item" data-view="ach" role="tab" aria-selected="false" aria-controls="view-ach" id="nav-ach">
           <span class="nav-icon">⚖️</span>
@@ -225,12 +225,12 @@
         <button class="nav-item" data-view="early-warning" role="tab" aria-selected="false" aria-controls="view-early-warning" id="nav-early-warning">
           <span class="nav-icon">📡</span>
           <span class="nav-text">08 // Threat Radar</span>
-          <span class="nav-badge badge-disinfo">5 ACTIVE</span>
+          <span class="nav-badge badge-disinfo" id="nav-badge-early-warning" title="Monitored domains + incidents loaded from the local early-warning dataset — a real count, not copy.">RADAR: …</span>
         </button>
         <button class="nav-item" data-view="reputation" role="tab" aria-selected="false" aria-controls="view-reputation" id="nav-reputation">
           <span class="nav-icon">📜</span>
           <span class="nav-text">09 // Source Directory</span>
-          <span class="nav-badge badge-neutral">60+ DOSSIERS</span>
+          <span class="nav-badge badge-neutral" id="nav-badge-reputation" title="Source dossiers loaded from the local reputation dataset — a real count, not copy.">DOSSIERS: …</span>
         </button>
         <button class="nav-item" data-view="identity" role="tab" aria-selected="false" aria-controls="view-identity" id="nav-identity">
           <span class="nav-icon">◈</span>
@@ -240,7 +240,7 @@
         <button class="nav-item" data-view="defense" role="tab" aria-selected="false" aria-controls="view-defense" id="nav-defense">
           <span class="nav-icon">🛡</span>
           <span class="nav-text">11 // Personal Defense</span>
-          <span class="nav-badge badge-neutral" id="nav-badge-defense" title="">38 ITEMS</span>
+          <span class="nav-badge badge-neutral" id="nav-badge-defense" title="">ITEMS: …</span>
         </button>
 
         <!-- Sidebar Footer Action Deck -->
@@ -2019,34 +2019,12 @@
                 <h3 class="card-title">Sherlock Multi-Platform Matrix (50+ Sites)</h3>
                 <span class="badge badge-intel" id="osint-scan-status">READY</span>
               </div>
-              <div class="grid-4" id="sherlock-results-grid">
+              <div id="sherlock-results-grid" class="grid-4">
                 <div class="card card-granite-inset">
-                  <div class="flex-row-gap" style="justify-content: space-between;">
-                    <span class="status-label">GITHUB</span>
-                    <span class="badge badge-veracity">FOUND</span>
-                  </div>
-                  <div class="crypto-hash" style="margin-top: 4px;">github.com/target_user</div>
-                </div>
-                <div class="card card-granite-inset">
-                  <div class="flex-row-gap" style="justify-content: space-between;">
-                    <span class="status-label">TELEGRAM</span>
-                    <span class="badge badge-veracity">FOUND</span>
-                  </div>
-                  <div class="crypto-hash" style="margin-top: 4px;">t.me/target_user</div>
-                </div>
-                <div class="card card-granite-inset">
-                  <div class="flex-row-gap" style="justify-content: space-between;">
-                    <span class="status-label">KEYBASE</span>
-                    <span class="badge badge-crypto">VERIFIED PGP</span>
-                  </div>
-                  <div class="crypto-hash" style="margin-top: 4px;">keybase.io/target_user</div>
-                </div>
-                <div class="card card-granite-inset">
-                  <div class="flex-row-gap" style="justify-content: space-between;">
-                    <span class="status-label">REDDIT</span>
-                    <span class="badge badge-neutral">NOT FOUND</span>
-                  </div>
-                  <div class="crypto-hash" style="margin-top: 4px;">reddit.com/u/target_user</div>
+                  <div class="status-label text-bronze">PIVOT BRIEF — NO LIVE SCAN PERFORMED</div>
+                  <p class="body-text" style="margin-top: var(--space-2);" id="sherlock-brief-text">
+                    Loading pivot template inventory from the local dataset…
+                  </p>
                 </div>
               </div>
             </div>
@@ -2348,10 +2326,12 @@
                 <span class="view-tag">POLAR THREAT MONITORING // 6 DOMAINS</span>
                 <h1 class="heading-1">Early Warning Threat Radar</h1>
               </div>
-              <span class="badge badge-disinfo">360° POLAR SWEEP ACTIVE</span>
+              <span class="badge badge-neutral" id="ew-dataset-badge" title="Domains and incidents loaded from the local early-warning dataset.">DATASET: …</span>
             </div>
             <p class="view-description">
-              Real-time threat monitoring across 6 critical sociotechnical domains with DISARM countermeasure playbooks and interactive incident response checklists.
+              Polar threat monitoring across the sociotechnical domains in the local early-warning
+              dataset, with DISARM countermeasure playbooks and an interactive incident-response
+              checklist — every value here is rendered from that dataset, nothing simulated.
             </p>
           </div>
 
@@ -2372,10 +2352,8 @@
                     <line x1="160" y1="160" x2="160" y2="20" stroke="var(--bronze-light)" stroke-width="2"/>
                     <polygon points="160,160 160,20 220,40" fill="url(#radar-beam-grad)" opacity="0.3"/>
                   </g>
-                  <!-- Active Threat Blips -->
-                  <circle cx="210" cy="90" r="6" fill="var(--disinfo-crimson)" class="animate-pulse"/>
-                  <circle cx="90" cy="220" r="5" fill="var(--suspicion-amber)"/>
-                  <circle cx="130" cy="110" r="5" fill="var(--intel-cyan)"/>
+                  <!-- Active Threat Blips — rendered from data/early_warning.json by js/modules/earlyWarning.js -->
+                  <g id="radar-blips"></g>
                   <defs>
                     <linearGradient id="radar-beam-grad" x1="160" y1="160" x2="220" y2="40">
                       <stop stop-color="#f3cf8a" stop-opacity="0.6"/>
@@ -2386,24 +2364,23 @@
               </div>
             </div>
 
-            <!-- Threat Incident Dossier & Checklist -->
+            <!-- Threat Incident Dossier & Checklist — populated from data/early_warning.json by js/modules/earlyWarning.js -->
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">Threat Incident: Astroturfed Liquidity Panic</h3>
-                <span class="badge badge-disinfo">DEFCON 2</span>
+                <h3 class="card-title" id="ew-incident-title">Loading incident dossier from local dataset…</h3>
+                <span class="badge badge-neutral" id="ew-incident-severity">—</span>
               </div>
-              <p class="body-text">
-                Targeting mid-size regional banking systems using coordinated sockpuppet clusters to trigger artificial bank queues.
+              <p class="body-text" id="ew-incident-summary">
+                The incident dossier renders the first active incident of the selected domain from
+                data/early_warning.json — nothing here is hardcoded.
               </p>
               <div class="card-granite-inset" style="margin-bottom: var(--space-4);">
                 <div class="status-label text-bronze">DISARM MITIGATION CHECKLIST</div>
-                <div style="display: flex; flex-direction: column; gap: var(--space-2); margin-top: var(--space-2);">
-                  <label class="flex-row-gap"><input type="checkbox" checked> <span>Issue verified regulatory liquidity attestation</span></label>
-                  <label class="flex-row-gap"><input type="checkbox" checked> <span>Expose coordinated creation timestamps of bot swarm</span></label>
-                  <label class="flex-row-gap"><input type="checkbox"> <span>Deploy targeted prebunking educational advisories</span></label>
+                <div style="display: flex; flex-direction: column; gap: var(--space-2); margin-top: var(--space-2);" id="ew-playbook-checklist">
+                  <div class="body-text" style="color: var(--stone-warm); font-style: italic;">Loading DISARM actions…</div>
                 </div>
               </div>
-              <button class="btn btn-primary btn-block">Execute Coordinated Countermeasure</button>
+              <button class="btn btn-primary btn-block" id="btn-ew-countermeasure">Execute Coordinated Countermeasure</button>
             </div>
           </div>
         </section>

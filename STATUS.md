@@ -232,6 +232,48 @@ competency estimation). Full architecture and feature inventory: `PROJECT.md`.
        latency, and the migration scrub; standalone rebuilt and grep-verified to carry
        zero traces of the fiction (`peer-alpha-01`, `HARDWARE_SECURE`, `24ms (EDGE)`,
        random jitter) while carrying all honest placeholders.
+   - **AMENDED 2026-09-26 (later) — honest chrome III: the audit of everything else
+     that displays.** A full-UI audit (dynamic DOM sweep + static grep) found three
+     remaining theatrical surfaces, all now fixed to the same standard:
+     - **Nav-rail stat badges were hardcoded copy, and one was wrong.** `4 COURSES`,
+       `10 AP`, `50+ SITES`, `5 ACTIVE`, `60+ DOSSIERS`, `38 ITEMS` were static strings
+       masquerading as counts. Each is now derived by its owning module from the real
+       loaded dataset (cognitive `masterclass.json`, infowar `scenarios.json` max
+       `apPerTurn`, osint platform-template count, early-warning domain/incident
+       counts, reputation `sources.json`, defense `profile-items.json`), with a labeled
+       `N/A` fallback if the dataset fails to load. The live app now shows `4 COURSES`,
+       `3 SCEN · 10 AP MAX`, `8 SITES`, `6 DOM · 12 INC`, **`55 DOSSIERS`** (the old
+       copy claimed 60+ — wrong), and `38 ITEMS` — every one a real count.
+     - **The OSINT recon flow fabricated results end-to-end.** A hardcoded platform
+       table shipped simulated `FOUND` / `VERIFIED PGP` / `CLEAN` statuses, an 800 ms
+       fake scan delay claimed "SCANNING 50+ NODES...", then "RECON COMPLETE (5
+       FOUND)" and a toast inventing "2 active infrastructure ties". The app is
+       offline-only, so none of that could be real. The pivot now renders an honest
+       PLAN: the 8 platform URL templates with `NOT CHECKED` badges, a prominent
+       "NO LIVE SCAN PERFORMED" brief explaining that the operator performs the
+       lookups and records what they observe — no delay, no invented results, no
+       fake toast.
+     - **View 08 (Threat Radar) ignored its own dataset.** `early_warning.json`
+       carries 6 domains with polar coordinates, threat levels, 12 active incidents
+       and 6 DISARM playbooks — but the module rendered 3 hardcoded blips, a
+       hardcoded incident card, a fictional 3-alert fallback if the fetch failed, and
+       a "360° POLAR SWEEP ACTIVE / Real-time threat monitoring" claim. Now: blips
+       plot from the dataset's own `radarAngle`/`radarDistance`/threat fields, the
+       dossier renders the selected domain's real first incident with its real 4-step
+       playbook, a failed load renders a labeled `DATASET: UNAVAILABLE` (no substitute
+       fiction), and the header badge reports the true `DATASET: N DOMAINS / M
+       INCIDENTS`. The reputation module's hardcoded fake-ratings fallback list
+       (Reuters/AP/RT with invented scores) and the profile view's invented "~6 MIN"
+       estimate were removed in the same pass — `|| 90` credibility defaults no longer
+       fabricate ratings either.
+     - Pins: "Honest chrome III" describe added to the Dead-Control Regression Suite
+       (badge derivation + fail-loud, radar geometry, dossier container, recon-truth,
+       no-fictional-fallbacks, view-08 copy); M1 nav-badge pins re-pointed; E2E now
+       asserts the dataset badge and that `early_warning.json` actually loads; tier-4
+       asserts the pivot PLAN and the absence of any `FOUND` badge. Gate
+       **18,732/18,732** (48 suites); browser E2E **129/129**; verified live — all six
+       badges derived, radar renders 6 data-plotted blips, dossier shows a real
+       incident with its 4-action checklist, pivot grid shows the honest plan.
 4. **Browser E2E in CI — DONE 2026-09-24.** `.github/workflows/ci.yml` (added 2026-09-23
    with the honesty-fix commit `1679630`) runs the headless gate on every push, and the
    browser E2E suite on demand via workflow_dispatch **and nightly via schedule**

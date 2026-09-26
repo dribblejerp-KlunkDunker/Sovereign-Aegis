@@ -898,8 +898,12 @@ async function runE2ETests() {
           harness.assert(hasRadarSvg, 'Polar Radar SVG canvas rendered in DOM');
 
           const threatDossier = await browser.getText('#view-early-warning');
-          harness.assertIncludes(threatDossier, 'Astroturfed Liquidity Panic', 'Active threat incident rendered');
+          // The dossier renders whatever the local dataset actually contains — never a
+          // hardcoded incident. The checklist label and the dataset badge are the stable
+          // honest surfaces.
           harness.assertIncludes(threatDossier, 'DISARM MITIGATION CHECKLIST', 'DISARM mitigation checklist active');
+          harness.assert(/DATASET: \d+ DOMAIN(S)? \/ \d+ INCIDENT(S)?/.test(threatDossier), 'dataset badge reports the real loaded domain/incident counts');
+          harness.assert(!threatDossier.includes('DATASET: UNAVAILABLE'), 'early_warning.json loaded successfully in the E2E run');
         } else {
           const html = fs.readFileSync(path.join(ROOT_DIR, 'index.html'), 'utf8');
           harness.assert(html.includes('id="svg-polar-radar"'), 'Radar SVG element exists');

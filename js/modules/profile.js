@@ -235,7 +235,9 @@ export const DefenseProfile = {
 
     let html = '<div class="card" style="margin-bottom:var(--space-6);">' +
       '<div class="card-header"><h3 class="card-title">Reflection inventory</h3>' +
-      '<span class="badge badge-neutral">38 ITEMS · ~6 MIN</span></div>' +
+      // Count is the real loaded inventory length; the invented "~6 MIN" estimate is
+      // gone — no per-item duration data exists to derive it from (honesty audit).
+      '<span class="badge badge-neutral">' + esc(String(this._items.length)) + ' ITEMS</span></div>' +
       '<p class="body-muted" style="padding:0 16px 8px;">' + esc(retakeLine) + ' Answer what you can — an unanswered item never counts against you. Each item: how true it was for you recently, and how confident you are. On the pressure-context items, also mark the areas of life where that pressure shows up — those marks annotate the matching watchpoint below.</p>' +
       '</div>';
 
@@ -452,10 +454,16 @@ export const DefenseProfile = {
       badge.textContent = '⚠ BACKUP';
       badge.className = 'nav-badge badge-bronze';
       badge.title = state.text;
-    } else {
-      badge.textContent = '38 ITEMS'; // keep in sync with the static markup
+    } else if (this._items.length) {
+      // Derived from the loaded inventory (honesty audit 2026-09-26) — the old
+      // hardcoded '38 ITEMS' silently claimed a dataset it hadn't checked.
+      badge.textContent = `${this._items.length} ITEMS`;
       badge.className = 'nav-badge badge-neutral';
-      badge.title = '';
+      badge.title = `${this._items.length} inventory items loaded from data/profile-items.json.`;
+    } else {
+      badge.textContent = 'ITEMS: N/A';
+      badge.className = 'nav-badge badge-neutral';
+      badge.title = 'profile-items.json unavailable — no item count can be honestly displayed.';
     }
   },
 

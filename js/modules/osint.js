@@ -304,15 +304,18 @@ export const OsintModule = {
   _toolkitCategory: 'ALL',
   _toolkitQuery: '',
 
+  // Pivot templates shipped in the local dataset — plan side only. No status
+  // field: any status value here would simulate a lookup this offline app cannot
+  // perform (honesty audit 2026-09-26).
   _platforms: [
-    { name: 'GITHUB', url: 'github.com/', icon: '💻', status: 'FOUND', badge: 'badge-veracity' },
-    { name: 'TELEGRAM', url: 't.me/', icon: '💬', status: 'FOUND', badge: 'badge-veracity' },
-    { name: 'KEYBASE', url: 'keybase.io/', icon: '🔐', status: 'VERIFIED PGP', badge: 'badge-crypto' },
-    { name: 'REDDIT', url: 'reddit.com/u/', icon: '📌', status: 'NOT FOUND', badge: 'badge-neutral' },
-    { name: 'TWITTER / X', url: 'x.com/', icon: '🐦', status: 'FOUND (SUSPENDED)', badge: 'badge-disinfo' },
-    { name: 'MASTODON', url: 'mastodon.social/@', icon: '🐘', status: 'FOUND', badge: 'badge-veracity' },
-    { name: 'PROTONMAIL', url: '@proton.me', icon: '✉️', status: 'MX CONFIRMED', badge: 'badge-crypto' },
-    { name: 'VIRUSTOTAL', url: 'virustotal.com/gui/file/', icon: '🛡️', status: 'CLEAN', badge: 'badge-veracity' }
+    { name: 'GITHUB', url: 'github.com/', icon: '💻' },
+    { name: 'TELEGRAM', url: 't.me/', icon: '💬' },
+    { name: 'KEYBASE', url: 'keybase.io/', icon: '🔐' },
+    { name: 'REDDIT', url: 'reddit.com/u/', icon: '📌' },
+    { name: 'TWITTER / X', url: 'x.com/', icon: '🐦' },
+    { name: 'MASTODON', url: 'mastodon.social/@', icon: '🐘' },
+    { name: 'PROTONMAIL', url: '@proton.me', icon: '✉️' },
+    { name: 'VIRUSTOTAL', url: 'virustotal.com/gui/file/', icon: '🛡️' }
   ],
 
   async init(app) {
@@ -327,6 +330,8 @@ export const OsintModule = {
       document.querySelector('#view-osint .subtab-btn.active')?.getAttribute('data-subtab') ||
       'cases';
     this._renderActiveSubtab(activeSubtab);
+    // Boot-time honest brief so the grid never shows the stale fictional skeleton.
+    if (activeSubtab === 'search') this.renderPlatforms('target_user');
   },
 
   onUnmount() {
@@ -338,7 +343,7 @@ export const OsintModule = {
     }
   },
 
-  async _loadData() {
+  async  _loadData() {
     try {
       const res = await fetch('./data/osint_cases.json').catch(() => fetch('data/osint_cases.json'));
       if (res && res.ok) {
@@ -346,6 +351,7 @@ export const OsintModule = {
         this._cases = buildCasePool(this._data.cases || []);
         this._drillPool = buildPivotDrillPool(this._data.pivot_drills || []);
       }
+      this.refreshNavBadge();
     } catch (e) {
       console.warn('[OsintModule] Failed to load osint_cases.json, using fallback.', e);
       this._data = { cases: [], bellingcat_toolkit: [], pivot_drills: [] };
@@ -492,47 +498,65 @@ export const OsintModule = {
   executePivot(query, type) {
     const statusEl = document.getElementById('osint-scan-status');
     if (statusEl) {
-      statusEl.textContent = 'SCANNING 50+ NODES...';
-      statusEl.className = 'badge badge-suspicion';
+      statusEl.textContent = 'PIVOT PLAN RENDERED (NO LIVE SCAN)';
+      statusEl.className = 'badge badge-neutral';
     }
+
+    // Honest recon (honesty audit 2026-09-26): no artificial scanning delay, no
+    // invented result status, no fabricated infrastructure-ties toast. The pivot
+    // renders its real plan immediately; the operator performs the lookups and
+    // owns the findings.
+    this.renderPlatforms(query);
 
     this._app?.showToast({
       type: 'info',
-      title: 'RECONNAISSANCE LAUNCHED',
-      message: `Executing deep ${type.toUpperCase()} pivot for: ${query}`
+      title: 'PIVOT PLAN COMPILED',
+      message: `${this._platforms.length} platform URL template(s) staged for "${query}" — this offline build performs no live lookups.`
     });
-
-    setTimeout(() => {
-      this.renderPlatforms(query);
-      if (statusEl) {
-        statusEl.textContent = 'RECON COMPLETE (5 FOUND)';
-        statusEl.className = 'badge badge-veracity';
-      }
-      this._app?.showToast({
-        type: 'success',
-        title: 'PIVOT RESULTS COMPILED',
-        message: 'Identified 5 platform presences and 2 active infrastructure ties.'
-      });
-    }, 800);
   },
 
   renderPlatforms(target = 'target_user') {
     const container = document.getElementById('sherlock-results-grid');
     if (!container) return;
 
-    let html = '';
+    // Honest brief (honesty audit 2026-09-26): this app is offline-only, so it
+    // cannot look anything up. The grid shows the pivot PLAN — the platform URL
+    // templates an operator would check manually — and never a result status.
+    let html = `
+      <div class="card card-granite-inset" style="grid-column: 1 / -1;">
+        <div class="status-label text-bronze">PIVOT PLAN — NO LIVE SCAN PERFORMED</div>
+        <p class="body-text" style="margin-top: var(--space-2);">
+          SOVEREIGN // AEGIS runs fully offline and performs no network lookups, so no
+          presence can be truthfully reported as FOUND or NOT FOUND. Below are the
+          ${this._platforms.length} platform URL templates from the local dataset for
+          <code>"${esc(target)}"</code> — open each manually to check presence, then record
+          what you actually observe.
+        </p>
+      </div>`;
     for (const p of this._platforms) {
       html += `
         <div class="card card-granite-inset">
           <div class="flex-row-gap" style="justify-content: space-between;">
             <span class="status-label">${esc(p.icon)} ${esc(p.name)}</span>
-            <span class="badge ${esc(p.badge)}">${esc(p.status)}</span>
+            <span class="badge badge-neutral">NOT CHECKED</span>
           </div>
           <div class="crypto-hash" style="margin-top: 4px; font-size: 0.8rem;">${esc(p.url)}${esc(target)}</div>
         </div>
       `;
     }
     container.innerHTML = html;
+  },
+
+  /**
+   * Nav badge derives from the local pivot dataset (honesty audit 2026-09-26):
+   * "N SITES" is the number of platform URL templates in the shipped toolkit —
+   * a real count of what the app can stage, not a claimed reach.
+   */
+  refreshNavBadge() {
+    const badge = document.getElementById('nav-badge-osint');
+    if (!badge) return;
+    badge.textContent = `${this._platforms.length} SITES`;
+    badge.title = `${this._platforms.length} platform URL templates in the local pivot toolkit. This offline build performs no live lookups.`;
   },
 
   _renderActiveSubtab(tabName) {

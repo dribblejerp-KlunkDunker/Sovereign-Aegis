@@ -170,15 +170,15 @@ harness.describe('Group 1: Stylesheet Link Resolution & CSS Syntax Validity', ()
 harness.describe('Group 2: 11 View Containers & Navigation Links in index.html', () => {
   const expectedViews = [
     { id: 'view-overview', dataView: 'overview', name: '00 // Command Center', badge: 'SYS' },
-    { id: 'view-cognitive', dataView: 'cognitive', name: '01 // Cognitive Lab', badge: '4 COURSES' },
-    { id: 'view-infowar', dataView: 'infowar', name: '02 // InfoWar Simulator', badge: '10 AP' },
+    { id: 'view-cognitive', dataView: 'cognitive', name: '01 // Cognitive Lab', badge: 'nav-badge-cognitive' },
+    { id: 'view-infowar', dataView: 'infowar', name: '02 // InfoWar Simulator', badge: 'nav-badge-infowar' },
     { id: 'view-aftercare', dataView: 'aftercare', name: '03 // System 2 Pacer', badge: '4-7-8' },
     { id: 'view-verdad', dataView: 'verdad', name: '04 // VERDAD Engine', badge: 'NLP AUDIT' },
-    { id: 'view-osint', dataView: 'osint', name: '05 // OSINT Suite', badge: '50+ SITES' },
+    { id: 'view-osint', dataView: 'osint', name: '05 // OSINT Suite', badge: 'nav-badge-osint' },
     { id: 'view-ach', dataView: 'ach', name: '06 // ACH Matrix Lab', badge: 'MATH RANK' },
     { id: 'view-narrative', dataView: 'narrative', name: '07 // Narrative Topology', badge: 'T+0..48h' },
-    { id: 'view-early-warning', dataView: 'early-warning', name: '08 // Threat Radar', badge: '5 ACTIVE' },
-    { id: 'view-reputation', dataView: 'reputation', name: '09 // Source Directory', badge: '60+ DOSSIERS' },
+    { id: 'view-early-warning', dataView: 'early-warning', name: '08 // Threat Radar', badge: 'nav-badge-early-warning' },
+    { id: 'view-reputation', dataView: 'reputation', name: '09 // Source Directory', badge: 'nav-badge-reputation' },
     { id: 'view-identity', dataView: 'identity', name: '10 // Sovereign DID', badge: 'P-256' }
   ];
 

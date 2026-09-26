@@ -376,9 +376,13 @@ async function runChallengerDeepTier4() {
     await browser.click('#btn-run-osint-query');
     await new Promise(r => setTimeout(r, 200));
 
+    // The offline build stages a pivot PLAN — it never reports a live result.
     const sherlockResultsText = await browser.getText('#sherlock-results-grid');
-    harness.assertIncludes(sherlockResultsText, 'GITHUB', 'Scenario 1.8: OSINT multi-platform matrix scanned GITHUB');
-    harness.assertIncludes(sherlockResultsText, 'TELEGRAM', 'Scenario 1.9: OSINT multi-platform matrix scanned TELEGRAM');
+    harness.assertIncludes(sherlockResultsText, 'GITHUB', 'Scenario 1.8: pivot plan includes the GITHUB template');
+    harness.assertIncludes(sherlockResultsText, 'TELEGRAM', 'Scenario 1.9: pivot plan includes the TELEGRAM template');
+    harness.assertIncludes(sherlockResultsText, 'NO LIVE SCAN PERFORMED', 'Scenario 1.9b: the plan states no live scan was performed');
+    harness.assertIncludes(sherlockResultsText, 'NOT CHECKED', 'Scenario 1.9c: every platform row is an honest NOT-CHECKED, not a result');
+    harness.assert(!sherlockResultsText.includes('>FOUND<'), 'Scenario 1.9d: no fabricated FOUND statuses anywhere in the grid');
 
     // 1.4 Pivot to Richards Heuer ACH Matrix
     await browser.eval('AegisApp.switchTab("ach")');
