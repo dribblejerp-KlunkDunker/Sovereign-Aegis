@@ -53,7 +53,21 @@ competency estimation). Full architecture and feature inventory: `PROJECT.md`.
    power at 15 pp across the whole clustering range; 5 pp honestly underpowered at
    ~74–87%), and the frozen primary-analysis script (participant cluster bootstrap,
    Wilson/Newcombe secondaries).
-   **FROZEN 2026-09-23, REVISED SAME DAY**: the original 20/19 forms covered only 20
+   **   PILOT DESIGNED 2026-09-25 (`docs/transfer-study/pilot-design.md`): the smallest
+   honest rung below the trial — two arms on the FROZEN kit, unmodified (allocation
+   rows 1–24 in seq order, §5 dose verbatim, frozen analyze.mjs untouched). Enroll 24
+   (16 = floor; 12+ measures machinery, not effect), expect ~9 per arm complete at
+   75%, CI half-width ≈ 9–10 pp → τ = 15 pp detectable, 8 pp suggestive, 5 pp
+   honestly out of reach at any pilot size. Per-participant burden ≈ 2 h (T0 + five
+   15–20 min sessions over 14 days + T1 within 48 h); ~4 weeks for one wave,
+   6–8 weeks solo-operator with two waves. Adds a descriptive calibration-shift
+   table and feasibility metrics; small-sample bootstrap undercoverage is stated and
+   mitigated by reporting per-participant D + sign test alongside the CI. Mandatory
+   pre-checks restated: ethics/consent BEFORE enrollment, and a contamination
+   pre-check (candidate attempt log × exclude-ids.json — the operator's own install
+   is almost certainly contaminated). Kit integrity re-verified (44/44) and analysis
+   selftest still recovers a planted effect.
+   FROZEN 2026-09-23, REVISED SAME DAY**: the original 20/19 forms covered only 20
    of 24 skill strata — the four SIFT strata had zero eligible items. 40 new held-out-
    eligible items (q146–q185) were authored to widen coverage: forms are now 24/24
    with every skill represented in both, the review packet is a 48-item worksheet,
