@@ -502,6 +502,44 @@ async function runE2ETests() {
         }
       });
 
+      await harness.it('Verifies the About / Honesty Dashboard panel renders its real map in-app', async () => {
+        if (hasCdp) {
+          // The opener is the sidebar footer button wired via declarative delegation.
+          await browser.click('#btn-open-honesty-about');
+          const isOpen = await browser.evaluate('document.getElementById("modal-honesty-about").classList.contains("open")');
+          harness.assert(isOpen, 'About & Honesty Map modal opens from the sidebar footer button');
+
+          // The boot-time paint must have landed: the panel shows the standard and
+          // every section of the map, and never the fail-loud fallback.
+          const panel = await browser.evaluate(`(function () {
+            const host = document.getElementById('honesty-about-body');
+            const txt = host ? host.textContent : '';
+            return {
+              empty: !host || host.children.length === 0,
+              unavailable: txt.includes('HONESTY DASHBOARD: UNAVAILABLE'),
+              standard: txt.includes('MEASURED from real I/O'),
+              sections: ['TOPBAR & TELEMETRY RIBBON', 'NAV RAIL', 'VIEW HEADERS & CARDS', 'MODULE VIEW BODIES', 'REMOVED ENTIRELY', 'VERIFICATION HOOKS'].filter(function (s) { return txt.includes(s); }).length
+            };
+          })()`);
+          harness.assert(!panel.empty, 'About panel body was painted at boot (not empty markup)');
+          harness.assert(!panel.unavailable, 'About panel did not hit the fail-loud fallback');
+          harness.assert(panel.standard, 'About panel states the honesty standard');
+          harness.assertEqual(panel.sections, 6, 'About panel renders all six map sections');
+
+          // The namesake pill the panel describes must itself be honest on the live page.
+          const sentinel = await browser.getText('#topbar-sentinel-badge');
+          harness.assert(/SENTINEL: (ARMED|UNPROVEN)/.test(sentinel), 'SENTINEL pill shows a real derived posture next to the panel claim');
+
+          await browser.evaluate('AegisApp.closeModal("modal-honesty-about")');
+        } else {
+          const html = fs.readFileSync(path.join(ROOT_DIR, 'index.html'), 'utf8');
+          const appJs = fs.readFileSync(path.join(ROOT_DIR, 'js/app.js'), 'utf8');
+          harness.assert(html.includes('id="modal-honesty-about"') && html.includes('id="honesty-about-body"'), 'About modal and body container present');
+          harness.assert(html.includes('id="btn-open-honesty-about"'), 'About opener button present');
+          harness.assert(appJs.includes('_renderHonestyAbout'), 'app.js boot-paints the honesty panel');
+        }
+      });
+
       await harness.it('Verifies Toast Notification Hub Dispatches Epistemic Notifications', async () => {
         if (hasCdp) {
           await browser.evaluate(`

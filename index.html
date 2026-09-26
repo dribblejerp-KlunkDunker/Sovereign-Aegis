@@ -251,6 +251,9 @@
           <button id="btn-quick-sign-statement" class="btn-sidebar-action" title="Cryptographically Sign a Statement">
             <span>✍️ Quick Sign Claim</span>
           </button>
+          <button id="btn-open-honesty-about" class="btn-sidebar-action" data-aegis-action="open-modal" data-aegis-modal="modal-honesty-about" title="About: every displayed value and its real source" aria-haspopup="dialog" aria-controls="modal-honesty-about">
+            <span>◈ About &amp; Honesty Map</span>
+          </button>
         </div>
       </nav>
 
@@ -2913,6 +2916,26 @@
           </div>
           <div class="modal-footer">
             <button class="btn btn-primary" data-close-modal>Dismiss</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal 6: About & Honesty Map — body painted at boot from js/honestyDashboard.js -->
+      <div id="modal-honesty-about" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="honesty-about-modal-title" aria-hidden="true">
+        <div class="modal-dialog" style="max-width: 860px; width: 94%;">
+          <div class="modal-header">
+            <h3 class="modal-title" id="honesty-about-modal-title">About — Honesty Dashboard</h3>
+            <button class="modal-close" data-close-modal aria-label="Close modal">✕</button>
+          </div>
+          <div class="modal-body" style="max-height: 72vh; overflow-y: auto;">
+            <div id="honesty-about-body">
+              <!-- Painted by AegisApp._renderHonestyAbout() from js/honestyDashboard.js at boot.
+                   No static content ships here: a panel about honesty must not ship copy that
+                   can go stale. If rendering fails, the fail-loud fallback paints instead. -->
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" data-close-modal>Close</button>
           </div>
         </div>
       </div>

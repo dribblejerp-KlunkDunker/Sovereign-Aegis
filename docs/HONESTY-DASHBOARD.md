@@ -7,9 +7,17 @@ state or a shipped local dataset, or a labeled fail-loud placeholder. Nothing is
 simulated to look alive. Game fiction is allowed only inside declared game surfaces
 (InfoWar campaign state, Narrative Topology personas, OSINT training-case fixtures).*
 
-This map is pinned: `tests/test-dead-controls.js` — the "Honest chrome II/III"
+This map is pinned: `tests/test-dead-controls.js` — the "Honest chrome II/III/IV"
 describes assert the purges and the derivation rules; the gate re-proves this whole
-document on every run (currently **18,745 pins across 48 suites**; browser E2E 129).
+document on every run (48 suites; browser E2E 129; see the gate output for the
+current assertion count — it is deliberately not hardcoded here, because a
+hardcoded count would go stale the same way a fabricated value would).
+
+**In-app edition:** the About panel (sidebar footer → "◈ About & Honesty Map",
+`#modal-honesty-about`) renders this map inside the app, boot-painted from
+`js/honestyDashboard.js`. The panel and this document are pinned to stay in sync
+(same section titles, same placeholder strings); neither repeats volatile counts —
+the live values are whatever each surface is actually measuring right now.
 
 ## Topbar & telemetry ribbon
 
@@ -78,8 +86,15 @@ invented "~6 MIN" estimate; "22+/50+/60+" inflated counts. The boot migration
 ## Verification hooks
 
 - `tests/test-dead-controls.js` — seed absence, derivation structure, placeholder
-  strings, recon-truth, radar geometry, no-fictional-fallback pins
+  strings, no-fictional-fallback pins, and the About-panel pins: the modal ships a
+  labeled empty body (no stale copy in markup), the module is boot-painted with a
+  fail-loud fallback, the panel mirrors this document's sections and placeholder
+  strings, and the panel itself obeys the honesty standard (escaped output, no
+  removed-fiction literals, no simulated values)
 - `tests/test-attemptlog.js` — SVG validity + calibration honesty
 - `tests/test-e2e.js` / tier-4 — live-browser asserts: dataset badge present and
-  loaded, pivot plan honest (no `FOUND` anywhere), DID renders a real `did:key:z…`
-- Gate: **18,745/18,745** (48 suites) · E2E **129/129** · boot console clean
+  loaded, pivot plan honest (no `FOUND` anywhere), DID renders a real `did:key:z…`,
+  the About modal opens from the sidebar footer and renders all six sections of
+  this map with the fail-loud fallback never hit
+- Gate: 48 suites (current totals in the latest `node tests/run-all.js` output) ·
+  E2E **129/129** · boot console clean

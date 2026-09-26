@@ -38,6 +38,7 @@ import { evaluateAdvisoryPrerequisites, renderAdvisoryBanner } from './modules/a
 
 import { esc } from './security.js';
 import { parseVerify, VERIFY_MAX_CHARS } from './ingest.js';
+import { renderHonestyDashboard } from './honestyDashboard.js';
 export const AegisApp = {
   /** @type {StateStore} */
   store: null,
@@ -163,6 +164,12 @@ export const AegisApp = {
       // covers any module whose data landed after the operator could see the
       // placeholder — "…" never outlives the module that resolves it.
       this._deriveNavBadges();
+
+      // In-app honesty panel (About): paint the operator-facing map of where
+      // every displayed value comes from. One boot-time render, same doctrine
+      // as the overview panels — openModal() only toggles visibility, so there
+      // is nothing to re-derive per open.
+      this._renderHonestyAbout();
 
       // 5. Restore Initial View from Hash or State
       const initialView = window.location.hash
@@ -655,6 +662,26 @@ export const AegisApp = {
       }
     } catch {
       // Storage unavailable (private mode) — the labeled placeholder stays.
+    }
+  },
+
+  /**
+   * Paint the About / Honesty Dashboard modal body once at boot from
+   * js/honestyDashboard.js — the in-app edition of docs/HONESTY-DASHBOARD.md.
+   * The template is a pure function over static content and is fully escaped,
+   * so there is nothing to re-derive when the modal opens. Fail loud with a
+   * labeled body if the builder ever throws: a panel whose whole purpose is
+   * honesty may not render blank or disappear silently.
+   * @private
+   */
+  _renderHonestyAbout() {
+    const host = document.getElementById('honesty-about-body');
+    if (!host) return;
+    try {
+      host.innerHTML = renderHonestyDashboard();
+    } catch (err) {
+      console.warn('[AegisApp] honesty panel render failed:', err);
+      host.textContent = 'HONESTY DASHBOARD: UNAVAILABLE — the panel failed to render. See docs/HONESTY-DASHBOARD.md for the same map; this must never fail silently.';
     }
   },
 

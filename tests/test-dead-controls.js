@@ -1057,6 +1057,46 @@ async function runTests() {
         t.assert(!html.includes(gone) && !ewSrc.includes(gone) && !osintSrc.includes(gone), `"${gone}" is gone from the app, as the doc claims`);
       }
     });
+
+    /* --------------- In-app honesty panel (About) — Honest chrome IV -------------- */
+
+    const honestyPanelSrc = readSrc('../js/honestyDashboard.js');
+
+    await t.it('the About modal ships in markup with a labeled empty body and a declarative opener', async () => {
+      t.assert(html.includes('id="modal-honesty-about"'), 'About modal exists in markup');
+      t.assert(html.includes('id="honesty-about-body"'), 'About modal body container exists');
+      t.assert(html.includes('id="btn-open-honesty-about"'), 'sidebar footer opener exists');
+      t.assert(html.includes('data-aegis-modal="modal-honesty-about"'), 'opener uses the declarative open-modal delegation');
+      // The body must ship EMPTY: boot-painted content belongs in the module, not
+      // as copy in markup that can go stale.
+      t.assert(!/>[^<]\S/.test(html.slice(html.indexOf('id="honesty-about-body"'), html.indexOf('id="honesty-about-body"') + 220)), 'the panel body ships empty (no stale copy in markup)');
+    });
+
+    await t.it('the panel content module exists, is boot-painted, and fails loud', async () => {
+      t.assert(fsMod.existsSync(urlMod.fileURLToPath(new URL('../js/honestyDashboard.js', import.meta.url))), 'js/honestyDashboard.js exists');
+      t.assert(appSrc2.includes("from './honestyDashboard.js'") && appSrc2.includes('_renderHonestyAbout'), 'app.js imports the builder and boot-paints it');
+      t.assert(appSrc2.includes("document.getElementById('honesty-about-body')"), 'app.js paints the modal body at boot');
+      t.assert(appSrc2.includes("host.textContent = 'HONESTY DASHBOARD: UNAVAILABLE"), 'render failure paints a labeled fallback, never blank');
+      t.assert(!appSrc2.includes("fetch('docs/"), 'the panel is never fetched at runtime (standalone only shims data/)');
+    });
+    await t.it('the panel mirrors the doc: section titles, doc keys and honesty rules survive', async () => {
+      const doc = fsMod.readFileSync(urlMod.fileURLToPath(new URL('../docs/HONESTY-DASHBOARD.md', import.meta.url)), 'utf8');
+      const sections = ['Topbar & telemetry ribbon', 'Nav rail', 'View headers & cards', 'Module view bodies', 'Removed entirely', 'Verification hooks'];
+      for (const s of sections) {
+        t.assert(doc.includes(s), `doc carries the "${s}" section`);
+        t.assert(honestyPanelSrc.includes(`'${s}'`), `panel module carries the "${s}" section`);
+      }
+      // Doc keys the panel must mirror exactly, or the two maps drift apart.
+      for (const key of ['DID: — (NONE YET)', 'NO LIVE SCAN PERFORMED', 'DATASET: N DOMAINS / M INCIDENTS', '_renderStorageFootprint', 'aegis-latency-probe', 'MEASURING…']) {
+        t.assert(doc.includes(key), `doc documents ${key}`);
+        t.assert(honestyPanelSrc.includes(key), `panel mirrors ${key}`);
+      }
+      // The panel itself must obey the honesty standard it describes.
+      t.assert(honestyPanelSrc.includes("import { esc } from './security.js'") && honestyPanelSrc.includes('esc(r.k)') && honestyPanelSrc.includes('esc(r.v)'), 'panel output is escaped like every other module');
+      t.assert(honestyPanelSrc.includes('HONESTY RULES FOR THIS PANEL ITSELF'), 'the module states its own honesty rules');
+      t.assert(!honestyPanelSrc.includes('48.2 KB') && !honestyPanelSrc.includes('did:key:z6Mku'), 'the panel never repeats removed-fiction literals');
+      t.assert(!honestyPanelSrc.includes('Math.random'), 'no simulated values in a panel about not simulating');
+    });
   });
 
   return harness.summary();
