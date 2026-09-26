@@ -21,7 +21,7 @@
   -->
   <meta http-equiv="Content-Security-Policy" content="
     default-src 'none';
-    script-src 'self' 'sha256-UJxcKfNVbKMZexpvc5gcEFVWGojSprmVmYWpmT7EAqE=' 'sha256-zgel/94SPy47rLsFsBKMIDnFpedFumVFV4NSMxzy47g=' 'sha256-SNzmQvS2hucEVz0n0TyCx3QjXbhEsD46BL9uJxUDmV8=';
+    script-src 'self' 'sha256-UJxcKfNVbKMZexpvc5gcEFVWGojSprmVmYWpmT7EAqE=' 'sha256-zgel/94SPy47rLsFsBKMIDnFpedFumVFV4NSMxzy47g=' 'sha256-dPN121eWkFI1bp5VTBOgk0Hfgd4chwmjrCqzr+/sN0I=';
     style-src 'unsafe-inline' https://fonts.googleapis.com;
     font-src 'self' https://fonts.gstatic.com data:;
     img-src 'self' data: blob:;
@@ -6729,7 +6729,10 @@ ul, ol {
           text-anchor="end" font-size="10" font-family="var(--font-mono)" fill="var(--parchment-bright)">
       ${Math.round(d.accuracy*100)}% when sure
     </text>`:"";return`
-    <svg viewBox="0 0 ${at} ${Oe}" width="100%" height="auto" role="img"
+    <!-- width + viewBox alone give the correct responsive height (aspect ratio);
+         the removed height attribute was an invalid SVG length that logged a
+         console error on every boot -->
+    <svg viewBox="0 0 ${at} ${Oe}" width="100%" role="img"
          aria-label="Reliability diagram: stated confidence against observed accuracy. The table beside it carries every value."
          style="max-width:${at}px;display:block;margin:0 auto;">
       <!-- Reference: perfect calibration. Dashed because it is a threshold, not a gridline. -->

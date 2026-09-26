@@ -472,6 +472,15 @@ await t.describe('Calibration panel — the payoff, and what it refuses to draw'
     t.assert(P.calibrationPanel(wellCalibrated).includes(`${wellCalibrated.n} RATED ANSWERS`), 'n is on the panel');
   });
 
+  await t.it('emits only valid SVG lengths — no height="auto" console error', () => {
+    // `height="auto"` is a CSS value, not an SVG length; the browser logged
+    // "Error: <svg> attribute height: Expected length, "auto"" on every boot.
+    // With viewBox + width="100%" the aspect ratio already determines height.
+    const svg = P.reliabilitySvg(wellCalibrated);
+    t.assert(!/height="auto"/.test(svg), 'the reliability SVG never re-emits the invalid height="auto"');
+    t.assert(/<svg[^>]*viewBox=/.test(svg), 'the SVG keeps its viewBox so height derives from width');
+  });
+
   await t.it('is one series in one hue — no status colour on the curve', () => {
     // Colouring the line by whether the operator looks good would encode a judgement the diagram
     // exists to let them make. Status tokens are reserved for status.

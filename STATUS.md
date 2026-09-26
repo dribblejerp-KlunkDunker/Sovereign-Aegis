@@ -284,7 +284,11 @@ competency estimation). Full architecture and feature inventory: `PROJECT.md`.
      (`#cognitive-header-badge`, `#reputation-header-badge` — fail-loud on load
      failure); the OSINT header and Sherlock title no longer cite invented reach.
      Live-verified: `4 MASTERCLASSES • 24 FALLACIES`, `55 SOURCE DOSSIERS`. Gate
-     **18,738/18,738**; browser E2E **129/129**.
+     **18,738/18,738**; browser E2E **129/129**. Cosmetic coda: the calibration
+     reliability SVG emitted an invalid `height="auto"` attribute (a CSS value, not an
+     SVG length) that logged a console error on every boot — removed (viewBox +
+     `width="100%"` already give the correct responsive height), pinned in the
+     attempt-log suite, boot console verified clean. Gate **18,740/18,740**.
 4. **Browser E2E in CI — DONE 2026-09-24.** `.github/workflows/ci.yml` (added 2026-09-23
    with the honesty-fix commit `1679630`) runs the headless gate on every push, and the
    browser E2E suite on demand via workflow_dispatch **and nightly via schedule**

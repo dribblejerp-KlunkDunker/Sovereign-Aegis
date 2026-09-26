@@ -107,7 +107,10 @@ export function reliabilitySvg(report) {
     </text>` : '';
 
   return `
-    <svg viewBox="0 0 ${W} ${H}" width="100%" height="auto" role="img"
+    <!-- width + viewBox alone give the correct responsive height (aspect ratio);
+         the removed height attribute was an invalid SVG length that logged a
+         console error on every boot -->
+    <svg viewBox="0 0 ${W} ${H}" width="100%" role="img"
          aria-label="Reliability diagram: stated confidence against observed accuracy. The table beside it carries every value."
          style="max-width:${W}px;display:block;margin:0 auto;">
       <!-- Reference: perfect calibration. Dashed because it is a threshold, not a gridline. -->
