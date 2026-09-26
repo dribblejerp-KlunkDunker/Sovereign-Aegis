@@ -281,6 +281,24 @@ competency estimation). Full architecture and feature inventory: `PROJECT.md`.
    nightly-only: the red-run log-scraping body, which still needs a real failing
    scheduled run to exercise. Both drill issues (#1, #2) were closed after the
    confirmation; the delivery proof lives in this record.
+   **FIRST SCHEDULED NIGHTLY FIRED 2026-09-26 08:44 UTC — GREEN, NOTIFIER CORRECTLY
+   SILENT (run #15, event `schedule`, head `808d6ee`).** Conclusion `success` in ~64 s.
+   Timing caveat, recorded honestly: the cron slot is `30 3 * * *`, but GitHub queued
+   the run ~5 h 14 m late (08:44 UTC) — scheduled workflows are best-effort, so the
+   slot fires unpunctually but does fire; the run still checked out and gated the
+   default-branch head at trigger time. Step-level results: checkout/setup green,
+   **Headless gate green**, **Browser E2E green** (its nightly branch active), the
+   `Open or update nightly-failure issue` step correctly **skipped on green**, the
+   `Auto-close nightly-failure issue on green` step ran live for the first time as its
+   designed no-op (nothing open to close — the real close branch was already proven in
+   drill run #10), and both drill steps were unreachable by schedule and skipped, as
+   pinned. Issue tracker confirms zero `nightly-failure` issues have ever been
+   created — correct silence, no email on a green run. What this proves: the schedule
+   path is now live-proven end-to-end for a green run, on top of the drill-proven
+   create/assign/append/close/email chain. The only unproven branch left in the
+   notifier is the red-path log-scraping body, which requires a genuinely red
+   scheduled run to exercise. Follow-up CI run #16 (push, `415be1a`, the honesty-purge
+   commit) also completed green, so the purged code passed CI on push as well.
 5. **§8 hardening leftovers** (`ROADMAP.md` §8): one-click legacy private-JWK
    rotation, and moving `index.html`'s 486 inline `style=""` occurrences off inline
    styles so CSP `style-src` can drop `'unsafe-inline'`. (The "2,507 lines" figure   in the old §8 is stale — the file is 2,956 lines now; the *finding* stands.)
