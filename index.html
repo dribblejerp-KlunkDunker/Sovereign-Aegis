@@ -143,7 +143,7 @@
         <div class="telemetry-separator">|</div>
         <div class="telemetry-item">
           <span class="telemetry-label">ACTIVE DID:</span>
-          <span class="telemetry-value telemetry-did" id="telemetry-did-key">did:key:z6Mku...</span>
+          <span class="telemetry-value telemetry-did" id="telemetry-did-key" title="No cryptographic identity has been created yet. Create one in 10 // Sovereign DID.">DID: — (NONE YET)</span>
         </div>
         <div class="telemetry-separator">|</div>
         <div class="telemetry-item">
@@ -158,7 +158,7 @@
         <div class="telemetry-separator">|</div>
         <div class="telemetry-item">
           <span class="telemetry-label">STORAGE:</span>
-          <span class="telemetry-value" id="telemetry-storage-size">48.2 KB (LOCAL)</span>
+          <span class="telemetry-value" id="telemetry-storage-size" title="Measured size of the app's real localStorage footprint, sampled with the heartbeat. There is no cloud storage.">MEASURING…</span>
         </div>
         <div class="telemetry-separator">|</div>
         <div class="telemetry-item">
@@ -2495,7 +2495,7 @@
                 </div>
                 <div class="form-group">
                   <label class="form-label">did:key Multicodec Identifier:</label>
-                  <div class="crypto-hash" id="did-full-display" style="padding: 10px; font-size: 0.85rem;">did:key:z6Mku...</div>
+                  <div class="crypto-hash" id="did-full-display" style="padding: 10px; font-size: 0.85rem;">DID: — (NO IDENTITY YET)</div>
                 </div>
                 <div class="form-group">
                   <label class="form-label">Public Key JWK (Extractable):</label>
@@ -2566,7 +2566,7 @@
               </div>
               <div class="form-group">
                 <label class="form-label">Public Key JWK or did:key:</label>
-                <input type="text" class="form-input" id="input-verify-pubkey" placeholder="did:key:z6Mku... or JWK JSON">
+                <input type="text" class="form-input" id="input-verify-pubkey" placeholder="did:key:… or JWK JSON">
               </div>
               <div class="form-group">
                 <label class="form-label">Base64URL Signature:</label>
@@ -2817,14 +2817,8 @@
             <button class="modal-close" data-close-modal aria-label="Close modal">✕</button>
           </div>
           <div class="modal-body">
-            <pre><code id="did-export-json-view">{
-  "@context": [
-    "https://www.w3.org/2018/credentials/v1",
-    "https://w3id.org/security/suites/jws-2020/v1"
-  ],
-  "id": "did:key:z6MkuA9vR7q...",
-  "type": "VerifiableCredential"
-}</code></pre>
+            <pre><code id="did-export-json-view">// This export is built from your LIVE identity the moment you open this modal.
+// Nothing here is sample data — if no identity exists, the modal says so.</code></pre>
           </div>
           <div class="modal-footer">
             <button class="btn btn-secondary" data-close-modal>Close</button>

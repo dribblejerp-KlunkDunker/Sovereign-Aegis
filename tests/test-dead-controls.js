@@ -1038,6 +1038,25 @@ async function runTests() {
       t.assert(html.includes('id="reputation-header-badge"'), 'the reputation header badge is derived');
       t.assert(!osintSrc.includes('SCANNING 50+ NODES'), 'no scanning copy cites an invented node count');
     });
+
+    await t.it('topbar storage and DID tickers ship honest placeholders, not fabricated values', async () => {
+      t.assert(!html.includes('48.2 KB'), 'markup no longer ships a fabricated storage footprint');
+      t.assert(html.includes('id="telemetry-storage-size"') && html.includes('MEASURING…'), 'the storage ticker starts at its measuring placeholder');
+      t.assert(!html.includes('did:key:z6Mku'), 'markup no longer ships a fake-looking DID');
+      t.assert(html.includes('DID: — (NONE YET)'), 'the DID ticker ships a labeled none-yet state');
+      t.assert(appSrc2.includes('_renderStorageFootprint'), 'storage is measured by the shared extractor at boot and per tick');
+    });
+
+    await t.it('the honesty dashboard doc exists and stays in sync with the placeholders it documents', async () => {
+      const doc = fsMod.readFileSync(urlMod.fileURLToPath(new URL('../docs/HONESTY-DASHBOARD.md', import.meta.url)), 'utf8');
+      for (const honest of ['DID: — (NONE YET)', 'NO LIVE SCAN PERFORMED', 'DATASET: N DOMAINS / M INCIDENTS', '_renderStorageFootprint', 'aegis-latency-probe']) {
+        t.assert(doc.includes(honest), `the doc documents ${honest}`);
+      }
+      // Every string the doc lists as REMOVED must actually be gone from the app.
+      for (const gone of ['48.2 KB', 'did:key:z6Mku', 'RECON COMPLETE (5 FOUND)', '360° POLAR SWEEP']) {
+        t.assert(!html.includes(gone) && !ewSrc.includes(gone) && !osintSrc.includes(gone), `"${gone}" is gone from the app, as the doc claims`);
+      }
+    });
   });
 
   return harness.summary();

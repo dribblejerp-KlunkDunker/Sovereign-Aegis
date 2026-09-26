@@ -799,15 +799,18 @@ export const IdentityModule = {
     const didDisplay = document.getElementById('did-full-display');
     const jwkDisplay = document.getElementById('code-public-jwk');
 
-    const did = this._app?.store?.get('identity.did', 'did:key:z6Mku...');
+    // No fake defaults (honesty audit 2026-09-26): a missing identity renders a labeled
+    // empty state — never a fabricated "did:key:z6Mku..." or a sample JWK that never
+    // existed. The operator generates real keys; the display shows only real ones.
+    const did = this._app?.store?.get('identity.did', null);
     const jwk = this._app?.store?.get('identity.publicKeyJwk', null);
 
     if (didDisplay) {
-      didDisplay.textContent = did;
+      didDisplay.textContent = did || 'DID: — (NO IDENTITY YET)';
     }
 
     if (jwkDisplay) {
-      jwkDisplay.textContent = jwk ? JSON.stringify(jwk, null, 2) : '{"kty":"EC","crv":"P-256"}';
+      jwkDisplay.textContent = jwk ? JSON.stringify(jwk, null, 2) : '// No public key yet — generate a keypair to see the real one here.';
     }
 
     this._renderKeyStorageNotice();

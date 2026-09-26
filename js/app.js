@@ -634,20 +634,28 @@ export const AegisApp = {
       this.store.set('telemetry.lastTick', new Date().toISOString(), false);
 
       // Update storage footprint measurement
-      if (typeof localStorage !== 'undefined') {
-        try {
-          const raw = JSON.stringify(localStorage);
-          const bytes = raw.length * 2;
-          const kb = (bytes / 1024).toFixed(1);
-          const storageEl = document.getElementById('telemetry-storage-size');
-          if (storageEl) {
-            storageEl.textContent = `${kb} KB (LOCAL)`;
-          }
-        } catch {
-          // Safe ignore
-        }
-      }
+      this._renderStorageFootprint();
     }, 4000);
+  },
+
+  /**
+   * Measure the real localStorage footprint (serialized size × 2 bytes per UTF-16
+   * code unit) and paint the STORAGE ticker. Extracted from the heartbeat so the
+   * boot pass can paint the true value immediately instead of markup shipping a
+   * fabricated "48.2 KB" until the first tick (honesty audit 2026-09-26).
+   */
+  _renderStorageFootprint() {
+    if (typeof localStorage === 'undefined') return;
+    try {
+      const raw = JSON.stringify(localStorage);
+      const kb = ((raw.length * 2) / 1024).toFixed(1);
+      const storageEl = document.getElementById('telemetry-storage-size');
+      if (storageEl) {
+        storageEl.textContent = `${kb} KB (LOCAL)`;
+      }
+    } catch {
+      // Storage unavailable (private mode) — the labeled placeholder stays.
+    }
   },
 
   /**
@@ -1781,24 +1789,36 @@ export const AegisApp = {
    * @private
    */
   _subscribeTelemetryUI() {
-    // 1. Active DID
+    // 1. Active DID — renders the real DID when one exists, and the labeled NONE-YET
+    // state when it does not (including a cleared identity), never a fake-looking one.
     this.store.subscribe('identity.did', (did) => {
       const didEl = document.getElementById('telemetry-did-key');
-      if (didEl && did) {
+      if (!didEl) return;
+      if (did) {
         didEl.textContent = did.length > 20 ? `${did.slice(0, 15)}...${did.slice(-4)}` : did;
         didEl.title = did;
+      } else {
+        didEl.textContent = 'DID: — (NONE YET)';
+        didEl.title = 'No cryptographic identity has been created yet. Create one in 10 // Sovereign DID.';
       }
     });
 
-    // Trigger initial render
+    // Trigger initial render — with a fail-loud branch when no identity exists, so the
+    // fake-looking "did:key:z6Mku..." placeholder can never persist on screen.
     const initialDid = this.store.get('identity.did');
-    if (initialDid) {
-      const didEl = document.getElementById('telemetry-did-key');
-      if (didEl) {
-        didEl.textContent = initialDid.length > 20 ? `${initialDid.slice(0, 15)}...${initialDid.slice(-4)}` : initialDid;
-        didEl.title = initialDid;
+    const didEl0 = document.getElementById('telemetry-did-key');
+    if (didEl0) {
+      if (initialDid) {
+        didEl0.textContent = initialDid.length > 20 ? `${initialDid.slice(0, 15)}...${initialDid.slice(-4)}` : initialDid;
+        didEl0.title = initialDid;
+      } else {
+        didEl0.textContent = 'DID: — (NONE YET)';
+        didEl0.title = 'No cryptographic identity has been created yet. Create one in 10 // Sovereign DID.';
       }
     }
+    // 1b. STORAGE — measured at bind time too (same extractor the heartbeat uses), so
+    // the true footprint paints immediately rather than a fabricated KB value.
+    this._renderStorageFootprint();
 
     // 2. Latency — a MEASURED local-storage round-trip (see startTelemetryLoop), so the
     // label says LOCAL, not "EDGE": this app makes no network calls for telemetry.
