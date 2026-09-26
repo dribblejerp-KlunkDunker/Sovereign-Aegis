@@ -110,6 +110,22 @@ export const AegisApp = {
     // 3. Ensure Cryptographic Identity Exists
     await this._ensureIdentity();
 
+    // 3.45 Purge legacy FICTION from the persisted blob (2026-09-25 honesty purge).
+    //    StateStore.load() deep-merges whatever an older install saved, so deleting the
+    //    invented blocks from SEED_STATE alone would let persisted copies (consensus
+    //    peers, enclave attestation, fake alerts, node counters, reputation score)
+    //    resurrect on existing profiles. Same pattern as the BYOK purge below.
+    for (const legacyPath of [
+      'attestation', 'consensus', 'alerts',
+      'telemetry.activeNodes', 'telemetry.blockHeight', 'telemetry.syncStatus',
+      'telemetry.threatLevel', 'telemetry.sentinelMode', 'telemetry.epistemicHealth',
+      'telemetry.uptimeSeconds', 'identity.reputationScore'
+    ]) {
+      if (this.store.get(legacyPath, undefined) !== undefined) {
+        this.store.set(legacyPath, undefined, true);
+      }
+    }
+
     // 3.5 Purge legacy BYOK secrets from the persisted blob.
     //    API keys were historically written to localStorage inside the state blob, putting a
     //    billable credential one missed esc() away from exfiltration. They are now held in
@@ -587,16 +603,29 @@ export const AegisApp = {
       this._renderEpoch();
     }, 1000);
 
-    // 2. Telemetry Heartbeat (4000ms)
+    // 2. Telemetry Heartbeat (4000ms) — measured quantities only. The fabricated
+    // block-height counter and the random latency/node jitter that lived here are gone
+    // (2026-09-25): a local app has no chain to sync and no nodes to poll, and
+    // Math.random() is not telemetry.
     this._telemetryTimer = setInterval(() => {
-      // Measured runtime conditions only. The fabricated block-height counter that lived
-      // here is gone (2026-09-25): a local app has no chain to sync, and a number that
-      // only this loop increments is not telemetry.
-      const latency = Math.floor(18 + Math.random() * 12);
-      const activeNodes = Math.floor(2840 + Math.random() * 15);
-
-      this.store.set('telemetry.networkLatencyMs', latency, false);
-      this.store.set('telemetry.activeNodes', activeNodes, false);
+      // MEASURED local-storage round-trip latency: the only I/O this offline-first app
+      // actually performs. Serialized as a JSON string before timing so the measured
+      // cost includes real serialization work, not an empty read.
+      if (typeof localStorage !== 'undefined') {
+        try {
+          const t0 = performance.now();
+          const probe = 'aegis-latency-probe';
+          localStorage.setItem(probe, JSON.stringify({ t: t0 }));
+          const echo = JSON.parse(localStorage.getItem(probe) || 'null');
+          const latency = Math.max(0, Math.round(performance.now() - t0));
+          localStorage.removeItem(probe);
+          if (echo) {
+            this.store.set('telemetry.networkLatencyMs', latency, false);
+          }
+        } catch {
+          // Storage unavailable (private mode) — latency stays null and the ticker says so.
+        }
+      }
       this.store.set('telemetry.lastTick', new Date().toISOString(), false);
 
       // Update storage footprint measurement
@@ -1766,22 +1795,16 @@ export const AegisApp = {
       }
     }
 
-    // 2. Latency
-    this.store.subscribe('telemetry.networkLatencyMs', (lat) => {
-      const latEl = document.getElementById('telemetry-latency-val');
-      if (latEl) {
-        latEl.textContent = `${lat}ms (EDGE)`;
-      }
-    });
+    // 2. Latency — a MEASURED local-storage round-trip (see startTelemetryLoop), so the
+    // label says LOCAL, not "EDGE": this app makes no network calls for telemetry.
+    this.store.subscribe('telemetry.networkLatencyMs', (lat) => this._renderLatency(lat));
+    this._renderLatency(this.store.get('telemetry.networkLatencyMs', null));
 
-    // 3. AP Counter
-    this.store.subscribe('telemetry.activeAp', (ap) => {
-      const apEl = document.getElementById('telemetry-ap-val');
-      if (apEl) {
-        apEl.textContent = `${ap} / 10 AP`;
-      }
-    });
-
+    // 3. AP Counter — mirrors the InfoWar game's REAL action-point budget. Before any
+    // campaign has run, the value is unknown (null), and the ticker says so instead of
+    // asserting "10 / 10" as if it were system state.
+    this.store.subscribe('telemetry.activeAp', (ap) => this._renderAp(ap));
+    this._renderAp(this.store.get('telemetry.activeAp', null));
     // 4. THREAT — derived, never defaulted: the pill changes only when a REAL Verdad audit
     // completes (VerdadModule.executeAudit → AegisApp.setThreatFromAudit). No seeded level.
     this.store.subscribe('verdad.lastAudit', (audit) => {
@@ -1793,6 +1816,7 @@ export const AegisApp = {
     this.store.subscribe('chrome.honesty', () => {
       this._renderImmunityIndex();
       this._renderEpoch();
+      this._renderSentinelPill();
     });
 
     // Initial render: fail-loud placeholders until real data lands — or the real derived
@@ -1800,6 +1824,76 @@ export const AegisApp = {
     this._renderThreatPill(this.store.get('verdad.lastAudit', null));
     this._renderImmunityIndex();
     this._renderEpoch();
+    this._renderSentinelPill();
+  },
+
+  /**
+   * Render the latency ticker from a measured round-trip value (number) or the
+   * pre-measurement state (null). Rendered at bind time too: a persisted measurement
+   * that equals the next tick's value would otherwise never repaint the placeholder.
+   * @param {number|null} lat
+   * @private
+   */
+  _renderLatency(lat) {
+    const latEl = document.getElementById('telemetry-latency-val');
+    if (!latEl) return;
+    latEl.textContent = (typeof lat === 'number') ? (lat === 0 ? '<1ms (LOCAL)' : `${lat}ms (LOCAL)`) : 'MEASURING…';
+    latEl.title = 'Measured localStorage write+read round-trip, sampled every 4 s. A local device metric — no network involved.';
+  },
+
+  /**
+   * Render the AP ticker from a campaign budget value (number) or its absence (null).
+   * @param {number|null} ap
+   * @private
+   */
+  _renderAp(ap) {
+    const apEl = document.getElementById('telemetry-ap-val');
+    if (!apEl) return;
+    apEl.textContent = (typeof ap === 'number') ? `${ap} / 10 AP` : 'AP: — (NO CAMPAIGN)';
+    apEl.title = (typeof ap === 'number')
+      ? 'Live action-point budget of the running InfoWar campaign.'
+      : 'No InfoWar campaign has run yet, so there is no AP budget to display. Start a campaign to see live AP here.';
+  },
+
+  /**
+   * Sentinel posture, computed from real state. "ARMED" means the three things the
+   * topbar pill has always implied actually hold right now: a cryptographic identity
+   * exists, the durable key vault is available (or a session key is held), and the
+   * attempt log can durably record practice. Anything else renders UNPROVEN with a
+   * reason — the pill may never claim a security posture it did not just check.
+   * @returns {{armed: boolean, reasons: string[], hasIdentity: boolean, vaultOk: boolean, logOk: boolean}}
+   */
+  _computeSentinelPosture() {
+    const reasons = [];
+    const hasIdentity = Boolean(this.store.get('identity.did') && this.store.get('identity.publicKeyJwk'));
+    if (!hasIdentity) reasons.push('no cryptographic identity');
+    const vaultOk = KeyStore.isAvailable();
+    if (!vaultOk && !this._sessionKeyPair) reasons.push('no key vault and no session key');
+    const logOk = AttemptLog.isAvailable();
+    if (!logOk) reasons.push('attempt log storage unavailable');
+    return { armed: reasons.length === 0, reasons, hasIdentity, vaultOk: vaultOk || Boolean(this._sessionKeyPair), logOk };
+  },
+
+  /**
+   * SENTINEL pill — derived posture, never a static string. Reads the real store and
+   * the real storage APIs at render time.
+   * @private
+   */
+  _renderSentinelPill() {
+    const badge = document.getElementById('topbar-sentinel-badge');
+    if (!badge) return;
+    const label = badge.querySelector('.status-label') || badge;
+    const dot = badge.querySelector('.pulse-dot');
+    const posture = this._computeSentinelPosture();
+    if (posture.armed) {
+      label.textContent = 'SENTINEL: ARMED';
+      if (dot) dot.className = 'pulse-dot dot-emerald';
+      badge.title = 'Posture checked just now: cryptographic identity present, key vault available, attempt log writable.';
+    } else {
+      label.textContent = 'SENTINEL: UNPROVEN';
+      if (dot) dot.className = 'pulse-dot';
+      badge.title = `Posture checked just now — not armed: ${posture.reasons.join('; ')}.`;
+    }
   },
 
   /**

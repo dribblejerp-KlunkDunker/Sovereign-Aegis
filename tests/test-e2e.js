@@ -431,7 +431,12 @@ async function runE2ETests() {
           harness.assertEqual(brandTitle, 'SOVEREIGN // AEGIS', 'Brand title rendered in topbar');
 
           const sentinelText = await browser.getText('#topbar-sentinel-badge');
-          harness.assertIncludes(sentinelText, 'SENTINEL: ARMED', 'Sentinel defense engine armed badge present');
+          // Derived posture (identity + vault + log), never a static string: on a healthy
+          // boot it reads ARMED; any failed check renders UNPROVEN with the reason.
+          harness.assert(
+            sentinelText.includes('SENTINEL: ARMED') || sentinelText.includes('SENTINEL: UNPROVEN'),
+            'Sentinel pill shows a DERIVED posture (ARMED or UNPROVEN), not a static string'
+          );
 
           const threatBadge = await browser.getText('#threat-index-val');
           // Derived, never defaulted: UNAUDITED before any completed VERDAD audit, then
@@ -442,7 +447,12 @@ async function runE2ETests() {
           harness.assert(telemetryDid.startsWith('did:key:z'), 'Active DID displayed in telemetry ribbon');
 
           const telemetryAp = await browser.getText('#telemetry-ap-val');
-          harness.assertIncludes(telemetryAp, '10 / 10 AP', 'Action Point (AP) battery initialized to 10/10');
+          // The AP ticker mirrors the InfoWar campaign's live budget; before any campaign
+          // has run it must say so instead of asserting 10/10 as system state.
+          harness.assert(
+            telemetryAp.includes('NO CAMPAIGN') || /\d+ \/ 10 AP/.test(telemetryAp),
+            'AP ticker is honest: either a live campaign budget or an explicit no-campaign state'
+          );
         } else {
           const html = fs.readFileSync(path.join(ROOT_DIR, 'index.html'), 'utf8');
           harness.assert(html.includes('id="topbar-sentinel-badge"'), 'Header contains sentinel badge');

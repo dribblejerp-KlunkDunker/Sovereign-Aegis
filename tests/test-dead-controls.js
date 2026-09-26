@@ -842,6 +842,106 @@ async function runTests() {
     });
   });
 
+  await t.describe('Honest chrome II — sentinel posture, AP truth, measured latency (2026-09-25)', async () => {
+    const appMod = await import('../js/app.js');
+    const { StateStore, SEED_STATE } = await import('../js/state.js');
+    const fsMod = await import('node:fs');
+    const urlMod = await import('node:url');
+    const html = fsMod.readFileSync(urlMod.fileURLToPath(new URL('../index.html', import.meta.url)), 'utf8');
+    const stateSrc = fsMod.readFileSync(urlMod.fileURLToPath(new URL('../js/state.js', import.meta.url)), 'utf8');
+    const appSrc = fsMod.readFileSync(urlMod.fileURLToPath(new URL('../js/app.js', import.meta.url)), 'utf8');
+
+    const buildApp = () => {
+      const store = new StateStore({}, { storageKey: 'honesty2-test' });
+      return Object.assign(Object.create(Object.getPrototypeOf(appMod.AegisApp)), appMod.AegisApp, { store });
+    };
+    const fixtureEls = () => {
+      const badge = el('topbar-sentinel-badge');
+      const label = new FakeElement('span'); label.className = 'status-label'; badge.appendChild(label);
+      const dot = new FakeElement('span'); dot.className = 'pulse-dot dot-emerald'; badge.appendChild(dot);
+      el('telemetry-ap-val', 'text-bronze');
+      el('telemetry-latency-val');
+    };
+
+    await t.it('the theatrical strings are gone from markup and seed', async () => {
+      t.assert(!html.includes('SENTINEL: ARMED</span>'), 'markup no longer hardcodes SENTINEL: ARMED');
+      t.assert(!/id="telemetry-ap-val"[^>]*>10 \/ 10 AP/.test(html), 'the AP TICKER no longer hardcodes 10 / 10 AP (the in-game badge is real game state and stays)');
+      t.assert(!html.includes('24ms (EDGE)'), 'markup no longer hardcodes a fake latency');
+      t.assert(html.includes('SENTINEL: …'), 'the sentinel pill ships with a fail-loud placeholder');
+      t.assert(html.includes('AP: — (NO CAMPAIGN)'), 'the AP ticker ships with a fail-loud placeholder');
+      t.assert(html.includes('MEASURING…'), 'the latency ticker ships with a measuring placeholder');
+      // Structural seed checks: the fictional blocks must not exist AT ALL.
+      t.assert(!('attestation' in SEED_STATE), 'no invented enclave/PCR attestation block in the seed');
+      t.assert(!('consensus' in SEED_STATE), 'no fictional consensus-peers block in the seed');
+      t.assert(!('alerts' in SEED_STATE), 'no hardcoded-alerts block in the seed');
+      t.assert(!('reputationScore' in SEED_STATE.identity), 'no fabricated reputation score in the seed');
+      t.assert(!('activeNodes' in SEED_STATE.telemetry), 'no fake node counter in the seed');
+      t.assert(!appSrc.includes('Math.floor(2840 + Math.random()'), 'the heartbeat no longer jitters node counts');
+      t.assert(!appSrc.includes('Math.floor(18 + Math.random()'), 'the heartbeat no longer jitters latency');
+      t.assert(appSrc.includes('aegis-latency-probe'), 'the heartbeat MEASURES the real storage round-trip');
+      t.assert(appSrc.includes("'telemetry.blockHeight', 'telemetry.syncStatus'"), 'the boot migration purges legacy fictional keys from persisted blobs');
+    });
+
+    await t.it('the sentinel pill renders ARMED on healthy state and UNPROVEN with reasons otherwise', async () => {
+      fixtureEls();
+      const app = buildApp();
+      app.store.set('identity.did', 'did:key:zTest', false);
+      app.store.set('identity.publicKeyJwk', { kty: 'EC', x: 'x', y: 'y' }, false);
+      app._renderSentinelPill();
+      const badge = globalThis.document.getElementById('topbar-sentinel-badge');
+      const label = badge.querySelector('.status-label');
+      t.assertEqual(label.textContent, 'SENTINEL: ARMED', 'healthy posture (identity + vault + log) reads ARMED, just checked');
+      app.store.set('identity.did', null, false);
+      app._renderSentinelPill();
+      t.assertEqual(label.textContent, 'SENTINEL: UNPROVEN', 'a failed check renders UNPROVEN');
+      t.assert(badge.title.includes('no cryptographic identity'), 'the tooltip names the failed check');
+    });
+
+    await t.it('the AP ticker says NO CAMPAIGN before a game and mirrors the live budget after', async () => {
+      fixtureEls();
+      const app = buildApp();
+      app.store.set('telemetry.activeAp', null, false); // no campaign has run
+      app._subscribeTelemetryUI(); // boot-time initial render + subscription
+      const apEl = globalThis.document.getElementById('telemetry-ap-val');
+      t.assertEqual(apEl.textContent, 'AP: — (NO CAMPAIGN)', 'no campaign → the ticker says so instead of asserting 10/10');
+      app.store.set('telemetry.activeAp', 7, false);
+      await drain();
+      t.assertEqual(apEl.textContent, '7 / 10 AP', 'a live campaign budget is mirrored, never defaulted');
+    });
+
+    await t.it('the heartbeat writes a MEASURED storage latency, not a random number', async () => {
+      if (typeof globalThis.localStorage === 'undefined') {
+        // Node exposes localStorage only with --localstorage-file; a minimal stub stands
+        // in so the heartbeat can measure a real round-trip in this process.
+        const mem = new Map();
+        Object.defineProperty(globalThis, 'localStorage', {
+          configurable: true,
+          value: {
+            setItem: (k, v) => mem.set(String(k), String(v)),
+            getItem: (k) => (mem.has(String(k)) ? mem.get(String(k)) : null),
+            removeItem: (k) => mem.delete(String(k)),
+            key: (i) => [...mem.keys()][i] ?? null,
+            get length() { return mem.size; }
+          }
+        });
+      }
+      fixtureEls();
+      const app = buildApp();
+      app._subscribeTelemetryUI(); // the subscriber repaints the ticker on each measured tick
+      app.store.set('telemetry.networkLatencyMs', null, false);
+      app.startTelemetryLoop();
+      try {
+        await new Promise((r) => setTimeout(r, 4300)); // one heartbeat tick
+        const v = app.store.get('telemetry.networkLatencyMs', 'unset');
+        t.assert(typeof v === 'number' && v >= 0, `latency is a measured number, got: ${JSON.stringify(v)}`);
+        const latEl = globalThis.document.getElementById('telemetry-latency-val');
+        t.assert(/(<1|\d+)ms \(LOCAL\)/.test(latEl.textContent), `the ticker shows the measured value with the honest LOCAL label (${latEl.textContent})`);
+      } finally {
+        app.stopTelemetryLoop();
+      }
+    });
+  });
+
   return harness.summary();
 }
 

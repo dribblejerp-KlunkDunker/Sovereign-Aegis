@@ -188,6 +188,50 @@ competency estimation). Full architecture and feature inventory: `PROJECT.md`.
      Dead-Control Regression Suite); every fix also exercised through the running app.
      Bonus finding folded into the Calibrated Mode fix: `arena-confidence-host` existed
      in the markup but nothing mounted into it.
+   - **AMENDED 2026-09-26 — honesty purge II: the remaining theatrical telemetry.** The
+     chrome fix above covered the ticker statics; a final pass removed the last
+     simulated numbers, applying the same standard — every displayed value measured or
+     derived from real state, fail-loud when there is nothing to show:
+     - **Heartbeat latency** no longer jitters. It used to render `Math.random()`
+       milliseconds against a fictional peer list; it now measures a real round-trip —
+       a JSON probe written to and read back from `localStorage` under
+       `aegis-latency-probe`, timed with `performance.now()`, on the same cadence the
+       old jitter ran. No sample yet → `MEASURING…`; a real result on a local origin →
+       `<1ms (LOCAL)` or `Nms (LOCAL)`. Verified live: `<1ms (LOCAL)`.
+     - **Seed fiction deleted at the root.** `state.js`'s SEED_STATE lost its
+       `attestation` view, `consensus` peer list, `alerts` feed, and
+       `identity.reputationScore`; `telemetry` now seeds exactly three keys —
+       `networkLatencyMs`, `lastTick`, `activeAp` — all `null`. No code path can
+       resurrect the removed blocks; a comment at each deletion site records why.
+     - **SENTINEL pill is now a derived posture**, not a stored string:
+       `_computeSentinelPosture()` renders `ARMED` only when a real identity exists AND
+       the vault/session key is live AND AttemptLog is available — otherwise `UNPROVEN`,
+       with the specific missing precondition(s) in the hover title. Recomputed on boot
+       and on every identity/vault/attempt-log change via the chrome-honesty
+       subscriber.
+     - **AP ticker renders campaign reality.** `AP: — (NO CAMPAIGN)` until an infowar
+       campaign mounts, then the campaign's real `apPerTurn`; `infowar.onUnmount` nulls
+       `telemetry.activeAp` so the ticker cannot outlive its campaign. The in-game
+       `#infowar-ap-badge` was already real game state and is untouched.
+     - **Boot migration purges persisted fiction** (state-migration step 3.45): profiles
+       saved before this purge carry the old theatrical blobs, so boot deletes the
+       `attestation`, `consensus`, and `alerts` paths, the legacy telemetry keys
+       (`activeNodes`, `blockHeight`, `syncStatus`, `threatLevel`, `sentinelMode`,
+       `epistemicHealth`, `uptimeSeconds`), and `identity.reputationScore` before the
+       UI ever sees them. Verified live on a contaminated profile: the three blocks
+       report ABSENT after reload.
+     - Pins re-pointed, not deleted: the two M1/stress pins that traversed the removed
+       seed paths now exercise real ones (`identity.credentials`, `telemetry.lastTick`,
+       `telemetry.activeAp`); the E2E posture pins accept the derived ARMED/UNPROVEN
+       pair; the Dead-Control Regression Suite gained an "Honest chrome II" describe
+       (seed-absence checks, heartbeat-measurement regex pins, sentinel/AP/latency
+       derivation pins with a localStorage stub) — **122 pins**, suite total unchanged
+       in count only.
+     - Evidence: gate **18,684/18,684** (48 suites); browser E2E **128/128**; live
+       browser check confirmed SENTINEL derived from real state, honest AP, measured
+       latency, and the migration scrub; standalone rebuilt and grep-verified to carry
+       zero traces of the fiction (`peer-alpha-01`, `HARDWARE_SECURE`, `24ms (EDGE)`,
+       random jitter) while carrying all honest placeholders.
 4. **Browser E2E in CI — DONE 2026-09-24.** `.github/workflows/ci.yml` (added 2026-09-23
    with the honesty-fix commit `1679630`) runs the headless gate on every push, and the
    browser E2E suite on demand via workflow_dispatch **and nightly via schedule**

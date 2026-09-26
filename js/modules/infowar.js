@@ -101,6 +101,10 @@ export const InfoWar = {
   onUnmount() {
     this._engine = null;
     this._activeDilemma = null;
+    // The AP ticker mirrors a RUNNING campaign's budget. With the engine gone there is
+    // no live AP to display — the ticker must fall back to its fail-loud state rather
+    // than keep asserting the last game's number as if it were current.
+    this._app?.store?.set('telemetry.activeAp', null, false);
   },
 
   async _loadData() {

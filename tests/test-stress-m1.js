@@ -69,9 +69,14 @@ async function runAdversarialStressSuite() {
   assert(store.get('test.primitiveStr.nested.leaf') === 'overwritten_value', 'nested value correctly retrieved after overwriting primitive');
 
   // Array index traversal
-  assert(store.get('consensus.peers.0.id') === 'peer-alpha-01', 'Array index path traversal returns array element property');
-  store.set('consensus.peers.0.trust', 100);
-  assert(store.get('consensus.peers.0.trust') === 100, 'Array index path update sets property correctly');
+  // Deep-path traversal now exercises a REAL array: the fictional consensus peers seed
+  // was removed 2026-09-25, so identity.credentials (W3C credentials, real but empty at
+  // boot) carries the same coverage after a test-seeded element is pushed in.
+  store.set('identity.credentials.0.id', 'https://example.test/cred/1');
+  assert(store.get('identity.credentials.0.id') === 'https://example.test/cred/1', 'Array index path traversal returns array element property');
+  store.set('identity.credentials.0.id', 'https://example.test/cred/2');
+  assert(store.get('identity.credentials.0.id') === 'https://example.test/cred/2', 'Array index path update sets property correctly');
+  store.set('identity.credentials', []);
 
   // 1.3 Wildcard Subscriptions & Subscription Storm
   console.log('\n[1.3] Wildcard Subscriptions & Storm Testing:');
@@ -165,13 +170,13 @@ async function runAdversarialStressSuite() {
 
   // 1.6 State Reset & SEED_STATE Isolation
   console.log('\n[1.6] State Reset & Seed Isolation:');
-  const initialSeedNodes = SEED_STATE.telemetry.activeNodes;
-  store.set('telemetry.activeNodes', -1);
-  assert(store.get('telemetry.activeNodes') === -1, 'State mutated before reset');
+  const initialSeedTick = SEED_STATE.telemetry.lastTick;
+  store.set('telemetry.lastTick', 'ISOLATED_MUTATED');
+  assert(store.get('telemetry.lastTick') === 'ISOLATED_MUTATED', 'State mutated before reset');
   
   store.reset(false);
-  assert(store.get('telemetry.activeNodes') === initialSeedNodes, 'State reset restores SEED_STATE default');
-  assert(SEED_STATE.telemetry.activeNodes === 0, 'SEED_STATE object remains unpolluted (immutability preserved)');
+  assert(store.get('telemetry.lastTick') === initialSeedTick, 'State reset restores SEED_STATE default');
+  assert(SEED_STATE.telemetry.lastTick === null, 'SEED_STATE object remains unpolluted (immutability preserved)');
 
   // Hard reset test
   store.set('custom.volatileKey', 'temporary');

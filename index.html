@@ -110,9 +110,9 @@
 
       <!-- Quick Status Badges & Controls -->
       <div class="topbar-status-deck cs-group">
-        <div class="status-pill status-pill-sentinel cs-pill" id="topbar-sentinel-badge" title="Active Sentinel Defense Engine">
-          <span class="pulse-dot dot-emerald"></span>
-          <span class="status-label">SENTINEL: ARMED</span>
+        <div class="status-pill status-pill-sentinel cs-pill" id="topbar-sentinel-badge" title="Posture is checked at render time from real state: identity, key vault, attempt log. It is never assumed.">
+          <span class="pulse-dot"></span>
+          <span class="status-label">SENTINEL: …</span>
         </div>
         <div class="status-pill status-pill-threat cs-pill" id="topbar-threat-badge" title="Threat level derived from your last completed VERDAD audit. Nothing is audited yet — this is not a measurement.">
           <span class="threat-icon text-amber">⚡</span>
@@ -153,7 +153,7 @@
         <div class="telemetry-separator">|</div>
         <div class="telemetry-item">
           <span class="telemetry-label">ACTIVE AP:</span>
-          <span class="telemetry-value text-bronze" id="telemetry-ap-val">10 / 10 AP</span>
+          <span class="telemetry-value text-bronze" id="telemetry-ap-val" title="No InfoWar campaign has run yet, so there is no AP budget to display. Start a campaign to see live AP here.">AP: — (NO CAMPAIGN)</span>
         </div>
         <div class="telemetry-separator">|</div>
         <div class="telemetry-item">
@@ -163,7 +163,7 @@
         <div class="telemetry-separator">|</div>
         <div class="telemetry-item">
           <span class="telemetry-label">LATENCY:</span>
-          <span class="telemetry-value" id="telemetry-latency-val">24ms (EDGE)</span>
+          <span class="telemetry-value" id="telemetry-latency-val" title="Measured localStorage write+read round-trip, sampled every 4 s. This is a local device metric — this app makes no network calls for telemetry.">MEASURING…</span>
         </div>
       </div>
     </aside>

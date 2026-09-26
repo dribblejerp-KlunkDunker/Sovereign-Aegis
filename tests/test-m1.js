@@ -165,7 +165,7 @@ async function runTests() {
   const unsubWildcard = store.subscribe('telemetry.*', (val, old, path) => {
     wildcardCount++;
   });
-  store.set('telemetry.lastTick', 'CRITICAL');
+  store.set('telemetry.activeAp', 7);
   store.set('telemetry.activeNodes', 3000);
   assert(wildcardCount === 2, 'Wildcard subscriber matches all children in branch');
   unsubWildcard();

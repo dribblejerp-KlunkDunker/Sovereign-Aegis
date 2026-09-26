@@ -30,18 +30,22 @@ export const SEED_STATE = {
     drawerOpen: false,
     initialized: false
   },
-  // Telemetry keys the UI genuinely derives from: latency and node counts are measured
-  // live by app.js, lastTick is the real loop heartbeat. Everything theatrical was
+  // Telemetry keys the UI genuinely derives from: networkLatencyMs is MEASURED in the
+  // heartbeat (localStorage write+read round-trip; no remote endpoint exists in an
+  // offline-first app), lastTick is the real loop heartbeat, and activeAp mirrors the
+  // InfoWar game's live AP budget once a campaign runs. Everything theatrical was
   // removed 2026-09-25 — blockHeight/syncStatus/threatLevel/sentinelMode/epistemicHealth/
-  // uptimeSeconds were fiction (a fake chain, a default 'ELEVATED' read by nothing, a
-  // health score that was never computed). Honest replacements now DERIVE their values:
-  // the THREAT pill from the last VERDAD audit, IMMUNITY INDEX from the attempt log via
-  // competency.estimateAggregate(), EPOCH via practiceDaySpan(). Keep it that way: any
-  // new telemetry key must be measured or estimated from real events, never seeded.
+  // uptimeSeconds in the first purge, then activeNodes/attestation/consensus/alerts/
+  // reputationScore in the second (a fake chain, a seeded 'ELEVATED' read by nothing,
+  // invented enclave/PCR hardware attestation, fictional consensus peers, fake unread
+  // alerts, a reputation score nothing computes). The SENTINEL pill and AP display are
+  // DERIVED in js/app.js from real state: identity + key vault + attempt log, and the
+  // game AP budget. Keep it that way: any new telemetry key must be measured or
+  // estimated from real events, never seeded.
   telemetry: {
-    activeNodes: 0,
-    networkLatencyMs: 24,
-    lastTick: null
+    networkLatencyMs: null,
+    lastTick: null,
+    activeAp: null
   },
   identity: {
     did: null, // e.g. 'did:key:zDnae...'
@@ -52,39 +56,14 @@ export const SEED_STATE = {
     privateKeyJwk: null,
     fingerprint: null,
     created: null,
-    reputationScore: 100,
-    credentials: [], // Array of W3C JSON-LD verifiable credentials
+    credentials: [], // Array of W3C JSON-LD verifiable credentials (REAL: issued in-session)
     signedStatements: [] // Array of signed statements history
   },
-  attestation: {
-    enclaveStatus: 'HARDWARE_SECURE',
-    enclaveModel: 'TPM 2.0 / Apple T2 Secure Enclave / Nitro Enclave',
-    pcrRegisters: {
-      PCR0: 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855',
-      PCR7: 'a94a8fe5ccb19ba61c4c0873d391e987982fbbd3d3b76960113f8c8577906967'
-    },
-    entropyPool: 'CRYPTOGRAPHIC_HARDWARE_RNG',
-    attestationNonce: '0x9e4b7c12f8a502d6',
-    verifiedAt: '2026-08-16T00:00:00.000Z',
-    hardwareSignature: 'ECDSA-P256-ATTESTED'
-  },
-  consensus: {
-    activePeers: 12,
-    consensusAlgorithm: 'Byzantine Epistemic Fault Tolerance (B-EFT)',
-    quorumThreshold: '67%',
-    round: 4920,
-    peers: [
-      { id: 'peer-alpha-01', region: 'us-east-1', latency: 18, status: 'VALIDATING', trust: 99 },
-      { id: 'peer-beta-04', region: 'eu-west-1', latency: 32, status: 'VALIDATING', trust: 97 },
-      { id: 'peer-gamma-09', region: 'ap-northeast-1', latency: 84, status: 'VALIDATING', trust: 95 }
-    ]
-  },
-  alerts: {
-    activeAlerts: [],
-    unreadCount: 3,
-    filterDomain: 'ALL',
-    threatFilter: 'ALL'
-  },
+  // The `attestation` block (invented TPM/PCR hardware claims), `consensus` block
+  // (fictional peers and a fake B-EFT round counter), and `alerts` block (a hardcoded
+  // unread count) were removed 2026-09-25: nothing read them except a stress test's
+  // deep-path traversal, now pointed at the real identity.credentials array. A local,
+  // offline app has no enclave to attest, no peers to poll, and no server alerts.
   verdad: {
     recentAnalyses: [],
     byokApiKey: '',
