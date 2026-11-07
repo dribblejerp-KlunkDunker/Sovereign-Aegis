@@ -4,6 +4,12 @@
 git state probed). Replaces the 2026-08-22 handoff, whose "UNCOMMITTED" and
 "standalone STALE" warnings are both obsolete — see `STATUS.md` for the snapshot.
 
+> **Amended 2026-11-06** (re-verified against the tree, not assumed): CI exists and runs
+> browser E2E nightly (§3, open item #4 → DONE); the gate is **48 suites, 18,792/18,792**;
+> the onboarding listener-stacking bug was found live and fixed in `b62a113` (§6 item 0);
+> this repo (`Sovereign-Aegis`, branch `main`) is clean at `b62a113`. Sections below are
+> the 2026-09-20 text with these corrections marked inline.
+
 **One-line state:** the app is an honest local-first epistemic-defense training suite
 with a built competency spine, adaptive routing, attestations, retention coverage
 (Phase 2) and the adaptive inoculation engine (PDP slice 3) both shipped, live-verified
@@ -37,6 +43,10 @@ remains an unrelated untracked tooling file. Do not treat the 2026-08-22 handoff
 §2 ("ENTIRE tree heavily modified, UNCOMMITTED") as a description of *this* state —
 that generation is long gone; HEAD `f49988c` (2026-09-20) was clean before this work.
 
+**2026-11-06:** that uncommitted work has since been committed. This repo
+(`dribblejerp-KlunkDunker/Sovereign-Aegis`, branch `main`, served by GitHub Pages) is
+clean at `b62a113`. `rustup-init.exe` is not present in this repo.
+
 ## 3. Verification gate — measured 2026-09-20
 
 - `node tests/run-all.js` → **45 suites, 17,350/17,350 assertions, 0 failed** (~9.1 s).
@@ -45,8 +55,15 @@ that generation is long gone; HEAD `f49988c` (2026-09-20) was clean before this 
 - `npm run test:e2e` exists as the separate browser gate (headless Chromium CDP);
   `npm run test:browser` is the Playwright suite; the reverse-face-search Playwright
   suite rides along with `npm test`.
-- **No CI workflows exist** (no `.github/workflows/`). The headless gate is honest;
-  the browser gate still has to actually run somewhere. This is open item #4.
+- ~~**No CI workflows exist**~~ — superseded. `.github/workflows/ci.yml` (added
+  2026-09-23) runs the headless gate on every push and the browser E2E suite on
+  demand (`workflow_dispatch`) and nightly (`cron '30 3 * * *'`); a red nightly opens a
+  `nightly-failure` issue. Open item #4 is DONE — see `STATUS.md` item 4.
+- **Re-measured 2026-11-06:** `node tests/run-all.js` → **48 suites, 18,792/18,792, 0
+  failed**; `npm run test:e2e` → **135/135**; `npm run test:browser` → **8/8** (now
+  includes a real walk through first-run orientation — see §6 item 0). The
+  reverse-face-search suite needs a local Hugging Face Space cache and fails with
+  ENOENT on a machine without one; that is environmental, not an AEGIS regression.
 
 ## 4. Competency spine — BUILT & VERIFIED (unchanged conclusion, updated numbers)
 
@@ -87,6 +104,17 @@ that generation is long gone; HEAD `f49988c` (2026-09-20) was clean before this 
 
 ## 6. Open work, priority order
 
+0. **Onboarding listener stacking — FOUND & FIXED 2026-11-06 (`b62a113`).** Found by
+   walking the live GitHub Pages site: `_bindOnboardingEvents()` re-ran on every step
+   render while the modal element persisted, so click listeners accumulated. "Next"
+   skipped steps (1 → 2 → 4) and finishing fired ~8 stacked "AEGIS ORIENTATION
+   COMPLETE" toasts (and N tab-switch timers). Fix: bind once per modal
+   (`data-onboard-bound`), and `_completeOnboarding` is idempotent per modal so a click
+   during the 300 ms fade-out cannot complete twice. Why no suite caught it: the smoke
+   test deleted the onboarding modal before checking anything. `tests/test-browser.js`
+   now walks orientation for real and asserts sequential steps + exactly one completion
+   toast; it fails on the old code (1→2→4, 8 toasts). Standalone rebuilt. Verified live
+   after deploy.
 1. **Phase 2 retention — DONE (2026-09-20).** The deck is now **274 cards**
    (105/105 practice arena questions carded, held-out excluded at both the generator and
    the file gate; the 7 legacy leak cards are gone). New: held-out contamination purge +
@@ -134,11 +162,14 @@ that generation is long gone; HEAD `f49988c` (2026-09-20) was clean before this 
      verified against closed forms; CLI guarded for import). All pinned by the new
      `tests/test-transfer-study.js` (40 assertions, in the gate; suite count now 46).
      Operator workflow: `docs/transfer-study/README.md`.
-4. **Browser E2E in CI.** Add a workflow; report headless vs browser numbers
-   separately (the §8 review's own wording, still open).
-5. **§8 hardening leftovers:** one-click legacy private-JWK rotation; move `index.html`'s
-   inline `style=""` (486 occurrences, file now 2,956 lines) off inline styles so
-   CSP `style-src` can drop `'unsafe-inline'`.
+4. **Browser E2E in CI — DONE 2026-09-24.** `.github/workflows/ci.yml`: headless gate
+   on push, browser E2E on demand + nightly, headless and E2E numbers summarized
+   separately, red nightly opens a tracking issue. Details: `STATUS.md` item 4.
+5. **§8 hardening leftovers (still open, re-checked 2026-11-06):** one-click legacy
+   private-JWK rotation (the Identity view shows a "LEGACY KEY STORAGE" notice via
+   `identity.js _renderKeyStorageNotice()`, but rotation is still manual); move
+   `index.html`'s inline `style=""` off inline styles so CSP `style-src` can drop
+   `'unsafe-inline'` — now **494** occurrences in a 2,999-line file (was 486 / 2,956).
 
 ## 7. Unapproved proposals / small items (from `docs/manual-improvement.md`)
 
@@ -155,11 +186,11 @@ that generation is long gone; HEAD `f49988c` (2026-09-20) was clean before this 
 ## 8. Commands
 
 ```bash
-npm test                  # 44-suite headless gate + reverse-face-search Playwright suite
-npm run test:e2e          # browser E2E (headless Chromium CDP) — separate, no CI yet
-npm run test:browser      # Playwright browser suite
+npm test                  # 48-suite headless gate + reverse-face-search Playwright suite (needs local HF cache)
+npm run test:e2e          # browser E2E (headless Chromium CDP) — CI runs it on demand + nightly
+npm run test:browser      # Playwright browser suite (incl. first-run orientation walk)
 node tools/tag-skills.mjs # content-tagging gate (fails on untagged / held-out leakage once extended)
-node build-standalone.mjs # single-file build — needs esbuild (NOT installed); on Windows spawn npx.cmd or set shell:true
+node build-standalone.mjs # single-file build — fetches esbuild via npx; on Windows spawn npx.cmd or set shell:true
 ```
 
 ## 9. Key files
@@ -172,13 +203,15 @@ node build-standalone.mjs # single-file build — needs esbuild (NOT installed);
 | `js/confidence.js` | Sticky sure/unsure/guess control |
 | `js/profile.js` / `js/profilestore.js` | PDP scoring / storage (pure / I-O) |
 | `js/modules/spacedRepetition.js` | Memory Vault; `SM2_QUALITY_MAP`, enqueue, diagnosis |
-| `js/modules/onboarding.js` | Operator profile composite (⚠ dead `arena.stats` key) |
+| `js/modules/onboarding.js` | First-run orientation + operator profile composite (the dead `arena.stats` read was removed 2026-09-21) |
 | `js/inoculation.js` | PDP slice 3 selector (pure) — 120-assertion suite |
 | `js/modules/inoculationAdaptive.js` | PDP slice 3 view + Prebunking entry card |
 | `tools/tag-skills.mjs` | Tagging gate — also rejects held-out SM-2 cards |
 | `tools/gen-sm2-cards.mjs` | Deck generator (274 cards; owns `card-arena-*`) |
-| `tests/run-all.js` | Suite registry — 45 entries |
-| `sovereign-aegis-standalone.html` | FRESH (rebuilt 2026-09-20 with slice 3 + retention) |
+| `tests/run-all.js` | Suite registry — 48 entries |
+| `tests/test-browser.js` | Playwright smoke check — boot, nav, views, CSP, orientation walk |
+| `.github/workflows/ci.yml` | CI — headless on push, browser E2E on demand + nightly |
+| `sovereign-aegis-standalone.html` | FRESH (last rebuilt 2026-11-06 with the onboarding fix) |
 
 ## 10. Unrelated but in this repo's history
 

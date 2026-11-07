@@ -1,6 +1,6 @@
 # SOVEREIGN // AEGIS — Status Snapshot
 
-**Date:** 2026-09-25 (amended; original snapshot 2026-09-20, previously amended 2026-09-24)
+**Date:** 2026-11-06 (amended; original snapshot 2026-09-20, previously amended 2026-09-24 and 2026-09-25)
 **Purpose:** a dated, point-in-time record of where the project stands. The living
 handoff remains `SESSION-HANDOFF.md`; this file captures what changed since it was
 written and what is true right now, so future sessions can verify rather than assume.
@@ -23,6 +23,11 @@ competency estimation). Full architecture and feature inventory: `PROJECT.md`.
   (2026-09-20, a merge of a new remote into master). The only untracked file is a
   stray `rustup-init.exe` (tooling, unrelated to AEGIS — safe to delete or ignore).
   The 2026-08-22 handoff's "heavily modified, UNCOMMITTED" state is long gone.
+  **Amended 2026-11-06:** the public repo `dribblejerp-KlunkDunker/Sovereign-Aegis`
+  (branch `main`, deployed by GitHub Pages at
+  `https://dribblejerp-klunkdunker.github.io/Sovereign-Aegis/`) is clean at `b62a113`;
+  `rustup-init.exe` is not in it. The `master` / Black-Vault-Backup-V2 description
+  above is the dev tree as recorded on 2026-09-20 and was not re-checked.
 - **Verification gate, measured 2026-09-20:** `node tests/run-all.js` →
   **45 suites, 17,350 assertions, 0 failures** (~9.1 s). Composition: 10,809 (62%)
   static dataset/schema validation, 6,541 logic/crypto/fuzz/static-HTML checks.
@@ -30,13 +35,14 @@ competency estimation). Full architecture and feature inventory: `PROJECT.md`.
   suite joined the gate and the verifier fix added 19 pins. Amended twice on 2026-09-25:
   **47 suites, 18,627** — the honesty-chrome work in item 3 added 48 pins and two legacy
   M1 seeds were de-theatricalized; then **48 suites, 18,644** — the CI notification
-  guards in item 4 added 17 pins.)
-  Browser E2E is a separate gate (`npm run test:e2e`) and is **not included** in
-  that number — CI triggers it only on demand via workflow_dispatch (see open items).
+  guards in item 4 added 17 pins. Re-measured 2026-11-06: **48 suites, 18,792/18,792**.)
+  Browser E2E is a separate gate (`npm run test:e2e`, **135/135** on 2026-11-06) and is
+  **not included** in that number — CI runs it on demand and nightly (item 4).
 - **The standalone single-file build is FRESH** — rebuilt 2026-09-20 with the retention
   wiring and the adaptive inoculation engine (esbuild resolved via npx during live
   verification), again 2026-09-24 carrying the signature-verifier fix, and again
-  2026-09-25 carrying the honesty-chrome replacements.
+  2026-09-25 carrying the honesty-chrome replacements, and again 2026-11-06 carrying
+  the onboarding fix (item 6).
 - **Milestones 1–5 complete.** Historical chapter closed; the four original
   milestones plus the Phase 1–3 / Phase 5 / Phase 7 work and the retention part-1
   tracks are all DONE. Phase 4 (transfer study) has a written protocol and has not
@@ -373,6 +379,27 @@ competency estimation). Full architecture and feature inventory: `PROJECT.md`.
 5. **§8 hardening leftovers** (`ROADMAP.md` §8): one-click legacy private-JWK
    rotation, and moving `index.html`'s 486 inline `style=""` occurrences off inline
    styles so CSP `style-src` can drop `'unsafe-inline'`. (The "2,507 lines" figure   in the old §8 is stale — the file is 2,956 lines now; the *finding* stands.)
+   **Re-checked 2026-11-06 — both still open.** Inline styles are now **494** in a
+   2,999-line `index.html`. The Identity view surfaces a "LEGACY KEY STORAGE" notice
+   (`identity.js _renderKeyStorageNotice()`), but rotation is still a manual
+   generate-new-keypair step, not one click.
+6. **Onboarding listener stacking — FOUND & FIXED 2026-11-06 (`b62a113`).** Found by
+   walking the live GitHub Pages deploy, not by any suite. `_bindOnboardingEvents()` ran
+   on every step render, but the modal element persists (only `innerHTML` is replaced),
+   so each render stacked another click listener and one click ran the handler N times:
+   "Next" skipped steps (1 → 2 → 4, so step 3 was never shown) and completing
+   orientation fired ~8 stacked "AEGIS ORIENTATION COMPLETE" toasts plus N tab-switch
+   timers. Fix: bind once per modal (`data-onboard-bound`); `_completeOnboarding` is
+   idempotent per modal, so a second click during the 300 ms fade-out cannot complete
+   twice. Why no gate caught it: `tests/test-browser.js` removed the onboarding modal
+   before checking anything. It now walks orientation for real and asserts steps advance
+   one at a time and exactly one completion toast — proven to fail on the old code
+   (`visited 1→2→4`, `8 completion toasts`) and pass on the fix. Standalone rebuilt
+   (one-line diff in the minified bundle; verified from `file://`). Gate
+   **18,792/18,792** (48 suites), E2E **135/135**, browser **8/8**; CI green on push;
+   live site re-verified after the Pages deploy (steps 1→2→3→4→5, one toast, no errors).
+   Noted, not changed: switching views keeps the previous scroll position, so a view
+   can open mid-page.
 
 ## Standards that stay in force
 
@@ -385,10 +412,11 @@ first commit.
 ## How to run
 
 ```bash
-npm test                 # headless gate (48 suites) + reverse-face-search Playwright suite
-npm run test:e2e         # browser E2E — separate gate, no CI yet
+npm test                 # headless gate (48 suites) + reverse-face-search Playwright suite (needs local HF cache)
+npm run test:e2e         # browser E2E — separate gate; CI runs it on demand + nightly
+npm run test:browser     # Playwright smoke check, incl. the first-run orientation walk
 node tools/tag-skills.mjs  # content-tagging gate
-node build-standalone.mjs  # single-file build (needs esbuild; npx spawn is broken on Windows — spawn npx.cmd or set shell:true)
+node build-standalone.mjs  # single-file build (esbuild via npx; on Windows spawn npx.cmd or set shell:true)
 ```
 
 No build step for the multi-file app: serve statically (`serve.mjs` / `serve.cmd`)
