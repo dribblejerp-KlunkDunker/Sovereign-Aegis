@@ -64,6 +64,8 @@ clean at `b62a113`. `rustup-init.exe` is not present in this repo.
   includes a real walk through first-run orientation — see §6 item 0). The
   reverse-face-search suite needs a local Hugging Face Space cache and fails with
   ENOENT on a machine without one; that is environmental, not an AEGIS regression.
+- **Re-measured 2026-11-07** (after the index.html inline-style move): **49 suites,
+  18,809/18,809**; E2E **135/135**; browser **8/8**.
 
 ## 4. Competency spine — BUILT & VERIFIED (unchanged conclusion, updated numbers)
 
@@ -170,6 +172,13 @@ clean at `b62a113`. `rustup-init.exe` is not present in this repo.
    `identity.js _renderKeyStorageNotice()`, but rotation is still manual); move
    `index.html`'s inline `style=""` off inline styles so CSP `style-src` can drop
    `'unsafe-inline'` — now **494** occurrences in a 2,999-line file (was 486 / 2,956).
+   **2026-11-07:** `index.html` part DONE — 493 attributes moved to
+   `css/extracted-inline.css` by `tools/extract-inline-styles.mjs`, proven a visual no-op
+   by a full computed-style diff of every element in every view (two widths, noise floor
+   and negative control), pinned by `tests/test-inline-style-extraction.js`. The finding
+   was under-scoped: the CSP flip still needs the **1,354** inline styles emitted by the
+   JS view templates removed too, then a hash for the standalone's inlined `<style>`.
+   Full record: `STATUS.md` item 5.
 
 ## 7. Unapproved proposals / small items (from `docs/manual-improvement.md`)
 
@@ -208,7 +217,9 @@ node build-standalone.mjs # single-file build — fetches esbuild via npx; on Wi
 | `js/modules/inoculationAdaptive.js` | PDP slice 3 view + Prebunking entry card |
 | `tools/tag-skills.mjs` | Tagging gate — also rejects held-out SM-2 cards |
 | `tools/gen-sm2-cards.mjs` | Deck generator (274 cards; owns `card-arena-*`) |
-| `tests/run-all.js` | Suite registry — 48 entries |
+| `tests/run-all.js` | Suite registry — 49 entries |
+| `tools/extract-inline-styles.mjs` | Moves index.html `style=""` into `css/extracted-inline.css`; `--check` mode |
+| `tests/test-inline-style-extraction.js` | Pins zero inline styles in index.html + the specificity assumptions |
 | `tests/test-browser.js` | Playwright smoke check — boot, nav, views, CSP, orientation walk |
 | `.github/workflows/ci.yml` | CI — headless on push, browser E2E on demand + nightly |
 | `sovereign-aegis-standalone.html` | FRESH (last rebuilt 2026-11-06 with the onboarding fix) |

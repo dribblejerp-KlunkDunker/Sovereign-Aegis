@@ -35,7 +35,8 @@ competency estimation). Full architecture and feature inventory: `PROJECT.md`.
   suite joined the gate and the verifier fix added 19 pins. Amended twice on 2026-09-25:
   **47 suites, 18,627** — the honesty-chrome work in item 3 added 48 pins and two legacy
   M1 seeds were de-theatricalized; then **48 suites, 18,644** — the CI notification
-  guards in item 4 added 17 pins. Re-measured 2026-11-06: **48 suites, 18,792/18,792**.)
+  guards in item 4 added 17 pins. Re-measured 2026-11-06: **48 suites, 18,792/18,792**;
+  2026-11-07, after the index.html inline-style move (item 5): **49 suites, 18,809/18,809**.)
   Browser E2E is a separate gate (`npm run test:e2e`, **135/135** on 2026-11-06) and is
   **not included** in that number — CI runs it on demand and nightly (item 4).
 - **The standalone single-file build is FRESH** — rebuilt 2026-09-20 with the retention
@@ -383,6 +384,32 @@ competency estimation). Full architecture and feature inventory: `PROJECT.md`.
    2,999-line `index.html`. The Identity view surfaces a "LEGACY KEY STORAGE" notice
    (`identity.js _renderKeyStorageNotice()`), but rotation is still a manual
    generate-new-keypair step, not one click.
+   **index.html inline styles — DONE 2026-11-07; CSP flip still blocked.** The finding
+   was under-scoped: dropping `'unsafe-inline'` needs **every** inline style gone, and
+   there are **1,848** — the 493 static attributes in `index.html` (the 494th match was
+   prose in the CSP comment) plus **1,354** `style="` occurrences emitted by 25 JS view
+   templates (largest: siftLabs 203, mediaForensics 165, verdad 137, cognitive 134,
+   onboarding 118). `index.html`'s 493 are now gone: `tools/extract-inline-styles.mjs`
+   moved them into `css/extracted-inline.css` (331 shared rules, keyed by a
+   `data-ix="<hash>"` attribute — not a class, because several modules overwrite
+   `el.className` wholesale). Each rule is `:is([data-ix="h"], #ix-never#ix-never)`, i.e.
+   (2,0,0) specificity, so it wins wherever the inline style did; no other selector uses
+   2+ IDs, rules are not `!important`, and JS `el.style.*` writes still override them.
+   **Verified as a visual no-op:** every element's full computed style, in all 12 views at
+   1280px and 390px (36,948 element-snapshots), diffed against the pre-move tree, with a
+   same-code A-vs-A run as the noise floor. Result: **0 differences in any declared
+   property**; the only differences were geometry from per-load content (telemetry latency
+   text, the randomized daily drill) and animation frames, matching the noise floor.
+   Negative control (stylesheet withheld): 3,749 differing snapshots, 1,474 with declared
+   property changes — the harness does detect real breakage. Same proof on the rebuilt
+   standalone from `file://` (37,044 snapshots, 0 declared-property differences). Pinned
+   by `tests/test-inline-style-extraction.js` (13 assertions, 49th suite): zero `style=""`
+   in `index.html`, hash↔rule one-to-one, the specificity form, no `!important`, no
+   other selector with 2+ IDs (including inside `@media`), and no JS inline-style resets
+   or new read-backs. **Remaining for the CSP flip:** the 1,354 JS-template occurrences
+   (many interpolate runtime values, so they need classes or CSSOM writes, not this
+   tool), the 165 `el.style.*`/`cssText` writes are fine as-is (CSSOM is not governed by
+   `style-src`), and the standalone's inlined `<style>` block would then need a hash.
 6. **Onboarding listener stacking — FOUND & FIXED 2026-11-06 (`b62a113`).** Found by
    walking the live GitHub Pages deploy, not by any suite. `_bindOnboardingEvents()` ran
    on every step render, but the modal element persists (only `innerHTML` is replaced),

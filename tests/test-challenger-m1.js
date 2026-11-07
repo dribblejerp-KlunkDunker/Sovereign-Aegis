@@ -92,7 +92,7 @@ harness.describe('Group 1: Stylesheet Link Resolution & CSS Syntax Validity', ()
   harness.assert(stylesheetHrefs.length > 0, `Discovered ${stylesheetHrefs.length} stylesheet links in index.html`);
 
   const localCssFiles = stylesheetHrefs.filter(href => !href.startsWith('http://') && !href.startsWith('https://'));
-  harness.assertEqual(localCssFiles.length, 6, 'Found exactly 6 local modular CSS stylesheets in index.html');
+  harness.assertEqual(localCssFiles.length, 7, 'Found exactly 7 local modular CSS stylesheets in index.html');
 
   const expectedLocalCss = [
     'css/variables.css',
@@ -100,7 +100,9 @@ harness.describe('Group 1: Stylesheet Link Resolution & CSS Syntax Validity', ()
     'css/base.css',
     'css/layout.css',
     'css/components.css',
-    'css/animations.css'
+    'css/animations.css',
+    // 2026-11-06: index.html's former style="" attributes (tools/extract-inline-styles.mjs)
+    'css/extracted-inline.css'
   ];
 
   for (const exp of expectedLocalCss) {
