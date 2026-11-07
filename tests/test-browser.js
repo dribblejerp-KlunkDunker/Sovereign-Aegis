@@ -130,7 +130,38 @@ async function main() {
     }
     check(booted, 'App boots (window.AegisApp + store + nav)');
 
-    // Dismiss the first-run onboarding modal so it cannot block interaction.
+    // Walk the first-run orientation for real. Regression guard: each step re-render used to
+    // stack another click listener on the modal, so Next skipped steps (1→2→4) and one
+    // completion click fired a pile of "ORIENTATION COMPLETE" toasts.
+    const seen = [];
+    // The modal is rendered by async onboarding init, a beat after the boot signal.
+    await page.locator('#btn-onboard-next').first().waitFor({ state: 'visible', timeout: 10000 }).catch(() => {});
+    for (let i = 0; i < 12; i++) {
+      const label = await page.evaluate(
+        "(() => { const m = document.body.innerText.match(/STEP (\\d+) OF \\d+/); return m ? Number(m[1]) : null; })()"
+      );
+      let hit = null;
+      let hitSel = null;
+      for (const sel of ['#btn-onboard-skip-diag', '#btn-diag-skip', '#btn-onboard-next']) {
+        const loc = page.locator(sel);
+        if ((await loc.count()) && (await loc.first().isVisible())) { hit = loc.first(); hitSel = sel; break; }
+      }
+      if (!hit) break;
+      if (label !== null) seen.push(label);
+      // Bounded click: a broken flow must fail this check fast, not hang the suite.
+      try { await hit.click({ timeout: 3000 }); } catch { break; }
+      if (hitSel !== '#btn-onboard-next') break; // skip completes orientation; stop clicking
+      await page.waitForTimeout(150);
+    }
+    await page.waitForTimeout(600); // completion fades for 300ms before toasting
+    const sequential = seen.length >= 2 && seen.every((s, i) => s === i + 1);
+    check(sequential, 'Orientation steps advance one at a time', `visited ${seen.join('→') || 'none'}`);
+    const completeToasts = await page.evaluate(
+      "[...document.querySelectorAll('*')].filter(e => e.offsetParent && [...e.childNodes].some(n => n.nodeType === 3 && /AEGIS ORIENTATION COMPLETE/.test(n.textContent))).length"
+    );
+    check(completeToasts === 1, 'Orientation completes exactly once', `${completeToasts} completion toasts`);
+
+    // Make sure no onboarding modal is left to block interaction.
     await page.evaluate(
       "(() => { const m = document.getElementById('modal-onboarding'); if (m) (m.closest('.modal-backdrop') || m).remove(); window.AegisApp?.store?.set('app.onboarded', true); })()"
     );

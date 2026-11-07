@@ -463,6 +463,11 @@ export const OnboardingModule = {
   },
 
   _bindOnboardingEvents(modal) {
+    // Every step re-render calls this, but the modal element itself persists (only its
+    // innerHTML is replaced). Without this guard each render stacked another listener, so
+    // one click ran the handler N times — Next skipped steps and completion fired N toasts.
+    if (modal.dataset.onboardBound === '1') return;
+    modal.dataset.onboardBound = '1';
     modal.addEventListener('click', (e) => {
       const target = e.target;
       if (!target) return;
@@ -569,6 +574,9 @@ export const OnboardingModule = {
   },
 
   _completeOnboarding(modal, dest = { tab: 'cognitive', subtab: 'sift-labs', label: 'SIFT Labs' }) {
+    // A second click during the 300ms fade-out must not complete (and toast) twice.
+    if (modal.dataset.onboardCompleting === '1') return;
+    modal.dataset.onboardCompleting = '1';
     this._app?.store?.set('app.onboarded', true);
     this._app?.store?.set('app.onboardedAt', new Date().toISOString());
 
